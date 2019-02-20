@@ -2,6 +2,7 @@ package com.shvants.runninglife;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,5 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Toast.makeText(this, "Hello!", Toast.LENGTH_LONG).show();
     }
 }
