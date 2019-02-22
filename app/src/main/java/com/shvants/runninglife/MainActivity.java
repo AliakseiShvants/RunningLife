@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.shvants.imgloader.Constants;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Toast.makeText(this, "Hello!", Toast.LENGTH_LONG).show();
+        String hello = Constants.LIB_NAME;
+
+        Toast.makeText(this, hello, Toast.LENGTH_LONG).show();
     }
 }
