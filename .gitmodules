@@ -1,0 +1,3 @@
+[submodule "imageloader"]
+	path = imageloader
+	url = git://github.com/AliakseiShvants/ImageLoader.git
