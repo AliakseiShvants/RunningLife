@@ -1,27 +1,8 @@
 <resources>
     <string name="app_name">RunningLife</string>
-    <string name="stub">Strava is a social fitness service that allows users to share, compare and
-        compete with other users personal fitness data via mobile and online apps. Focusing on
-        cyclists and runners, Strava lets users track their rides and runs via mobile apps or GPS
-        device to analyze their performance. The Strava API provides several methods through which
-        users can send and receive Strava data from a mobile device. These methods lets users access
-        data on other athletes, efforts, rides and uploads. The API uses RESTful calls and responses
-        are formatted in JSON.
-            Android («Андро́ид»[~ 1]) — операционная система для смартфонов, планшетов, электронных
-        книг, цифровых проигрывателей, наручных часов, фитнес-браслетов, игровых приставок,
-        ноутбуков, нетбуков, смартбуков, очков Google Glass[3], телевизоров[4] и других устройств
-        (в 2015 году появилась поддержка автомобильных развлекательных систем[5] и бытовых роботов).
+    <string name="START">Start counter</string>
+    <string name="STOP">Stop counter</string>
+    <string name="BROADCAST">Broadcast</string>
+    <string name="SHOW_TRAINING">Show last training</string>
 
-        Основана на ядре Linux[6] и собственной реализации виртуальной машины Java от Google.
-        Изначально разрабатывалась компанией Android, Inc., которую затем купила Google.
-        Впоследствии Google инициировала создание альянса Open Handset Alliance (OHA), который сейчас
-        занимается поддержкой и дальнейшим развитием платформы. Android позволяет создавать
-        Java-приложения, управляющие устройством через разработанные Google библиотеки. Android
-        Native Development Kit позволяет портировать библиотеки и компоненты приложений,
-        написанные на Си и других языках.
-
-        В 86 % смартфонов, проданных во втором квартале 2014 года, была установлена операционная
-        система Android[7]. На конференции для разработчиков в мае 2017 года Google объявила, что
-        за всю историю Android было активировано более 2 млрд Android-устройств.
-    </string>
 </resources>

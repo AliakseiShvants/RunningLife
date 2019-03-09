@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="HALF_MARGIN">4dp</dimen>
+    <dimen name="PADDING">4dp</dimen>
+    <dimen name="MARGIN">8dp</dimen>
+    <dimen name="FORTH_MARGIN">32dp</dimen>
+</resources>
