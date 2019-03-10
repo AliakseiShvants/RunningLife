@@ -16,7 +16,8 @@
 
         <activity
             android:name=".androidui.vk.VkProfileActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.TransparentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
