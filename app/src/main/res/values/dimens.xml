@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="HALF_MARGIN">4dp</dimen>
-    <dimen name="PADDING">4dp</dimen>
-    <dimen name="MARGIN">8dp</dimen>
-    <dimen name="FORTH_MARGIN">32dp</dimen>
+    <dimen name="HALF_INTENT">4dp</dimen>
+    <dimen name="ONE_INTENT">8dp</dimen>
+    <dimen name="TWO_INTENT">16dp</dimen>
+    <dimen name="THREE_INTENT">24dp</dimen>
+    <dimen name="FOUR_INTENT">32dp</dimen>
+    <dimen name="TEN_INTENT">80dp</dimen>
+
+    <dimen name="XS_TEXT_SIZE">12sp</dimen>
+    <dimen name="S_TEXT_SIZE">16sp</dimen>
+    <dimen name="M_TEXT_SIZE">20sp</dimen>
+    <dimen name="L_TEXT_SIZE">24sp</dimen>
+    <dimen name="XL_TEXT_SIZE">28sp</dimen>
+
+    <dimen name="MAIN_IMG_SIZE">240dp</dimen>
 </resources>

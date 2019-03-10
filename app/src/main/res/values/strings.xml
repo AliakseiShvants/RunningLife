@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">RunningLife</string>
+    <string name="APP_NAME">RunningLife</string>
     <string name="START">Start counter</string>
     <string name="STOP">Stop counter</string>
     <string name="BROADCAST">Broadcast</string>
     <string name="SHOW_TRAINING">Show last training</string>
+    <string name="ACTION_MORE_TITLE">More</string>
+    <string name="USER_NAME">Алексей Шванц</string>
+    <string name="ONLINE">online</string>
+    <string name="EDIT">Редактировать</string>
+    <string name="MESSAGE">Ищу напарника/цу вот на это мероприятие https://www.wrc2019.cat</string>
+    <string name="FRIENDS">163 друга</string>
 
 </resources>

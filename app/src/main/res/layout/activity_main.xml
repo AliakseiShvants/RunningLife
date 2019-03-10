@@ -24,27 +24,27 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/MARGIN"
-            android:layout_marginBottom="@dimen/MARGIN"
+            android:layout_marginTop="@dimen/ONE_INTENT"
+            android:layout_marginBottom="@dimen/ONE_INTENT"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/main_start_service_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/MARGIN"
-                android:layout_marginEnd="@dimen/HALF_MARGIN"
+                android:layout_marginStart="@dimen/ONE_INTENT"
+                android:layout_marginEnd="@dimen/HALF_INTENT"
                 android:layout_weight="1"
                 android:background="@android:color/background_light"
-                android:padding="@dimen/PADDING"
+                android:padding="@dimen/ONE_INTENT"
                 android:text="@string/START" />
 
             <Button
                 android:id="@+id/main_stop_service_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/HALF_MARGIN"
-                android:layout_marginEnd="@dimen/HALF_MARGIN"
+                android:layout_marginStart="@dimen/HALF_INTENT"
+                android:layout_marginEnd="@dimen/HALF_INTENT"
                 android:layout_weight="1"
                 android:background="@android:color/background_light"
                 android:text="@string/STOP" />
@@ -53,11 +53,11 @@
                 android:id="@+id/main_broadcast_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/HALF_MARGIN"
-                android:layout_marginEnd="@dimen/MARGIN"
+                android:layout_marginStart="@dimen/HALF_INTENT"
+                android:layout_marginEnd="@dimen/ONE_INTENT"
                 android:layout_weight="1"
                 android:background="@android:color/background_light"
-                android:padding="@dimen/PADDING"
+                android:padding="@dimen/ONE_INTENT"
                 android:text="@string/BROADCAST" />
         </LinearLayout>
 
@@ -67,10 +67,10 @@
             android:layout_height="wrap_content"
 
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/MARGIN"
-            android:layout_marginBottom="@dimen/FORTH_MARGIN"
+            android:layout_marginTop="@dimen/ONE_INTENT"
+            android:layout_marginBottom="@dimen/FOUR_INTENT"
             android:background="@android:color/background_light"
-            android:padding="@dimen/PADDING"
+            android:padding="@dimen/ONE_INTENT"
             android:text="@string/SHOW_TRAINING" />
 
         <FrameLayout
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginStart="@dimen/HALF_MARGIN"
-            android:layout_marginEnd="@dimen/HALF_MARGIN" />
+            android:layout_marginStart="@dimen/HALF_INTENT"
+            android:layout_marginEnd="@dimen/HALF_INTENT" />
     </LinearLayout>
 </ScrollView>

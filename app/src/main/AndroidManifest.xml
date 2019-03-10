@@ -6,21 +6,17 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/APP_NAME"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <service android:name=".CounterService" />
+        <activity android:name=".MainActivity" />
 
-        <receiver android:name=".CounterBroadcastReceiver">
-            <intent-filter>
-                <action android:name="com.shvants.CUSTOM_ACION" />
-            </intent-filter>
-        </receiver>
-
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".androidui.vk.VkProfileActivity"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
