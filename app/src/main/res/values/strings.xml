@@ -24,4 +24,8 @@
         система Android[7]. На конференции для разработчиков в мае 2017 года Google объявила, что
         за всю историю Android было активировано более 2 млрд Android-устройств.
     </string>
+    <string name="gallery">Gallery</string>
+    <string name="training_record">Training record</string>
+    <string name="feed">Feed</string>
+    <string name="clubs">Clubs</string>
 </resources>
