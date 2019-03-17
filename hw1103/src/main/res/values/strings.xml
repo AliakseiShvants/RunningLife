@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Compound View and Navigation Drawer</string>
+    <string name="gallery">Gallery</string>
+    <string name="training_record">Training record</string>
+    <string name="feed">Feed</string>
+    <string name="clubs">Clubs</string>
+</resources>
