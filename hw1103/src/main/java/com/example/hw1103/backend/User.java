@@ -1,12 +1,9 @@
 package com.example.hw1103.backend;
 
-import android.support.annotation.DrawableRes;
-
 public class User {
 
     private String name;
     private String email;
-    @DrawableRes
     private int icon;
 
     public String getName() {

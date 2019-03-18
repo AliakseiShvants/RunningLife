@@ -1,14 +1,18 @@
 package com.example.hw1103;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hw1103.backend.ColorManager;
 import com.example.hw1103.backend.User;
 
 public class CompoundView extends LinearLayout {
@@ -47,13 +51,14 @@ public class CompoundView extends LinearLayout {
     }
 
         public void setUserToCompoundView(final User user){
-        Drawable drawable = ContextCompat.getDrawable(getContext(), user.getIcon());
+        final Drawable drawable = ContextCompat.getDrawable(getContext(), user.getIcon());
 
         icon.setImageDrawable(drawable);
         name.setText(user.getName());
         email.setText(user.getEmail());
     }
 
-    public void changeColor() {
+    public void changeColor(@DrawableRes final int color) {
+        DrawableCompat.setTint(icon.getDrawable(), color);
     }
 }
