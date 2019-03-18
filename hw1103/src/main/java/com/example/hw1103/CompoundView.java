@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hw1103.backend.User;
+
 public class CompoundView extends LinearLayout {
 
     private ImageView icon;
@@ -36,6 +38,7 @@ public class CompoundView extends LinearLayout {
     }
 
     private void initCompoundView(){
+        setOrientation(VERTICAL);
         inflate(getContext(), R.layout.compound_view, this);
 
         icon = findViewById(R.id.compound_view_icon);

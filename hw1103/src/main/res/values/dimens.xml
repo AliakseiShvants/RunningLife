@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="one_intent">16dp</dimen>
+    <dimen name="two_intent">16dp</dimen>
+    <dimen name="one_intent">8dp</dimen>
+
+    <dimen name="one_line">16sp</dimen>
+    <dimen name="one_half_line">20sp</dimen>
 </resources>
