@@ -1,10 +1,10 @@
 package com.shvants.runninglife.androidui.vk;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
 
 import com.shvants.runninglife.R;
 
@@ -29,7 +29,7 @@ public class VkProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.active_bar, menu);
 
         return super.onCreateOptionsMenu(menu);
     }

@@ -8,7 +8,17 @@
     <string name="USER_NAME">Алексей Шванц</string>
     <string name="ONLINE">online</string>
     <string name="EDIT">Редактировать</string>
-    <string name="MESSAGE">Ищу напарника/цу вот на это мероприятие https://www.wrc2019.cat</string>
+    <string name="PROFILE_MESSAGE">Ищу напарника/цу вот на это мероприятие https://www.wrc2019.cat</string>
     <string name="FRIENDS">163 друга</string>
+    <string name="SUBSCRIBERS">81 подписчик</string>
+    <string name="LOCATION">Город: Гродно</string>
+    <string name="DETAIL_INFO">Подробная информация</string>
+    <string name="BACK">Back</string>
+    <string name="NEWS">News</string>
+    <string name="SEARCH">Search</string>
+    <string name="MESSAGE">Message</string>
+    <string name="NOTIFICATIONS">Notifications</string>
+    <string name="MENU">Menu</string>
+    <string name="QUESTION">Что у Вас нового?</string>
 
 </resources>

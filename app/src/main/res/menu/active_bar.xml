@@ -6,7 +6,7 @@
         android:id="@+id/action_back"
         android:icon="@drawable/ic_arrow_back_white"
         android:orderInCategory="1"
-        android:title="@string/ACTION_MORE_TITLE"
+        android:title="@string/BACK"
         app:showAsAction="always" />
 
     <item
