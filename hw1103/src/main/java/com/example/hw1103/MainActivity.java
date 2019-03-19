@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.hw1103.backend.ColorManager;
@@ -23,12 +22,13 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     public static final boolean TRUE = true;
+    public static final int NULL = 0;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private CompoundView compoundView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -43,13 +43,13 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
 
         final User user = getUser();
-        compoundView = navigationView.getHeaderView(0).findViewById(R.id.nav_compound_view);
+        compoundView = navigationView.getHeaderView(NULL).findViewById(R.id.nav_compound_view);
         compoundView.setUserToCompoundView(user);
 
         final ImageView icon = compoundView.findViewById(R.id.compound_view_icon);
         icon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 final int color = ColorManager.getRandomColor();
                 compoundView.changeColor(color);
             }
@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    public boolean onNavigationItemSelected(final MenuItem menuItem) {
                         final FragmentTransaction transaction =
                                 getSupportFragmentManager().beginTransaction();
 
-                        switch (menuItem.getItemId()){
+                        switch (menuItem.getItemId()) {
                             case R.id.nav_record:
                                 transaction.replace(R.id.content_frame, new TrainingRecordFragment());
                                 break;
@@ -85,17 +85,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
 
                 return TRUE;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
-    private User getUser(){
+    private User getUser() {
         final User user = new User();
         user.setIcon(R.drawable.ic_account);
         user.setName("Aliaksei Shvants");

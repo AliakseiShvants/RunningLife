@@ -10,23 +10,23 @@ public class User {
         return name;
     }
 
+    public void setName(final String name) {
+        this.name = name;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
     }
 
     public int getIcon() {
         return icon;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setIcon(int icon) {
+    public void setIcon(final int icon) {
         this.icon = icon;
     }
 }

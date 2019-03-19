@@ -14,5 +14,4 @@
             android:icon="@drawable/ic_flag"
             android:title="@string/clubs" />
     </group>
-
 </menu>

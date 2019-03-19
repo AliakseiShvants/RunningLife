@@ -1,7 +1,6 @@
 package com.example.hw1103;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.hw1103.backend.ColorManager;
 import com.example.hw1103.backend.User;
 
 public class CompoundView extends LinearLayout {
@@ -21,27 +19,29 @@ public class CompoundView extends LinearLayout {
     private TextView name;
     private TextView email;
 
-    public CompoundView(Context context) {
+    public CompoundView(final Context context) {
         super(context);
         initCompoundView();
     }
 
-    public CompoundView(Context context, @Nullable AttributeSet attrs) {
+    public CompoundView(final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
         initCompoundView();
     }
 
-    public CompoundView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CompoundView(final Context context, @Nullable final AttributeSet attrs,
+                        final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initCompoundView();
     }
 
-    public CompoundView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CompoundView(final Context context, final AttributeSet attrs, final int defStyleAttr,
+                        final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initCompoundView();
     }
 
-    private void initCompoundView(){
+    private void initCompoundView() {
         setOrientation(VERTICAL);
         inflate(getContext(), R.layout.compound_view, this);
 
@@ -50,7 +50,7 @@ public class CompoundView extends LinearLayout {
         email = findViewById(R.id.compound_view_email);
     }
 
-        public void setUserToCompoundView(final User user){
+    public void setUserToCompoundView(final User user) {
         final Drawable drawable = ContextCompat.getDrawable(getContext(), user.getIcon());
 
         icon.setImageDrawable(drawable);
