@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">hw 06.03</string>
+
+    <string name="action_more_title">More</string>
+    <string name="username">Алексей Шванц</string>
+    <string name="online">online</string>
+    <string name="edit">Редактировать</string>
+    <string name="profile_msg">Ищу напарника/цу вот на это мероприятие https://www.wrc2019.cat</string>
+    <string name="friends">163 друга</string>
+    <string name="subscribers">81 подписчик</string>
+    <string name="location">Город: Гродно</string>
+    <string name="detail_info">Подробная информация</string>
+    <string name="back">Back</string>
+    <string name="news">News</string>
+    <string name="search">Search</string>
+    <string name="message">Message</string>
+    <string name="notification">Notifications</string>
+    <string name="menu">Menu</string>
+    <string name="question">Что у Вас нового?</string>
+
+</resources>

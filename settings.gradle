@@ -1,1 +1,1 @@
-include ':app', ':imageloader'
+include ':app', ':imageloader', ':hw_0603_android_ui'

@@ -43,7 +43,7 @@
                 android:layout_alignBottom="@id/main_foto_image_view"
                 android:layout_marginStart="@dimen/TWO_INTENT"
                 android:layout_marginBottom="@dimen/FIVE_INTENT"
-                android:text="@string/USER_NAME"
+                android:text="@string/username"
                 android:textColor="@color/white"
                 android:textSize="@dimen/L_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
@@ -56,7 +56,7 @@
                 android:layout_gravity="bottom"
                 android:layout_marginStart="@dimen/TWO_INTENT"
                 android:layout_marginBottom="@dimen/THREE_INTENT"
-                android:text="@string/ONLINE"
+                android:text="@string/online"
                 android:textColor="@color/white"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
@@ -92,7 +92,7 @@
                 android:gravity="center"
                 android:paddingTop="@dimen/ONE_INTENT"
                 android:paddingBottom="@dimen/ONE_INTENT"
-                android:text="@string/EDIT"
+                android:text="@string/edit"
                 android:textColor="@color/lightBlue900"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
@@ -115,7 +115,7 @@
                 android:layout_marginTop="@dimen/ONE_INTENT"
                 android:layout_marginEnd="@dimen/TWO_INTENT"
                 android:layout_toEndOf="@id/main_chat_icon_image_view"
-                android:text="@string/PROFILE_MESSAGE"
+                android:text="@string/profile_msg"
                 android:textSize="12sp"
                 app:fontFamily="@font/montserrat_medium" />
 
@@ -137,7 +137,7 @@
                 android:layout_marginTop="@dimen/TWO_INTENT"
                 android:layout_marginEnd="@dimen/TWO_INTENT"
                 android:layout_toEndOf="@id/main_people_icon_image_view"
-                android:text="@string/FRIENDS"
+                android:text="@string/friends"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
 
@@ -158,7 +158,7 @@
                 android:layout_alignTop="@id/main_subscribers_icon_image_view"
                 android:layout_marginStart="@dimen/TWO_INTENT"
                 android:layout_toEndOf="@id/main_subscribers_icon_image_view"
-                android:text="@string/SUBSCRIBERS"
+                android:text="@string/subscribers"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
 
@@ -179,7 +179,7 @@
                 android:layout_alignTop="@id/main_location_icon_image_view"
                 android:layout_marginStart="@dimen/TWO_INTENT"
                 android:layout_toEndOf="@id/main_location_icon_image_view"
-                android:text="@string/LOCATION"
+                android:text="@string/location"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
 
@@ -201,7 +201,7 @@
                 android:layout_alignTop="@id/main_more_info_icon_image_view"
                 android:layout_marginStart="@dimen/TWO_INTENT"
                 android:layout_toEndOf="@id/main_more_info_icon_image_view"
-                android:text="@string/DETAIL_INFO"
+                android:text="@string/detail_info"
                 android:textColor="@color/lightBlue900"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
@@ -233,7 +233,7 @@
                 android:layout_marginStart="@dimen/TWO_INTENT"
                 android:layout_marginTop="@dimen/ONE_INTENT"
                 android:layout_toEndOf="@id/main_news_icon_image_view"
-                android:text="@string/QUESTION"
+                android:text="@string/question"
                 android:textSize="@dimen/XS_TEXT_SIZE"
                 app:fontFamily="@font/montserrat_medium" />
 

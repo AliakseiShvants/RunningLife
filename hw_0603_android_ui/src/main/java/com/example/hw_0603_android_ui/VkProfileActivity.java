@@ -1,12 +1,9 @@
-package com.shvants.runninglife.androidui.vk;
+package com.example.hw_0603_android_ui;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-
-import com.shvants.runninglife.R;
 
 import java.util.Objects;
 
@@ -16,11 +13,11 @@ public class VkProfileActivity extends AppCompatActivity {
     public static final boolean FALSE = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vk_profile);
 
-        Toolbar toolbar = findViewById(R.id.main_toolbar);
+        final Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(TRUE);
