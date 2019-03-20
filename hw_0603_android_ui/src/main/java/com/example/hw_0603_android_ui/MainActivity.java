@@ -12,19 +12,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final View container = findViewById(R.id.container);
-        container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                final Intent intent = new Intent();
+        setListener(findViewById(R.id.vk), VkProfileActivity.class);
 
+    }
+
+    private void setListener(final View view, final Class classs) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.vk:
-                        intent.setClass(MainActivity.this, VkProfileActivity.class);
+                        startActivity(new Intent(getBaseContext(), classs));
                         break;
                 }
-
-                startActivity(intent);
             }
         });
     }

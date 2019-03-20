@@ -13,259 +13,257 @@
         android:id="@+id/main_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray300"
         android:fillViewport="true"
         android:fitsSystemWindows="true"
         tools:context=".androidui.vk.VkProfileActivity">
 
         <RelativeLayout
-            android:id="@+id/main_content_relative_layout"
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/gray300"
             android:fitsSystemWindows="true">
 
-            <ImageView
-                android:id="@+id/main_foto_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/MAIN_IMG_SIZE"
-                android:fitsSystemWindows="true"
-                android:src="@drawable/vk_profile_bg" />
-
-            <include
-                android:id="@+id/main_toolbar"
-                layout="@layout/toolbar_main" />
-
-            <TextView
-                android:id="@+id/main_user_name_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/main_foto_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginBottom="@dimen/FIVE_INTENT"
-                android:text="@string/username"
-                android:textColor="@color/white"
-                android:textSize="@dimen/L_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
-
-            <TextView
-                android:id="@+id/main_status_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/main_foto_image_view"
-                android:layout_gravity="bottom"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginBottom="@dimen/THREE_INTENT"
-                android:text="@string/online"
-                android:textColor="@color/white"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
-
-            <ImageView
-                android:id="@+id/main_status_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/main_status_text_view"
-                android:layout_toEndOf="@id/main_status_text_view"
-                android:src="@drawable/ic_outline_smartphone" />
-
-            <ImageView
-                android:id="@+id/main_foto_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/main_foto_image_view"
-                android:layout_alignBottom="@id/main_foto_image_view"
-                android:layout_marginEnd="@dimen/TWO_INTENT"
-                android:layout_marginBottom="@dimen/THREE_INTENT"
-                app:srcCompat="@drawable/ic_photo_camera" />
-
-            <TextView
-                android:id="@+id/main_edit_text_view"
+            <RelativeLayout
+                android:id="@+id/user_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/main_foto_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/ONE_INTENT"
-                android:layout_marginEnd="@dimen/TWO_INTENT"
-                android:layout_marginBottom="@dimen/ONE_INTENT"
-                android:background="@drawable/edit_button"
-                android:gravity="center"
-                android:paddingTop="@dimen/ONE_INTENT"
-                android:paddingBottom="@dimen/ONE_INTENT"
-                android:text="@string/edit"
-                android:textColor="@color/lightBlue900"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
+                android:background="@android:color/white">
 
-            <ImageView
-                android:id="@+id/main_chat_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_edit_text_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/ONE_INTENT"
-                app:srcCompat="@drawable/ic_message" />
+                <ImageView
+                    android:id="@+id/main_foto_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/MAIN_IMG_SIZE"
+                    android:fitsSystemWindows="true"
+                    android:src="@drawable/vk_profile_bg" />
 
-            <TextView
-                android:id="@+id/main_message_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_edit_text_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/ONE_INTENT"
-                android:layout_marginEnd="@dimen/TWO_INTENT"
-                android:layout_toEndOf="@id/main_chat_icon_image_view"
-                android:text="@string/profile_msg"
-                android:textSize="12sp"
-                app:fontFamily="@font/montserrat_medium" />
+                <include
+                    android:id="@+id/main_toolbar"
+                    layout="@layout/toolbar_main" />
 
-            <ImageView
-                android:id="@+id/main_people_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_chat_icon_image_view"
-                android:layout_alignTop="@id/main_friends_text_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                app:srcCompat="@drawable/ic_people" />
+                <TextView
+                    android:id="@+id/main_user_name_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/main_foto_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginBottom="@dimen/FIVE_INTENT"
+                    android:text="@string/username"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/L_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
 
-            <TextView
-                android:id="@+id/main_friends_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_message_text_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/TWO_INTENT"
-                android:layout_marginEnd="@dimen/TWO_INTENT"
-                android:layout_toEndOf="@id/main_people_icon_image_view"
-                android:text="@string/friends"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
+                <TextView
+                    android:id="@+id/main_status_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/main_foto_image_view"
+                    android:layout_gravity="bottom"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginBottom="@dimen/THREE_INTENT"
+                    android:text="@string/online"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
 
-            <ImageView
-                android:id="@+id/main_subscribers_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_people_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/TWO_INTENT"
-                app:srcCompat="@drawable/ic_rss_feed" />
+                <ImageView
+                    android:id="@+id/main_status_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/main_status_text_view"
+                    android:layout_toEndOf="@id/main_status_text_view"
+                    android:src="@drawable/ic_outline_smartphone" />
 
-            <TextView
-                android:id="@+id/main_subscribers_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_friends_text_view"
-                android:layout_alignTop="@id/main_subscribers_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_toEndOf="@id/main_subscribers_icon_image_view"
-                android:text="@string/subscribers"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
+                <ImageView
+                    android:id="@+id/main_foto_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@id/main_foto_image_view"
+                    android:layout_alignBottom="@id/main_foto_image_view"
+                    android:layout_marginEnd="@dimen/TWO_INTENT"
+                    android:layout_marginBottom="@dimen/THREE_INTENT"
+                    app:srcCompat="@drawable/ic_photo_camera" />
 
-            <ImageView
-                android:id="@+id/main_location_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_subscribers_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/TWO_INTENT"
-                app:srcCompat="@drawable/ic_home" />
+                <Button
+                    android:id="@+id/main_edit_text_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_foto_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    android:layout_marginEnd="@dimen/TWO_INTENT"
+                    android:layout_marginBottom="@dimen/ONE_INTENT"
+                    android:background="@drawable/edit_button"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/ONE_INTENT"
+                    android:paddingBottom="@dimen/ONE_INTENT"
+                    android:text="@string/edit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/lightBlue900"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
 
-            <TextView
-                android:id="@+id/main_location_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_subscribers_text_view"
-                android:layout_alignTop="@id/main_location_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_toEndOf="@id/main_location_icon_image_view"
-                android:text="@string/location"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
+                <ImageView
+                    android:id="@+id/main_chat_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_edit_text_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    app:srcCompat="@drawable/ic_message" />
 
-            <ImageView
-                android:id="@+id/main_more_info_icon_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_location_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/TWO_INTENT"
-                android:layout_marginBottom="@dimen/TWO_INTENT"
-                app:srcCompat="@drawable/ic_more_horiz" />
+                <TextView
+                    android:id="@+id/main_message_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_edit_text_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    android:layout_marginEnd="@dimen/TWO_INTENT"
+                    android:layout_toEndOf="@id/main_chat_icon_image_view"
+                    android:text="@string/profile_msg"
+                    android:textSize="12sp"
+                    app:fontFamily="@font/montserrat_medium" />
 
-            <TextView
-                android:id="@+id/main_more_info_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_location_text_view"
-                android:layout_alignTop="@id/main_more_info_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_toEndOf="@id/main_more_info_icon_image_view"
-                android:text="@string/detail_info"
-                android:textColor="@color/lightBlue900"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
+                <ImageView
+                    android:id="@+id/main_people_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_chat_icon_image_view"
+                    android:layout_alignTop="@id/main_friends_text_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    app:srcCompat="@drawable/ic_people" />
 
-            <TextView
-                android:id="@+id/main_first_intent"
+                <TextView
+                    android:id="@+id/main_friends_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_message_text_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/TWO_INTENT"
+                    android:layout_marginEnd="@dimen/TWO_INTENT"
+                    android:layout_toEndOf="@id/main_people_icon_image_view"
+                    android:text="@string/friends"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
+
+                <ImageView
+                    android:id="@+id/main_subscribers_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_people_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/TWO_INTENT"
+                    app:srcCompat="@drawable/ic_rss_feed" />
+
+                <TextView
+                    android:id="@+id/main_subscribers_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_friends_text_view"
+                    android:layout_alignTop="@id/main_subscribers_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_toEndOf="@id/main_subscribers_icon_image_view"
+                    android:text="@string/subscribers"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
+
+                <ImageView
+                    android:id="@+id/main_location_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_subscribers_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/TWO_INTENT"
+                    app:srcCompat="@drawable/ic_home" />
+
+                <TextView
+                    android:id="@+id/main_location_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_subscribers_text_view"
+                    android:layout_alignTop="@id/main_location_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_toEndOf="@id/main_location_icon_image_view"
+                    android:text="@string/location"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
+
+                <ImageView
+                    android:id="@+id/main_more_info_icon_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_location_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/TWO_INTENT"
+                    android:layout_marginBottom="@dimen/TWO_INTENT"
+                    app:srcCompat="@drawable/ic_more_horiz" />
+
+                <TextView
+                    android:id="@+id/main_more_info_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/main_location_text_view"
+                    android:layout_alignTop="@id/main_more_info_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_toEndOf="@id/main_more_info_icon_image_view"
+                    android:text="@string/detail_info"
+                    android:textColor="@color/lightBlue900"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/user_publisher"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/HALF_INTENT"
-                android:layout_below="@id/main_more_info_icon_image_view"
-                android:layout_marginTop="@dimen/HALF_INTENT"
-                android:background="@color/gray300" />
-
-            <ImageView
-                android:id="@+id/main_news_icon_image_view"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_below="@id/main_first_intent"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/ONE_INTENT"
-                android:layout_marginBottom="@dimen/ONE_INTENT"
-                android:src="@drawable/ic_stub" />
-
-            <TextView
-                android:id="@+id/main_news_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_below="@id/main_first_intent"
-                android:layout_alignBaseline="@id/main_news_icon_image_view"
-                android:layout_marginStart="@dimen/TWO_INTENT"
-                android:layout_marginTop="@dimen/ONE_INTENT"
-                android:layout_toEndOf="@id/main_news_icon_image_view"
-                android:text="@string/question"
-                android:textSize="@dimen/XS_TEXT_SIZE"
-                app:fontFamily="@font/montserrat_medium" />
-
-            <ImageView
-                android:id="@+id/main_news_foto_image_view"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/main_first_intent"
+                android:layout_below="@id/user_profile"
                 android:layout_marginTop="@dimen/ONE_INTENT"
-                android:layout_marginEnd="@dimen/TWO_INTENT"
-                android:layout_toStartOf="@id/main_news_camera_image_view"
-                android:src="@drawable/ic_outline_insert_photo" />
+                android:background="@color/white">
 
-            <ImageView
-                android:id="@+id/main_news_camera_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_first_intent"
-                android:layout_alignEnd="@id/main_first_intent"
-                android:layout_marginTop="@dimen/ONE_INTENT"
-                android:layout_marginEnd="@dimen/TWO_INTENT"
-                android:src="@drawable/ic_outline_local_see" />
+                <ImageView
+                    android:id="@+id/main_news_icon_image_view"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    android:layout_marginBottom="@dimen/ONE_INTENT"
+                    android:src="@drawable/ic_stub" />
 
-            <TextView
-                android:id="@+id/main_second_intent"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/HALF_INTENT"
-                android:layout_below="@id/main_news_icon_image_view"
-                android:layout_marginTop="@dimen/HALF_INTENT"
-                android:background="@color/gray300" />
+                <TextView
+                    android:id="@+id/main_news_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_alignBaseline="@id/main_news_icon_image_view"
+                    android:layout_marginStart="@dimen/TWO_INTENT"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    android:layout_toEndOf="@id/main_news_icon_image_view"
+                    android:text="@string/question"
+                    android:textSize="@dimen/XS_TEXT_SIZE"
+                    app:fontFamily="@font/montserrat_medium" />
+
+                <ImageView
+                    android:id="@+id/main_news_foto_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    android:layout_marginEnd="@dimen/TWO_INTENT"
+                    android:layout_toStartOf="@id/main_news_camera_image_view"
+                    android:src="@drawable/ic_outline_insert_photo" />
+
+                <ImageView
+                    android:id="@+id/main_news_camera_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/ONE_INTENT"
+                    android:layout_marginEnd="@dimen/TWO_INTENT"
+                    android:src="@drawable/ic_outline_local_see" />
+            </RelativeLayout>
+
 
         </RelativeLayout>
+
     </ScrollView>
 
     <android.support.design.widget.BottomNavigationView
