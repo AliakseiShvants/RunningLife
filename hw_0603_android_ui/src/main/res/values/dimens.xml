@@ -15,4 +15,6 @@
     <dimen name="XL_TEXT_SIZE">28sp</dimen>
 
     <dimen name="MAIN_IMG_SIZE">240dp</dimen>
+    <dimen name="foto_width">160dp</dimen>
+    <dimen name="foto_height">90dp</dimen>
 </resources>

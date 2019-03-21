@@ -17,5 +17,7 @@
     <string name="notification">Notifications</string>
     <string name="menu">Menu</string>
     <string name="question">Что у Вас нового?</string>
+    <string name="foto_label">Фото</string>
+    <string name="foto_amount">106</string>
 
 </resources>

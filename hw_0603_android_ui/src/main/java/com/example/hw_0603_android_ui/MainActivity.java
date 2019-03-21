@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private void setListener(final View view, final Class classs) {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 switch (v.getId()) {
                     case R.id.vk:
                         startActivity(new Intent(getBaseContext(), classs));
