@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">hw_1403</string>
+    <string name="show_students">Show students</string>
+    <string name="recycler_view">Recycler View</string>
+</resources>
