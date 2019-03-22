@@ -7,17 +7,17 @@ import android.view.Menu;
 
 import java.util.Objects;
 
-public class VkProfileActivity extends AppCompatActivity {
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
-    public static final boolean TRUE = true;
-    public static final boolean FALSE = false;
+public class VkProfileActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vk_profile);
 
-        final Toolbar toolbar = findViewById(R.id.main_toolbar);
+        final Toolbar toolbar = findViewById(R.id.vk_toolbar);
         setSupportActionBar(toolbar);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(TRUE);
@@ -26,7 +26,7 @@ public class VkProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
-        getMenuInflater().inflate(R.menu.active_bar, menu);
+        getMenuInflater().inflate(R.menu.vk_action_bar, menu);
 
         return super.onCreateOptionsMenu(menu);
     }

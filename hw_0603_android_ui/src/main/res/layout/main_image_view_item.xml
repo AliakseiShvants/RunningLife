@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/gp_img_size"
+        android:layout_height="@dimen/gp_img_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/ONE_INTENT"
+        android:layout_marginBottom="@dimen/ONE_INTENT"
+
+        android:background="@android:color/holo_blue_dark"
+        android:gravity="center"
+        android:paddingStart="@dimen/HALF_INTENT"
+        android:paddingEnd="@dimen/HALF_INTENT"
+        android:text="@string/gp_img_label"
+        android:textSize="@dimen/xxs_text_size" />
+</FrameLayout>

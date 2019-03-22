@@ -23,6 +23,11 @@
         <activity
             android:name=".VkProfileActivity"
             android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".GooglePodcastsActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/GP" />
     </application>
 
 </manifest>

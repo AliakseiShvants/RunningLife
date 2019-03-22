@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setListener(findViewById(R.id.vk), VkProfileActivity.class);
-
+        setListener(findViewById(R.id.google_podcasts), GooglePodcastsActivity.class);
     }
 
     private void setListener(final View view, final Class classs) {
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(final View v) {
                 switch (v.getId()) {
                     case R.id.vk:
+                        startActivity(new Intent(getBaseContext(), classs));
+                        break;
+                    case R.id.google_podcasts:
                         startActivity(new Intent(getBaseContext(), classs));
                         break;
                 }

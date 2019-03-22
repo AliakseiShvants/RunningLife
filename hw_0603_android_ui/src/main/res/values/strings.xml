@@ -19,5 +19,8 @@
     <string name="question">Что у Вас нового?</string>
     <string name="foto_label">Фото</string>
     <string name="foto_amount">106</string>
+    <string name="gp_img_label">New</string>
+    <string name="gp_card_text">For you</string>
+    <string name="gp_action_bar_title">Google Podcasts</string>
 
 </resources>

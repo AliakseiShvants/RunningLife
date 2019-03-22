@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/first_song_image_view"
+        android:layout_width="@dimen/gp_card_view_img_size"
+        android:layout_height="@dimen/gp_card_view_img_size"
+        android:layout_margin="@dimen/ONE_INTENT"
+        android:src="@drawable/red" />
+
+    <TextView
+        android:id="@+id/first_song_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/first_song_image_view"
+        android:layout_toEndOf="@id/first_song_image_view"
+        android:text="154: Developer Growth: Start Writing"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/XS_TEXT_SIZE" />
+
+    <TextView
+        android:id="@+id/song_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/first_song_image_view"
+        android:layout_toEndOf="@id/first_song_image_view"
+        android:text="2 days ago 19 min"
+        android:textSize="8sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/ONE_INTENT"
+        app:srcCompat="@drawable/ic_play_circle_outline" />
+</RelativeLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gp_root_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".GooglePodcastsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/gp_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        app:title="@string/gp_action_bar_title" />
+
+    <ScrollView
+        android:id="@+id/gp_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/gp_toolbar"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:id="@+id/gp_scroll_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <GridLayout
+                android:id="@+id/gp_container_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/ONE_INTENT"
+                android:layout_marginTop="@dimen/ONE_INTENT"
+                android:layout_marginEnd="@dimen/ONE_INTENT"
+                android:layout_marginBottom="@dimen/ONE_INTENT"
+                android:columnCount="4">
+
+                <include
+                    android:id="@+id/gp_first_image"
+                    layout="@layout/main_image_view_item" />
+
+                <include
+                    android:id="@+id/gp_second_image"
+                    layout="@layout/main_image_view_item" />
+
+                <include
+                    android:id="@+id/gp_third_image"
+                    layout="@layout/main_image_view_item" />
+
+                <include
+                    android:id="@+id/gp_forth_image"
+                    layout="@layout/main_image_view_item" />
+
+                <include
+                    android:id="@+id/gp_fifth_image"
+                    layout="@layout/main_image_view_item" />
+            </GridLayout>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/gp_container_card_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/gp_container_grid"
+                android:layout_margin="@dimen/ONE_INTENT"
+                app:cardCornerRadius="@dimen/gp_card_corner_radius">
+
+                <LinearLayout
+                    android:id="@+id/gp_card_view_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/gp_card_view_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/TWO_INTENT"
+                        android:layout_marginTop="@dimen/TWO_INTENT"
+                        android:text="@string/gp_card_text"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/M_TEXT_SIZE" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/gp_card_view_tab_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabMode="fixed" />
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/gp_card_view_view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

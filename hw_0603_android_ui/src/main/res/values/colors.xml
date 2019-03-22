@@ -6,8 +6,9 @@
 
     <color name="gray300">#E0E0E0</color>
     <color name="gray50">#FAFAFA</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="blue50">#E3F2FD</color>
     <color name="blue500">#2196F3</color>
     <color name="lightBlue900">#01579B</color>
+    <color name="black">#f0000000</color>
 </resources>

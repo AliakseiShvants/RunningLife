@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/third_song_image_view"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_margin="8dp"
+        android:src="@drawable/cash" />
+
+    <TextView
+        android:id="@+id/third_song_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/third_song_image_view"
+        android:layout_toRightOf="@id/third_song_image_view"
+        android:text="Podlodka #101 - Базы данных"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/song_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/third_song_image_view"
+        android:layout_toRightOf="@id/third_song_image_view"
+        android:text="3 days ago 155 min"
+        android:textSize="8sp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="8dp"
+        app:srcCompat="@drawable/ic_play_circle_outline" />
+</RelativeLayout>
