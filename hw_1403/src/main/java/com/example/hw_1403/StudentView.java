@@ -1,7 +1,7 @@
 package com.example.hw_1403;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import android.util.AttributeSet;
 
 public class StudentView extends ConstraintLayout {
