@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+
+    <!--<item-->
+    <!--android:id="@+id/action_back"-->
+    <!--android:orderInCategory="1"-->
+    <!--android:title="@string/BACK"-->
+    <!--app:showAsAction="always" />-->
+
+    <!--<item-->
+    <!--android:id="@+id/action_more"-->
+    <!--android:icon="@drawable/ic_more_vert"-->
+    <!--android:orderInCategory="10"-->
+    <!--android:title="@string/ACTION_MORE_TITLE"-->
+    <!--app:showAsAction="ifRoom" />-->
+</menu>

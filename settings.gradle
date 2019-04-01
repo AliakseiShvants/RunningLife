@@ -1,1 +1,1 @@
-include ':app', ':imageloader'
+include ':app', ':imageloader', ':hw_0603', ':hw_1403'

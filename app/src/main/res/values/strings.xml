@@ -1,8 +1,3 @@
 <resources>
     <string name="app_name">RunningLife</string>
-    <string name="START">Start counter</string>
-    <string name="STOP">Stop counter</string>
-    <string name="BROADCAST">Broadcast</string>
-    <string name="SHOW_TRAINING">Show last training</string>
-
 </resources>
