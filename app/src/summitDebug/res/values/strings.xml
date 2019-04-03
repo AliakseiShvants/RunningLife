@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="one_intent">8dp</dimen>
+    <string name="summit">Summit paid version</string>
 </resources>
