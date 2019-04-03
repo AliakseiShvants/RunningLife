@@ -9,7 +9,6 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
-//        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
 
         final Intent intent = new Intent(this, MainActivity.class);
