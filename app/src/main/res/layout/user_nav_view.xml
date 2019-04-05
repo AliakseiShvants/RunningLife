@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray200">
+
+    <ImageView
+        android:id="@+id/user_nav_avatar"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_marginStart="@dimen/two_intents"
+        android:layout_marginTop="@dimen/three_intents"
+        android:layout_marginBottom="@dimen/three_intents"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_avatar_stub" />
+
+    <TextView
+        android:id="@+id/user_nav_full_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/user_nav_location"
+        android:layout_alignStart="@id/user_nav_location"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/one_intent"
+        android:text="Aliaksei Shvants"
+        android:textSize="@dimen/s_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_nav_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/user_nav_avatar"
+        android:layout_marginStart="@dimen/two_intents"
+        android:layout_toEndOf="@id/user_nav_avatar"
+        android:text="Grodno, Grodno region"
+        android:textSize="@dimen/xs_text_size" />
+
+</merge>

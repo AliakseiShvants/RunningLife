@@ -1,5 +1,18 @@
 <resources>
-    <string name="app_name">hw_1403</string>
-    <string name="show_students">Show students</string>
+    <string name="app_name">Epam Training 😅</string>
+    <string name="available_lessons_text">Available lessons</string>
+
+    <string name="theme_android_components">Android Components</string>
+    <string name="theme_android_ui">Android UI</string>
+    <string name="theme_android_compound_view">Compound View</string>
+    <string name="theme_android_collection_views">Collection Views</string>
+
     <string name="recycler_view">Recycler View</string>
+    <string name="add_new_student">Add new Student</string>
+    <string name="edit_student">Edit Student</string>
+    <string name="add">Add</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="name">Name</string>
+    <string name="hw_count">HW count</string>
 </resources>

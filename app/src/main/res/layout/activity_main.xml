@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/user_view"
+        app:headerLayout="@layout/user_nav_view"
         app:menu="@menu/nav_view" />
 
 
