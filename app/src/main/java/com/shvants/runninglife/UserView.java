@@ -36,8 +36,8 @@ public class UserView extends RelativeLayout {
     private void initUserView() {
         inflate(getContext(), R.layout.user_view, this);
 
-        avatar = findViewById(R.id.user_nav_avatar);
-        fullName = findViewById(R.id.user_nav_full_name);
-        location = findViewById(R.id.user_nav_location);
+        avatar = findViewById(R.id.user_move_avatar);
+        fullName = findViewById(R.id.user_move_full_name);
+        location = findViewById(R.id.user_move_begin_time);
     }
 }

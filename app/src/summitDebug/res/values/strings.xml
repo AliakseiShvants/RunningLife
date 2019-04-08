@@ -2,4 +2,5 @@
 <resources>
     <string name="summit">Summit paid version</string>
     <string name="move_record">Move record</string>
+    <string name="app_name_summit">RL Summit</string>
 </resources>
