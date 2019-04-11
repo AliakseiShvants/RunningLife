@@ -1,4 +1,4 @@
-package com.shvants.runninglife.activity;
+package com.shvants.runninglife.ui.main;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.BuildConfig;
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.StandardNavigationFragmentSwitcher;
+import com.shvants.runninglife.SummitNavigationFragmentSwitcher;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction();
 
             if (BuildConfig.FLAVOR.equals(STANDARD)) {
-                new StandardNavigationFragmentSwitcher(menuItem, transaction).switchFragment();
+                new SummitNavigationFragmentSwitcher(menuItem, transaction).switchFragment();
             }
 
             changeActionBar(menuItem.getTitle());

@@ -8,4 +8,11 @@
 
     <string name="move_record">Move record</string>
     <string name="exit">Exit</string>
+
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="login_image">Login image</string>
+    <string name="running_life">Running Life</string>
+    <string name="you_are_just_join_to_running_life">You are just join to Running Life!</string>
+    <string name="welcome">Welcome!</string>
 </resources>

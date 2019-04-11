@@ -4,12 +4,12 @@ import android.view.MenuItem;
 
 import androidx.fragment.app.FragmentTransaction;
 
-public class StandardNavigationFragmentSwitcher {
+public class SummitNavigationFragmentSwitcher {
 
-    private MenuItem menuItem;
-    private FragmentTransaction fragmentTransaction;
+    private final MenuItem menuItem;
+    private final FragmentTransaction fragmentTransaction;
 
-    public StandardNavigationFragmentSwitcher(final MenuItem menuItem, final FragmentTransaction fragmentTransaction) {
+    public SummitNavigationFragmentSwitcher(final MenuItem menuItem, final FragmentTransaction fragmentTransaction) {
         this.menuItem = menuItem;
         this.fragmentTransaction = fragmentTransaction;
     }

@@ -5,6 +5,8 @@
     <dimen name="two_intents">16dp</dimen>
     <dimen name="three_intents">24dp</dimen>
     <dimen name="four_intents">32dp</dimen>
+    <dimen name="six_intents">48dp</dimen>
+    <dimen name="eight_intents">64dp</dimen>
 
     <dimen name="xxs_text_size">8sp</dimen>
     <dimen name="xs_text_size">12sp</dimen>
@@ -16,4 +18,5 @@
 
     <dimen name="avatar_nav_size">56dp</dimen>
     <dimen name="avatar_move_size">32dp</dimen>
+
 </resources>
