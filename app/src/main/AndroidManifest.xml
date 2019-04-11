@@ -10,7 +10,8 @@
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,7 @@
         </activity>
 
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

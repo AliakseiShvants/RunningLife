@@ -1,4 +1,4 @@
-package com.shvants.runninglife;
+package com.shvants.runninglife.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
