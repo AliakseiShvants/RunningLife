@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.BuildConfig;
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.SummitNavigationFragmentSwitcher;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(TRUE);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        // TODO set title when invoke default fragment
         actionBar.setTitle("Feed");
 
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
@@ -75,11 +74,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(final MenuItem menuItem) {
-            final FragmentTransaction transaction =
-                    getSupportFragmentManager().beginTransaction();
+            final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-            if (BuildConfig.FLAVOR.equals(STANDARD)) {
-                new SummitNavigationFragmentSwitcher(menuItem, transaction).switchFragment();
+            new NavigationFragmentSwitcher(menuItem, transaction).switchFragment();
+
+            switch (BuildConfig.FLAVOR) {
+                /*case STANDARD:
+                    new StandardNavigationFragmentSwitcher(menuItem, transaction).switchFragment();
+                    break;
+
+                case SUMMIT:
+                    new NavigationFragmentSwitcher(menuItem, transaction).switchFragment();
+                    break;*/
             }
 
             changeActionBar(menuItem.getTitle());
