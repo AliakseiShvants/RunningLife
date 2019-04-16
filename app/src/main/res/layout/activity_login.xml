@@ -7,13 +7,14 @@
     android:fitsSystemWindows="true"
     tools:context="com.shvants.runninglife.ui.login.LoginActivity">
 
+    //todo add img from work machine
     <ImageView
         android:id="@+id/loginImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
         android:contentDescription="@string/login_image"
         android:scaleType="centerCrop"
-        android:src="@drawable/login3"
+        android:src="@drawable/move_img_stub"
         app:layout_constraintBottom_toTopOf="@+id/loginInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -96,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:cursorVisible="true"
+            android:inputType="textPassword"
             android:textSize="@dimen/s_text_size" />
 
     </com.google.android.material.textfield.TextInputLayout>

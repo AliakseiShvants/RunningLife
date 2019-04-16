@@ -17,16 +17,16 @@ public class StandardNavigationFragmentSwitcher {
 
     public void switchFragment() {
         switch (menuItem.getItemId()) {
-            case R.id.nav_feed:
+            case R.id.navItemFeed:
 //                                transaction.replace(R.id.content_frame, new TrainingRecordFragment());
                 break;
-            case R.id.nav_clubs:
+            case R.id.navItemClubs:
 //                                transaction.replace(R.id.content_frame, new FeedFragment());
                 break;
-            case R.id.nav_settings:
+            case R.id.navItemSettings:
 //                                transaction.replace(R.id.content_frame, new FeedFragment());
                 break;
-            case R.id.nav_exit:
+            case R.id.navItemExit:
 //                                transaction.replace(R.id.content_frame, new FeedFragment());
                 break;
         }

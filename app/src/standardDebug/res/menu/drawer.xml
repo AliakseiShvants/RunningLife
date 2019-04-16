@@ -2,29 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-
         <item
-            android:id="@+id/nav_record"
-            android:icon="@drawable/ic_record"
-            android:title="@string/move_record" />
-
-        <item
-            android:id="@+id/nav_feed"
+            android:id="@+id/navItemFeed"
             android:icon="@drawable/ic_feed"
             android:title="@string/feed" />
 
         <item
-            android:id="@+id/nav_clubs"
+            android:id="@+id/navItemClubs"
             android:icon="@drawable/ic_flag"
             android:title="@string/clubs" />
 
         <item
-            android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_flag"
+            android:id="@+id/navItemSettings"
+            android:icon="@drawable/ic_settings"
             android:title="@string/settings" />
 
         <item
-            android:id="@+id/nav_exit"
+            android:id="@+id/navItemExit"
             android:icon="@drawable/ic_exit_to_app"
             android:title="@string/exit" />
     </group>
