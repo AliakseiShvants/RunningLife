@@ -32,8 +32,8 @@ public class RunMoveView extends ConstraintLayout {
     private void initUserView() {
         inflate(getContext(), R.layout.user_view, this);
 
-        avatar = findViewById(R.id.user_move_avatar);
-        fullName = findViewById(R.id.user_move_full_name);
-        beginTime = findViewById(R.id.user_move_begin_time);
+        avatar = findViewById(R.id.user_avatar);
+        fullName = findViewById(R.id.user_full_name);
+        beginTime = findViewById(R.id.user_location);
     }
 }

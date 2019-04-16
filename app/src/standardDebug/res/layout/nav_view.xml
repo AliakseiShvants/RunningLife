@@ -20,7 +20,7 @@
         android:paddingTop="@dimen/one_intent"
         android:paddingEnd="@dimen/three_intents"
         android:paddingBottom="@dimen/one_intent"
-        android:text="Summit version"
+        android:text="Join to Summit version"
         android:textAllCaps="false"
         android:textColor="@color/white" />
 </com.google.android.material.navigation.NavigationView>

@@ -5,8 +5,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.shvants.runninglife.BuildConfig;
 import com.shvants.runninglife.R;
+import com.shvants.runninglife.backend.uimodels.UiUserModel;
+import com.shvants.runninglife.fragments.NavigationFragmentSwitcher;
+import com.shvants.runninglife.ui.feed.FeedFragment;
+import com.shvants.runninglife.view.UserView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,11 +19,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.TRUE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String STANDARD = "standard";
     private final FragmentManager fragmentManager = getSupportFragmentManager();
 
     private DrawerLayout drawerLayout;
@@ -38,13 +41,26 @@ public class MainActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(TRUE);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
-        // TODO set title when invoke default fragment
-        actionBar.setTitle("Feed");
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-
         navigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
+
+        final UserView userView = navigationView.getHeaderView(ZERO)
+                .findViewById(R.id.nav_user_view);
+        final UiUserModel userModel = getUser();
+        userView.setUser(userModel);
+    }
+
+    private UiUserModel getUser() {
+        //todo stub User
+        final UiUserModel userModel = new UiUserModel();
+        userModel.setId(1);
+        userModel.setAvatar(R.drawable.ic_avatar_stub);
+        userModel.setFullName("Aliaksei Shvants");
+        userModel.setLocation("Grodno, Grodno region");
+
+        return userModel;
     }
 
     @Override
@@ -66,30 +82,27 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void changeActionBar(final CharSequence title) {
+    public void setActionBarTitle(final String title) {
         actionBar.setTitle(title);
     }
 
-    private class NavigationItemSelectedListener implements NavigationView.OnNavigationItemSelectedListener {
+    private class NavigationItemSelectedListener
+            implements NavigationView.OnNavigationItemSelectedListener {
+
+        private final FragmentManager fragmentManager = getSupportFragmentManager();
+
+        public NavigationItemSelectedListener() {
+            fragmentManager.beginTransaction()
+                    .add(R.id.main_container, new FeedFragment())
+                    .commit();
+
+            navigationView.setCheckedItem(R.id.navItemFeed);
+        }
 
         @Override
         public boolean onNavigationItemSelected(final MenuItem menuItem) {
-            final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
+            final FragmentTransaction transaction = fragmentManager.beginTransaction();
             new NavigationFragmentSwitcher(menuItem, transaction).switchFragment();
-
-            switch (BuildConfig.FLAVOR) {
-                /*case STANDARD:
-                    new StandardNavigationFragmentSwitcher(menuItem, transaction).switchFragment();
-                    break;
-
-                case SUMMIT:
-                    new NavigationFragmentSwitcher(menuItem, transaction).switchFragment();
-                    break;*/
-            }
-
-            changeActionBar(menuItem.getTitle());
-
             transaction.commit();
 
             menuItem.setChecked(TRUE);

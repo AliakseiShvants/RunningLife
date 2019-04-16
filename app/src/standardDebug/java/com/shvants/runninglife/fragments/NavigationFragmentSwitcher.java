@@ -1,16 +1,20 @@
-package com.shvants.runninglife;
+package com.shvants.runninglife.fragments;
 
 import android.view.MenuItem;
 
+import com.shvants.runninglife.R;
+import com.shvants.runninglife.ui.clubs.ClubsFragment;
+import com.shvants.runninglife.ui.feed.FeedFragment;
+
 import androidx.fragment.app.FragmentTransaction;
 
-public class StandardNavigationFragmentSwitcher {
+public class NavigationFragmentSwitcher {
 
-    private MenuItem menuItem;
-    private FragmentTransaction fragmentTransaction;
+    private final MenuItem menuItem;
+    private final FragmentTransaction fragmentTransaction;
 
-    public StandardNavigationFragmentSwitcher(final MenuItem menuItem,
-                                              final FragmentTransaction fragmentTransaction) {
+    public NavigationFragmentSwitcher(final MenuItem menuItem,
+                                      final FragmentTransaction fragmentTransaction) {
         this.menuItem = menuItem;
         this.fragmentTransaction = fragmentTransaction;
     }
@@ -18,10 +22,10 @@ public class StandardNavigationFragmentSwitcher {
     public void switchFragment() {
         switch (menuItem.getItemId()) {
             case R.id.navItemFeed:
-//                                transaction.replace(R.id.content_frame, new TrainingRecordFragment());
+                fragmentTransaction.replace(R.id.main_content_frame, new FeedFragment());
                 break;
             case R.id.navItemClubs:
-//                                transaction.replace(R.id.content_frame, new FeedFragment());
+                fragmentTransaction.replace(R.id.main_content_frame, new ClubsFragment());
                 break;
             case R.id.navItemSettings:
 //                                transaction.replace(R.id.content_frame, new FeedFragment());

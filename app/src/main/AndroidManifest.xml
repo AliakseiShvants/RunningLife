@@ -22,7 +22,6 @@
 
         <activity
             android:name=".ui.login.LoginActivity"
-
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.Login" />
 
