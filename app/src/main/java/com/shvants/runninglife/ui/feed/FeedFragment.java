@@ -12,8 +12,13 @@ import com.shvants.runninglife.utils.Const;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FeedFragment extends BaseFragment {
+
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private FeedPagerAdapter feedPagerAdapter;
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle outState) {
@@ -35,12 +40,13 @@ public class FeedFragment extends BaseFragment {
                              final Bundle savedInstanceState) {
 
         final View feedView = inflater.inflate(getLayoutId(), container, false);
-//        final RecyclerView recyclerView = feedView.findViewById(android.R.id.list);
-//        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
 
+//        recyclerView = feedView.findViewById(android.R.id.list);
+//        layoutManager = new LinearLayoutManager(getActivity(),
+//                VERTICAL, FALSE);
 //        recyclerView.setLayoutManager(layoutManager);
-
-//        final FeedPagerAdapter feedPagerAdapter = new FeedPagerAdapter(getActivity());
+//
+//        feedPagerAdapter = new FeedPagerAdapter();
 //        recyclerView.setAdapter(feedPagerAdapter);
 
         return feedView;

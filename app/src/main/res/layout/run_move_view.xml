@@ -40,9 +40,13 @@
     <!--app:layout_constraintStart_toEndOf="@+id/user_avatar"-->
     <!--app:layout_constraintTop_toBottomOf="@+id/user_full_name" />-->
 
-    <include
+    <com.shvants.runninglife.view.UserView
         android:id="@+id/move_user_view"
-        layout="@layout/user_view" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/move_title"
@@ -54,7 +58,7 @@
         android:textSize="@dimen/xs_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/move_user_view" />
+        app:layout_constraintTop_toBottomOf="@id/move_user_view" />
 
     <TextView
         android:id="@+id/move_length_title"

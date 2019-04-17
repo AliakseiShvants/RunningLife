@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.backend.uimodels.UiUserModel;
 
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import static com.shvants.runninglife.utils.Const.NULL;
 import static com.shvants.runninglife.utils.Const.ZERO;
 
-public class UserView extends RelativeLayout {
+public class UserView extends ConstraintLayout {
 
     private ImageView avatar;
     private TextView fullName;

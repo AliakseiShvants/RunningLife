@@ -2,6 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -11,26 +12,29 @@
         android:layout_marginStart="@dimen/two_intents"
         android:layout_marginTop="@dimen/two_intents"
         android:layout_marginBottom="@dimen/two_intents"
-        android:contentDescription="@null" />
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/user_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/user_location"
-        android:layout_alignStart="@id/user_location"
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/s_text_size"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/user_location"
+        app:layout_constraintStart_toStartOf="@id/user_location" />
 
     <TextView
         android:id="@+id/user_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/user_avatar"
         android:layout_marginStart="@dimen/one_intent"
         android:layout_marginBottom="@dimen/one_intent"
-        android:layout_toEndOf="@id/user_avatar"
-        android:textSize="@dimen/xs_text_size" />
+        android:textSize="@dimen/xs_text_size"
+        app:layout_constraintBottom_toBottomOf="@id/user_avatar"
+        app:layout_constraintStart_toEndOf="@id/user_avatar" />
 
 </merge>
