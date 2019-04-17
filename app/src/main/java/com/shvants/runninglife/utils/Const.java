@@ -14,4 +14,8 @@ public class Const {
     public interface ClubsFragment {
         String TITLE = "Clubs";
     }
+
+    public interface MoveRecordFragment {
+        String TITLE = "Move record";
+    }
 }
