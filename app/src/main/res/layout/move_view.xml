@@ -41,7 +41,7 @@
     <!--app:layout_constraintTop_toBottomOf="@+id/user_full_name" />-->
 
     <com.shvants.runninglife.view.UserView
-        android:id="@+id/move_user_view"
+        android:id="@+id/moveUserView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,92 +49,91 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/move_title"
+        android:id="@+id/moveTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Morning run"
-        android:textSize="@dimen/xs_text_size"
+        android:textSize="@dimen/m_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/move_user_view" />
+        app:layout_constraintTop_toBottomOf="@id/moveUserView" />
 
     <TextView
-        android:id="@+id/move_length_title"
+        android:id="@+id/moveDistanceTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Length"
-        android:textSize="@dimen/xxs_text_size"
-        app:layout_constraintRight_toLeftOf="@id/move_tempo_title"
+        android:text="Distance"
+        android:textSize="@dimen/xs_text_size"
+        app:layout_constraintRight_toLeftOf="@id/moveTempoTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/move_title" />
+        app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
 
     <TextView
-        android:id="@+id/move_tempo_title"
+        android:id="@+id/moveTempoTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Tempo"
-        android:textSize="@dimen/xxs_text_size"
-        app:layout_constraintLeft_toRightOf="@id/move_length_title"
-        app:layout_constraintRight_toLeftOf="@id/move_time_title"
-        app:layout_constraintTop_toBottomOf="@+id/move_title" />
+        android:textSize="@dimen/xs_text_size"
+        app:layout_constraintLeft_toRightOf="@id/moveDistanceTitle"
+        app:layout_constraintRight_toLeftOf="@id/moveTimeTitle"
+        app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
 
 
     <TextView
-        android:id="@+id/move_time_title"
+        android:id="@+id/moveTimeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="Time"
-        android:textSize="@dimen/xxs_text_size"
+        android:textSize="@dimen/xs_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/move_tempo_title"
-        app:layout_constraintTop_toBottomOf="@+id/move_title" />
+        app:layout_constraintStart_toEndOf="@id/moveTempoTitle"
+        app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
 
     <TextView
-        android:id="@+id/move_length_value"
+        android:id="@+id/moveDistanceValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10,2 km"
-        android:textSize="@dimen/xs_text_size"
-        app:layout_constraintStart_toStartOf="@id/move_length_title"
-        app:layout_constraintTop_toBottomOf="@+id/move_length_title" />
+        android:textSize="@dimen/s_text_size"
+        app:layout_constraintStart_toStartOf="@id/moveDistanceTitle"
+        app:layout_constraintTop_toBottomOf="@+id/moveDistanceTitle" />
 
 
     <TextView
-        android:id="@+id/move_tempo_value"
+        android:id="@+id/moveTempoValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="6:35 /km"
-        android:textSize="@dimen/xs_text_size"
-        app:layout_constraintStart_toStartOf="@id/move_tempo_title"
-        app:layout_constraintTop_toBottomOf="@id/move_tempo_title" />
+        android:textSize="@dimen/s_text_size"
+        app:layout_constraintStart_toStartOf="@id/moveTempoTitle"
+        app:layout_constraintTop_toBottomOf="@id/moveTempoTitle" />
 
 
     <TextView
-        android:id="@+id/move_time_value"
+        android:id="@+id/moveTimeValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/move_tempo_value"
+        android:layout_toEndOf="@id/moveTempoValue"
         android:text="1h 43m"
-        android:textSize="@dimen/xs_text_size"
-        app:layout_constraintStart_toStartOf="@id/move_time_title"
-        app:layout_constraintTop_toBottomOf="@id/move_time_title" />
+        android:textSize="@dimen/s_text_size"
+        app:layout_constraintStart_toStartOf="@id/moveTimeTitle"
+        app:layout_constraintTop_toBottomOf="@id/moveTimeTitle" />
 
     <ImageView
+        android:id="@+id/moveImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="@dimen/two_intents"
         android:scaleType="centerCrop"
         android:src="@drawable/move_img_stub"
-        app:layout_constraintTop_toBottomOf="@id/move_length_value"
+        app:layout_constraintTop_toBottomOf="@id/moveDistanceValue"
         app:layout_goneMarginBottom="@dimen/two_intents" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

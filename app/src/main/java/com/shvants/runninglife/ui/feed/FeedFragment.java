@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.base.BaseFragment;
 import com.shvants.runninglife.ui.main.MainActivity;
-import com.shvants.runninglife.utils.Const;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.shvants.runninglife.utils.Const.FeedFragment.TITLE;
+import static java.lang.Boolean.FALSE;
 
 public class FeedFragment extends BaseFragment {
 
@@ -30,7 +32,7 @@ public class FeedFragment extends BaseFragment {
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ((MainActivity) getActivity()).setActionBarTitle(Const.FeedFragment.TITLE);
+        ((MainActivity) getActivity()).setActionBarTitle(TITLE);
 
     }
 
@@ -39,7 +41,7 @@ public class FeedFragment extends BaseFragment {
                              final ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        final View feedView = inflater.inflate(getLayoutId(), container, false);
+        final View feedView = inflater.inflate(getLayoutId(), container, FALSE);
 
 //        recyclerView = feedView.findViewById(android.R.id.list);
 //        layoutManager = new LinearLayoutManager(getActivity(),

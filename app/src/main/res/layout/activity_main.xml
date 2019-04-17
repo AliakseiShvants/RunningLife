@@ -11,8 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent
-">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/main_toolbar"
@@ -22,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
-            android:id="@+id/main_content_frame"
+            android:id="@+id/main_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

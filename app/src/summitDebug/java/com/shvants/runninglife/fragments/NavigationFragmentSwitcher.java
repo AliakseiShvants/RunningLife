@@ -23,13 +23,13 @@ public class NavigationFragmentSwitcher {
     public void switchFragment() {
         switch (menuItem.getItemId()) {
             case R.id.navItemRecord:
-                fragmentTransaction.replace(R.id.main_content_frame, new MoveRecordFragment());
+                fragmentTransaction.replace(R.id.main_fragment_container, new MoveRecordFragment());
                 break;
             case R.id.navItemFeed:
-                fragmentTransaction.replace(R.id.main_content_frame, new FeedFragment());
+                fragmentTransaction.replace(R.id.main_fragment_container, new FeedFragment());
                                 break;
             case R.id.navItemClubs:
-                fragmentTransaction.replace(R.id.main_content_frame, new ClubsFragment());
+                fragmentTransaction.replace(R.id.main_fragment_container, new ClubsFragment());
                                 break;
             case R.id.navItemSettings:
 //                                transaction.replace(R.id.content_frame, new FeedFragment());

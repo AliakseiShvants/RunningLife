@@ -3,10 +3,12 @@ package com.shvants.runninglife.ui.main;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.backend.uimodels.UiUserModel;
+import com.shvants.runninglife.ui.feed.FeedFragment;
 import com.shvants.runninglife.utils.listeners.NavigationItemSelectedListener;
 import com.shvants.runninglife.view.UserView;
 
@@ -45,14 +47,27 @@ public class MainActivity extends AppCompatActivity {
 
         final UserView userView = navigationView.getHeaderView(ZERO)
                 .findViewById(R.id.nav_user_view);
+        userView.findViewById(R.id.userLocation).setVisibility(View.VISIBLE);
         final UiUserModel userModel = getUser();
         userView.setUser(userModel);
 
+        // todo maybe hier????
+        setDefaultFragment();
+
 //        navigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
         final NavigationItemSelectedListener navigationItemSelectedListener =
-                NavigationItemSelectedListener.getInstance(fragmentManager, navigationView,
-                        drawerLayout, R.id.navItemFeed);
+                NavigationItemSelectedListener.getInstance(fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
+    }
+
+    private void setDefaultFragment() {
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction()
+                .add(R.id.main_fragment_container, new FeedFragment())
+                .commit();
+
+        navigationView.setCheckedItem(R.id.navItemFeed);
     }
 
     private UiUserModel getUser() {

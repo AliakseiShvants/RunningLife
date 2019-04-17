@@ -32,17 +32,25 @@ android {
     productFlavors {
         standard {
             dimension "paid"
+            applicationId "com.shvants.runninglife.standard"
+            resValue "string", "app_name", "RL Standard"
             applicationIdSuffix ".standard"
             versionNameSuffix "-standard"
         }
         summit {
             dimension "paid"
+            applicationId "com.shvants.runninglife.summit"
+            resValue "string", "app_name", "RL Summit"
             applicationIdSuffix ".summit"
             versionNameSuffix "-summit"
         }
     }
 
-
+    sourceSets {
+        standard {
+            res.srcDir 'standardDebug/res'
+        }
+    }
 }
 
 dependencies {
