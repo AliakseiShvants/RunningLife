@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.shvants.runninglife.ui.view.UserView
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
-import com.shvants.runninglife.view.UserView
 
 open class BaseMoveView
 @JvmOverloads

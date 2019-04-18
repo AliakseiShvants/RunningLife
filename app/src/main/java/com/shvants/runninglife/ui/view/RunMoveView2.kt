@@ -1,4 +1,4 @@
-package com.shvants.runninglife.view
+package com.shvants.runninglife.ui.view
 
 import android.content.Context
 import android.util.AttributeSet

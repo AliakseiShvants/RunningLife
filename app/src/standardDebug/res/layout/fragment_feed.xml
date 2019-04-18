@@ -3,6 +3,6 @@
 <!--android:id="@android:id/list"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent">-->
 
 <!--</androidx.recyclerview.widget.RecyclerView>-->
-<com.shvants.runninglife.view.RunMoveView2 xmlns:android="http://schemas.android.com/apk/res/android"
+<com.shvants.runninglife.ui.view.RunMoveView2 xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />

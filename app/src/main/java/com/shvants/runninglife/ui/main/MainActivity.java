@@ -5,19 +5,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.android.material.navigation.NavigationView;
-import com.shvants.runninglife.R;
-import com.shvants.runninglife.backend.uimodels.UiUserModel;
-import com.shvants.runninglife.ui.feed.FeedFragment;
-import com.shvants.runninglife.utils.listeners.NavigationItemSelectedListener;
-import com.shvants.runninglife.view.UserView;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+
+import com.google.android.material.navigation.NavigationView;
+import com.shvants.runninglife.R;
+import com.shvants.runninglife.backend.model.ui.UiUserModel;
+import com.shvants.runninglife.ui.feed.FeedFragment;
+import com.shvants.runninglife.ui.view.UserView;
+import com.shvants.runninglife.utils.listeners.NavigationItemSelectedListener;
 
 import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.TRUE;

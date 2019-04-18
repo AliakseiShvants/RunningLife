@@ -1,13 +1,13 @@
-package com.shvants.runninglife.view;
+package com.shvants.runninglife.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.shvants.runninglife.R;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.shvants.runninglife.R;
 
 
 public class RunMoveView extends ConstraintLayout {
