@@ -14,8 +14,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.backend.model.ui.UiUserModel;
 import com.shvants.runninglife.ui.feed.FeedFragment;
+import com.shvants.runninglife.ui.model.UiUserModel;
 import com.shvants.runninglife.ui.view.UserView;
 import com.shvants.runninglife.utils.listeners.NavigationItemSelectedListener;
 
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBar actionBar;
+
+//    private DbHelper dbHelper = new DbHelper(this, null, DATABASE_VERSION);
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

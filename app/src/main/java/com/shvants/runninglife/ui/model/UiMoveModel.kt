@@ -1,4 +1,4 @@
-package com.shvants.runninglife.backend.model.ui
+package com.shvants.runninglife.ui.model
 
 data class UiMoveModel(var id: Long,
                        var title: String,
