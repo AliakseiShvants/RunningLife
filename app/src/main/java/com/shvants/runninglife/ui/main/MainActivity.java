@@ -50,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
         final UserView userView = navigationView.getHeaderView(ZERO)
                 .findViewById(R.id.nav_user_view);
         userView.findViewById(R.id.userLocation).setVisibility(View.VISIBLE);
+
         final UiUserModel userModel = getUser();
         userView.setUser(userModel);
 
         // todo maybe hier????
         setDefaultFragment();
+
 
 //        navigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
         final NavigationItemSelectedListener navigationItemSelectedListener =
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private UiUserModel getUser() {
         //todo stub User
         final UiUserModel userModel = new UiUserModel();
-        userModel.setId(1);
+        userModel.setId(1L);
         userModel.setAvatar(R.drawable.ic_avatar_stub);
         userModel.setFullName("Aliaksei Shvants");
         userModel.setLocation("Grodno, Grodno region");
