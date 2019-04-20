@@ -14,4 +14,7 @@
     <string name="running_life">Running Life</string>
     <string name="you_are_just_join_to_running_life">You are just join to Running Life!</string>
     <string name="welcome">Welcome!</string>
+    <string name="time">Time</string>
+    <string name="tempo">Tempo</string>
+    <string name="distance">Distance</string>
 </resources>
