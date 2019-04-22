@@ -1,4 +1,4 @@
-package com.shvants.runninglife.ui.feed;
+package com.shvants.runninglife.ui.fragments.feed;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.model.UiMoveModel;
+import com.shvants.runninglife.ui.model.UiUserModel;
 import com.shvants.runninglife.ui.view.RunMoveView;
 
 import java.lang.annotation.Retention;
@@ -21,28 +22,51 @@ import static java.lang.Boolean.FALSE;
 
 public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder> {
 
+    private final UiUserModel user;
     private final List<UiMoveModel> moves;
 
-    public FeedPagerAdapter(final Context context, final List<UiMoveModel> moves) {
+    public FeedPagerAdapter(final Context context,
+                            final UiUserModel user,
+                            final List<UiMoveModel> moves) {
+        this.user = user;
         this.moves = moves;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+                                         final int viewType) {
 
         if (viewType == ViewType.MOVE) {
             return new ViewHolder(new RunMoveView(parent.getContext()));
         } else {
             final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
             return new ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder,
+                                 final int position) {
 
+        if (getItemViewType(position) == ViewType.MOVE){
+            holder.itemView
+                    .
+        }
     }
+
+    @ViewType
+    @Override
+    public int getItemViewType(final int position) {
+
+        if (position < moves.size()) {
+            return ViewType.MOVE;
+        } else {
+            return ViewType.LOADING;
+        }
+    }
+
 
     @Override
     public int getItemCount() {

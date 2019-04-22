@@ -3,8 +3,8 @@ package com.shvants.runninglife.fragments;
 import android.view.MenuItem;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.clubs.ClubsFragment;
-import com.shvants.runninglife.ui.feed.FeedFragment;
+import com.shvants.runninglife.ui.fragments.clubs.ClubsFragment;
+import com.shvants.runninglife.ui.fragments.feed.FeedFragment;
 
 import androidx.fragment.app.FragmentTransaction;
 

@@ -1,9 +1,9 @@
-package com.shvants.runninglife.ui.splash;
+package com.shvants.runninglife.ui.activities.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.shvants.runninglife.ui.main.MainActivity;
+import com.shvants.runninglife.ui.activities.main.MainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

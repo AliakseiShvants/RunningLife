@@ -1,4 +1,4 @@
-package com.shvants.runninglife.ui.main;
+package com.shvants.runninglife.ui.activities.main;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.feed.FeedFragment;
+import com.shvants.runninglife.ui.fragments.feed.FeedFragment;
 import com.shvants.runninglife.ui.model.UiUserModel;
 import com.shvants.runninglife.ui.view.UserView;
 import com.shvants.runninglife.utils.listeners.NavigationItemSelectedListener;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 .findViewById(R.id.nav_user_view);
         userView.findViewById(R.id.userLocation).setVisibility(View.VISIBLE);
 
-        final UiUserModel userModel = getUser();
+        final UiUserModel userModel = getUserFromDb();
         userView.setUser(userModel);
 
         // todo maybe hier????
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setCheckedItem(R.id.navItemFeed);
     }
 
-    private UiUserModel getUser() {
+    private UiUserModel getUserFromDb() {
         //todo stub User
         final UiUserModel userModel = new UiUserModel();
         userModel.setId(1L);

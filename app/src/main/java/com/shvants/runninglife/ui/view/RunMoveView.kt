@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import com.shvants.runninglife.R
 import com.shvants.runninglife.ui.base.BaseMoveLayout
 import com.shvants.runninglife.utils.Const.NULL
@@ -19,22 +20,38 @@ constructor(
 
     private var tempo: TextView? = null
 
-    init {
-        View.inflate(context, getLayoutResId(), this)
-        init()
-    }
-
-    private fun init() {
-        super.userView = moveUserView
-
-    }
-
     override fun onViewInflated(context: Context) {
+        super.userAvatar = userAvatar
+        super.userFullName = userFullName
+        super.startTime = startTime
+
         super.title = moveTitle
         super.distance = moveDistanceValue
         super.time = moveTimeValue
 
         tempo = moveTempoValue
+    }
+
+    fun setUserAvatar(@DrawableRes avatarId: Int): RunMoveView {
+        userAvatar?.setImageResource(avatarId)
+
+        return this
+    }
+
+    fun setUserFullName(fullName: String): RunMoveView {
+        userFullName?.text = fullName
+
+        return this
+    }
+
+    fun setStartTime(startTime: Long): RunMoveView {
+        userFullName?.text = getStartTimeAsString(startTime)
+
+        return this
+    }
+
+    private fun getStartTimeAsString(startTime: Long): CharSequence? {
+
     }
 
     override fun getLayoutResId(): Int {

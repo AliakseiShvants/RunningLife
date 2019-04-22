@@ -1,4 +1,4 @@
-package com.shvants.runninglife.ui.feed;
+package com.shvants.runninglife.ui.fragments.feed;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.base.BaseFragment;
-import com.shvants.runninglife.ui.main.MainActivity;
+import com.shvants.runninglife.ui.activities.main.MainActivity;
 import com.shvants.runninglife.ui.model.UiMoveModel;
+import com.shvants.runninglife.ui.model.UiUserModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +40,6 @@ public class FeedFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
         ((MainActivity) getActivity()).setActionBarTitle(TITLE);
-
     }
 
     @Override
@@ -54,18 +54,29 @@ public class FeedFragment extends BaseFragment {
         recyclerView.setLayoutManager(layoutManager);
 
         final List<UiMoveModel> moves = getMovesFromDb();
-        feedPagerAdapter = new FeedPagerAdapter(getContext(), moves);
-//        recyclerView.setAdapter(feedPagerAdapter);
+        final UiUserModel user = getUserFromDb();
+        feedPagerAdapter = new FeedPagerAdapter(getContext(), user, moves);
+        recyclerView.setAdapter(feedPagerAdapter);
 
         return feedView;
+    }
+
+    private UiUserModel getUserFromDb() {
+        final UiUserModel userModel = new UiUserModel();
+        userModel.setId(1L);
+        userModel.setAvatar(R.drawable.ic_avatar_stub);
+        userModel.setFullName("Aliaksei Shvants");
+        userModel.setLocation("Grodno, Grodno region");
+
+        return userModel;
     }
 
     private List<UiMoveModel> getMovesFromDb() {
         //todo from database, it is'nt?
         return Arrays.asList(
-                new UiMoveModel(1, 10.00, 60L, "Morning Run", 100, 500, 130, R.drawable.move0),
-                new UiMoveModel(1, 15.00, 90L, "Afternoon Run", 150, 800, 140, R.drawable.move1),
-                new UiMoveModel(1, 6.00, 40L, "Night Run", 10, 200, 110, R.drawable.move2)
+                new UiMoveModel(1, 1000000, "Morning Run",10.00, 60L,  100, 500, 130, R.drawable.move0),
+                new UiMoveModel(2, 2000000,  "Afternoon Run",15.00, 90L,  150, 800, 140, R.drawable.move1),
+                new UiMoveModel(3, 3000000, "Night Run", 6.00, 40L,  10, 200, 110, R.drawable.move2)
         );
     }
 

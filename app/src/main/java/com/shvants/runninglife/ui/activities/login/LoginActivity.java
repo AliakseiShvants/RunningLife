@@ -1,4 +1,4 @@
-package com.shvants.runninglife.ui.login;
+package com.shvants.runninglife.ui.activities.login;
 
 import android.os.Bundle;
 
