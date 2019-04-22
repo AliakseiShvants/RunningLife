@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
@@ -22,14 +23,19 @@ import static java.lang.Boolean.FALSE;
 
 public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder> {
 
+    //    private MoveItemClickListener itemClickListener;
+//    private final LayoutInflater inflater;
+    private final Context context;
     private final UiUserModel user;
     private final List<UiMoveModel> moves;
 
     public FeedPagerAdapter(final Context context,
                             final UiUserModel user,
                             final List<UiMoveModel> moves) {
+        this.context = context;
         this.user = user;
         this.moves = moves;
+//        this.itemClickListener = (MoveItemClickListener) context;
     }
 
     @NonNull
@@ -38,11 +44,11 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
                                          final int viewType) {
 
         if (viewType == ViewType.MOVE) {
-            return new ViewHolder(new RunMoveView(parent.getContext()));
+            return new ViewHolder(new RunMoveView(context));
         } else {
-            final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
-            return new ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
+            return
+                    new ViewHolder(LayoutInflater.from(context)
+                            .inflate(R.layout.layout_progress, parent, FALSE));
         }
     }
 
@@ -50,10 +56,15 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
     public void onBindViewHolder(@NonNull final ViewHolder holder,
                                  final int position) {
 
-        if (getItemViewType(position) == ViewType.MOVE){
-            holder.itemView
-                    .
-        }
+        final UiMoveModel move = moves.get(position);
+
+        ((RunMoveView) holder.itemView).setView(user, move);
+//        if (getItemViewType(position) == ViewType.MOVE){
+//
+//            final UiMoveModel move = moves.get(position);
+//
+//            ((RunMoveView)holder.itemView).setView(user, move);
+//        }
     }
 
     @ViewType
@@ -77,13 +88,14 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
 
         ViewHolder(final View view) {
             super(view);
+
+            final TextView userName = view.findViewById(R.id.moveUserFullName);
         }
     }
 
     @IntDef({ViewType.MOVE, ViewType.LOADING})
     @Retention(RetentionPolicy.SOURCE)
     @interface ViewType {
-
         int MOVE = 0;
         int LOADING = 1;
     }

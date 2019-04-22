@@ -6,7 +6,7 @@
     <!--android:id="@+id/active_bar_menu"-->
     <!--android:icon="@drawable/ic_menu"-->
     <!--android:orderInCategory="1"-->
-    <!--android:title="@string/back"-->
+    <!--android:titleView="@string/back"-->
     <!--app:showAsAction="always" />-->
 
     <item

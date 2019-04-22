@@ -54,11 +54,8 @@ public class MainActivity extends AppCompatActivity {
         final UiUserModel userModel = getUserFromDb();
         userView.setUser(userModel);
 
-        // todo maybe hier????
         setDefaultFragment();
 
-
-//        navigationView.setNavigationItemSelectedListener(new NavigationItemSelectedListener());
         final NavigationItemSelectedListener navigationItemSelectedListener =
                 NavigationItemSelectedListener.getInstance(fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);

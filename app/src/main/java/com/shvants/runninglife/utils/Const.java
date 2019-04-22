@@ -5,8 +5,10 @@ import android.util.AttributeSet;
 public class Const {
 
     public static final int ZERO = 0;
+    public static final double ZERO_DOUBLE = 0.0;
     public static final String EMPTY = "";
     public static final String COMMA = ",";
+    public static final String HYPHEN = "-";
     public static final String INTEGER = "INTEGER";
     public static final String REAL = "REAL";
     public static final String LONG = "LONG";

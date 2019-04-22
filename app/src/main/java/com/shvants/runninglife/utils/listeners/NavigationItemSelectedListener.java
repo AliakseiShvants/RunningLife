@@ -2,12 +2,12 @@ package com.shvants.runninglife.utils.listeners;
 
 import android.view.MenuItem;
 
-import com.google.android.material.navigation.NavigationView;
-import com.shvants.runninglife.fragments.NavigationFragmentSwitcher;
-
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.navigation.NavigationView;
+import com.shvants.runninglife.ui.fragments.NavigationFragmentSwitcher;
 
 import static java.lang.Boolean.TRUE;
 
