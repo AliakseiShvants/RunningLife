@@ -7,33 +7,51 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.activities.main.MainActivity;
 import com.shvants.runninglife.ui.base.BaseFragment;
-import com.shvants.runninglife.ui.model.UiMoveModel;
-import com.shvants.runninglife.ui.model.UiUserModel;
+import com.shvants.runninglife.ui.model.MoveModelUi;
+import com.shvants.runninglife.utils.IAdapter;
+import com.shvants.runninglife.utils.ICallback;
+import com.shvants.runninglife.utils.ItemTouchCallback;
+import com.shvants.runninglife.utils.listener.RecyclerViewScrollListener;
+import com.shvants.runninglife.utils.service.IService;
+import com.shvants.runninglife.utils.service.RunMoveService;
 
-import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
-import static androidx.recyclerview.widget.RecyclerView.VERTICAL;
 import static com.shvants.runninglife.utils.Const.FeedFragment.TITLE;
 import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 
 public class FeedFragment extends BaseFragment {
 
-    private FeedPagerAdapter feedPagerAdapter;
+    private static FeedFragment instance;
+    private final IService<MoveModelUi> moveService;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private FeedPagerAdapter adapter;
+    private boolean isLoading = false;
 
-    private final UiUserModel user;
-    private List<UiMoveModel> moves;
+    private FeedFragment() {
+        moveService = new RunMoveService();
+    }
 
-    public FeedFragment(final UiUserModel user) {
-        this.user = user;
-        moves = getMovesFromDb();
+    public static FeedFragment getInstance() {
+
+        if (instance == null) {
+            instance = new FeedFragment();
+        }
+
+        return instance;
     }
 
     @Override
@@ -56,41 +74,78 @@ public class FeedFragment extends BaseFragment {
 
         final View feedView = inflater.inflate(getLayoutId(), container, FALSE);
 
-        final RecyclerView recyclerView = feedView.findViewById(R.id.recyclerView);
-        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView = feedView.findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        feedPagerAdapter = new FeedPagerAdapter(getContext(), user, moves);
-        recyclerView.setAdapter(feedPagerAdapter);
+        adapter = new FeedPagerAdapter(getContext());
+        recyclerView.setAdapter(adapter);
 
-        final DividerItemDecoration divider = new DividerItemDecoration(getContext(), VERTICAL);
-        divider.setDrawable(getContext().getResources().getDrawable(R.drawable.divider));
-        recyclerView.addItemDecoration(divider);
+        new RecyclerViewScrollListener(FeedFragment.getInstance());
 
+        loadMoreItems(0, RecyclerViewScrollListener.PAGE_SIZE);
+
+        new ItemTouchHelper(new ItemTouchCallback(recyclerView, adapter))
+                .attachToRecyclerView(recyclerView);
+
+        recyclerView.setItemAnimator(new DefaultItemAnimator() {
+            @Override
+            public boolean animateMove(final RecyclerView.ViewHolder holder,
+                                       final int fromX,
+                                       final int fromY,
+                                       final int toX,
+                                       final int toY) {
+                return super.animateMove(holder, fromX, fromY, toX, toY);
+            }
+        });
+
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
+
+        // todo summit version add on click listener (full version)
         return feedView;
-    }
-
-    private UiUserModel getUserFromDb() {
-        final UiUserModel userModel = new UiUserModel();
-        userModel.setId(1L);
-        userModel.setAvatar(R.drawable.ic_avatar_stub);
-        userModel.setFullName("Aliaksei Shvants");
-        userModel.setLocation("Grodno, Grodno region");
-
-        return userModel;
-    }
-
-    private List<UiMoveModel> getMovesFromDb() {
-        //todo from database, it is'nt?
-        return Arrays.asList(
-                new UiMoveModel(1, 1000000, "Morning Run", 10.00, 60, 100, 500, 130, R.drawable.move0),
-                new UiMoveModel(2, 2000000, "Afternoon Run", 15.00, 90, 150, 800, 140, R.drawable.move1),
-                new UiMoveModel(3, 3000000, "Night Run", 6.00, 40, 10, 200, 110, R.drawable.move2)
-        );
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.fragment_feed;
+    }
+
+
+    @Override
+    public void loadMoreItems(final int start, final int end) {
+        isLoading = TRUE;
+        adapter.setShowLastViewAsLoading(TRUE);
+        moveService.getEntities(start, end, new ICallback<List<MoveModelUi>>() {
+
+            @Override
+            public void onResult(final List<MoveModelUi> result) {
+                adapter.addItems(result);
+                isLoading = FALSE;
+            }
+        });
+    }
+
+    @NotNull
+    @Override
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return layoutManager;
+    }
+
+    @NotNull
+    @Override
+    public IAdapter getAdapter() {
+        return adapter;
+    }
+
+    @Override
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    @NotNull
+    @Override
+    public IService<MoveModelUi> getService() {
+        return moveService;
     }
 }

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.R
-import com.shvants.runninglife.ui.model.UiUserModel
+import com.shvants.runninglife.ui.model.UserModelUi
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.user_view.view.*
@@ -37,7 +37,7 @@ constructor(
         startTime = moveBeginTime
     }
 
-    fun setUser(user: UiUserModel) {
+    fun setUser(user: UserModelUi) {
         val drawable = AppCompatResources.getDrawable(context, user.avatar)
 
         avatar?.setImageDrawable(drawable)

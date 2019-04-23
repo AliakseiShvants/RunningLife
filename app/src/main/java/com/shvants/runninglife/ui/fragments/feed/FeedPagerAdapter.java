@@ -4,35 +4,49 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.model.UiMoveModel;
-import com.shvants.runninglife.ui.model.UiUserModel;
+import com.shvants.runninglife.ui.model.MoveModelUi;
+import com.shvants.runninglife.ui.model.UserModelUi;
 import com.shvants.runninglife.ui.view.RunMoveView;
+import com.shvants.runninglife.utils.IAdapter;
+import com.shvants.runninglife.utils.service.IService;
+import com.shvants.runninglife.utils.service.RunMoveService;
+import com.shvants.runninglife.utils.service.UserService;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 
-public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder> {
+public class FeedPagerAdapter
+        extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
+        implements IAdapter {
 
     //    private MoveItemClickListener itemClickListener;
     private final LayoutInflater inflater;
-    private final UiUserModel user;
-    private final List<UiMoveModel> moves;
+    private final UserModelUi user;
+    private final List<MoveModelUi> moves;
+    private final IService<MoveModelUi> moveService;
+    private final IService<UserModelUi> userService;
 
-    public FeedPagerAdapter(final Context context,
-                            final UiUserModel user,
-                            final List<UiMoveModel> moves) {
-        this.user = user;
-        this.moves = moves;
+    private boolean isShowLastViewAsLoading = FALSE;
+
+    public FeedPagerAdapter(final Context context) {
+        userService = new UserService();
+        moveService = new RunMoveService();
+
+        this.user = userService.getEntity(0);
+        this.moves = moveService.getEntities();
+
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        this.itemClickListener = (MoveItemClickListener) context;
     }
@@ -54,7 +68,7 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
 
         if (getItemViewType(position) == ViewType.MOVE) {
 
-            final UiMoveModel move = moves.get(position);
+            final MoveModelUi move = moves.get(position);
 
             ((RunMoveView) holder.itemView).setView(user, move);
         }
@@ -77,12 +91,44 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
         return moves.size();
     }
 
+    @Override
+    public void setShowLastViewAsLoading(final boolean isShow) {
+        if (isShow != isShowLastViewAsLoading) {
+            isShowLastViewAsLoading = isShow;
+            notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void addItems(@NotNull final List<? extends MoveModelUi> result) {
+        moves.addAll(result);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onItemMove(final int fromPosition, final int toPosition) {
+
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(moves, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(moves, i, i - 1);
+            }
+        }
+
+        notifyItemMoved(fromPosition, toPosition);
+    }
+
+    @Override
+    public void onItemDismiss(final int adapterPosition) {
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         ViewHolder(final View view) {
             super(view);
-
-            final TextView userName = view.findViewById(R.id.moveUserFullName);
         }
     }
 

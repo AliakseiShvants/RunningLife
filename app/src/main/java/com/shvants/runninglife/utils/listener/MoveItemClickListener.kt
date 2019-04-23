@@ -1,4 +1,4 @@
-package com.shvants.runninglife.utils.listeners
+package com.shvants.runninglife.utils.listener
 
 interface MoveItemClickListener {
 

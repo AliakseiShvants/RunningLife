@@ -1,127 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    android:layout_height="match_parent"
+    card_view:cardCornerRadius="4dp">
 
-    <ImageView
-        android:id="@+id/moveUserAvatar"
-        android:layout_width="@dimen/avatar_move_size"
-        android:layout_height="@dimen/avatar_move_size"
-        android:layout_marginStart="@dimen/two_intents"
-        android:layout_marginTop="@dimen/two_intents"
-        android:contentDescription="@null"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/moveUserFullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/moveBeginTime"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="@dimen/xs_text_size"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/moveUserAvatar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/moveBeginTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:textSize="@dimen/xxs_text_size"
-        app:layout_constraintStart_toEndOf="@+id/moveUserAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/moveUserFullName" />
-
-    <TextView
-        android:id="@+id/moveTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="@dimen/m_text_size"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/moveBeginTime" />
-
-    <TextView
-        android:id="@+id/moveDistanceTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/distance"
-        android:textSize="@dimen/xs_text_size"
-        app:layout_constraintRight_toLeftOf="@id/moveTempoTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
-
-    <TextView
-        android:id="@+id/moveTempoTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/tempo"
-        android:textSize="@dimen/xs_text_size"
-        app:layout_constraintLeft_toRightOf="@id/moveDistanceTitle"
-        app:layout_constraintRight_toLeftOf="@id/moveTimeTitle"
-        app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
-
-
-    <TextView
-        android:id="@+id/moveTimeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/time"
-        android:textSize="@dimen/xs_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toEndOf="@id/moveTempoTitle"
-        app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
-
-    <TextView
-        android:id="@+id/moveDistanceValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/s_text_size"
-        app:layout_constraintStart_toStartOf="@id/moveDistanceTitle"
-        app:layout_constraintTop_toBottomOf="@+id/moveDistanceTitle" />
-
-
-    <TextView
-        android:id="@+id/moveTempoValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/s_text_size"
-        app:layout_constraintStart_toStartOf="@id/moveTempoTitle"
-        app:layout_constraintTop_toBottomOf="@id/moveTempoTitle" />
-
-
-    <TextView
-        android:id="@+id/moveTimeValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/moveTempoValue"
-        android:textSize="@dimen/s_text_size"
-        app:layout_constraintStart_toStartOf="@id/moveTimeTitle"
-        app:layout_constraintTop_toBottomOf="@id/moveTimeTitle" />
-
-    <ImageView
-        android:id="@+id/moveImage"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="@dimen/two_intents"
-        android:layout_marginBottom="@dimen/two_intents"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/moveDistanceValue" />
-</merge>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/moveUserAvatar"
+            android:layout_width="@dimen/avatar_move_size"
+            android:layout_height="@dimen/avatar_move_size"
+            android:layout_marginStart="@dimen/two_intents"
+            android:layout_marginTop="@dimen/two_intents"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/moveUserFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/moveBeginTime"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="@dimen/xs_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/moveUserAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/moveBeginTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/xxs_text_size"
+            app:layout_constraintStart_toEndOf="@+id/moveUserAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/moveUserFullName" />
+
+        <TextView
+            android:id="@+id/moveTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="@dimen/m_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moveBeginTime" />
+
+        <TextView
+            android:id="@+id/moveDistanceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/distance"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintRight_toLeftOf="@id/moveTempoTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
+
+        <TextView
+            android:id="@+id/moveTempoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/tempo"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintLeft_toRightOf="@id/moveDistanceTitle"
+            app:layout_constraintRight_toLeftOf="@id/moveTimeTitle"
+            app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
+
+
+        <TextView
+            android:id="@+id/moveTimeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/time"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/moveTempoTitle"
+            app:layout_constraintTop_toBottomOf="@+id/moveTitle" />
+
+        <TextView
+            android:id="@+id/moveDistanceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/s_text_size"
+            app:layout_constraintStart_toStartOf="@id/moveDistanceTitle"
+            app:layout_constraintTop_toBottomOf="@+id/moveDistanceTitle" />
+
+
+        <TextView
+            android:id="@+id/moveTempoValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/s_text_size"
+            app:layout_constraintStart_toStartOf="@id/moveTempoTitle"
+            app:layout_constraintTop_toBottomOf="@id/moveTempoTitle" />
+
+
+        <TextView
+            android:id="@+id/moveTimeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/moveTempoValue"
+            android:textSize="@dimen/s_text_size"
+            app:layout_constraintStart_toStartOf="@id/moveTimeTitle"
+            app:layout_constraintTop_toBottomOf="@id/moveTimeTitle" />
+
+        <ImageView
+            android:id="@+id/moveImage"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/two_intents"
+            android:layout_marginBottom="@dimen/two_intents"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moveDistanceValue" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

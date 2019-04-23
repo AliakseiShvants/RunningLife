@@ -15,9 +15,11 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.fragments.feed.FeedFragment;
-import com.shvants.runninglife.ui.model.UiUserModel;
+import com.shvants.runninglife.ui.model.UserModelUi;
 import com.shvants.runninglife.ui.view.UserView;
-import com.shvants.runninglife.utils.listeners.NavigationItemSelectedListener;
+import com.shvants.runninglife.utils.listener.NavigationItemSelectedListener;
+import com.shvants.runninglife.utils.service.IService;
+import com.shvants.runninglife.utils.service.UserService;
 
 import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.TRUE;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBar actionBar;
+    private final IService<UserModelUi> userService = new UserService();
 
 //    private DbHelper dbHelper = new DbHelper(this, null, DATABASE_VERSION);
 
@@ -51,35 +54,24 @@ public class MainActivity extends AppCompatActivity {
                 .findViewById(R.id.nav_user_view);
         userView.findViewById(R.id.userLocation).setVisibility(View.VISIBLE);
 
-        final UiUserModel userModel = getUserFromDb();
+        final UserModelUi userModel = userService.getEntity(0);
         userView.setUser(userModel);
 
-        setDefaultFragment(userModel);
+        setDefaultFragment();
 
         final NavigationItemSelectedListener navigationItemSelectedListener =
                 NavigationItemSelectedListener.getInstance(userModel, fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
-    private void setDefaultFragment(final UiUserModel user) {
+    private void setDefaultFragment() {
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(R.id.main_fragment_container, new FeedFragment(user))
+                .add(R.id.main_fragment_container, FeedFragment.getInstance())
                 .commit();
 
         navigationView.setCheckedItem(R.id.navItemFeed);
-    }
-
-    private UiUserModel getUserFromDb() {
-        //todo stub User
-        final UiUserModel userModel = new UiUserModel();
-        userModel.setId(1L);
-        userModel.setAvatar(R.drawable.ic_avatar_stub);
-        userModel.setFullName("Aliaksei Shvants");
-        userModel.setLocation("Grodno, Grodno region");
-
-        return userModel;
     }
 
     @Override
@@ -104,30 +96,4 @@ public class MainActivity extends AppCompatActivity {
     public void setActionBarTitle(final String title) {
         actionBar.setTitle(title);
     }
-
-//    private class NavigationItemSelectedListener
-//            implements NavigationView.OnNavigationItemSelectedListener {
-//
-//        private final FragmentManager fragmentManager = getSupportFragmentManager();
-//
-//        public NavigationItemSelectedListener() {
-//            fragmentManager.beginTransaction()
-//                    .add(R.id.main_container, new FeedFragment())
-//                    .commit();
-//
-//            navigationView.setCheckedItem(R.id.navItemFeed);
-//        }
-//
-//        @Override
-//        public boolean onNavigationItemSelected(final MenuItem menuItem) {
-//            final FragmentTransaction transaction = fragmentManager.beginTransaction();
-//            new NavigationFragmentSwitcher(menuItem, transaction).switchFragment();
-//            transaction.commit();
-//
-//            menuItem.setChecked(TRUE);
-//            drawerLayout.closeDrawers();
-//
-//            return TRUE;
-//        }
-//    }
 }

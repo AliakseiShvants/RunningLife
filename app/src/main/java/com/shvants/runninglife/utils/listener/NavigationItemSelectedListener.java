@@ -1,4 +1,4 @@
-package com.shvants.runninglife.utils.listeners;
+package com.shvants.runninglife.utils.listener;
 
 import android.view.MenuItem;
 
@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.ui.fragments.NavigationFragmentSwitcher;
-import com.shvants.runninglife.ui.model.UiUserModel;
+import com.shvants.runninglife.ui.model.UserModelUi;
 
 import static java.lang.Boolean.TRUE;
 
@@ -17,11 +17,11 @@ public class NavigationItemSelectedListener
 
     private static NavigationItemSelectedListener instance;
 
-    private final UiUserModel user;
+    private final UserModelUi user;
     private final FragmentManager fragmentManager;
     private final DrawerLayout drawerLayout;
 
-    private NavigationItemSelectedListener(final UiUserModel user,
+    private NavigationItemSelectedListener(final UserModelUi user,
                                            final FragmentManager fragmentManager,
                                            final DrawerLayout drawerLayout) {
         this.user = user;
@@ -29,7 +29,7 @@ public class NavigationItemSelectedListener
         this.drawerLayout = drawerLayout;
     }
 
-    public static NavigationItemSelectedListener getInstance(final UiUserModel user,
+    public static NavigationItemSelectedListener getInstance(final UserModelUi user,
                                                              final FragmentManager fragmentManager,
                                                              final DrawerLayout drawerLayout) {
         if (instance == null) {

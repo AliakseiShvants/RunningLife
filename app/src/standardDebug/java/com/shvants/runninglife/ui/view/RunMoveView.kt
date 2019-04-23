@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.ui.base.BaseMoveLayout
-import com.shvants.runninglife.ui.model.UiMoveModel
-import com.shvants.runninglife.ui.model.UiUserModel
+import com.shvants.runninglife.ui.model.MoveModelUi
+import com.shvants.runninglife.ui.model.UserModelUi
 import com.shvants.runninglife.utils.Const.*
 import kotlinx.android.synthetic.main.base_run_move_view.view.*
 
@@ -34,7 +34,7 @@ constructor(
     }
 
     @UiThread
-    override fun setView(user: UiUserModel, move: UiMoveModel): RunMoveView {
+    override fun setView(user: UserModelUi, move: MoveModelUi): RunMoveView {
 
         avatarView?.setImageResource(user.avatar)
         nameView?.text = user.fullName
