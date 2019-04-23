@@ -24,17 +24,16 @@ import static java.lang.Boolean.FALSE;
 public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder> {
 
     //    private MoveItemClickListener itemClickListener;
-//    private final LayoutInflater inflater;
-    private final Context context;
+    private final LayoutInflater inflater;
     private final UiUserModel user;
     private final List<UiMoveModel> moves;
 
     public FeedPagerAdapter(final Context context,
                             final UiUserModel user,
                             final List<UiMoveModel> moves) {
-        this.context = context;
         this.user = user;
         this.moves = moves;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        this.itemClickListener = (MoveItemClickListener) context;
     }
 
@@ -42,13 +41,10 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                          final int viewType) {
-
         if (viewType == ViewType.MOVE) {
-            return new ViewHolder(new RunMoveView(context));
+            return new ViewHolder(new RunMoveView(parent.getContext()));
         } else {
-            return
-                    new ViewHolder(LayoutInflater.from(context)
-                            .inflate(R.layout.layout_progress, parent, FALSE));
+            return new ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
         }
     }
 
@@ -56,15 +52,12 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
     public void onBindViewHolder(@NonNull final ViewHolder holder,
                                  final int position) {
 
-        final UiMoveModel move = moves.get(position);
+        if (getItemViewType(position) == ViewType.MOVE) {
 
-        ((RunMoveView) holder.itemView).setView(user, move);
-//        if (getItemViewType(position) == ViewType.MOVE){
-//
-//            final UiMoveModel move = moves.get(position);
-//
-//            ((RunMoveView)holder.itemView).setView(user, move);
-//        }
+            final UiMoveModel move = moves.get(position);
+
+            ((RunMoveView) holder.itemView).setView(user, move);
+        }
     }
 
     @ViewType

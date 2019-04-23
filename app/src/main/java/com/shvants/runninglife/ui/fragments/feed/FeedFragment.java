@@ -26,13 +26,14 @@ import static java.lang.Boolean.FALSE;
 
 public class FeedFragment extends BaseFragment {
 
-    private RecyclerView recyclerView;
     private FeedPagerAdapter feedPagerAdapter;
 
-    private UiUserModel user;
+    private final UiUserModel user;
     private List<UiMoveModel> moves;
 
-    public FeedFragment() {
+    public FeedFragment(final UiUserModel user) {
+        this.user = user;
+        moves = getMovesFromDb();
     }
 
     @Override
@@ -46,9 +47,6 @@ public class FeedFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
 
         ((MainActivity) getActivity()).setActionBarTitle(TITLE);
-
-        user = getUserFromDb();
-        moves = getMovesFromDb();
     }
 
     @Override
@@ -58,7 +56,7 @@ public class FeedFragment extends BaseFragment {
 
         final View feedView = inflater.inflate(getLayoutId(), container, FALSE);
 
-        recyclerView = feedView.findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = feedView.findViewById(R.id.recyclerView);
         final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 

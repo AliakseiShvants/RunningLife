@@ -25,6 +25,9 @@ constructor(
     var imageView: ImageView? = null
 
     init {
+        val context = getContext()
+
         View.inflate(context, getLayoutResId(), this)
+        onViewInflated(context)
     }
 }

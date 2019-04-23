@@ -54,18 +54,18 @@ public class MainActivity extends AppCompatActivity {
         final UiUserModel userModel = getUserFromDb();
         userView.setUser(userModel);
 
-        setDefaultFragment();
+        setDefaultFragment(userModel);
 
         final NavigationItemSelectedListener navigationItemSelectedListener =
-                NavigationItemSelectedListener.getInstance(fragmentManager, drawerLayout);
+                NavigationItemSelectedListener.getInstance(userModel, fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 
-    private void setDefaultFragment() {
+    private void setDefaultFragment(final UiUserModel user) {
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(R.id.main_fragment_container, new FeedFragment())
+                .add(R.id.main_fragment_container, new FeedFragment(user))
                 .commit();
 
         navigationView.setCheckedItem(R.id.navItemFeed);

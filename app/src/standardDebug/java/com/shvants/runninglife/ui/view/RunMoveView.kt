@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.format.DateFormat
 import android.util.AttributeSet
 import android.widget.TextView
+import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.ui.base.BaseMoveLayout
 import com.shvants.runninglife.ui.model.UiMoveModel
@@ -21,6 +22,7 @@ constructor(
     var tempoView: TextView? = null
 
     override fun onViewInflated(context: Context) {
+
         super.avatarView = moveUserAvatar
         super.nameView = moveUserFullName
         super.beginTimeView = moveBeginTime
@@ -31,7 +33,9 @@ constructor(
         tempoView = moveTempoValue
     }
 
+    @UiThread
     override fun setView(user: UiUserModel, move: UiMoveModel): RunMoveView {
+
         avatarView?.setImageResource(user.avatar)
         nameView?.text = user.fullName
         beginTimeView?.text = getBeginTimeAsString(move.beginTime)
@@ -40,10 +44,12 @@ constructor(
         timeView?.text = getTimeAsString(move.time)
         tempoView?.text = getTempoAsString(move.time, move.distance)
         imageView?.setImageResource(move.imgRes)
+
         return this
     }
 
     private fun getDistanceAsString(distance: Double?) =
+
             if (distance == ZERO_DOUBLE) {
                 "$HYPHEN ${R.string.km}"
             } else {
@@ -51,6 +57,7 @@ constructor(
             }
 
     private fun getTempoAsString(time: Int, distance: Double): String {
+
         val tempoInSeconds = time / distance
         val seconds = tempoInSeconds % ONE_MINUTE
         val minutes = tempoInSeconds / ONE_MINUTE
@@ -59,6 +66,7 @@ constructor(
     }
 
     private fun getTimeAsString(time: Int): CharSequence? {
+
         val result: CharSequence?
         val minutes = time % ONE_MINUTE
         val hours = time / ONE_HOUR
@@ -80,6 +88,7 @@ constructor(
     }
 
     companion object {
+
         const val DATE_TIME_PATTERN = "dd MMM YY HH:mm"
         const val ONE_MINUTE = 60
         const val ONE_HOUR = 3600

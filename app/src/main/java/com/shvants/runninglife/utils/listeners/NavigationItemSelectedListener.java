@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.ui.fragments.NavigationFragmentSwitcher;
+import com.shvants.runninglife.ui.model.UiUserModel;
 
 import static java.lang.Boolean.TRUE;
 
@@ -16,19 +17,23 @@ public class NavigationItemSelectedListener
 
     private static NavigationItemSelectedListener instance;
 
+    private final UiUserModel user;
     private final FragmentManager fragmentManager;
     private final DrawerLayout drawerLayout;
 
-    private NavigationItemSelectedListener(final FragmentManager fragmentManager,
+    private NavigationItemSelectedListener(final UiUserModel user,
+                                           final FragmentManager fragmentManager,
                                            final DrawerLayout drawerLayout) {
+        this.user = user;
         this.fragmentManager = fragmentManager;
         this.drawerLayout = drawerLayout;
     }
 
-    public static NavigationItemSelectedListener getInstance(final FragmentManager fragmentManager,
+    public static NavigationItemSelectedListener getInstance(final UiUserModel user,
+                                                             final FragmentManager fragmentManager,
                                                              final DrawerLayout drawerLayout) {
         if (instance == null) {
-            instance = new NavigationItemSelectedListener(fragmentManager, drawerLayout);
+            instance = new NavigationItemSelectedListener(user, fragmentManager, drawerLayout);
         }
 
         return instance;
@@ -37,7 +42,7 @@ public class NavigationItemSelectedListener
     @Override
     public boolean onNavigationItemSelected(final MenuItem menuItem) {
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        new NavigationFragmentSwitcher(menuItem, transaction).switchFragment();
+        new NavigationFragmentSwitcher(user, menuItem, transaction).switchFragment();
         transaction.commit();
 
         menuItem.setChecked(TRUE);
