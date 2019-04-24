@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/cardView"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/userAvatar"
+            android:layout_width="@dimen/avatar_move_size"
+            android:layout_height="@dimen/avatar_move_size"
+            android:layout_marginStart="@dimen/two_intents"
+            android:layout_marginTop="@dimen/two_intents"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/userFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/beginTime"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="@dimen/xs_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/userAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/beginTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:textSize="@dimen/xxs_text_size"
+            app:layout_constraintStart_toEndOf="@+id/userAvatar"
+            app:layout_constraintTop_toBottomOf="@+id/userFullName" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="@dimen/m_text_size"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/beginTime" />
+
+        <TextView
+            android:id="@+id/baseDistanceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/distance"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/baseTempoTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/baseTempoTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tempo"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/baseTimeTitle"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/baseDistanceTitle"
+            app:layout_constraintTop_toTopOf="@id/baseDistanceTitle" />
+
+
+        <TextView
+            android:id="@+id/baseTimeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/baseTempoTitle"
+            app:layout_constraintTop_toTopOf="@id/baseDistanceTitle" />
+
+        <TextView
+            android:id="@+id/baseDistanceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/s_text_size"
+            app:layout_constraintStart_toStartOf="@id/baseDistanceTitle"
+            app:layout_constraintTop_toBottomOf="@+id/baseDistanceTitle" />
+
+
+        <TextView
+            android:id="@+id/baseTempoValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/s_text_size"
+            app:layout_constraintStart_toStartOf="@id/baseTempoTitle"
+            app:layout_constraintTop_toBottomOf="@id/baseTempoTitle" />
+
+
+        <TextView
+            android:id="@+id/baseTimeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/baseTempoValue"
+            android:textSize="@dimen/s_text_size"
+            app:layout_constraintStart_toStartOf="@id/baseTimeTitle"
+            app:layout_constraintTop_toBottomOf="@id/baseTimeTitle" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="@dimen/two_intents"
+            android:layout_marginBottom="@dimen/two_intents"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/baseDistanceValue" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fullInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/image">
+
+            <TextView
+                android:id="@+id/fullDistanceTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/two_intents"
+                android:layout_marginStart="@dimen/two_intents"
+                android:text="@string/distance"
+                android:textSize="@dimen/xs_text_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/fullElevationTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/fullElevationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/two_intents"
+                android:layout_marginEnd="@dimen/two_intents"
+                android:text="@string/elevation"
+                android:textSize="@dimen/xs_text_size"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@+id/fullDistanceTitle" />
+
+            <TextView
+                android:id="@+id/fullDistanceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/two_intents"
+                android:layout_marginStart="@dimen/two_intents"
+                android:text="@string/distance"
+                android:textSize="@dimen/s_text_size"
+                app:layout_constraintTop_toBottomOf="@id/fullDistanceTitle"
+                app:layout_constraintEnd_toStartOf="@+id/fullElevationValue"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/fullElevationValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/two_intents"
+                android:layout_marginEnd="@dimen/two_intents"
+                android:text="@string/elevation"
+                android:textSize="@dimen/s_text_size"
+                app:layout_constraintTop_toBottomOf="@id/fullElevationTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toEndOf="@+id/fullDistanceValue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

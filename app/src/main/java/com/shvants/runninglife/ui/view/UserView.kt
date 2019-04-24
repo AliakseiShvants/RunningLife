@@ -34,7 +34,7 @@ constructor(
         avatar = userAvatar
         fullName = userFullName
         location = userLocation
-        startTime = moveBeginTime
+        startTime = beginTime
     }
 
     fun setUser(user: UserModelUi) {

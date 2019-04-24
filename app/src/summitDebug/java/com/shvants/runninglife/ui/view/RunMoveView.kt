@@ -8,7 +8,7 @@ import androidx.annotation.DrawableRes
 import com.shvants.runninglife.R
 import com.shvants.runninglife.ui.base.BaseMoveLayout
 import com.shvants.runninglife.utils.Const.*
-import kotlinx.android.synthetic.main.base_run_move_view.view.*
+import kotlinx.android.synthetic.main.run_move_view.view.*
 
 class RunMoveView
 @JvmOverloads
@@ -116,7 +116,7 @@ constructor(
     private fun getBeginTimeAsString(time: Long) = DateFormat.format(DATE_TIME_PATTERN, time)
 
     override fun getLayoutResId(): Int {
-        return R.layout.base_run_move_view
+        return R.layout.run_move_view
     }
 
     companion object {

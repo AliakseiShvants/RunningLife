@@ -41,7 +41,7 @@
         app:layout_constraintStart_toEndOf="@id/userAvatar" />
 
     <TextView
-        android:id="@+id/moveBeginTime"
+        android:id="@+id/beginTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/one_intent"

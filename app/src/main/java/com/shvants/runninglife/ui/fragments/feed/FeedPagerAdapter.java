@@ -136,12 +136,12 @@ public class FeedPagerAdapter
             final CardView cardView = view.findViewById(R.id.cardView);
             final ImageView avatarView = view.findViewById(R.id.userAvatar);
             final TextView nameView = view.findViewById(R.id.userFullName);
-            final TextView beginTimeView = view.findViewById(R.id.moveBeginTime);
-            final TextView titleView = view.findViewById(R.id.moveTitle);
-            final TextView distanceView = view.findViewById(R.id.moveDistanceValue);
-            final TextView tempoView = view.findViewById(R.id.moveTempoValue);
-            final TextView timeView = view.findViewById(R.id.moveTimeValue);
-            final TextView imageView = view.findViewById(R.id.moveImage);
+            final TextView beginTimeView = view.findViewById(R.id.beginTime);
+            final TextView titleView = view.findViewById(R.id.title);
+            final TextView distanceView = view.findViewById(R.id.baseDistanceValue);
+            final TextView tempoView = view.findViewById(R.id.baseTempoValue);
+            final TextView timeView = view.findViewById(R.id.baseTimeValue);
+            final TextView imageView = view.findViewById(R.id.image);
         }
     }
 
