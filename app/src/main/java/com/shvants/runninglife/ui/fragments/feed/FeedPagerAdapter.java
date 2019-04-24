@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
@@ -129,6 +132,16 @@ public class FeedPagerAdapter
 
         ViewHolder(final View view) {
             super(view);
+
+            final CardView cardView = view.findViewById(R.id.cardView);
+            final ImageView avatarView = view.findViewById(R.id.userAvatar);
+            final TextView nameView = view.findViewById(R.id.userFullName);
+            final TextView beginTimeView = view.findViewById(R.id.moveBeginTime);
+            final TextView titleView = view.findViewById(R.id.moveTitle);
+            final TextView distanceView = view.findViewById(R.id.moveDistanceValue);
+            final TextView tempoView = view.findViewById(R.id.moveTempoValue);
+            final TextView timeView = view.findViewById(R.id.moveTimeValue);
+            final TextView imageView = view.findViewById(R.id.moveImage);
         }
     }
 

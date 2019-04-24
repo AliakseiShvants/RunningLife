@@ -18,6 +18,7 @@
     <string name="tempo">Tempo</string>
     <string name="distance">Distance</string>
     <string name="km">km</string>
-    <string name="minutes">min</string>
+    <string name="minutes">m</string>
     <string name="hours">h</string>
+    <string name="seconds">sec</string>
 </resources>

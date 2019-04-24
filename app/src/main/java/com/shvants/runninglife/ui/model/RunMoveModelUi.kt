@@ -2,10 +2,10 @@ package com.shvants.runninglife.ui.model
 
 class RunMoveModelUi(id: Long,
                      beginTime: Long,
-                     title: String,
-                     distance: Double,
+                     title: String = "Run",
+                     distance: Double = 0.0,
                      time: Int,
-                     elevation: Int?,
-                     calories: Int?,
-                     avgHr: Int?, imgRes: Int)
-    : MoveModelUi(id, beginTime, title, distance, time, elevation, calories, avgHr, imgRes)
+                     val elevation: Int? = 0,
+                     val calories: Int? = 0,
+                     val hr: Int? = 0,
+                     val imgRes: Int = 0) : MoveModelUi(id, beginTime, title, distance, time)

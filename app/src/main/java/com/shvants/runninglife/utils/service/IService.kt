@@ -10,7 +10,5 @@ interface IService<T> {
 
     fun getEntities(startRange: Int, endRange: Int, callback: ICallback<List<T>>)
 
-    fun loadMoreMoves(startRange: Int, endRange: Int)
-
     fun size(): Int
 }

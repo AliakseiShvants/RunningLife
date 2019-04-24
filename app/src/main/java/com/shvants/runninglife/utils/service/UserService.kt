@@ -21,10 +21,6 @@ class UserService : IService<UserModelUi> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun loadMoreMoves(startRange: Int, endRange: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun size(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

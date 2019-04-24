@@ -39,12 +39,12 @@ class RecyclerViewScrollListener(private val fragment: BaseFragment) :
                 end = service.size()
             }
 
-            service.loadMoreMoves(totalItemCount, end)
+            fragment.loadMoreItems(totalItemCount, end)
         }
     }
 
     companion object {
-        const val PAGE_SIZE = 1
+        const val PAGE_SIZE = 2
         const val MAX_VISIBLE_ITEMS = 3
     }
 }

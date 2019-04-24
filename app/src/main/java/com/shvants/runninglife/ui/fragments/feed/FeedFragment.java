@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import static com.shvants.runninglife.utils.Const.FeedFragment.TITLE;
+import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -83,7 +84,7 @@ public class FeedFragment extends BaseFragment {
 
         new RecyclerViewScrollListener(FeedFragment.getInstance());
 
-        loadMoreItems(0, RecyclerViewScrollListener.PAGE_SIZE);
+        loadMoreItems(ZERO, RecyclerViewScrollListener.PAGE_SIZE);
 
         new ItemTouchHelper(new ItemTouchCallback(recyclerView, adapter))
                 .attachToRecyclerView(recyclerView);

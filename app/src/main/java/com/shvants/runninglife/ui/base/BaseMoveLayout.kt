@@ -3,8 +3,6 @@ package com.shvants.runninglife.ui.base
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
@@ -16,13 +14,13 @@ constructor(
         attrs: AttributeSet? = NULL,
         defStyleAttr: Int = ZERO) : ConstraintLayout(context, attrs, defStyleAttr),
                                     IView{
-    var avatarView: ImageView? = null
-    var nameView: TextView? = null
-    var beginTimeView: TextView? = null
-    var titleView: TextView? = null
-    var distanceView: TextView? = null
-    var timeView: TextView? = null
-    var imageView: ImageView? = null
+//    abstract var avatarView: ImageView
+//    abstract var nameView: TextView
+//    abstract var beginTimeView: TextView
+//    abstract var titleView: TextView
+//    abstract var distanceView: TextView
+//    abstract var timeView: TextView
+//    abstract var imageView: ImageView
 
     init {
         val context = getContext()
