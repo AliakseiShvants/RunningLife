@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.fragments.feed.FeedFragment;
+import com.shvants.runninglife.ui.model.BaseModelUi;
 import com.shvants.runninglife.ui.model.UserModelUi;
 import com.shvants.runninglife.ui.view.UserView;
 import com.shvants.runninglife.utils.listener.NavigationItemSelectedListener;
@@ -54,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
                 .findViewById(R.id.nav_user_view);
         userView.findViewById(R.id.userLocation).setVisibility(View.VISIBLE);
 
-        final UserModelUi userModel = userService.getEntity(0);
-        userView.setUser(userModel);
+        final BaseModelUi userModel = userService.getEntity(0);
+        userView.setView(userModel);
 
         setDefaultFragment();
 
         final NavigationItemSelectedListener navigationItemSelectedListener =
-                NavigationItemSelectedListener.getInstance(userModel, fragmentManager, drawerLayout);
+                NavigationItemSelectedListener.getInstance(fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
     }
 

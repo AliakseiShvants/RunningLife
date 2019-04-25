@@ -6,9 +6,9 @@ interface IAdapter {
 
     fun setShowLastViewAsLoading(isShow: Boolean)
 
-    fun onItemMove(fromPosition: Int, toPosition: Int)
+//    fun onItemMove(fromPosition: Int, toPosition: Int)
 
-    fun onItemDismiss(adapterPosition: Int)
+//    fun onItemDismiss(adapterPosition: Int)
 
     fun addItems(result: List<MoveModelUi>)
 }

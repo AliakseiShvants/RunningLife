@@ -26,7 +26,7 @@
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/s_text_size"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/userLocation"
+        app:layout_constraintTop_toTopOf="@id/userAvatar"
         app:layout_constraintStart_toStartOf="@id/userLocation" />
 
     <TextView
@@ -41,12 +41,11 @@
         app:layout_constraintStart_toEndOf="@id/userAvatar" />
 
     <TextView
-        android:id="@+id/beginTime"
+        android:id="@+id/startTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/one_intent"
-        android:layout_marginBottom="@dimen/one_intent"
-        android:textSize="@dimen/xs_text_size"
+        android:textSize="@dimen/xxs_text_size"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/userAvatar"
         app:layout_constraintStart_toEndOf="@id/userAvatar" />

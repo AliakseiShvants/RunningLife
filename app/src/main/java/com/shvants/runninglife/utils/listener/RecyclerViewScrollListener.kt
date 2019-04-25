@@ -45,6 +45,6 @@ class RecyclerViewScrollListener(private val fragment: BaseFragment) :
 
     companion object {
         const val PAGE_SIZE = 2
-        const val MAX_VISIBLE_ITEMS = 3
+        const val MAX_VISIBLE_ITEMS = 4
     }
 }

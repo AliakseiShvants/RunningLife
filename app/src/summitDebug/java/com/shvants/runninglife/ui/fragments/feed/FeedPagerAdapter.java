@@ -4,12 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
@@ -25,7 +22,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.Collections;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
@@ -34,7 +30,6 @@ public class FeedPagerAdapter
         extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
         implements IAdapter {
 
-    //    private MoveItemClickListener itemClickListener;
     private final LayoutInflater inflater;
     private final UserModelUi user;
     private final List<MoveModelUi> moves;
@@ -51,7 +46,6 @@ public class FeedPagerAdapter
         this.moves = moveService.getEntities();
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        this.itemClickListener = (MoveItemClickListener) context;
     }
 
     @NonNull
@@ -108,24 +102,11 @@ public class FeedPagerAdapter
         notifyDataSetChanged();
     }
 
-    @Override
-    public void onItemMove(final int fromPosition, final int toPosition) {
-
-        if (fromPosition < toPosition) {
-            for (int i = fromPosition; i < toPosition; i++) {
-                Collections.swap(moves, i, i + 1);
-            }
-        } else {
-            for (int i = fromPosition; i > toPosition; i--) {
-                Collections.swap(moves, i, i - 1);
-            }
-        }
-
-        notifyItemMoved(fromPosition, toPosition);
-    }
-
-    @Override
-    public void onItemDismiss(final int adapterPosition) {
+    @IntDef({ViewType.MOVE, ViewType.LOADING})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface ViewType {
+        int MOVE = 0;
+        int LOADING = 1;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -133,22 +114,13 @@ public class FeedPagerAdapter
         ViewHolder(final View view) {
             super(view);
 
-            final CardView cardView = view.findViewById(R.id.cardView);
-            final ImageView avatarView = view.findViewById(R.id.userAvatar);
-            final TextView nameView = view.findViewById(R.id.userFullName);
-            final TextView beginTimeView = view.findViewById(R.id.beginTime);
-            final TextView titleView = view.findViewById(R.id.title);
-            final TextView distanceView = view.findViewById(R.id.baseDistanceValue);
-            final TextView tempoView = view.findViewById(R.id.baseTempoValue);
-            final TextView timeView = view.findViewById(R.id.baseTimeValue);
-            final TextView imageView = view.findViewById(R.id.image);
+            view.findViewById(R.id.moveCard).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    v.findViewById(R.id.moveBaseParameter).setVisibility(View.GONE);
+                    //todo full parameter
+                }
+            });
         }
-    }
-
-    @IntDef({ViewType.MOVE, ViewType.LOADING})
-    @Retention(RetentionPolicy.SOURCE)
-    @interface ViewType {
-        int MOVE = 0;
-        int LOADING = 1;
     }
 }

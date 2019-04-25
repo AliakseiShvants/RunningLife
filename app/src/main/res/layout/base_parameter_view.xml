@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <TextView
+        android:id="@+id/moveDistanceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/two_intents"
+        android:layout_marginTop="@dimen/two_intents"
+        android:text="@string/distance"
+        android:textSize="@dimen/xs_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/moveTempoTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/two_intents"
+        android:layout_marginTop="@dimen/two_intents"
+        android:text="@string/tempo"
+        android:textSize="@dimen/xs_text_size"
+        app:layout_constraintStart_toEndOf="@+id/moveDistanceValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/moveTimeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/two_intents"
+        android:layout_marginTop="@dimen/two_intents"
+        android:text="@string/time"
+        android:textSize="@dimen/xs_text_size"
+        app:layout_constraintStart_toEndOf="@+id/moveTempoValue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/moveDistanceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/two_intents"
+        android:textSize="@dimen/s_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/moveDistanceTitle" />
+
+
+    <TextView
+        android:id="@+id/moveTempoValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/s_text_size"
+        app:layout_constraintStart_toStartOf="@id/moveTempoTitle"
+        app:layout_constraintTop_toBottomOf="@id/moveTempoTitle" />
+
+
+    <TextView
+        android:id="@+id/moveTimeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/moveTempoValue"
+        android:textSize="@dimen/s_text_size"
+        app:layout_constraintStart_toStartOf="@id/moveTimeTitle"
+        app:layout_constraintTop_toBottomOf="@id/moveTimeTitle" />
+</merge>

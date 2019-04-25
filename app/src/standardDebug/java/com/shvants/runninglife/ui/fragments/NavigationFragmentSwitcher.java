@@ -11,14 +11,12 @@ import com.shvants.runninglife.ui.model.UserModelUi;
 
 public class NavigationFragmentSwitcher {
 
-    private final UserModelUi user;
     private final MenuItem menuItem;
     private final FragmentTransaction fragmentTransaction;
 
     public NavigationFragmentSwitcher(final UserModelUi user,
                                       final MenuItem menuItem,
                                       final FragmentTransaction fragmentTransaction) {
-        this.user = user;
         this.menuItem = menuItem;
         this.fragmentTransaction = fragmentTransaction;
     }

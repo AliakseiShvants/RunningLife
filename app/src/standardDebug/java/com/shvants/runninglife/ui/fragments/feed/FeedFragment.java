@@ -84,10 +84,10 @@ public class FeedFragment extends BaseFragment {
 
         new RecyclerViewScrollListener(FeedFragment.getInstance());
 
-        loadMoreItems(ZERO, RecyclerViewScrollListener.PAGE_SIZE);
+//        loadMoreItems(ZERO, RecyclerViewScrollListener.PAGE_SIZE);
 
-        new ItemTouchHelper(new ItemTouchCallback(recyclerView, adapter))
-                .attachToRecyclerView(recyclerView);
+//        new ItemTouchHelper(new ItemTouchCallback(recyclerView, adapter))
+//                .attachToRecyclerView(recyclerView);
 
         recyclerView.setItemAnimator(new DefaultItemAnimator() {
             @Override
