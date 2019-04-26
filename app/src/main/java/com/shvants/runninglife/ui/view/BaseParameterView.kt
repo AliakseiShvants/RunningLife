@@ -12,7 +12,7 @@ import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const
 import kotlinx.android.synthetic.main.base_parameter_view.view.*
 
-class BaseParameterView
+open class BaseParameterView
 @JvmOverloads
 constructor(
         context: Context,

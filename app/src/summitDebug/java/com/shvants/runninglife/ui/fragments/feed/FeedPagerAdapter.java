@@ -116,11 +116,18 @@ public class FeedPagerAdapter
 
             view.findViewById(R.id.moveCard).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(final View v) {
-                    v.findViewById(R.id.moveBaseParameter).setVisibility(View.GONE);
+                public void onClick(final View view) {
+                    showFullParameter(view);
+
                     //todo full parameter
+
                 }
             });
+        }
+
+        private void showFullParameter(final View view) {
+            view.findViewById(R.id.moveBaseParameter).setVisibility(View.GONE);
+            view.findViewById(R.id.moveFullParameter).setVisibility(View.VISIBLE);
         }
     }
 }

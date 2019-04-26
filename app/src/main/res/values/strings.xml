@@ -22,4 +22,6 @@
     <string name="hours">h</string>
     <string name="seconds">sec</string>
     <string name="elevation">Elevation</string>
+    <string name="calories">Calories</string>
+    <string name="hr">Avg. HR</string>
 </resources>

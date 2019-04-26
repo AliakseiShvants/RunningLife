@@ -33,6 +33,7 @@
             android:id="@+id/moveBaseParameter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/two_intents"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/moveTitle" />
@@ -41,10 +42,15 @@
             android:id="@+id/moveImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginTop="@dimen/two_intents"
-            android:layout_marginBottom="@dimen/two_intents"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/moveBaseParameter" />
+
+        <com.shvants.runninglife.ui.view.FullParameterView
+            android:id="@+id/moveFullParameter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moveImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

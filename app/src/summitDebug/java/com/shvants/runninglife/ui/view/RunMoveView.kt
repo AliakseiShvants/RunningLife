@@ -23,6 +23,7 @@ constructor(
     private lateinit var baseParameterView: BaseParameterView
     private lateinit var titleView: TextView
     private lateinit var imageView: ImageView
+    private lateinit var fullParameterView: FullParameterView
 
     override fun onViewInflated(context: Context) {
 
@@ -30,6 +31,7 @@ constructor(
         baseParameterView = findViewById(R.id.moveBaseParameter)
         titleView = findViewById(R.id.moveTitle)
         imageView = findViewById(R.id.moveImage)
+        fullParameterView = findViewById(R.id.moveFullParameter)
     }
 
     @UiThread
@@ -37,6 +39,7 @@ constructor(
 
         userView.setView(modelUi[0], modelUi[1])
         baseParameterView.setView(modelUi[1])
+        fullParameterView.setView(modelUi[1])
 
         val runMove = modelUi[1] as RunMoveModelUi
 
