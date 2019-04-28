@@ -70,7 +70,7 @@ constructor(
         return this
     }
 
-    private fun getBeginTimeAsString(time: Long) = DateFormat.format(RunMoveView.DATE_TIME_PATTERN, time)
+    private fun getBeginTimeAsString(time: Long) = DateFormat.format(DATE_TIME_PATTERN, time)
 
     companion object {
         const val DATE_TIME_PATTERN = "dd MMM yy HH:mm"
