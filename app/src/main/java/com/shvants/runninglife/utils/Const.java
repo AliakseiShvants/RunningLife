@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 public class Const {
 
     public static final int ZERO = 0;
+    public static final int TEN = 10;
     public static final double ZERO_DOUBLE = 0.0;
     public static final String DOT = ".";
     public static final String COLON = ":";

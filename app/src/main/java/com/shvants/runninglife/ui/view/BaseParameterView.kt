@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.R
 import com.shvants.runninglife.ui.model.BaseModelUi
 import com.shvants.runninglife.ui.model.RunMoveModelUi
-import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.*
 import kotlinx.android.synthetic.main.base_parameter_view.view.*
 
 open class BaseParameterView
@@ -51,8 +51,8 @@ constructor(
     }
 
     private fun getDistanceAsString(distance: Double?): String {
-        return if (distance == Const.ZERO_DOUBLE) {
-            "${Const.HYPHEN} ${resources.getString(R.string.km)}"
+        return if (distance == ZERO_DOUBLE) {
+            "$HYPHEN ${resources.getString(R.string.km)}"
         } else {
             val formatDistance = RunMoveView.DISTANCE_FORMAT.format(distance)
 
@@ -64,18 +64,18 @@ constructor(
 
         val tempo: String
 
-        tempo = if (distance != Const.ZERO_DOUBLE) {
+        tempo = if (distance != ZERO_DOUBLE) {
 
             val tempoInSeconds = (time / distance).toInt()
             val seconds = tempoInSeconds % RunMoveView.ONE_MINUTE
             val minutes = tempoInSeconds / RunMoveView.ONE_MINUTE
 
-            val mString = if (minutes != Const.ZERO) "$minutes" else Const.EMPTY
-            val sString = if (seconds != Const.ZERO) "$seconds" else "${Const.ZERO}${Const.ZERO}"
+            val mString = if (minutes != ZERO) "$minutes" else EMPTY
+            val sString = if (seconds < TEN) "$ZERO$seconds" else "$seconds"
 
-            "$mString${Const.COLON}$sString ${Const.SLASH}${resources.getString(R.string.km)}"
+            "$mString$COLON$sString $SLASH${resources.getString(R.string.km)}"
         } else {
-            "${Const.HYPHEN}${Const.COLON}${Const.HYPHEN} ${Const.SLASH}${resources.getString(R.string.km)}"
+            "$HYPHEN$COLON$HYPHEN $SLASH${resources.getString(R.string.km)}"
         }
 
         return tempo
@@ -88,17 +88,17 @@ constructor(
         val minutes = (time - hours * RunMoveView.ONE_HOUR) / RunMoveView.ONE_MINUTE
         val seconds = time % RunMoveView.ONE_MINUTE
 
-        var hString = "$hours ${resources.getString(R.string.hours)}${Const.DOT} "
+        var hString = "$hours ${resources.getString(R.string.hours)}$DOT"
         var mString = "$minutes ${resources.getString(R.string.minutes)}"
-        var sString = "$seconds ${resources.getString(R.string.seconds)}${Const.DOT} "
+        var sString = "$seconds ${resources.getString(R.string.seconds)}$DOT"
 
         when {
-            hours == Const.ZERO -> hString = Const.EMPTY
-            minutes == Const.ZERO -> mString = Const.EMPTY
-            seconds == Const.ZERO -> sString = Const.EMPTY
+            hours == ZERO -> hString = EMPTY
+            minutes == ZERO -> mString = EMPTY
+            seconds == ZERO -> sString = EMPTY
         }
 
-        result = if (hString != Const.EMPTY)
+        result = if (hString != EMPTY)
             "$hString $mString"
         else
             "$mString $sString"

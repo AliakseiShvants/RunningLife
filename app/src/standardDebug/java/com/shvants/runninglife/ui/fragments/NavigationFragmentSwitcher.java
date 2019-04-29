@@ -14,8 +14,7 @@ public class NavigationFragmentSwitcher {
     private final MenuItem menuItem;
     private final FragmentTransaction fragmentTransaction;
 
-    public NavigationFragmentSwitcher(final UserModelUi user,
-                                      final MenuItem menuItem,
+    public NavigationFragmentSwitcher(final MenuItem menuItem,
                                       final FragmentTransaction fragmentTransaction) {
         this.menuItem = menuItem;
         this.fragmentTransaction = fragmentTransaction;

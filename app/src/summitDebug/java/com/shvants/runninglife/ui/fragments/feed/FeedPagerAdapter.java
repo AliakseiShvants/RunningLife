@@ -26,8 +26,7 @@ import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 
-public class FeedPagerAdapter
-        extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
+public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
         implements IAdapter {
 
     private final LayoutInflater inflater;
@@ -53,7 +52,7 @@ public class FeedPagerAdapter
     public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                          final int viewType) {
         if (viewType == ViewType.MOVE) {
-            return new ViewHolder(new RunMoveView(parent.getContext()));
+            return new ViewHolder(inflater.inflate(R.layout.adapter_item_run_move, parent, FALSE));
         } else {
             return new ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
         }
@@ -68,6 +67,7 @@ public class FeedPagerAdapter
             final MoveModelUi move = moves.get(position);
 
             ((RunMoveView) holder.itemView).setView(user, move);
+
         }
     }
 
@@ -118,9 +118,6 @@ public class FeedPagerAdapter
                 @Override
                 public void onClick(final View view) {
                     showFullParameter(view);
-
-                    //todo full parameter
-
                 }
             });
         }

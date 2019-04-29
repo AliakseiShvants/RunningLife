@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/two_intents"
+            android:paddingBottom="@dimen/two_intents"
             android:textSize="@dimen/m_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"

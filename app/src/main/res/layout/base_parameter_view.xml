@@ -71,9 +71,8 @@
         android:layout_marginStart="@dimen/two_intents"
         android:layout_marginBottom="@dimen/two_intents"
         android:textSize="@dimen/s_text_size"
-        android:text="@string/distance"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/moveDistanceTitle" />
 
 
@@ -81,9 +80,8 @@
         android:id="@+id/moveTempoValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/s_text_size"
         android:layout_marginBottom="@dimen/two_intents"
-        android:text="@string/distance"
+        android:textSize="@dimen/s_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/moveTempoTitle"
         app:layout_constraintTop_toBottomOf="@id/moveTempoTitle" />
@@ -95,7 +93,6 @@
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/moveTempoValue"
         android:textSize="@dimen/s_text_size"
-        android:text="@string/distance"
         app:layout_constraintStart_toStartOf="@id/moveTimeTitle"
         app:layout_constraintTop_toBottomOf="@id/moveTimeTitle" />
 </merge>
