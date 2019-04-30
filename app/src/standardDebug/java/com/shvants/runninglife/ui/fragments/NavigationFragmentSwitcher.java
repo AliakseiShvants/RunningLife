@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.fragments.clubs.ClubsFragment;
-import com.shvants.runninglife.ui.fragments.feed.FeedFragment;
+import com.shvants.runninglife.ui.feed.FeedFragment;
 import com.shvants.runninglife.ui.model.UserModelUi;
 
 public class NavigationFragmentSwitcher {

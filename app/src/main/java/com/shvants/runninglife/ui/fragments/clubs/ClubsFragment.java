@@ -10,8 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.activities.main.MainActivity;
 import com.shvants.runninglife.ui.base.BaseFragment;
+import com.shvants.runninglife.ui.main.MainActivity;
 import com.shvants.runninglife.ui.model.MoveModelUi;
 import com.shvants.runninglife.utils.Const;
 import com.shvants.runninglife.utils.IAdapter;

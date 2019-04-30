@@ -1,6 +1,7 @@
 package com.shvants.runninglife.ui.feed;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.main.MainActivity;
 import com.shvants.runninglife.ui.base.BaseFragment;
+import com.shvants.runninglife.ui.main.MainActivity;
 import com.shvants.runninglife.ui.model.MoveModelUi;
 import com.shvants.runninglife.utils.IAdapter;
 import com.shvants.runninglife.utils.ICallback;
-import com.shvants.runninglife.utils.ItemTouchCallback;
 import com.shvants.runninglife.utils.listener.RecyclerViewScrollListener;
 import com.shvants.runninglife.utils.service.IService;
 import com.shvants.runninglife.utils.service.RunMoveService;
@@ -29,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import static com.shvants.runninglife.utils.Const.FeedFragment.TITLE;
-import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -41,6 +39,7 @@ public class FeedFragment extends BaseFragment {
     private RecyclerView.LayoutManager layoutManager;
     private FeedPagerAdapter adapter;
     private boolean isLoading = false;
+    private Parcelable fragmentState;
 
     private FeedFragment() {
         moveService = new RunMoveService();
@@ -57,9 +56,22 @@ public class FeedFragment extends BaseFragment {
 
     @Override
     public void onSaveInstanceState(@NonNull final Bundle outState) {
-        //todo
         super.onSaveInstanceState(outState);
+
+        fragmentState = layoutManager.onSaveInstanceState();
+        outState.putParcelable("key", fragmentState);
     }
+
+    @Override
+    public void onViewStateRestored(@Nullable final Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            fragmentState = savedInstanceState.getParcelable("key");
+            layoutManager.onRestoreInstanceState(fragmentState);
+        }
+    }
+
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -82,7 +94,7 @@ public class FeedFragment extends BaseFragment {
         adapter = new FeedPagerAdapter(getContext());
         recyclerView.setAdapter(adapter);
 
-        new RecyclerViewScrollListener(FeedFragment.getInstance());
+        new RecyclerViewScrollListener(getInstance());
 
 //        loadMoreItems(ZERO, RecyclerViewScrollListener.PAGE_SIZE);
 
@@ -103,7 +115,6 @@ public class FeedFragment extends BaseFragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
                 DividerItemDecoration.VERTICAL));
 
-        // todo summit version add on click listener (full version)
         return feedView;
     }
 
@@ -149,4 +160,6 @@ public class FeedFragment extends BaseFragment {
     public IService<MoveModelUi> getService() {
         return moveService;
     }
+
+
 }

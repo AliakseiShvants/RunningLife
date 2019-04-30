@@ -4,18 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
+import com.shvants.runninglife.ui.custom.RunMoveView;
 import com.shvants.runninglife.ui.model.MoveModelUi;
 import com.shvants.runninglife.ui.model.UserModelUi;
-import com.shvants.runninglife.ui.custom.RunMoveView;
 import com.shvants.runninglife.utils.IAdapter;
 import com.shvants.runninglife.utils.service.IService;
 import com.shvants.runninglife.utils.service.RunMoveService;
@@ -25,16 +22,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.Collections;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 
-public class FeedPagerAdapter
-        extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
+public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
         implements IAdapter {
 
-    private final Context context;
     private final LayoutInflater inflater;
     private final UserModelUi user;
     private final List<MoveModelUi> moves;
@@ -47,7 +41,6 @@ public class FeedPagerAdapter
         userService = new UserService();
         moveService = new RunMoveService();
 
-        this.context = context;
         this.user = userService.getEntity(0);
         this.moves = moveService.getEntities();
 
@@ -59,7 +52,7 @@ public class FeedPagerAdapter
     public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
                                          final int viewType) {
         if (viewType == ViewType.MOVE) {
-            return new ViewHolder(new RunMoveView(parent.getContext()));
+            return new ViewHolder(inflater.inflate(R.layout.adapter_item_run_move, parent, FALSE));
         } else {
             return new ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
         }
@@ -74,6 +67,7 @@ public class FeedPagerAdapter
             final MoveModelUi move = moves.get(position);
 
             ((RunMoveView) holder.itemView).setView(user, move);
+
         }
     }
 
@@ -108,17 +102,29 @@ public class FeedPagerAdapter
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-
-        ViewHolder(final View view) {
-            super(view);
-        }
-    }
-
     @IntDef({ViewType.MOVE, ViewType.LOADING})
     @Retention(RetentionPolicy.SOURCE)
     @interface ViewType {
         int MOVE = 0;
         int LOADING = 1;
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+
+        ViewHolder(final View view) {
+            super(view);
+
+            view.findViewById(R.id.moveCard).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View view) {
+                    showFullParameter(view);
+                }
+            });
+        }
+
+        private void showFullParameter(final View view) {
+            view.findViewById(R.id.moveBaseParameter).setVisibility(View.GONE);
+            view.findViewById(R.id.moveFullParameter).setVisibility(View.VISIBLE);
+        }
     }
 }

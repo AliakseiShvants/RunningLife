@@ -5,7 +5,7 @@
     android:background="@color/gray200"
     android:orientation="vertical">
 
-    <com.shvants.runninglife.ui.view.UserView
+    <com.shvants.runninglife.ui.custom.UserView
         android:id="@+id/nav_user_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
