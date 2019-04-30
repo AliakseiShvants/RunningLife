@@ -7,13 +7,14 @@ import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.ui.model.BaseModelUi
 import com.shvants.runninglife.ui.model.RunMoveModelUi
+import com.shvants.runninglife.utils.Const.ZERO
 
 class FullParameterView
 @JvmOverloads
 constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
+        defStyleAttr: Int = ZERO
 ) : BaseParameterView(context, attrs, defStyleAttr) {
 
     private lateinit var elevationView: TextView
@@ -37,9 +38,9 @@ constructor(
         val runMove = modelUi[0] as RunMoveModelUi
 
         super.setView(*modelUi)
-        elevationView.text = runMove.elevation.toString()
-        caloriesView.text = runMove.calories.toString()
-        hrView.text = runMove.hr.toString()
+        elevationView.text = "${runMove.elevation} ${resources.getString(R.string.meter)}"
+        caloriesView.text = "${runMove.calories} ${resources.getString(R.string.cal)}"
+        hrView.text = "${runMove.hr} ${resources.getString(R.string.bpm)}"
 
         return this
     }

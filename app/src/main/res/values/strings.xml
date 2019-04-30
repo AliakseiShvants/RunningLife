@@ -18,10 +18,13 @@
     <string name="tempo">Tempo</string>
     <string name="distance">Distance</string>
     <string name="km">km</string>
-    <string name="minutes">m</string>
+    <string name="minutes">min</string>
     <string name="hours">h</string>
     <string name="seconds">sec</string>
     <string name="elevation">Elevation</string>
     <string name="calories">Calories</string>
     <string name="hr">Avg. HR</string>
+    <string name="meter">m</string>
+    <string name="cal">cal.</string>
+    <string name="bpm">bpm</string>
 </resources>
