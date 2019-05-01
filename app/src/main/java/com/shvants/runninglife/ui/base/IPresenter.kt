@@ -4,7 +4,11 @@ interface IPresenter<V : IView> {
 
     fun onAttach(view: IView)
 
+    fun viewIsReady()
+
     fun onDetach()
 
-    fun setUserAsLoggedOut()
+    fun destroy()
+
+//    fun setUserAsLoggedOut()
 }
