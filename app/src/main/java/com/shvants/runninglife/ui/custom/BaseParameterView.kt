@@ -5,10 +5,11 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.UiThread
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.R
-import com.shvants.runninglife.ui.model.BaseModelUi
+import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.ui.base.BaseView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
+import com.shvants.runninglife.ui.view.RunMoveView
 import com.shvants.runninglife.utils.Const.*
 import kotlinx.android.synthetic.main.base_parameter_view.view.*
 
@@ -17,8 +18,7 @@ open class BaseParameterView
 constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr), IView {
+        defStyleAttr: Int = 0) : BaseView(context, attrs, defStyleAttr) {
 
     private lateinit var distanceView: TextView
     private lateinit var timeView: TextView
@@ -40,7 +40,7 @@ constructor(
     }
 
     @UiThread
-    override fun setView(vararg modelUi: BaseModelUi): BaseParameterView {
+    override fun setView(vararg modelUi: Data): BaseParameterView {
         val runMove = modelUi[0] as RunMoveModelUi
 
         distanceView.text = getDistanceAsString(runMove.distance)

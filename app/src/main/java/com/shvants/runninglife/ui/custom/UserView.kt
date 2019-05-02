@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.R
-import com.shvants.runninglife.ui.model.BaseModelUi
+import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.ui.base.IView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.ui.model.UserModelUi
 import com.shvants.runninglife.utils.Const.NULL
@@ -45,7 +46,7 @@ constructor(
         return R.layout.user_view
     }
 
-    override fun setView(vararg modelUi: BaseModelUi): IView {
+    override fun setView(vararg modelUi: Data): IView {
         val user = modelUi[0] as UserModelUi
         val drawable = AppCompatResources.getDrawable(context, user.avatar)
 

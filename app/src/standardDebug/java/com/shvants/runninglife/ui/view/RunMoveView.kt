@@ -6,21 +6,21 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.UiThread
-import androidx.cardview.widget.CardView
 import com.shvants.runninglife.R
-import com.shvants.runninglife.ui.model.BaseModelUi
+import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.ui.base.BaseView
+import com.shvants.runninglife.ui.custom.BaseParameterView
+import com.shvants.runninglife.ui.custom.UserView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
-import com.shvants.runninglife.ui.model.UserModelUi
-import com.shvants.runninglife.utils.Const.*
+import com.shvants.runninglife.utils.Const.NULL
+import com.shvants.runninglife.utils.Const.ZERO
 
-class RunMoveView
-@JvmOverloads
-constructor(
+class RunMoveView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : BaseMoveLayout(context, attrs, defStyleAttr) {
+        defStyleAttr: Int = ZERO) : BaseView(context, attrs, defStyleAttr) {
 
-    override lateinit var userView: UserView
+    private lateinit var userView: UserView
     private lateinit var baseParameterView: BaseParameterView
     private lateinit var titleView: TextView
     private lateinit var imageView: ImageView
@@ -34,7 +34,7 @@ constructor(
     }
 
     @UiThread
-    override fun setView(vararg modelUi: BaseModelUi): RunMoveView {
+    override fun setView(vararg modelUi: Data): RunMoveView {
 
         userView.setView(modelUi[0], modelUi[1])
         baseParameterView.setView(modelUi[1])

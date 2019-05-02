@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
+import com.shvants.runninglife.data.Data
 import com.shvants.runninglife.ui.model.BaseModelUi
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.ZERO
@@ -34,7 +35,7 @@ constructor(
     }
 
     @UiThread
-    override fun setView(vararg modelUi: BaseModelUi): FullParameterView {
+    override fun setView(vararg modelUi: Data): FullParameterView {
         val runMove = modelUi[0] as RunMoveModelUi
 
         super.setView(*modelUi)

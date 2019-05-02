@@ -4,18 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.model.MoveModelUi;
 import com.shvants.runninglife.ui.model.UserModelUi;
-import com.shvants.runninglife.ui.custom.RunMoveView;
+import com.shvants.runninglife.ui.view.RunMoveView;
 import com.shvants.runninglife.utils.IAdapter;
 import com.shvants.runninglife.utils.service.IService;
 import com.shvants.runninglife.utils.service.RunMoveService;
@@ -25,13 +22,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.Collections;
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 
 public class FeedPagerAdapter
-        extends RecyclerView.Adapter<FeedPagerAdapter.ViewHolder>
+        extends RecyclerView.Adapter<FeedAdapter.ViewHolder>
         implements IAdapter {
 
     private final Context context;

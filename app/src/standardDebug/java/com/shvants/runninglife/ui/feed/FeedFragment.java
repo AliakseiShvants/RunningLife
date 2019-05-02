@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.feed;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.main.MainActivity;
+import com.shvants.runninglife.data.Data;
 import com.shvants.runninglife.ui.base.BaseFragment;
+import com.shvants.runninglife.ui.base.IView;
+import com.shvants.runninglife.ui.main.MainActivity;
 import com.shvants.runninglife.ui.model.MoveModelUi;
 import com.shvants.runninglife.utils.IAdapter;
 import com.shvants.runninglife.utils.ICallback;
-import com.shvants.runninglife.utils.ItemTouchCallback;
 import com.shvants.runninglife.utils.listener.RecyclerViewScrollListener;
 import com.shvants.runninglife.utils.service.IService;
 import com.shvants.runninglife.utils.service.RunMoveService;
@@ -29,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 import static com.shvants.runninglife.utils.Const.FeedFragment.TITLE;
-import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -39,7 +39,7 @@ public class FeedFragment extends BaseFragment {
     private final IService<MoveModelUi> moveService;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private FeedPagerAdapter adapter;
+    private com.shvants.runninglife.ui.feed.FeedAdapter adapter;
     private boolean isLoading = false;
 
     private FeedFragment() {
@@ -79,7 +79,7 @@ public class FeedFragment extends BaseFragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new FeedPagerAdapter(getContext());
+        adapter = new com.shvants.runninglife.ui.feed.FeedAdapter(getContext());
         recyclerView.setAdapter(adapter);
 
         new RecyclerViewScrollListener(FeedFragment.getInstance());
@@ -148,5 +148,21 @@ public class FeedFragment extends BaseFragment {
     @Override
     public IService<MoveModelUi> getService() {
         return moveService;
+    }
+
+    @Override
+    public void onViewInflated(@NotNull final Context context) {
+
+    }
+
+    @Override
+    public int getLayoutResId() {
+        return 0;
+    }
+
+    @NotNull
+    @Override
+    public IView setView(@NotNull final Data... data) {
+        return null;
     }
 }

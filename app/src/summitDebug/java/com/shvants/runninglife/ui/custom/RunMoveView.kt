@@ -7,15 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
+import com.shvants.runninglife.data.Data
 import com.shvants.runninglife.ui.base.BaseView
+import com.shvants.runninglife.ui.base.IView
 import com.shvants.runninglife.ui.model.BaseModelUi
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
 
-class RunMoveView
-@JvmOverloads
-constructor(
+class RunMoveView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
         defStyleAttr: Int = ZERO) : BaseView(context, attrs, defStyleAttr) {
@@ -36,13 +36,13 @@ constructor(
     }
 
     @UiThread
-    override fun setView(vararg modelUi: BaseModelUi): RunMoveView {
 
-        userView.setView(modelUi[0], modelUi[1])
-        baseParameterView.setView(modelUi[1])
-        fullParameterView.setView(modelUi[1])
+    override fun setView(vararg data: Data): IView {
+        userView.setView(data[0], data[1])
+        baseParameterView.setView(data[1])
+        fullParameterView.setView(data[1])
 
-        val runMove = modelUi[1] as RunMoveModelUi
+        val runMove = data[1] as RunMoveModelUi
 
         titleView.text = runMove.title
 
