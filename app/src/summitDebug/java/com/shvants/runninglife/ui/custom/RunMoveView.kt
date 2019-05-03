@@ -10,7 +10,6 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.data.Data
 import com.shvants.runninglife.ui.base.BaseView
 import com.shvants.runninglife.ui.base.IView
-import com.shvants.runninglife.ui.model.BaseModelUi
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
@@ -20,7 +19,7 @@ class RunMoveView @JvmOverloads constructor(
         attrs: AttributeSet? = NULL,
         defStyleAttr: Int = ZERO) : BaseView(context, attrs, defStyleAttr) {
 
-    override lateinit var userView: UserView
+    private lateinit var userView: UserView
     private lateinit var baseParameterView: BaseParameterView
     private lateinit var titleView: TextView
     private lateinit var imageView: ImageView

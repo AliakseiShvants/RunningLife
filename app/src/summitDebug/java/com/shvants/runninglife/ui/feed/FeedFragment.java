@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.feed;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
+import com.shvants.runninglife.data.Data;
 import com.shvants.runninglife.ui.base.BaseFragment;
+import com.shvants.runninglife.ui.base.IView;
 import com.shvants.runninglife.ui.main.MainActivity;
 import com.shvants.runninglife.ui.model.MoveModelUi;
 import com.shvants.runninglife.utils.IAdapter;
@@ -85,7 +88,7 @@ public class FeedFragment extends BaseFragment {
                              final ViewGroup container,
                              final Bundle savedInstanceState) {
 
-        final View feedView = inflater.inflate(getLayoutId(), container, FALSE);
+        final View feedView = inflater.inflate(getLayoutResId(), container, FALSE);
 
         recyclerView = feedView.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -116,11 +119,6 @@ public class FeedFragment extends BaseFragment {
                 DividerItemDecoration.VERTICAL));
 
         return feedView;
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_feed;
     }
 
 
@@ -162,4 +160,19 @@ public class FeedFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onViewInflated(@NotNull final Context context) {
+
+    }
+
+    @Override
+    public int getLayoutResId() {
+        return R.layout.fragment_feed;
+    }
+
+    @NotNull
+    @Override
+    public IView setView(@NotNull final Data... data) {
+        return null;
+    }
 }

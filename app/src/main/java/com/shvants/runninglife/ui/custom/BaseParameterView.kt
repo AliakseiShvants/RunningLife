@@ -9,7 +9,6 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.data.Data
 import com.shvants.runninglife.ui.base.BaseView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
-import com.shvants.runninglife.ui.view.RunMoveView
 import com.shvants.runninglife.utils.Const.*
 import kotlinx.android.synthetic.main.base_parameter_view.view.*
 

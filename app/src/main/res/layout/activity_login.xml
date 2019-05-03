@@ -56,96 +56,107 @@
         app:layout_constraintBottom_toBottomOf="@id/loginImage"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/four_intents"
-        android:layout_marginEnd="@dimen/four_intents"
-        android:layout_marginBottom="@dimen/one_intent"
-        android:hint="@string/login"
-        app:layout_constraintBottom_toTopOf="@id/passwordInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/loginInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cursorVisible="true"
-            android:textSize="@dimen/s_text_size" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/four_intents"
-        android:layout_marginEnd="@dimen/four_intents"
-        android:layout_marginBottom="@dimen/one_intent"
-        android:hint="@string/password"
-        app:layout_constraintBottom_toTopOf="@id/loginButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:passwordToggleEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordInputEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cursorVisible="true"
-            android:inputType="textPassword"
-            android:textSize="@dimen/s_text_size" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="@dimen/four_intents"
-        android:layout_marginEnd="@dimen/four_intents"
-        android:layout_marginBottom="@dimen/three_intents"
-        android:background="@color/colorPrimary"
-        android:onClick="@{() -> viewModel.onServerLoginClick()}"
-        android:padding="@dimen/one_intent"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/m_text_size"
-        app:layout_constraintBottom_toTopOf="@id/googleLoginImageButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageButton
-        android:id="@+id/googleLoginImageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="@dimen/three_intents"
-        android:background="@color/transparent"
-        android:onClick="@{() -> viewModel.onGoogleLoginClick()}"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fbLoginImageButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_google" />
-
-    <ImageButton
-        android:id="@+id/fbLoginImageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="@dimen/three_intents"
-        android:background="@color/transparent"
-        android:onClick="@{() -> viewModel.onFbLoginClick()}"
-        android:scaleType="centerCrop"
+        android:id="@+id/stravaConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/googleLoginImageButton"
-        app:srcCompat="@drawable/ic_facebook" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginImage"
+        app:srcCompat="@drawable/ic_btn_strava_connectwith_orange" />
+
+    <!--<com.google.android.material.textfield.TextInputLayout-->
+    <!--android:id="@+id/loginInputLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="@dimen/four_intents"-->
+    <!--android:layout_marginEnd="@dimen/four_intents"-->
+    <!--android:layout_marginBottom="@dimen/one_intent"-->
+    <!--android:hint="@string/login"-->
+    <!--app:layout_constraintBottom_toTopOf="@id/passwordInputLayout"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:passwordToggleEnabled="true">-->
+
+    <!--<com.google.android.material.textfield.TextInputEditText-->
+    <!--android:id="@+id/loginInputEditText"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:cursorVisible="true"-->
+    <!--android:textSize="@dimen/s_text_size" />-->
+
+    <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+    <!--<com.google.android.material.textfield.TextInputLayout-->
+    <!--android:id="@+id/passwordInputLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="@dimen/four_intents"-->
+    <!--android:layout_marginEnd="@dimen/four_intents"-->
+    <!--android:layout_marginBottom="@dimen/one_intent"-->
+    <!--android:hint="@string/password"-->
+    <!--app:layout_constraintBottom_toTopOf="@id/loginButton"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:passwordToggleEnabled="true">-->
+
+    <!--<com.google.android.material.textfield.TextInputEditText-->
+    <!--android:id="@+id/passwordInputEditText"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:cursorVisible="true"-->
+    <!--android:inputType="textPassword"-->
+    <!--android:textSize="@dimen/s_text_size" />-->
+
+    <!--</com.google.android.material.textfield.TextInputLayout>-->
+
+    <!--<Button-->
+    <!--android:id="@+id/loginButton"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginStart="@dimen/four_intents"-->
+    <!--android:layout_marginEnd="@dimen/four_intents"-->
+    <!--android:layout_marginBottom="@dimen/three_intents"-->
+    <!--android:background="@color/colorPrimary"-->
+    <!--android:onClick="@{() -> viewModel.onServerLoginClick()}"-->
+    <!--android:padding="@dimen/one_intent"-->
+    <!--android:text="@string/login"-->
+    <!--android:textAllCaps="false"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="@dimen/m_text_size"-->
+    <!--app:layout_constraintBottom_toTopOf="@id/googleLoginImageButton"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/googleLoginImageButton"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:layout_marginBottom="@dimen/three_intents"-->
+    <!--android:background="@color/transparent"-->
+    <!--android:onClick="@{() -> viewModel.onGoogleLoginClick()}"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toStartOf="@+id/fbLoginImageButton"-->
+    <!--app:layout_constraintHorizontal_bias="0.5"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:srcCompat="@drawable/ic_google" />-->
+
+    <!--<ImageButton-->
+    <!--android:id="@+id/fbLoginImageButton"-->
+    <!--android:layout_width="40dp"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginBottom="@dimen/three_intents"-->
+    <!--android:background="@color/transparent"-->
+    <!--android:onClick="@{() -> viewModel.onFbLoginClick()}"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.5"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/googleLoginImageButton"-->
+    <!--app:srcCompat="@drawable/ic_facebook" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
