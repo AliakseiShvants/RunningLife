@@ -1,21 +1,20 @@
 package com.shvants.runninglife.ui.base
 
 import android.content.Context
-import android.util.AttributeSet
-import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.shvants.runninglife.utils.Const.NULL
-import com.shvants.runninglife.utils.Const.ZERO
+import androidx.annotation.LayoutRes
 
-abstract class BaseView
-@JvmOverloads
-constructor(
-        context: Context,
-        attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : ConstraintLayout(context, attrs, defStyleAttr), IView {
+interface BaseView {
 
-    init {
-        View.inflate(context, getLayoutResId(), this)
-        onViewInflated(context)
-    }
+//    fun showLoading()
+//
+//    fun hideLoading()
+//
+//    fun onError(message: String)
+//
+//    fun showMessage(message: String)
+
+    fun onViewInflated(context: Context)
+
+    @LayoutRes
+    fun getLayoutResId(): Int
 }

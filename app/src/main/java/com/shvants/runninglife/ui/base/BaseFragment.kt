@@ -6,7 +6,7 @@ import com.shvants.runninglife.ui.model.MoveModelUi
 import com.shvants.runninglife.utils.IAdapter
 import com.shvants.runninglife.utils.service.IService
 
-abstract class BaseFragment : Fragment(), IView {
+abstract class BaseFragment : Fragment(), BaseView {
 
     abstract fun loadMoreItems(start: Int, end: Int)
 

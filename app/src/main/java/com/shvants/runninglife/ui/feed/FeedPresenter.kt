@@ -1,6 +1,6 @@
 package com.shvants.runninglife.ui.feed
 
-import com.shvants.runninglife.ui.base.IPresenter
-import com.shvants.runninglife.ui.base.IView
+import com.shvants.runninglife.ui.base.BasePresenter
+import com.shvants.runninglife.ui.base.BaseView
 
-interface FeedPresenter<V : IView> : IPresenter<V>
+interface FeedPresenter<V : BaseView> : BasePresenter

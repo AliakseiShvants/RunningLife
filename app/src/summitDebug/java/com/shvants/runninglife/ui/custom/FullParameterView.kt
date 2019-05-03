@@ -6,17 +6,13 @@ import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.data.Data
-import com.shvants.runninglife.ui.model.BaseModelUi
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.ZERO
 
-class FullParameterView
-@JvmOverloads
-constructor(
+class FullParameterView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = ZERO
-) : BaseParameterView(context, attrs, defStyleAttr) {
+        defStyleAttr: Int = ZERO) : BaseParameterView(context, attrs, defStyleAttr) {
 
     private lateinit var elevationView: TextView
     private lateinit var caloriesView: TextView

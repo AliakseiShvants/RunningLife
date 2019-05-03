@@ -8,8 +8,7 @@ import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.data.Data
-import com.shvants.runninglife.ui.base.BaseView
-import com.shvants.runninglife.ui.base.IView
+import com.shvants.runninglife.ui.base.BaseCustomView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
@@ -17,7 +16,7 @@ import com.shvants.runninglife.utils.Const.ZERO
 class RunMoveView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : BaseView(context, attrs, defStyleAttr) {
+        defStyleAttr: Int = ZERO) : BaseCustomView(context, attrs, defStyleAttr) {
 
     private lateinit var userView: UserView
     private lateinit var baseParameterView: BaseParameterView
@@ -35,8 +34,7 @@ class RunMoveView @JvmOverloads constructor(
     }
 
     @UiThread
-
-    override fun setView(vararg data: Data): IView {
+    override fun setView(vararg data: Data): BaseCustomView {
         userView.setView(data[0], data[1])
         baseParameterView.setView(data[1])
         fullParameterView.setView(data[1])

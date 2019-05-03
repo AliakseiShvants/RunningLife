@@ -7,10 +7,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.R
 import com.shvants.runninglife.data.Data
-import com.shvants.runninglife.ui.base.IView
+import com.shvants.runninglife.ui.base.BaseCustomView
+import com.shvants.runninglife.ui.base.BaseView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.ui.model.UserModelUi
 import com.shvants.runninglife.utils.Const.NULL
@@ -22,17 +22,17 @@ class UserView
 constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : ConstraintLayout(context, attrs, defStyleAttr), IView {
+        defStyleAttr: Int = ZERO) : BaseCustomView(context, attrs, defStyleAttr), BaseView {
 
     private lateinit var avatarView: ImageView
     private lateinit var fullNameView: TextView
     private lateinit var locationView: TextView
     private lateinit var startTimeView: TextView
 
-    init {
-        View.inflate(context, getLayoutResId(), this)
-        onViewInflated(context)
-    }
+//    init {
+//        View.inflate(context, getLayoutResId(), this)
+//        onViewInflated(context)
+//    }
 
     override fun onViewInflated(context: Context) {
         avatarView = userAvatar
@@ -46,7 +46,7 @@ constructor(
         return R.layout.user_view
     }
 
-    override fun setView(vararg modelUi: Data): IView {
+    override fun setView(vararg modelUi: Data): BaseCustomView {
         val user = modelUi[0] as UserModelUi
         val drawable = AppCompatResources.getDrawable(context, user.avatar)
 

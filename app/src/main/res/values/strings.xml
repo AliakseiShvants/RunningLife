@@ -10,7 +10,7 @@
     <string name="move_record">Move record</string>
     <string name="exit">Exit</string>
 
-    <string name="login">Login</string>
+    <string name="login">Log in</string>
     <string name="password">Password</string>
     <string name="login_image">Login image</string>
     <string name="running_life">Running Life</string>
@@ -29,4 +29,5 @@
     <string name="meter">m</string>
     <string name="cal">cal.</string>
     <string name="bpm">bpm</string>
+    <string name="email">Email</string>
 </resources>

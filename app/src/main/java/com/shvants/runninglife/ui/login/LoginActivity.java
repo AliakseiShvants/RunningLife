@@ -1,9 +1,10 @@
 package com.shvants.runninglife.ui.login;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,8 +30,9 @@ public class LoginActivity extends AppCompatActivity {
                         .appendQueryParameter("scope", "activity:read")
                         .build();
 
-                final Intent intent = new Intent(Intent.ACTION_VIEW, intentUri);
-                startActivity(intent);
+                final FrameLayout frame = findViewById(R.id.loginFrame);
+                frame.removeAllViews();
+                LayoutInflater.from(v.getContext()).inflate(R.layout.layout_login_form, frame, true);
             }
         });
 
