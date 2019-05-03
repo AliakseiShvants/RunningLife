@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.data.base.Repository
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
 
@@ -20,5 +20,5 @@ constructor(
         onViewInflated(context)
     }
 
-    abstract fun setView(vararg data: Data): BaseCustomView
+    abstract fun setView(vararg data: Repository): BaseCustomView
 }

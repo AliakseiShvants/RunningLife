@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.data.Data;
+import com.shvants.runninglife.data.Repository;
 import com.shvants.runninglife.ui.base.BaseFragment;
 import com.shvants.runninglife.ui.base.BaseView;
 import com.shvants.runninglife.ui.main.MainActivity;

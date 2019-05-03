@@ -1,4 +1,4 @@
-package com.shvants.runninglife.data
+package com.shvants.runninglife.data.db
 
 import android.content.ContentValues
 import android.database.Cursor

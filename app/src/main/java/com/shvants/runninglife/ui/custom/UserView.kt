@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import com.shvants.runninglife.R
-import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.data.base.Repository
 import com.shvants.runninglife.ui.base.BaseCustomView
 import com.shvants.runninglife.ui.base.BaseView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
-import com.shvants.runninglife.ui.model.UserModelUi
+import com.shvants.runninglife.ui.model.SummaryAthleteUi
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.user_view.view.*
@@ -24,7 +24,7 @@ constructor(
         attrs: AttributeSet? = NULL,
         defStyleAttr: Int = ZERO) : BaseCustomView(context, attrs, defStyleAttr), BaseView {
 
-    private lateinit var avatarView: ImageView
+    private lateinit var profileView: ImageView
     private lateinit var fullNameView: TextView
     private lateinit var locationView: TextView
     private lateinit var startTimeView: TextView
@@ -35,8 +35,8 @@ constructor(
 //    }
 
     override fun onViewInflated(context: Context) {
-        avatarView = userAvatar
-        fullNameView = userFullName
+        profileView = athleteProfile
+        fullNameView = athleteFullName
         locationView = userLocation
         startTimeView = startTime
     }
@@ -46,19 +46,20 @@ constructor(
         return R.layout.user_view
     }
 
-    override fun setView(vararg modelUi: Data): BaseCustomView {
-        val user = modelUi[0] as UserModelUi
-        val drawable = AppCompatResources.getDrawable(context, user.avatar)
+    override fun setView(vararg modelUi: Repository): BaseCustomView {
+        val user = modelUi[0] as SummaryAthleteUi
+        val drawable = AppCompatResources.getDrawable(context, user.profile)
 
-        avatarView.setImageDrawable(drawable)
+        profileView.setImageDrawable(drawable)
         fullNameView.text = user.fullName
         locationView.text = user.location
 
         if (modelUi.size > 1) {
             val move = modelUi[1] as RunMoveModelUi
 
-            avatarView.layoutParams.width = resources.getDimension(R.dimen.avatar_move_size).toInt()
-            avatarView.layoutParams.height = resources.getDimension(R.dimen.avatar_move_size).toInt()
+            profileView.layoutParams.width = resources.getDimension(R.dimen.avatar_move_size).toInt()
+            profileView.layoutParams.height = resources.getDimension(R.dimen.avatar_move_size).toInt()
+
 
             fullNameView.textSize = 12f
 

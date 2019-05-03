@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
-import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.data.base.Repository
 import com.shvants.runninglife.ui.base.BaseCustomView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.*
@@ -38,7 +38,7 @@ constructor(
     }
 
     @UiThread
-    override fun setView(vararg modelUi: Data): BaseParameterView {
+    override fun setView(vararg modelUi: Repository): BaseParameterView {
         val runMove = modelUi[0] as RunMoveModelUi
 
         distanceView.text = getDistanceAsString(runMove.distance)

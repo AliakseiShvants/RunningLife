@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
-import com.shvants.runninglife.data.Data
+import com.shvants.runninglife.data.base.Repository
 import com.shvants.runninglife.ui.base.BaseCustomView
 import com.shvants.runninglife.ui.model.RunMoveModelUi
 import com.shvants.runninglife.utils.Const.NULL
@@ -34,7 +34,7 @@ class RunMoveView @JvmOverloads constructor(
     }
 
     @UiThread
-    override fun setView(vararg data: Data): BaseCustomView {
+    override fun setView(vararg data: Repository): BaseCustomView {
         userView.setView(data[0], data[1])
         baseParameterView.setView(data[1])
         fullParameterView.setView(data[1])

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.model.MoveModelUi;
-import com.shvants.runninglife.ui.model.UserModelUi;
+import com.shvants.runninglife.ui.model.SummaryAthleteUi;
 import com.shvants.runninglife.ui.view.RunMoveView;
 import com.shvants.runninglife.utils.IAdapter;
 import com.shvants.runninglife.utils.service.IService;

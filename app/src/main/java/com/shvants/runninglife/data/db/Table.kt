@@ -1,4 +1,4 @@
-package com.shvants.runninglife.data
+package com.shvants.runninglife.data.db
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.custom.RunMoveView;
 import com.shvants.runninglife.ui.model.MoveModelUi;
-import com.shvants.runninglife.ui.model.UserModelUi;
+import com.shvants.runninglife.ui.model.SummaryAthleteUi;
 import com.shvants.runninglife.utils.IAdapter;
 import com.shvants.runninglife.utils.service.IService;
 import com.shvants.runninglife.utils.service.RunMoveService;
@@ -30,10 +30,10 @@ public class FeedPagerAdapter extends RecyclerView.Adapter<FeedPagerAdapter.View
         implements IAdapter {
 
     private final LayoutInflater inflater;
-    private final UserModelUi user;
+    private final SummaryAthleteUi user;
     private final List<MoveModelUi> moves;
     private final IService<MoveModelUi> moveService;
-    private final IService<UserModelUi> userService;
+    private final IService<SummaryAthleteUi> userService;
 
     private boolean isShowLastViewAsLoading = FALSE;
 

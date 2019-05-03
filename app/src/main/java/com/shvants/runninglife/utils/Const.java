@@ -37,8 +37,12 @@ public class Const {
 
         String ID = "ID";
         String FULLNAME = "FULLNAME";
+        String PROFILE_MEDIUM = "PROFILE_MEDIUM";
+        String PROFILE = "PROFILE";
         String PASSWORD = "PASSWORD";
         String LOCATION = "LOCATION";
+        String SEX = "SEX";
+        String SUMMIT = "SUMMIT";
 
         String TITLE = "TITLE";
         String DISTANCE = "DISTANCE";

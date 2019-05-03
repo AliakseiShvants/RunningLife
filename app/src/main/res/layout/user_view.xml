@@ -8,7 +8,7 @@
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <ImageView
-        android:id="@+id/userAvatar"
+        android:id="@+id/athleteProfile"
         android:layout_width="@dimen/avatar_nav_size"
         android:layout_height="@dimen/avatar_nav_size"
         android:layout_marginStart="@dimen/two_intents"
@@ -20,13 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/userFullName"
+        android:id="@+id/athleteFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/s_text_size"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/userAvatar"
+        app:layout_constraintTop_toTopOf="@id/athleteProfile"
         app:layout_constraintStart_toStartOf="@id/userLocation" />
 
     <TextView
@@ -37,8 +37,8 @@
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/xs_text_size"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/userAvatar"
-        app:layout_constraintStart_toEndOf="@id/userAvatar" />
+        app:layout_constraintBottom_toBottomOf="@id/athleteProfile"
+        app:layout_constraintStart_toEndOf="@id/athleteProfile" />
 
     <TextView
         android:id="@+id/startTime"
@@ -47,7 +47,7 @@
         android:layout_marginStart="@dimen/one_intent"
         android:textSize="@dimen/xxs_text_size"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/userAvatar"
-        app:layout_constraintStart_toEndOf="@id/userAvatar" />
+        app:layout_constraintBottom_toBottomOf="@id/athleteProfile"
+        app:layout_constraintStart_toEndOf="@id/athleteProfile" />
 
 </merge>

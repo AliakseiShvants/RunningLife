@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,22 +18,24 @@ import com.shvants.runninglife.R;
 import com.shvants.runninglife.ui.custom.UserView;
 import com.shvants.runninglife.ui.feed.FeedFragment;
 import com.shvants.runninglife.ui.model.BaseModelUi;
-import com.shvants.runninglife.ui.model.UserModelUi;
+import com.shvants.runninglife.ui.model.SummaryAthleteUi;
 import com.shvants.runninglife.utils.listener.NavigationItemSelectedListener;
 import com.shvants.runninglife.utils.service.IService;
 import com.shvants.runninglife.utils.service.UserService;
 
+import org.jetbrains.annotations.NotNull;
+
 import static com.shvants.runninglife.utils.Const.ZERO;
 import static java.lang.Boolean.TRUE;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     private final FragmentManager fragmentManager = getSupportFragmentManager();
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBar actionBar;
-    private final IService<UserModelUi> userService = new UserService();
+    private final IService<SummaryAthleteUi> userService = new UserService();
 
 //    private DbHelper dbHelper = new DbHelper(this, null, DATABASE_VERSION);
 
@@ -96,5 +99,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void setActionBarTitle(final String title) {
         actionBar.setTitle(title);
+    }
+
+    @Override
+    public void onViewInflated(@NotNull final Context context) {
+
+    }
+
+    @Override
+    public int getLayoutResId() {
+        return 0;
     }
 }
