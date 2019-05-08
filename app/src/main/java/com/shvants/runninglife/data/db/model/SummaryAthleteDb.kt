@@ -1,6 +1,6 @@
 package com.shvants.runninglife.data.db.model
 
-import com.shvants.runninglife.data.base.SummaryAthlete
+import com.shvants.runninglife.data.base.MetaAthlete
 import com.shvants.runninglife.data.db.fields.dbBoolean
 import com.shvants.runninglife.data.db.fields.dbLong
 import com.shvants.runninglife.data.db.fields.dbPrimaryKey
@@ -28,6 +28,6 @@ class SummaryAthleteDb(
         val SEX: String = Const.Database.SEX,
 
         @dbBoolean
-        val SUMMIT: String = Const.Database.SUMMIT) : SummaryAthlete {
+        val SUMMIT: String = Const.Database.SUMMIT) : MetaAthlete {
     companion object
 }

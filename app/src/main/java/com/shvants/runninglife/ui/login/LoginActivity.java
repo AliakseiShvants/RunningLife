@@ -32,7 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 final FrameLayout frame = findViewById(R.id.loginFrame);
                 frame.removeAllViews();
-                LayoutInflater.from(v.getContext()).inflate(R.layout.layout_login_form, frame, true);
+                LayoutInflater.from(v.getContext()).inflate(R.layout.layout_login_form, frame,
+                        true);
             }
         });
 

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <ImageView
         android:id="@+id/athleteProfile"
-        android:layout_width="@dimen/avatar_nav_size"
-        android:layout_height="@dimen/avatar_nav_size"
+        android:layout_width="@dimen/activity_profile_size"
+        android:layout_height="@dimen/activity_profile_size"
         android:layout_marginStart="@dimen/two_intents"
         android:layout_marginTop="@dimen/two_intents"
         android:layout_marginBottom="@dimen/two_intents"
@@ -24,30 +24,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/one_intent"
-        android:textSize="@dimen/s_text_size"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/athleteProfile"
-        app:layout_constraintStart_toStartOf="@id/userLocation" />
-
-    <TextView
-        android:id="@+id/userLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/one_intent"
-        android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/xs_text_size"
-        android:visibility="invisible"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/activityTypeIcon"
+        app:layout_constraintTop_toTopOf="@id/athleteProfile" />
+
+    <ImageView
+        android:id="@+id/activityTypeIcon"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="@dimen/one_intent"
         app:layout_constraintBottom_toBottomOf="@id/athleteProfile"
         app:layout_constraintStart_toEndOf="@id/athleteProfile" />
 
     <TextView
-        android:id="@+id/startTime"
+        android:id="@+id/activityStartDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/one_intent"
         android:textSize="@dimen/xxs_text_size"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/athleteProfile"
-        app:layout_constraintStart_toEndOf="@id/athleteProfile" />
+        app:layout_constraintBottom_toBottomOf="@+id/activityTypeIcon"
+        app:layout_constraintStart_toEndOf="@id/activityTypeIcon"
+        app:layout_constraintTop_toTopOf="@+id/activityTypeIcon" />
 
 </merge>

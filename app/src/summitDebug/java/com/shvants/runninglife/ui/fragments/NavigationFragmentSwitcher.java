@@ -26,7 +26,8 @@ public class NavigationFragmentSwitcher {
                         MoveRecordFragment.Companion.getInstance());
                 break;
             case R.id.navItemFeed:
-                fragmentTransaction.replace(R.id.main_fragment_container, FeedFragment.getInstance());
+                fragmentTransaction.replace(R.id.main_fragment_container,
+                        FeedFragment.Companion.getInstance());
                                 break;
 //            case R.id.navItemClubs:
 //                fragmentTransaction.replace(R.id.main_fragment_container, new ClubsFragment());

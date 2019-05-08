@@ -1,6 +1,8 @@
 package com.shvants.runninglife.data.web.model
 
-class SummaryAthleteModelWeb(
+import com.shvants.runninglife.data.base.MetaAthlete
+
+class SummaryAthleteWeb(
         val id: Int?,
         val firstName: String?,
         val lastName: String?,
@@ -10,7 +12,7 @@ class SummaryAthleteModelWeb(
         val state: String?,
         val country: String?,
         val sex: String?,
-        val summit: Boolean?) {
+        val summit: Boolean?) : MetaAthlete {
 
     data class Builder(
             var id: Int? = null,
@@ -34,7 +36,7 @@ class SummaryAthleteModelWeb(
         fun country(country: String) = apply { this.country = country }
         fun sex(sex: String) = apply { this.sex = sex }
         fun summit(summit: Boolean) = apply { this.summit = summit }
-        fun build() = SummaryAthleteModelWeb(id, firstName, lastName, profileMedium, profile, city,
+        fun build() = SummaryAthleteWeb(id, firstName, lastName, profileMedium, profile, city,
                 state, country, sex, summit)
     }
 }

@@ -1,22 +1,58 @@
 package com.shvants.runninglife.ui.feed
 
+import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IntDef
 import androidx.recyclerview.widget.RecyclerView
+import com.shvants.runninglife.R
+import com.shvants.runninglife.ui.custom.SummaryActivityView
+import java.lang.Boolean.FALSE
+import java.lang.Boolean.TRUE
 
-class FeedAdapter : RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+class FeedAdapter(context: Context?,
+                  private val presenter: FeedContract.Presenter) :
+        RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+
+    private var isShowLastAsLoading = FALSE
+    private var inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    internal var isLoading = FALSE
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return if (viewType == ViewType.ITEM) {
+            ViewHolder(inflater.inflate(R.layout.adapter_summary_item, parent, FALSE))
+        } else {
+            ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE))
+        }
     }
 
-    override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getItemCount() = presenter.size()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        if (getItemViewType(position) == ViewType.ITEM) {
+            (holder.itemView as SummaryActivityView).setView(presenter.getLoggedAthlete(),
+                    presenter.getActivity(position))
+        }
+    }
+
+    fun setShowLastItemAsLoading(flag: Boolean) {
+        isShowLastAsLoading = flag
+    }
+
+    fun loadMoreItems(start: Int, end: Int) {
+        isLoading = TRUE
+        isShowLastAsLoading = TRUE
+
+        presenter.loadMoreItems(start, end)
+//        moveService.getEntities(start, end, object : ICallback<List<MoveModelUi>>() {
+//
+//            fun onResult(result: List<MoveModelUi>) {
+//                adapter.addItems(result)
+//                isLoading = FALSE
+//            }
+//        })
     }
 
 

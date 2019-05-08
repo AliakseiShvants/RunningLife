@@ -1,11 +1,21 @@
 package com.shvants.runninglife.ui.feed
 
+import com.shvants.runninglife.ui.base.BaseFragment
 import com.shvants.runninglife.ui.base.BasePresenter
-import com.shvants.runninglife.ui.base.BaseView
 
 interface FeedContract {
 
-    interface View : BaseView
+    interface Fragment : BaseFragment
 
-    interface Presenter : BasePresenter
+    interface Presenter : BasePresenter {
+
+        fun loadMoreItems(start: Int, end: Int)
+
+        fun size(): Int
+
+        fun getLoggedAthlete(): Any
+
+        fun getActivity(position: Int): Any
+
+    }
 }

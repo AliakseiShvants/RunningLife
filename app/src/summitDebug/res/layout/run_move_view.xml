@@ -2,7 +2,7 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/moveCard"
+    android:id="@+id/summaryActivityCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.shvants.runninglife.ui.custom.UserView
+        <com.shvants.runninglife.ui.custom.BaseUserView
             android:id="@+id/moveUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/moveUser" />
+            app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
 
         <com.shvants.runninglife.ui.custom.BaseParameterView
             android:id="@+id/moveBaseParameter"
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:scaleType="centerCrop"
-            app:layout_constraintTop_toBottomOf="@id/moveBaseParameter" />
+            app:layout_constraintTop_toBottomOf="@id/summaryActivityData" />
 
         <com.shvants.runninglife.ui.custom.FullParameterView
             android:id="@+id/moveFullParameter"

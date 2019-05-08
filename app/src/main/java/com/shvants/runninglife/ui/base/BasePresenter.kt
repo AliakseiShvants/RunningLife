@@ -5,4 +5,7 @@ interface BasePresenter {
     fun onCreate()
 
     fun onDestroy()
+
+    fun attachView(view: BaseView)
+
 }

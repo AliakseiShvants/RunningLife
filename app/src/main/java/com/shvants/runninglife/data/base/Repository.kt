@@ -1,8 +1,10 @@
 package com.shvants.runninglife.data.base
 
+import com.shvants.runninglife.data.db.model.SummaryActivityDb
+
 interface Repository {
 
-    fun getLoggedAthlete(): SummaryAthlete
+    fun getLoggedAthlete(): MetaAthlete
 
-    fun getAthleteActivities(): List<SummaryActivity>
+    fun getAthleteSummaryActivities(id: Int): List<SummaryActivityDb>
 }

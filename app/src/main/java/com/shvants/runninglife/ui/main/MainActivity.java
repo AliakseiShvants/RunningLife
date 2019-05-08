@@ -1,6 +1,5 @@
 package com.shvants.runninglife.ui.main;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,13 +14,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.custom.UserView;
+import com.shvants.runninglife.data.base.DbRepository;
+import com.shvants.runninglife.data.base.Repository;
+import com.shvants.runninglife.ui.custom.NavAthleteView;
 import com.shvants.runninglife.ui.feed.FeedFragment;
-import com.shvants.runninglife.ui.model.BaseModelUi;
 import com.shvants.runninglife.ui.model.SummaryAthleteUi;
 import com.shvants.runninglife.utils.listener.NavigationItemSelectedListener;
-import com.shvants.runninglife.utils.service.IService;
-import com.shvants.runninglife.utils.service.UserService;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,12 +28,13 @@ import static java.lang.Boolean.TRUE;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
-    private final FragmentManager fragmentManager = getSupportFragmentManager();
+    private final Repository repository = DbRepository.Companion.getInstance();
+    private MainContract.Presenter presenter;
 
+    private final FragmentManager fragmentManager = getSupportFragmentManager();
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBar actionBar;
-    private final IService<SummaryAthleteUi> userService = new UserService();
 
 //    private DbHelper dbHelper = new DbHelper(this, null, DATABASE_VERSION);
 
@@ -43,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        presenter = new MainPresenter(this, repository);
 
         final Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -54,25 +55,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
-        final UserView userView = navigationView.getHeaderView(ZERO)
-                .findViewById(R.id.nav_user_view);
-        userView.findViewById(R.id.userLocation).setVisibility(View.VISIBLE);
-
-        final BaseModelUi userModel = userService.getEntity(0);
-        userView.setView(userModel);
-
         setDefaultFragment();
 
         final NavigationItemSelectedListener navigationItemSelectedListener =
                 NavigationItemSelectedListener.getInstance(fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
+
+        presenter.onCreate();
     }
 
     private void setDefaultFragment() {
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction()
-                .add(R.id.main_fragment_container, FeedFragment.getInstance())
+                .add(R.id.main_fragment_container, FeedFragment.Companion.getInstance())
                 .commit();
 
         navigationView.setCheckedItem(R.id.navItemFeed);
@@ -102,12 +98,23 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void onViewInflated(@NotNull final Context context) {
-
+    public int getLayoutResId() {
+        return R.layout.activity_main;
     }
 
     @Override
-    public int getLayoutResId() {
-        return 0;
+    public void setAthleteToView(@NotNull final SummaryAthleteUi athlete) {
+        final NavAthleteView userView = navigationView.getHeaderView(ZERO)
+                .findViewById(R.id.nav_user_view);
+        userView.findViewById(R.id.navAthleteLocation).setVisibility(View.VISIBLE);
+
+        userView.setView(athlete);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        presenter.onDestroy();
     }
 }

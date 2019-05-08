@@ -36,6 +36,7 @@ public class Const {
         String MOVE_TABLE_NAME = "MOVE";
 
         String ID = "ID";
+        String ATHLETE_ID = "ATHLETE_ID";
         String FULLNAME = "FULLNAME";
         String PROFILE_MEDIUM = "PROFILE_MEDIUM";
         String PROFILE = "PROFILE";
@@ -44,12 +45,17 @@ public class Const {
         String SEX = "SEX";
         String SUMMIT = "SUMMIT";
 
-        String TITLE = "TITLE";
+        String MOVING_TIME = "MOVING_TIME";
         String DISTANCE = "DISTANCE";
-        String TIME = "TIME";
-        String CALORIES = "CALORIES";
+        String NAME = "NAME";
+        String TYPE = "TYPE";
+        String START_DATE = "START_DATE";
+        String AVG_SPEED = "AVG_SPEED";
+        String MAP = "MAP";
         String ELEVATION = "ELEVATION";
-        String HR = "HR";
+        String CALORIES = "CALORIES";
+        String AVG_HR = "AVG_HR";
+        String AVG_WATTS = "AVG_WATTS";
 
         int DATABASE_VERSION = 1;
         String DATABASE_NAME = "RUNNING_LIFE";
