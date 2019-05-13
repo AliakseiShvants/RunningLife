@@ -3,7 +3,6 @@ package com.shvants.runninglife.ui.main;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,11 +13,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.data.base.DbRepository;
+import com.shvants.runninglife.data.base.MetaAthlete;
 import com.shvants.runninglife.data.base.Repository;
+import com.shvants.runninglife.data.db.DbRepository;
 import com.shvants.runninglife.ui.custom.NavAthleteView;
 import com.shvants.runninglife.ui.feed.FeedFragment;
-import com.shvants.runninglife.ui.model.SummaryAthleteUi;
 import com.shvants.runninglife.utils.listener.NavigationItemSelectedListener;
 
 import org.jetbrains.annotations.NotNull;
@@ -103,10 +102,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void setAthleteToView(@NotNull final SummaryAthleteUi athlete) {
+    public void setAthleteToView(@NotNull final MetaAthlete athlete) {
         final NavAthleteView userView = navigationView.getHeaderView(ZERO)
                 .findViewById(R.id.nav_user_view);
-        userView.findViewById(R.id.navAthleteLocation).setVisibility(View.VISIBLE);
 
         userView.setView(athlete);
     }

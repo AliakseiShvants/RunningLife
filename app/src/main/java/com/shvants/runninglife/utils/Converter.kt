@@ -2,9 +2,11 @@ package com.shvants.runninglife.utils
 
 import android.content.Context
 import com.shvants.runninglife.R
+import com.shvants.runninglife.data.base.MetaAthlete
 import com.shvants.runninglife.data.db.model.SummaryActivityDb
 import com.shvants.runninglife.data.db.model.SummaryAthleteDb
 import com.shvants.runninglife.data.web.model.ActivityType
+import com.shvants.runninglife.data.web.model.SummaryAthleteWeb
 import com.shvants.runninglife.ui.model.SummaryActivityUi
 import com.shvants.runninglife.ui.model.SummaryAthleteUi
 import com.shvants.runninglife.utils.Const.*
@@ -17,12 +19,35 @@ object Converter {
     private const val ONE_HOUR = 3600
     private const val ONE_K = 1000
 
-    fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteDb): SummaryAthleteUi {
+    fun convertAthleteRepo(athleteRepo: MetaAthlete): MetaAthlete {
+        var athlete = MetaAthlete()
+
+        when (athleteRepo) {
+            is SummaryAthleteDb -> athlete = convertAthleteFromDbToUi(athleteRepo)
+            is SummaryAthleteWeb -> athlete = convertAthleteFromWebToUi(athleteRepo)
+        }
+
+        return athlete
+    }
+
+    private fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteDb): SummaryAthleteUi {
         return SummaryAthleteUi.Builder()
                 .id(athleteDb.ID.toInt())
                 .profile(athleteDb.PROFILE)
                 .fullName(athleteDb.FULLNAME)
                 .location(athleteDb.LOCATION)
+                .build()
+    }
+
+    private fun convertAthleteFromWebToUi(athleteWeb: SummaryAthleteWeb): SummaryAthleteUi {
+        val fullName = "${athleteWeb.firstName} ${athleteWeb.lastName}"
+        val location = "${athleteWeb.city}$COMMA ${athleteWeb.state}$COMMA ${athleteWeb.state}"
+
+        return SummaryAthleteUi.Builder()
+                .id(athleteWeb.id)
+                .profile(athleteWeb.profile)
+                .fullName(fullName)
+                .location(location)
                 .build()
     }
 

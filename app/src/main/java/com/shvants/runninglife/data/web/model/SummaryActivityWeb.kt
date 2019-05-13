@@ -2,6 +2,7 @@ package com.shvants.runninglife.data.web.model
 
 import com.shvants.runninglife.data.base.MetaActivity
 
+@Deprecated("replace -Gson")
 open class SummaryActivityWeb(
         val id: Int,
         val name: String,

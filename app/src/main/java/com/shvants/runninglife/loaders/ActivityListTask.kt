@@ -2,23 +2,18 @@ package com.shvants.runninglife.loaders
 
 import android.os.AsyncTask
 import com.shvants.runninglife.http.Url
-import com.shvants.runninglife.json.ActivityListGson
-import com.shvants.runninglife.json.ActivityListGsonParser
+import com.shvants.runninglife.http.Url.AUTHORIZATION
 import com.squareup.okhttp.*
 import java.io.IOException
 
-class ActivityListTask : AsyncTask<Void, Void, ActivityListGson>() {
+class ActivityListTask(private var json: String) : AsyncTask<Void, Void, String>() {
 
-    override fun onPostExecute(result: ActivityListGson?) {
-        super.onPostExecute(result)
-
-        print(result.toString())
+    override fun onPostExecute(result: String?) {
+//        json = result
     }
 
-    override fun doInBackground(vararg params: Void): ActivityListGson? {
-
-        var activityList: ActivityListGson? = null
-
+    override fun doInBackground(vararg params: Void?): String {
+        var responseData: String = ""
         val httpClient = OkHttpClient()
 
         val urlBuilder = HttpUrl.parse(Url.ACTIVITIES_BASE_URL).newBuilder()
@@ -40,17 +35,14 @@ class ActivityListTask : AsyncTask<Void, Void, ActivityListGson>() {
             }
 
             override fun onResponse(response: Response?) {
-                val responseData = response?.body().toString()
-                activityList = ActivityListGsonParser(responseData).parse() as ActivityListGson
+                responseData = response?.body().toString()
+//                activityList = ActivityListGsonParser(responseData).parse() as ActivityListGson
 
             }
 
         })
 
-        return activityList
+        return responseData
     }
 
-    companion object {
-        private const val AUTHORIZATION = "Authorization"
-    }
 }

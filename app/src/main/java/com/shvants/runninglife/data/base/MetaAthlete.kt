@@ -1,3 +1,5 @@
 package com.shvants.runninglife.data.base
 
-interface MetaAthlete
+open class MetaAthlete {
+    open var id: Int? = 0
+}

@@ -36,7 +36,6 @@
         android:layout_marginStart="@dimen/one_intent"
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/xs_text_size"
-        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/navAthleteProfile"
         app:layout_constraintStart_toEndOf="@id/navAthleteProfile" />
 </merge>

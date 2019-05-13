@@ -28,6 +28,6 @@ class SummaryAthleteDb(
         val SEX: String = Const.Database.SEX,
 
         @dbBoolean
-        val SUMMIT: String = Const.Database.SUMMIT) : MetaAthlete {
+        val SUMMIT: String = Const.Database.SUMMIT) : MetaAthlete() {
     companion object
 }

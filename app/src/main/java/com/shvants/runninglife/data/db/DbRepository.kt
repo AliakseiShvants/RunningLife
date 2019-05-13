@@ -1,5 +1,6 @@
-package com.shvants.runninglife.data.base
+package com.shvants.runninglife.data.db
 
+import com.shvants.runninglife.data.base.Repository
 import com.shvants.runninglife.data.db.model.SummaryActivityDb
 import com.shvants.runninglife.data.db.model.SummaryAthleteDb
 
@@ -14,7 +15,7 @@ class DbRepository private constructor() : Repository {
         return athlete
     }
 
-    override fun getAthleteSummaryActivities(id: Int): List<SummaryActivityDb> {
+    override fun getAthleteSummaryActivities(id: Int?): List<SummaryActivityDb> {
         val list = ArrayList<SummaryActivityDb>()
         list.add(SummaryActivityDb("1", "1", "Morning Run", "3663",
                 "Run", "2019-05-07T12:12:12Z", "12.32", "3.36",

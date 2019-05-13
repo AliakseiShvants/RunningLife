@@ -2,8 +2,9 @@ package com.shvants.runninglife.data.web.model
 
 import com.shvants.runninglife.data.base.MetaAthlete
 
+@Deprecated("replace -Gson")
 class SummaryAthleteWeb(
-        val id: Int?,
+        override var id: Int?,
         val firstName: String?,
         val lastName: String?,
         val profileMedium: String?,
@@ -12,7 +13,7 @@ class SummaryAthleteWeb(
         val state: String?,
         val country: String?,
         val sex: String?,
-        val summit: Boolean?) : MetaAthlete {
+        val summit: Boolean?) : MetaAthlete() {
 
     data class Builder(
             var id: Int? = null,

@@ -2,7 +2,7 @@ package com.shvants.runninglife.json
 
 import com.google.gson.annotations.SerializedName
 
-data class ActivityGson(
+data class SummaryActivityGson(
         @SerializedName("id") val id: Long,
         @SerializedName("name") val name: String,
         @SerializedName("moving_time") val movingTime: Int,

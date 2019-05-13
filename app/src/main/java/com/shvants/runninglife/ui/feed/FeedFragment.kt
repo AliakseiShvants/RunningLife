@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shvants.runninglife.R
-import com.shvants.runninglife.data.base.DbRepository
+import com.shvants.runninglife.data.web.model.WebRepository
 import com.shvants.runninglife.ui.main.MainActivity
 import com.shvants.runninglife.utils.Const.FeedFragment.TITLE
 import com.shvants.runninglife.utils.Const.ZERO
@@ -28,7 +28,7 @@ class FeedFragment private constructor() : Fragment(), FeedContract.Fragment {
 
         (activity as MainActivity).setActionBarTitle(TITLE)
 
-        presenter = FeedPresenter(context, this, DbRepository.instance)
+        presenter = FeedPresenter(context, this, WebRepository.instance)
         presenter.onCreate()
 
         layoutManager = LinearLayoutManager(activity)
@@ -40,6 +40,7 @@ class FeedFragment private constructor() : Fragment(), FeedContract.Fragment {
                               savedInstanceState: Bundle?): View? {
 
         val feedView = inflater.inflate(getLayoutResId(), container, FALSE)
+
         recyclerView = feedView.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

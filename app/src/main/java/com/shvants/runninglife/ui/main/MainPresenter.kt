@@ -1,7 +1,6 @@
 package com.shvants.runninglife.ui.main
 
 import com.shvants.runninglife.data.base.Repository
-import com.shvants.runninglife.data.db.model.SummaryAthleteDb
 import com.shvants.runninglife.ui.base.BaseView
 import com.shvants.runninglife.utils.Converter
 
@@ -13,10 +12,10 @@ class MainPresenter(private var view: MainContract.View,
     }
 
     override fun onCreate() {
-        val athleteDb = repository.getLoggedAthlete() as SummaryAthleteDb
-        val athleteUi = Converter.convertAthleteFromDbToUi(athleteDb)
+        val athleteRepo = repository.getLoggedAthlete()
+        val athlete = Converter.convertAthleteRepo(athleteRepo)
 
-        view.setAthleteToView(athleteUi)
+        view.setAthleteToView(athlete)
     }
 
     override fun onDestroy() {
