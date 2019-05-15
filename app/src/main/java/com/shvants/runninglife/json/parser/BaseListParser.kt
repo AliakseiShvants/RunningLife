@@ -1,4 +1,4 @@
-package com.shvants.runninglife.json
+package com.shvants.runninglife.json.parser
 
 interface BaseListParser {
 

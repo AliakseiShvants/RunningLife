@@ -35,7 +35,7 @@ class FeedPresenter(private val context: Context?,
     override fun getActivity(position: Int) = activities[position]
 
     override fun onDestroy() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
     }
 
     override fun attachView(view: BaseView) {
@@ -43,6 +43,6 @@ class FeedPresenter(private val context: Context?,
     }
 
     override fun loadMoreItems(start: Int, end: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
     }
 }

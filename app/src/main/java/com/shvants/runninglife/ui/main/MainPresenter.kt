@@ -8,7 +8,7 @@ class MainPresenter(private var view: MainContract.View,
                     private var repository: Repository) : MainContract.Presenter {
 
     override fun attachView(view: BaseView) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
     }
 
     override fun onCreate() {

@@ -47,11 +47,11 @@ class DbHelper : SQLiteOpenHelper, IDbOperation {
     }
 
     override fun query(sql: String, params: String): Cursor {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
     }
 
     override fun insert(tableName: String, contentValues: ContentValues): Long {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
     }
 
     private fun createTableString(jClass: Class<*>): String? {

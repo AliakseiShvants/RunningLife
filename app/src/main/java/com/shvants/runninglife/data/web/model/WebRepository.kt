@@ -3,7 +3,7 @@ package com.shvants.runninglife.data.web.model
 import android.os.AsyncTask
 import com.shvants.runninglife.data.base.Repository
 import com.shvants.runninglife.json.ActivityListGson
-import com.shvants.runninglife.json.ActivityListGsonParser
+import com.shvants.runninglife.json.parser.ActivityListJsonParser
 import com.shvants.runninglife.loaders.ActivityListTask
 
 class WebRepository private constructor() : Repository {
@@ -22,42 +22,46 @@ class WebRepository private constructor() : Repository {
         var json: String = ""
 
         val task = ActivityListTask(json)
+
+        Thread(Runnable {
+            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+        }).start()
 //        val  task = JavaAsync()
 //        task.execute()
 
-        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+
 //        task.cancel(false)
 
 
 //        var responseData: String? = ""
 //        val httpClient = OkHttpClient()
 //
-//        val urlBuilder = HttpUrl.parse(Url.ACTIVITIES_BASE_URL).newBuilder()
-//        urlBuilder.addQueryParameter(Url.BEFORE, Url.BEFORE_VALUE)
-//        urlBuilder.addQueryParameter(Url.AFTER, Url.AFTER_VALUE)
-//        urlBuilder.addQueryParameter(Url.PAGE, Url.PAGE_VALUE)
-//        urlBuilder.addQueryParameter(Url.PER_PAGE, Url.PER_PAGE_VALUE)
+//        val urlBuilder = HttpUrl.parse(StravaHelper.ACTIVITIES_BASE_URL).newBuilder()
+//        urlBuilder.addQueryParameter(StravaHelper.BEFORE, StravaHelper.BEFORE_VALUE)
+//        urlBuilder.addQueryParameter(StravaHelper.AFTER, StravaHelper.AFTER_VALUE)
+//        urlBuilder.addQueryParameter(StravaHelper.PAGE, StravaHelper.PAGE_VALUE)
+//        urlBuilder.addQueryParameter(StravaHelper.PER_PAGE, StravaHelper.PER_PAGE_VALUE)
 //
 //        val url = urlBuilder.build().toString()
 //
-//        val request = Request.Builder()
-//                .header(AUTHORIZATION, Url.ACCESS_TOKEN)
+//        val get = Request.Builder()
+//                .header(AUTHORIZATION, StravaHelper.ACCESS_TOKEN)
 //                .url(url)
 //                .build()
 //
-//        httpClient.newCall(request).enqueue(object : Callback {
-//            override fun onFailure(request: Request?, e: IOException?) {
+//        httpClient.newCall(get).enqueue(object : Callback {
+//            override fun onFailure(get: Request?, e: IOException?) {
 //                    e?.printStackTrace()
 //            }
 //
 //            override fun onResponse(response: Response?) {
-//                responseData = response?.body()?.string()
+//                responseData = response?.get()?.string()
 //
 //            }
 //        })
 
 
-        val gsonList = ActivityListGsonParser(json).parse() as ActivityListGson
+        val gsonList = ActivityListJsonParser(json).parse() as ActivityListGson
 
         return activitiesList
     }
