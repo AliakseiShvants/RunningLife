@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.shvants.runninglife"
         minSdkVersion 19
@@ -48,6 +49,10 @@ android {
 
     testOptions {
         unitTests.returnDefaultValues = true
+    }
+
+    androidExtensions {
+        experimental = true
     }
 }
 

@@ -4,9 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.shvants.runninglife.strava.StravaHelper.ACCESS_TOKEN
 import com.shvants.runninglife.strava.StravaHelper.AUTH_PREFERENCES
+import com.shvants.runninglife.strava.StravaHelper.CODE
 import com.shvants.runninglife.utils.Const
 
-class StravaTokenizer(context: Context) {
+class StravaPreferences(context: Context) {
 
     private val preferences: SharedPreferences =
             context.getSharedPreferences(AUTH_PREFERENCES, Context.MODE_PRIVATE)
@@ -19,4 +20,12 @@ class StravaTokenizer(context: Context) {
                 .edit()
                 .putString(ACCESS_TOKEN, value)
                 .apply()
+
+    var code: String
+        get() = preferences.getString(CODE, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(CODE, value)
+                .apply()
+
 }

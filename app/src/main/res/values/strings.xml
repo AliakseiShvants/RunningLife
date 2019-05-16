@@ -30,4 +30,5 @@
     <string name="cal">cal.</string>
     <string name="bpm">bpm</string>
     <string name="email">Email</string>
+    <string name="login_error">Error with authentication. \nCheck Internet connection and try again</string>
 </resources>

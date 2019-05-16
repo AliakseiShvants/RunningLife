@@ -36,6 +36,7 @@ object StravaHelper {
     private const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
     const val TOKEN_BASE_URL = "https://www.strava.com/oauth/token"
 
+    const val ACCESS_TOKEN = "ACCESS_TOKEN"
     const val AFTER = "after"
     val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_WEEK_IN_SECONDS).toInt().toString()
     private const val APPROVAL_PROMPT = "approval_prompt"
@@ -45,6 +46,7 @@ object StravaHelper {
 
     const val BEFORE = "before"
     val BEFORE_VALUE = (System.currentTimeMillis() / 1000).toInt().toString()
+    val BEARER = "Bearer"
 
     private const val CLIENT_ID = "client_id"
     private const val CLIENT_ID_VALUE = "34943"
@@ -68,5 +70,6 @@ object StravaHelper {
     private const val SCOPE = "scope"
     private const val SCOPE_VALUE = "activity:read"
 
-    var ACCESS_TOKEN = "Bearer 4144d0cb5ea57c2f8487fe2e9f674cf78fd0e6f5"
+//    var ACCESS_TOKEN = "Bearer 4144d0cb5ea57c2f8487fe2e9f674cf78fd0e6f5"
+
 }

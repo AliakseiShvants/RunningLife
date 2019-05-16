@@ -1,6 +1,5 @@
 package com.shvants.runninglife.strava
 
-import android.os.Handler
 import com.shvants.runninglife.utils.Const
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -34,7 +33,7 @@ class StravaRequest(private val url: String) {
     fun post(body: FormBody): String {
 
         var result = Const.EMPTY
-        val handler = Handler()
+//        val handler = Handler()
 
         Thread(Runnable {
             val httpClient = OkHttpClient()
@@ -47,7 +46,7 @@ class StravaRequest(private val url: String) {
                     .newCall(request)
                     .execute()
 
-//            handler.post { result = response.body()?.string() ?: Const.EMPTY }
+//            handler.post {  }
             result = response.body()?.string() ?: Const.EMPTY
         }).start()
 
