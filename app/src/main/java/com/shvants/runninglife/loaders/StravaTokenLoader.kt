@@ -1,7 +1,10 @@
-package com.shvants.runninglife.strava
+package com.shvants.runninglife.loaders
 
 import android.content.Context
 import androidx.loader.content.AsyncTaskLoader
+import com.shvants.runninglife.strava.StravaHelper
+import com.shvants.runninglife.strava.StravaPreferences
+import com.shvants.runninglife.strava.StravaRequest
 
 class StravaTokenLoader(context: Context) : AsyncTaskLoader<String>(context) {
 
@@ -12,5 +15,6 @@ class StravaTokenLoader(context: Context) : AsyncTaskLoader<String>(context) {
 
         return result
     }
+
 
 }

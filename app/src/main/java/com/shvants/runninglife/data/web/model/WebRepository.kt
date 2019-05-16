@@ -2,7 +2,6 @@ package com.shvants.runninglife.data.web.model
 
 import android.os.AsyncTask
 import com.shvants.runninglife.data.base.Repository
-import com.shvants.runninglife.json.ActivityListGson
 import com.shvants.runninglife.json.parser.ActivityListJsonParser
 import com.shvants.runninglife.loaders.ActivityListTask
 

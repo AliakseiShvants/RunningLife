@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.Loader
 import com.shvants.runninglife.R
-import com.shvants.runninglife.strava.StravaTokenLoader
+import com.shvants.runninglife.loaders.StravaTokenLoader
 import com.shvants.runninglife.ui.auth.AuthActivity
 import com.shvants.runninglife.ui.base.BaseActivityView
 import com.shvants.runninglife.ui.main.MainActivity

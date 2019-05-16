@@ -1,4 +1,4 @@
-package com.shvants.runninglife.json
+package com.shvants.runninglife.data.web.model
 
 interface BaseList<T> {
 

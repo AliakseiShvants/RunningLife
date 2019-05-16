@@ -3,16 +3,29 @@ package com.shvants.runninglife.strava
 import android.content.Context
 import android.content.SharedPreferences
 import com.shvants.runninglife.strava.StravaHelper.ACCESS_TOKEN
-import com.shvants.runninglife.strava.StravaHelper.AUTH_PREFERENCES
+import com.shvants.runninglife.strava.StravaHelper.APP_PREFERENCES
+import com.shvants.runninglife.strava.StravaHelper.ATHLETE_ID
 import com.shvants.runninglife.strava.StravaHelper.CODE
+import com.shvants.runninglife.strava.StravaHelper.EXPIRES_AT
+import com.shvants.runninglife.strava.StravaHelper.EXPIRES_IN
+import com.shvants.runninglife.strava.StravaHelper.REFRESH_TOKEN
+import com.shvants.runninglife.strava.StravaHelper.TOKEN_TYPE
 import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.ZERO
 
 class StravaPreferences(context: Context) {
 
     private val preferences: SharedPreferences =
-            context.getSharedPreferences(AUTH_PREFERENCES, Context.MODE_PRIVATE)
+            context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 
     private val isLogged = preferences.contains(ACCESS_TOKEN)
+
+    var athleteId: Int
+        get() = preferences.getInt(ATHLETE_ID, ZERO)
+        set(value) = preferences
+                .edit()
+                .putInt(ATHLETE_ID, value)
+                .apply()
 
     var accessToken: String
         get() = preferences.getString(ACCESS_TOKEN, Const.EMPTY)
@@ -26,6 +39,34 @@ class StravaPreferences(context: Context) {
         set(value) = preferences
                 .edit()
                 .putString(CODE, value)
+                .apply()
+
+    var expiresAt: Int
+        get() = preferences.getInt(EXPIRES_AT, ZERO)
+        set(value) = preferences
+                .edit()
+                .putInt(EXPIRES_AT, value)
+                .apply()
+
+    var expires_in: Int
+        get() = preferences.getInt(EXPIRES_IN, ZERO)
+        set(value) = preferences
+                .edit()
+                .putInt(EXPIRES_IN, value)
+                .apply()
+
+    var refreshToken: String
+        get() = preferences.getString(REFRESH_TOKEN, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(REFRESH_TOKEN, value)
+                .apply()
+
+    var tokenType: String
+        get() = preferences.getString(TOKEN_TYPE, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(TOKEN_TYPE, value)
                 .apply()
 
 }
