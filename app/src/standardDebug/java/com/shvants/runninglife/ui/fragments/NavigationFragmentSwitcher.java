@@ -5,7 +5,7 @@ import android.view.MenuItem;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.shvants.runninglife.R;
-import com.shvants.runninglife.ui.feed.FeedFragment;
+import com.shvants.runninglife.ui.fragment.FeedFragment;
 
 public class NavigationFragmentSwitcher {
 

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.shvants.runninglife.ui.custom.ActivityAthleteView
+        <com.shvants.runninglife.ui.view.ActivityAthleteView
             android:id="@+id/activityAthlete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
 
-        <com.shvants.runninglife.ui.custom.SummaryDataView
+        <com.shvants.runninglife.ui.view.SummaryDataView
             android:id="@+id/summaryActivityData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

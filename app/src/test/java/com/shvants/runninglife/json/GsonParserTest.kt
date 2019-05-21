@@ -1,11 +1,11 @@
 package com.shvants.runninglife.json
 
 import com.google.gson.Gson
-import com.shvants.runninglife.data.web.model.ActivityListGson
-import com.shvants.runninglife.data.web.model.OauthResponse
 import com.shvants.runninglife.http.JsonReader
 import com.shvants.runninglife.json.parser.ActivityListJsonParser
 import com.shvants.runninglife.mocks.Mocks
+import com.shvants.runninglife.model.gson.ActivityListGson
+import com.shvants.runninglife.model.gson.OauthResponse
 import com.shvants.runninglife.strava.StravaHelper
 import org.junit.Assert
 import org.junit.Test

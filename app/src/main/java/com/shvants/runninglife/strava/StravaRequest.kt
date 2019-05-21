@@ -6,81 +6,67 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 
 
-class StravaRequest(private val url: String) {
+class StravaRequest {
 
-    fun get(): String {
+    fun makeAthleteActivitiesRequest(token: String): String {
+        val url = StravaHelper.getAthleteActivitiesUrl(token)
 
-        var result = Const.EMPTY
-        val httpClient = OkHttpClient()
-
-//        val handler = Handler()
-
-        Thread(Runnable {
-            val request = Request.Builder()
-                    .url(url)
-                    .build()
-
-            val response = httpClient
-                    .newCall(request)
-                    .execute()
-
-//            handler.post {  }
-            result = response.body()?.string() ?: Const.EMPTY
-        }).start()
-
-        return result
+        return get(url)
     }
 
-    fun post(body: FormBody): String {
-
-        var result = Const.EMPTY
-
-        //            val httpClient = HttpClient.getUnsafeOkHttpClient()
-
-//        val spec = ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
-//                .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
-//                .cipherSuites(
-//                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-//                        CipherSuite.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-//                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-//                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA)
-//                .build()
-//
-//        val httpClient = OkHttpClient.Builder()
-//                .connectionSpecs(Collections.singletonList(spec))
-//                .build()
-
+    fun get(url: String): String {
         val httpClient = OkHttpClient()
-        val request = Request.Builder()
+        val request = Request
+                .Builder()
                 .url(url)
-                .post(body)
                 .build()
-
         val response = httpClient
                 .newCall(request)
                 .execute()
-//                .enqueue()
-        result = response.body()?.string() ?: Const.EMPTY
 
-        return result
-//        val handler = Handler()
+        return response.body()?.string() ?: Const.EMPTY
+    }
 
-        /*Thread(Runnable {
-//            val httpClient = HttpClient.getUnsafeOkHttpClient()
-            val httpClient = OkHttpClient()
-            val request = Request.Builder()
-                    .url(url)
-                    .post(body)
-                    .build()
+    fun get(url: String, token: String): String {
+        val httpClient = OkHttpClient()
+        val request = Request
+                .Builder()
+                .url(url)
+                .header(StravaHelper.AUTHORIZATION, "${StravaHelper.BEARER} $token")
+                .build()
+        val response = httpClient
+                .newCall(request)
+                .execute()
 
-            val response = httpClient
-                    .newCall(request)
-                    .execute()
+        return response.body()?.string() ?: Const.EMPTY
+    }
 
-//            handler.post {  }
-            result = response.body()?.string() ?: Const.EMPTY
-        }).start()
+    fun post(url: String, body: FormBody): String {
+        val httpClient = OkHttpClient()
+        val request = Request
+                .Builder()
+                .url(url)
+                .post(body)
+                .build()
+        val response = httpClient
+                .newCall(request)
+                .execute()
 
-        return result*/
+        return response.body()?.string() ?: Const.EMPTY
+    }
+
+    fun post(url: String, token: String, body: FormBody): String {
+        val httpClient = OkHttpClient()
+        val request = Request
+                .Builder()
+                .header(StravaHelper.AUTHORIZATION, "${StravaHelper.BEARER} $token")
+                .url(url)
+                .post(body)
+                .build()
+        val response = httpClient
+                .newCall(request)
+                .execute()
+
+        return response.body()?.string() ?: Const.EMPTY
     }
 }

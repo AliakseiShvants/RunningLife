@@ -3,7 +3,6 @@ package com.shvants.runninglife.strava
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 
-
 object StravaHelper {
 
     fun getAuthorizeUrl(): String {
@@ -18,29 +17,50 @@ object StravaHelper {
         return urlBuilder?.build().toString()
     }
 
-    fun getTokenBody(code: String?): FormBody {
-        val tokenBody = FormBody.Builder()
+    fun getAthleteActivitiesUrl(token: String): String {
+        return HttpUrl.parse(ACTIVITIES_BASE_URL)
+                ?.newBuilder()
+                ?.addQueryParameter(ACCESS_TOKEN, token)
+                ?.addQueryParameter(BEFORE, BEFORE_VALUE)
+                ?.addQueryParameter(AFTER, AFTER_VALUE)
+                ?.addQueryParameter(PAGE, PAGE_VALUE)
+                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
+                ?.build()
+                .toString()
+    }
+
+    fun getTokenBody(code: String): FormBody {
+        return FormBody.Builder()
                 .add(CLIENT_ID, CLIENT_ID_VALUE)
                 .add(CLIENT_SECRET, CLIENT_SECRET_VALUE)
                 .add(CODE, code)
                 .add(GRANT_TYPE, GRANT_TYPE_VALUE)
-
-        return tokenBody.build()
+                .build()
     }
 
+    fun getActivitiesBody(): FormBody {
+        return FormBody.Builder()
+                .add(BEFORE, BEFORE_VALUE)
+                .add(AFTER, AFTER_VALUE)
+                .add(PAGE, PAGE_VALUE)
+                .add(PER_PAGE, PER_PAGE_VALUE)
+                .build()
+    }
 
-    private const val ONE_WEEK_IN_SECONDS = 7 * 24 * 60 * 60
+    private const val ONE_MONTH_IN_SECONDS = 30 * 7 * 24 * 60 * 60
 
     const val EMAIL = "ashvants91@gmail.com"
     const val PASSWORD = "strava11091991"
 
+    const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete"
     const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/athlete/activities"
     private const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
+    const val LOGIN_URL = "https://www.strava.com/login"
     const val TOKEN_BASE_URL = "https://www.strava.com/oauth/token"
 
-    const val ACCESS_TOKEN = "ACCESS_TOKEN"
+    const val ACCESS_TOKEN = "access_token"
     const val AFTER = "after"
-    val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_WEEK_IN_SECONDS).toInt().toString()
+    val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_MONTH_IN_SECONDS).toInt().toString()
     private const val APPROVAL_PROMPT = "approval_prompt"
     private const val APPROVAL_PROMPT_VALUE = "auto"
     const val APP_PREFERENCES = "Running_Life"
@@ -57,8 +77,8 @@ object StravaHelper {
     private const val CLIENT_SECRET_VALUE = "16ed0e9f2a6c65ecb6c1b5d4d59f18dc266ba0cb"
     const val CODE = "code"
 
-    const val EXPIRES_AT = "EXPIRES_AT"
-    const val EXPIRES_IN = "EXPIRES_IN"
+    const val EXPIRES_AT = "expires_at"
+    const val EXPIRES_IN = "expires_in"
 
     private const val GRANT_TYPE = "grant_type"
     private const val GRANT_TYPE_VALUE = "authorization_code"
@@ -81,32 +101,6 @@ object StravaHelper {
 
 //    var ACCESS_TOKEN = "Bearer 4144d0cb5ea57c2f8487fe2e9f674cf78fd0e6f5"
 
-    val tokenString = "{\n" +
-            "    \"token_type\": \"Bearer\",\n" +
-            "    \"expires_at\": 1558028670,\n" +
-            "    \"expires_in\": 21600,\n" +
-            "    \"refresh_token\": \"ea10da071a47981564be28ff70c438764c75f3c8\",\n" +
-            "    \"access_token\": \"5562604c0ffba4017a1838a7d7ae9acfd3b05756\",\n" +
-            "    \"athlete\": {\n" +
-            "        \"id\": 13020790,\n" +
-            "        \"username\": \"ashvants\",\n" +
-            "        \"resource_state\": 2,\n" +
-            "        \"firstname\": \"Aliaksei\",\n" +
-            "        \"lastname\": \"Shvants\",\n" +
-            "        \"city\": \"Гродно\",\n" +
-            "        \"state\": \"Гродненская область\",\n" +
-            "        \"country\": \"Беларусь\",\n" +
-            "        \"sex\": \"M\",\n" +
-            "        \"premium\": false,\n" +
-            "        \"summit\": false,\n" +
-            "        \"created_at\": \"2016-01-19T08:54:37Z\",\n" +
-            "        \"updated_at\": \"2019-05-15T13:36:40Z\",\n" +
-            "        \"badge_type_id\": 0,\n" +
-            "        \"profile_medium\": \"https://graph.facebook.com/387619144953000/picture?height=256&width=256\",\n" +
-            "        \"profile\": \"https://graph.facebook.com/387619144953000/picture?height=256&width=256\",\n" +
-            "        \"friend\": null,\n" +
-            "        \"follower\": null\n" +
-            "    }\n" +
-            "}"
+    val tokenString = "{\"token_type\":\"Bearer\",\"expires_at\":1558211257,\"expires_in\":16658,\"refresh_token\":\"ea10da071a47981564be28ff70c438764c75f3c8\",\"access_token\":\"25f4fe3c1fcc2912f4f849ad8d29cabef0af58d6\",\"athlete\":{\"id\":13020790,\"username\":\"ashvants\",\"resource_state\":2,\"firstname\":\"Aliaksei\",\"lastname\":\"Shvants\",\"city\":\"Гродно\",\"state\":\"Гродненская область\",\"country\":\"Беларусь\",\"sex\":\"M\",\"premium\":false,\"summit\":false,\"created_at\":\"2016-01-19T08:54:37Z\",\"updated_at\":\"2019-05-15T13:36:40Z\",\"badge_type_id\":0,\"profile_medium\":\"https://graph.facebook.com/387619144953000/picture?height=256\\u0026width=256\",\"profile\":\"https://graph.facebook.com/387619144953000/picture?height=256\\u0026width=256\",\"friend\":null,\"follower\":null}}\n"
 
 }

@@ -11,7 +11,7 @@ import com.shvants.runninglife.strava.StravaHelper.EXPIRES_IN
 import com.shvants.runninglife.strava.StravaHelper.REFRESH_TOKEN
 import com.shvants.runninglife.strava.StravaHelper.TOKEN_TYPE
 import com.shvants.runninglife.utils.Const
-import com.shvants.runninglife.utils.Const.ZERO
+import com.shvants.runninglife.utils.Const.*
 
 class StravaPreferences(context: Context) {
 
@@ -41,6 +41,13 @@ class StravaPreferences(context: Context) {
                 .putString(CODE, value)
                 .apply()
 
+    var fullName: String
+        get() = preferences.getString(FULLNAME, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(FULLNAME, value)
+                .apply()
+
     var expiresAt: Int
         get() = preferences.getInt(EXPIRES_AT, ZERO)
         set(value) = preferences
@@ -60,6 +67,34 @@ class StravaPreferences(context: Context) {
         set(value) = preferences
                 .edit()
                 .putString(REFRESH_TOKEN, value)
+                .apply()
+
+    var location: String
+        get() = preferences.getString(LOCATION, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(LOCATION, value)
+                .apply()
+
+    var profile: String
+        get() = preferences.getString(PROFILE, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(PROFILE, value)
+                .apply()
+
+    var profileMedium: String
+        get() = preferences.getString(PROFILE_MEDIUM, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(PROFILE_MEDIUM, value)
+                .apply()
+
+    var summit: String
+        get() = preferences.getString(SUMMIT, Const.EMPTY)
+        set(value) = preferences
+                .edit()
+                .putString(SUMMIT, value)
                 .apply()
 
     var tokenType: String

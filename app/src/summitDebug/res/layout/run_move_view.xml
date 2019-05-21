@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.shvants.runninglife.ui.custom.BaseUserView
+        <com.shvants.runninglife.ui.view.BaseUserView
             android:id="@+id/moveUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
 
-        <com.shvants.runninglife.ui.custom.BaseParameterView
+        <com.shvants.runninglife.ui.view.BaseParameterView
             android:id="@+id/moveBaseParameter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:scaleType="centerCrop"
             app:layout_constraintTop_toBottomOf="@id/summaryActivityData" />
 
-        <com.shvants.runninglife.ui.custom.FullParameterView
+        <com.shvants.runninglife.ui.view.FullParameterView
             android:id="@+id/moveFullParameter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

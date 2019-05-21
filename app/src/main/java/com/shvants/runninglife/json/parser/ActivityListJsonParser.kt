@@ -1,8 +1,8 @@
 package com.shvants.runninglife.json.parser
 
 import com.google.gson.Gson
-import com.shvants.runninglife.data.web.model.ActivityListGson
-import com.shvants.runninglife.data.web.model.SummaryActivityGson
+import com.shvants.runninglife.model.gson.ActivityListGson
+import com.shvants.runninglife.model.gson.SummaryActivityGson
 
 class ActivityListJsonParser(private val json: String?) : BaseListParser {
 

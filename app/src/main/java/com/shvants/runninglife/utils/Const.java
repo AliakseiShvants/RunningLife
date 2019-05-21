@@ -5,19 +5,24 @@ import android.util.AttributeSet;
 public class Const {
 
     public static final int ZERO = 0;
-    public static final int TEN = 10;
     public static final double ZERO_DOUBLE = 0.0;
     public static final String DOT = ".";
     public static final String COLON = ":";
     public static final String EMPTY = "";
     public static final String COMMA = ",";
-    public static final String HYPHEN = "-";
     public static final String SLASH = "/";
     public static final String INTEGER = "INTEGER";
     public static final String REAL = "REAL";
     public static final String LONG = "LONG";
     public static final String STRING = "STRING";
     public static final AttributeSet NULL = null;
+
+    public static final String ATHLETE_ID = "ATHLETE_ID";
+    public static final String FULLNAME = "FULLNAME";
+    public static final String LOCATION = "LOCATION";
+    public static final String PROFILE_MEDIUM = "PROFILE_MEDIUM";
+    public static final String PROFILE = "PROFILE";
+    public static final String SUMMIT = "SUMMIT";
 
     public interface FeedFragment {
         String TITLE = "Feed";
