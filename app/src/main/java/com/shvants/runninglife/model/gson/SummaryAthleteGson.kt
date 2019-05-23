@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.shvants.runninglife.model.base.MetaAthlete
 
 data class SummaryAthleteGson(
-        @SerializedName("id") val id: Int?,
+        @SerializedName("id") val id: Long?,
         @SerializedName("firstname") val firstName: String?,
         @SerializedName("lastname") val lastName: String?,
         @SerializedName("profile_medium") val profileMedium: String?,
@@ -16,7 +16,7 @@ data class SummaryAthleteGson(
         @SerializedName("summit") val summit: Boolean?) : MetaAthlete {
 
     data class Builder(
-            var id: Int? = null,
+            var id: Long? = null,
             var firstName: String? = null,
             var lastName: String? = null,
             var profileMedium: String? = null,
@@ -27,7 +27,7 @@ data class SummaryAthleteGson(
             var sex: String? = null,
             var summit: Boolean? = null) {
 
-        fun id(id: Int) = apply { this.id = id }
+        fun id(id: Long) = apply { this.id = id }
         fun firstName(firstName: String) = apply { this.firstName = firstName }
         fun lastName(lastName: String) = apply { this.lastName = lastName }
         fun profileMedium(profileMedium: String) = apply { this.profileMedium = profileMedium }

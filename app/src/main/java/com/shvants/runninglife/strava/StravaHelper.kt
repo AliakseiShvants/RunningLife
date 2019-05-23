@@ -101,6 +101,31 @@ object StravaHelper {
 
 //    var ACCESS_TOKEN = "Bearer 4144d0cb5ea57c2f8487fe2e9f674cf78fd0e6f5"
 
-    val tokenString = "{\"token_type\":\"Bearer\",\"expires_at\":1558211257,\"expires_in\":16658,\"refresh_token\":\"ea10da071a47981564be28ff70c438764c75f3c8\",\"access_token\":\"25f4fe3c1fcc2912f4f849ad8d29cabef0af58d6\",\"athlete\":{\"id\":13020790,\"username\":\"ashvants\",\"resource_state\":2,\"firstname\":\"Aliaksei\",\"lastname\":\"Shvants\",\"city\":\"Гродно\",\"state\":\"Гродненская область\",\"country\":\"Беларусь\",\"sex\":\"M\",\"premium\":false,\"summit\":false,\"created_at\":\"2016-01-19T08:54:37Z\",\"updated_at\":\"2019-05-15T13:36:40Z\",\"badge_type_id\":0,\"profile_medium\":\"https://graph.facebook.com/387619144953000/picture?height=256\\u0026width=256\",\"profile\":\"https://graph.facebook.com/387619144953000/picture?height=256\\u0026width=256\",\"friend\":null,\"follower\":null}}\n"
-
+    const val STUB_TOKEN_RESPONSE = "{\n" +
+            "    \"token_type\": \"Bearer\",\n" +
+            "    \"expires_at\": 1558439307,\n" +
+            "    \"expires_in\": 9935,\n" +
+            "    \"refresh_token\": \"ea10da071a47981564be28ff70c438764c75f3c8\",\n" +
+            "    \"access_token\": \"0e6c0137f33305f55065927dfa2ea6203f8588e4\",\n" +
+            "    \"athlete\": {\n" +
+            "        \"id\": 13020790,\n" +
+            "        \"username\": \"ashvants\",\n" +
+            "        \"resource_state\": 2,\n" +
+            "        \"firstname\": \"Aliaksei\",\n" +
+            "        \"lastname\": \"Shvants\",\n" +
+            "        \"city\": \"Гродно\",\n" +
+            "        \"state\": \"Гродненская область\",\n" +
+            "        \"country\": \"Беларусь\",\n" +
+            "        \"sex\": \"M\",\n" +
+            "        \"premium\": false,\n" +
+            "        \"summit\": false,\n" +
+            "        \"created_at\": \"2016-01-19T08:54:37Z\",\n" +
+            "        \"updated_at\": \"2019-05-20T16:55:29Z\",\n" +
+            "        \"badge_type_id\": 0,\n" +
+            "        \"profile_medium\": \"https://graph.facebook.com/387619144953000/picture?height=256&width=256\",\n" +
+            "        \"profile\": \"https://graph.facebook.com/387619144953000/picture?height=256&width=256\",\n" +
+            "        \"friend\": null,\n" +
+            "        \"follower\": null\n" +
+            "    }\n" +
+            "}"
 }

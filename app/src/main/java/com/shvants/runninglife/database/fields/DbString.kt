@@ -4,4 +4,4 @@ import com.shvants.runninglife.utils.Const.STRING
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class dbString(val name: String = STRING)
+annotation class DbString(val name: String = STRING)

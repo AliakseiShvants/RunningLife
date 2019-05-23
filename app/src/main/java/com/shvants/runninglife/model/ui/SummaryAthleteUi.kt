@@ -3,9 +3,9 @@ package com.shvants.runninglife.model.ui
 import com.shvants.runninglife.model.base.MetaAthlete
 
 data class SummaryAthleteUi(/*val id: Int?,*/
-        val profile: String,
-        val fullName: String,
-        val location: String) : MetaAthlete {
+        var profile: String,
+        var fullName: String,
+        var location: String) : MetaAthlete {
 
     class Builder(
             /*var id: Int? = null,*/

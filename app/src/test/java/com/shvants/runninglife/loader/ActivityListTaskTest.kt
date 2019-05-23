@@ -5,7 +5,6 @@ import android.os.Handler
 import com.shvants.runninglife.strava.StravaHelper
 import com.shvants.runninglife.strava.StravaRequest
 import com.shvants.runninglife.utils.ICallback
-import io.mockk.impl.annotations.MockK
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.junit.Assert
@@ -41,7 +40,6 @@ class ActivityListTaskTest {
         val tokenUrl = StravaHelper.TOKEN_BASE_URL
         var jsonString = "empty"
 
-        @MockK
         val handler = mock(Handler::class.java)
 
         val callback = object : ICallback<String> {

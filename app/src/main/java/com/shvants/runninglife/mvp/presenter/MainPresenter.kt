@@ -1,32 +1,25 @@
 package com.shvants.runninglife.mvp.presenter
 
+import android.content.Context
 import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.repository.Repository
 
-class MainPresenter(private var view: MainContract.View?,
-                    private var repository: Repository?) : MainContract.Presenter {
+class MainPresenter(private var context: Context?,
+                    private var view: MainContract.View?) : MainContract.Presenter {
 
-//    override fun loadAthlete() {
-//        repository.getAthlete(id, object : ICallback<MetaAthlete> {
-//
-//            override fun onResult(result: User) {
-//                view.setUserInfo(result)
-//            }
-//
-//            override fun onError(message: String) {
-//                view.showErrorMsg(message)
-//            }
-//        })
-//    }
+    private lateinit var repository: Repository
 
     override fun onCreate() {
-        val athlete = repository?.getLoggedInAthlete()
+        repository = Repository(context)
+    }
 
+    override fun loadAthlete() {
+        val athlete = repository.getLoggedInAthlete()
         view?.setAthlete(athlete)
     }
 
     override fun onDestroy() {
+        context = null
         view = null
-        repository = null
     }
 }

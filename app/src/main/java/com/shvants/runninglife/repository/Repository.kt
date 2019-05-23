@@ -1,5 +1,6 @@
 package com.shvants.runninglife.repository
 
+import android.content.ContentValues
 import android.content.Context
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
@@ -8,7 +9,7 @@ import com.shvants.runninglife.utils.Converter
 
 class Repository(context: Context?) {
 
-    private val dbRepo = DbRepository()
+    private val dbRepo = DbRepository(context)
     private val webRepo = WebRepository()
     private val preferences: StravaPreferences? = context?.let { StravaPreferences(it) }
 
@@ -18,30 +19,24 @@ class Repository(context: Context?) {
 //        return dbRepo.getAthlete(id) ?: webRepo.getAthlete(id)
 //    }
     fun getLoggedInAthlete(): SummaryAthleteUi {
-        val athleteDb = dbRepo.getLoggedInAthlete(preferences?.athleteId ?: 0)
+        val athleteDb = dbRepo.getLoggedInAthlete(preferences?.athleteId ?: 0L)
 
-        return if (athleteDb != null) {
-            Converter.convertAthleteFromDbToUi(athleteDb)
-        } else {
-            // todo ADD TO DB
-            SummaryAthleteUi
-                    .Builder()
-                    .fullName(preferences?.fullName ?: "")
-                    .profile(preferences?.profile ?: "")
-                    .location(preferences?.location ?: "")
-                    .build()
-        }
+        return Converter.convertAthleteFromDbToUi(athleteDb)
     }
 
     fun getAthleteActivities(): List<SummaryActivityUi>? {
-        val dbList = dbRepo.getAthleteActivities(preferences?.athleteId ?: 0)
+        val dbList = dbRepo.getAthleteActivities(preferences?.athleteId ?: 0L)
 
-        return if (dbList.isEmpty()) {
+        return if (dbList == null) {
             val webList = webRepo.getAthleteActivities(preferences?.accessToken ?: "")
             Converter.convertActivitiesFromGsonToUi(webList)
         } else {
             Converter.convertActivitiesFromDbToUi(dbList)
         }
+    }
+
+    fun setLoggedInAthlete(contentValues: ContentValues): Long {
+        return dbRepo.setLoggedInAthlete(contentValues)
     }
 
 

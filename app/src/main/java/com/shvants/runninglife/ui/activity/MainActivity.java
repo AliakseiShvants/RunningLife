@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.shvants.runninglife.R;
 import com.shvants.runninglife.model.ui.SummaryAthleteUi;
 import com.shvants.runninglife.mvp.contract.MainContract;
-import com.shvants.runninglife.strava.StravaPreferences;
+import com.shvants.runninglife.mvp.presenter.MainPresenter;
 import com.shvants.runninglife.ui.fragment.FeedFragment;
 import com.shvants.runninglife.ui.view.NavAthleteView;
 import com.shvants.runninglife.utils.listener.NavigationItemSelectedListener;
@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        presenter = new MainPresenter(this);
+        presenter = new MainPresenter(getApplicationContext(), this);
+        presenter.onCreate();
 
         final Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -53,18 +54,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
-        setDefaultFragment();
+        presenter.loadAthlete();
 
         final NavigationItemSelectedListener navigationItemSelectedListener =
                 NavigationItemSelectedListener.getInstance(fragmentManager, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener);
 
-        //todo remove
-        final StravaPreferences preferences = new StravaPreferences(getApplicationContext());
-        final NavAthleteView userView = navigationView.getHeaderView(ZERO)
-                .findViewById(R.id.nav_user_view);
-        userView.setView(new SummaryAthleteUi(preferences.getProfile(), preferences.getFullName(),
-                preferences.getLocation()));
+        setDefaultFragment();
     }
 
     private void setDefaultFragment() {

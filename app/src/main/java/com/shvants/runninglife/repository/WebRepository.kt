@@ -13,6 +13,7 @@ import com.shvants.runninglife.strava.StravaRequest
 class WebRepository {
 
     fun getAthleteActivities(token: String): List<SummaryActivityGson> {
+        //todo handle if token empty
         val json = StravaRequest().makeAthleteActivitiesRequest(token)
         val activitiesArr = Gson().fromJson(json, Array<SummaryActivityGson>::class.java)
 

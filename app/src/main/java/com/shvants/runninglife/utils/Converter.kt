@@ -1,7 +1,7 @@
 package com.shvants.runninglife.utils
 
-import com.shvants.runninglife.model.db.SummaryActivityDb
-import com.shvants.runninglife.model.db.SummaryAthleteDb
+import com.shvants.runninglife.model.database.SummaryActivityDb
+import com.shvants.runninglife.model.database.SummaryAthleteModel
 import com.shvants.runninglife.model.gson.ActivityType
 import com.shvants.runninglife.model.gson.SummaryActivityGson
 import com.shvants.runninglife.model.gson.SummaryAthleteGson
@@ -23,12 +23,12 @@ object Converter {
     private const val ONE_HOUR = 3600
     private const val ONE_K = 1000
 
-    fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteDb): SummaryAthleteUi {
+    fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteModel?): SummaryAthleteUi {
         return SummaryAthleteUi.Builder()
-                /*.id(athleteDb.ID.toInt())*/
-                .profile(athleteDb.PROFILE)
-                .fullName(athleteDb.FULLNAME)
-                .location(athleteDb.LOCATION)
+                /*.id(athleteDb._ID.toInt())*/
+                .profile(athleteDb?.profile ?: "")
+                .fullName(athleteDb?.fullname ?: "")
+                .location(athleteDb?.location ?: "")
                 .build()
     }
 

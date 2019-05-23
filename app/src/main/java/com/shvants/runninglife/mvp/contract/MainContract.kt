@@ -13,6 +13,6 @@ interface MainContract {
 
     interface Presenter : BasePresenter {
 
-//        fun loadAthlete()
+        fun loadAthlete()
     }
 }

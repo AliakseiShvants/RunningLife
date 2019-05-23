@@ -1,34 +1,35 @@
-package com.shvants.runninglife.model.db
+package com.shvants.runninglife.model.database
 
+import com.shvants.runninglife.database.Contract
 import com.shvants.runninglife.database.fields.*
 import com.shvants.runninglife.model.base.MetaActivity
 import com.shvants.runninglife.utils.Const
 
 open class SummaryActivityDb(
-        @dbLong
-        @dbPrimaryKey
-        open val ID: String = Const.Database.ID,
+        @DbLong
+        @DbPrimaryKey
+        open val ID: String = Contract.ID,
 
-        @dbInt
-        open val ATHLETE_ID: String = Const.Database.ATHLETE_ID,
+        @DbInt
+        open val ATHLETE_ID: String = Contract.ATHLETE_ID,
 
-        @dbString
+        @DbString
         open val NAME: String = Const.Database.NAME,
 
-        @dbInt
+        @DbInt
         open val MOVING_TIME: String = Const.Database.MOVING_TIME,
 
-        @dbString
+        @DbString
         open val TYPE: String = Const.Database.TYPE,
 
-        @dbString
+        @DbString
         open val START_DATE: String = Const.Database.START_DATE,
 
-        @dbDouble
+        @DbDouble
         open val DISTANCE: String = Const.Database.DISTANCE,
 
-        @dbDouble
+        @DbDouble
         open val AVG_SPEED: String = Const.Database.AVG_SPEED,
 
-        @dbString
+        @DbString
         open val MAP: String = Const.Database.MAP) : MetaActivity

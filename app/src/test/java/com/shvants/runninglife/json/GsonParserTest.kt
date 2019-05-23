@@ -26,7 +26,7 @@ class GsonParserTest {
 
     @Test
     fun parseOauthTokenResponse() {
-        val oauthTokenResponse = Gson().fromJson(StravaHelper.tokenString, OauthResponse::class.java)
+        val oauthTokenResponse = Gson().fromJson(StravaHelper.STUB_TOKEN_RESPONSE, OauthResponse::class.java)
 
         Assert.assertNotNull(oauthTokenResponse)
         Assert.assertNotNull(oauthTokenResponse.athlete)

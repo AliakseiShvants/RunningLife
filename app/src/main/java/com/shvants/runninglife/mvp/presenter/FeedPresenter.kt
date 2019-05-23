@@ -17,7 +17,7 @@ class FeedPresenter(private val context: Context?,
         activities = ArrayList()
         athlete = repository.getLoggedInAthlete()
 
-//        val activitiesDb = repository.getAthleteActivities(athleteDb.ID.toInt()) as List<SummaryActivityDb>
+//        val activitiesDb = repository.getAthleteActivities(athleteDb._ID.toInt()) as List<SummaryActivityDb>
 //        val activitiesUi = repository.getAthleteActivities(athlete.id)
 
 //        for (activityDb in activitiesDb) {

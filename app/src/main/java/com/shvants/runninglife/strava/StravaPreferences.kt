@@ -2,6 +2,7 @@ package com.shvants.runninglife.strava
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.shvants.runninglife.database.Contract.SEX
 import com.shvants.runninglife.strava.StravaHelper.ACCESS_TOKEN
 import com.shvants.runninglife.strava.StravaHelper.APP_PREFERENCES
 import com.shvants.runninglife.strava.StravaHelper.ATHLETE_ID
@@ -20,11 +21,11 @@ class StravaPreferences(context: Context) {
 
     private val isLogged = preferences.contains(ACCESS_TOKEN)
 
-    var athleteId: Int
-        get() = preferences.getInt(ATHLETE_ID, ZERO)
+    var athleteId: Long
+        get() = preferences.getLong(ATHLETE_ID, ZERO_LONG)
         set(value) = preferences
                 .edit()
-                .putInt(ATHLETE_ID, value)
+                .putLong(ATHLETE_ID, value)
                 .apply()
 
     var accessToken: String
@@ -90,11 +91,18 @@ class StravaPreferences(context: Context) {
                 .putString(PROFILE_MEDIUM, value)
                 .apply()
 
-    var summit: String
-        get() = preferences.getString(SUMMIT, Const.EMPTY)
+    var sex: String
+        get() = preferences.getString(SEX, Const.EMPTY)
         set(value) = preferences
                 .edit()
-                .putString(SUMMIT, value)
+                .putString(SEX, value)
+                .apply()
+
+    var summit: Boolean
+        get() = preferences.getBoolean(SUMMIT, false)
+        set(value) = preferences
+                .edit()
+                .putBoolean(SUMMIT, value)
                 .apply()
 
     var tokenType: String
