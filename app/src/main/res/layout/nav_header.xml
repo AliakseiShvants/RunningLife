@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.shvants.runninglife.ui.view.NavAthleteView
-        android:id="@+id/nav_user_view"
+        android:id="@+id/navAthleteView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -5,59 +5,90 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IntDef
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.shvants.runninglife.R
+import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.FeedContract
 import com.shvants.runninglife.ui.view.SummaryActivityView
+import com.shvants.runninglife.utils.ActivitiesDiffUtil
 import java.lang.Boolean.FALSE
-import java.lang.Boolean.TRUE
 
-class FeedAdapter(context: Context?,
+
+class FeedAdapter(context: Context,
                   private val presenter: FeedContract.Presenter) :
-        RecyclerView.Adapter<FeedAdapter.ViewHolder>() {
+        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isShowLastAsLoading = FALSE
-    private var inflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    internal var isLoading = FALSE
+    private var inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private var isLoading = FALSE
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    private var athlete = presenter.getAthlete()
+    var activities = mutableListOf<SummaryActivityUi>()
+        private set
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
         return if (viewType == ViewType.ITEM) {
-            ViewHolder(inflater.inflate(R.layout.adapter_summary_item, parent, FALSE))
+            ActivityViewHolder(inflater.inflate(R.layout.adapter_summary_item, parent, FALSE))
         } else {
-            ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE))
+            ActivityViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE))
         }
     }
 
-    override fun getItemCount() = presenter.size()
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        when (holder) {
+            is ActivityViewHolder -> {
+                val view = holder.itemView as SummaryActivityView
 
-        if (getItemViewType(position) == ViewType.ITEM) {
-            (holder.itemView as SummaryActivityView).setView(presenter.getLoggedAthlete(),
-                    presenter.getActivity(position))
+                view.setAthleteView(athlete)
+                view.setView(activities[position])
+            }
         }
+    }
+
+    override fun getItemCount() = activities.size
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position < activities.size) ViewType.ITEM else ViewType.LOADING
+    }
+
+    fun addActivities(newActivities: List<SummaryActivityUi>) {
+        val newList = arrayListOf<SummaryActivityUi>()
+        newList.addAll(activities)
+        newList.addAll(newActivities)
+
+        updateActivities(newList)
+        notifyDataSetChanged()
+    }
+
+    private fun updateActivities(list: List<SummaryActivityUi>) {
+        val diffUtil = ActivitiesDiffUtil(activities, list)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+
+        activities.clear()
+        activities.addAll(list)
+
+        diffResult.dispatchUpdatesTo(this)
     }
 
     fun setShowLastItemAsLoading(flag: Boolean) {
-        isShowLastAsLoading = flag
+        if (flag != isShowLastAsLoading) {
+            isShowLastAsLoading = flag
+            notifyDataSetChanged()
+        }
     }
 
-    fun loadMoreItems(start: Int, end: Int) {
-        isLoading = TRUE
-        isShowLastAsLoading = TRUE
-
-        presenter.loadMoreItems(start, end)
-//        moveService.getEntities(start, end, object : ICallback<List<MoveModelUi>>() {
+//    fun loadMoreItems(start: Int, end: Int) {
+//        isLoading = TRUE
+//        isShowLastAsLoading = TRUE
 //
-//            fun onResult(result: List<MoveModelUi>) {
-//                adapter.addItems(result)
-//                isLoading = FALSE
-//            }
-//        })
-    }
+//        presenter.loadActivities(start, end, )
+//    }
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    private inner class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     @IntDef(ViewType.ITEM, ViewType.LOADING)
     @Retention(AnnotationRetention.SOURCE)

@@ -17,12 +17,15 @@ import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.shvants.runninglife.R
 import com.shvants.runninglife.strava.StravaHelper
-import com.shvants.runninglife.ui.view.base.BaseActivityView
+import com.shvants.runninglife.ui.view.base.BaseView
 import com.shvants.runninglife.utils.Const
 import kotlinx.android.synthetic.main.activity_auth.*
 import java.util.concurrent.Executors
 
-class AuthActivity : AppCompatActivity(), BaseActivityView {
+class AuthActivity : AppCompatActivity(), BaseView {
+    override fun showMessage(message: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private val TAG = AuthActivity::class.simpleName
 

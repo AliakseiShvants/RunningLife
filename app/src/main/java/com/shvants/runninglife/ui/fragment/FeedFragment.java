@@ -62,7 +62,7 @@ package com.shvants.runninglife.ui.fragment;
 //
 //        recyclerView.setItemAnimator(new DefaultItemAnimator() {
 //            @Override
-//            public boolean animateMove(final RecyclerView.ViewHolder holder,
+//            public boolean animateMove(final RecyclerView.ActivityViewHolder holder,
 //                                       final int fromX,
 //                                       final int fromY,
 //                                       final int toX,

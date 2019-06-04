@@ -17,13 +17,13 @@ object StravaHelper {
         return urlBuilder?.build().toString()
     }
 
-    fun getAthleteActivitiesUrl(token: String): String {
+    fun getAthleteActivitiesUrl(token: String, page: Int): String {
         return HttpUrl.parse(ACTIVITIES_BASE_URL)
                 ?.newBuilder()
                 ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(BEFORE, BEFORE_VALUE)
                 ?.addQueryParameter(AFTER, AFTER_VALUE)
-                ?.addQueryParameter(PAGE, PAGE_VALUE)
+                ?.addQueryParameter(PAGE, "$page")
                 ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
@@ -47,7 +47,7 @@ object StravaHelper {
                 .build()
     }
 
-    private const val ONE_MONTH_IN_SECONDS = 30 * 7 * 24 * 60 * 60
+    private const val ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
     const val EMAIL = "ashvants91@gmail.com"
     const val PASSWORD = "strava11091991"
@@ -60,7 +60,7 @@ object StravaHelper {
 
     const val ACCESS_TOKEN = "access_token"
     const val AFTER = "after"
-    val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_MONTH_IN_SECONDS).toInt().toString()
+    val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_YEAR_IN_SECONDS).toInt().toString()
     private const val APPROVAL_PROMPT = "approval_prompt"
     private const val APPROVAL_PROMPT_VALUE = "auto"
     const val APP_PREFERENCES = "Running_Life"
@@ -86,7 +86,7 @@ object StravaHelper {
     const val PAGE = "page"
     const val PAGE_VALUE = "1"
     const val PER_PAGE = "per_page"
-    const val PER_PAGE_VALUE = "7"
+    const val PER_PAGE_VALUE = "20"
 
     const val REDIRECT_URI = "redirect_uri"
     const val REDIRECT_URI_VALUE = "https://localhost/callback"

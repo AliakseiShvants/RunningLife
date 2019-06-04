@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/one_intent"
-        android:textSize="@dimen/xs_text_size"
+        android:textSize="@dimen/s_text_size"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/activityTypeIcon"
         app:layout_constraintTop_toTopOf="@id/athleteProfile" />
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/one_intent"
-        android:textSize="@dimen/xxs_text_size"
+        android:textSize="@dimen/xs_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/activityTypeIcon"
         app:layout_constraintStart_toEndOf="@id/activityTypeIcon"
         app:layout_constraintTop_toTopOf="@+id/activityTypeIcon" />

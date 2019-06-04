@@ -1,42 +1,77 @@
 package com.shvants.runninglife.mvp.presenter
 
 import android.content.Context
-import com.shvants.runninglife.model.base.MetaAthlete
+import android.os.Handler
 import com.shvants.runninglife.model.ui.SummaryActivityUi
+import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.FeedContract
 import com.shvants.runninglife.repository.Repository
+import com.shvants.runninglife.utils.ICallback
+import java.util.concurrent.Executors
 
-class FeedPresenter(private val context: Context?,
-                    private var fragment: FeedContract.Fragment,
-                    private val repository: Repository) : FeedContract.Presenter {
+class FeedPresenter(context: Context,
+                    private var view: FeedContract.View) : FeedContract.Presenter {
 
-    private lateinit var athlete: MetaAthlete
-    private lateinit var activities: ArrayList<SummaryActivityUi>
+    private val repository = Repository(context)
+    private val executor = Executors.newCachedThreadPool()
+    private val handler = Handler()
 
-    override fun onCreate() {
-        activities = ArrayList()
-        athlete = repository.getLoggedInAthlete()
+//    private var athlete: SummaryAthleteUi
+//    private var activities: List<SummaryActivityUi>
+//
+//    init {
+//        athlete = repository.getLoggedInAthlete()
+//        activities = repository.getAthleteActivities()
+//    }
 
-//        val activitiesDb = repository.getAthleteActivities(athleteDb._ID.toInt()) as List<SummaryActivityDb>
-//        val activitiesUi = repository.getAthleteActivities(athlete.id)
+    override fun attachedView(view: FeedContract.View) {
+        this.view = view
+    }
 
-//        for (activityDb in activitiesDb) {
-//            activities.add(Converter.convertActivityFromDbToUi(context, activityDb))
+    override fun detachView() {
+//        this.view = null
+    }
+
+    override fun onResume() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+//    override fun size() = activities.size
+
+    override fun getAthlete(): SummaryAthleteUi {
+
+        return repository.getLoggedInAthlete()
+    }
+
+//    override fun getActivity(position: Int): SummaryActivityUi {
+//        val activities = repository.getAthleteActivities()
+//
+//        return activities[position]
+//    }
+
+//    override fun loadActivities() {
+//        executor.execute {
+//            try {
+//                val activities = repository.getAthleteActivities()
+//
+//                handler.post { view.addActivities(activities) }
+//            } catch (e: Exception) {
+//                handler.post { view.showMessage("Check Internet connection and try again") }
+//            }
+//
 //        }
-    }
+////        return repository.getAthleteActivities()
+//    }
 
-    override fun size() = activities.size
+    override fun loadActivities(page: Int, callback: ICallback<List<SummaryActivityUi>>) {
+        executor.execute {
+            try {
+                val activities = repository.getAthleteActivities(page)
 
-    override fun getLoggedAthlete() = athlete
-
-    override fun getActivity(position: Int) = activities[position]
-
-    override fun onDestroy() {
-        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
-    }
-
-
-    override fun loadMoreItems(start: Int, end: Int) {
-        TODO("not implemented") //To change get of created functions use File | Settings | File Templates.
+                handler.post { callback.onResult(activities) }
+            } catch (e: Exception) {
+                handler.post { callback.onError("Check Internet connection and try again") }
+            }
+        }
     }
 }

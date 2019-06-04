@@ -7,14 +7,14 @@ package com.shvants.runninglife.utils
 //                ItemTouchHelper.START or ItemTouchHelper.END) {
 //
 //    override fun onMove(@NonNull recyclerView: RecyclerView,
-//                        @NonNull viewHolder: RecyclerView.ViewHolder,
-//                        @NonNull viewHolder1: RecyclerView.ViewHolder): Boolean {
+//                        @NonNull viewHolder: RecyclerView.ActivityViewHolder,
+//                        @NonNull viewHolder1: RecyclerView.ActivityViewHolder): Boolean {
 //
 ////        adapter.onItemMove(viewHolder.adapterPosition, viewHolder1.adapterPosition)
 //
 //        return true
 //    }
 //
-//    override fun onSwiped(@NonNull viewHolder: RecyclerView.ViewHolder, direction: Int) {}
+//    override fun onSwiped(@NonNull viewHolder: RecyclerView.ActivityViewHolder, direction: Int) {}
 //}
 

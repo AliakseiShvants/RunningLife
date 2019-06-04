@@ -1,36 +1,27 @@
 package com.shvants.runninglife.mvp.presenter
 
-import android.content.ContentValues
 import android.content.Context
-import com.shvants.runninglife.database.Contract
+import com.shvants.runninglife.mvp.contract.LoginContract
 import com.shvants.runninglife.repository.Repository
-import com.shvants.runninglife.strava.StravaPreferences
 
-class LoginPresenter(private var context: Context?) : BasePresenter {
+class LoginPresenter(context: Context) : BasePresenter<LoginContract.View> {
 
-    private lateinit var repository: Repository
+    private var repository: Repository = Repository(context)
+    private lateinit var view: LoginContract.View
 
-    override fun onCreate() {
-        repository = Repository(context)
+    override fun attachedView(view: LoginContract.View) {
+        this.view = view
     }
 
-    fun setLoggedInAthlete(preferences: StravaPreferences): Long {
-        val contentValues = ContentValues().apply {
-            put(Contract.ID, preferences.athleteId)
-            put(Contract.FULLNAME, preferences.fullName)
-            put(Contract.PROFILE, preferences.profile)
-            put(Contract.PROFILE_MEDIUM, preferences.profileMedium)
-            put(Contract.AthleteEntry.LOCATION, preferences.location)
-            put(Contract.SEX, preferences.sex)
-            put(Contract.SUMMIT, if (preferences.summit) 1 else 0)
-        }
-
-        return repository.setLoggedInAthlete(contentValues)
+    override fun onResume() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun onDestroy() {
-        context = null
+    fun setLoggedInAthlete(): Long {
+        return repository.setLoggedInAthlete()
     }
 
-
+    override fun detachView() {
+//        view = null
+    }
 }

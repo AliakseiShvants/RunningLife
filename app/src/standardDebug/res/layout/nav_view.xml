@@ -2,7 +2,6 @@
 <com.google.android.material.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    android:id="@+id/nav_view"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="start"
@@ -20,7 +19,7 @@
         android:paddingTop="@dimen/one_intent"
         android:paddingEnd="@dimen/three_intents"
         android:paddingBottom="@dimen/one_intent"
-        android:text="Join to Summit version"
+        android:text="@string/join_to_summit_version"
         android:textAllCaps="false"
         android:textColor="@color/white" />
 </com.google.android.material.navigation.NavigationView>

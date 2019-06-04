@@ -8,8 +8,8 @@ import okhttp3.Request
 
 class StravaRequest {
 
-    fun makeAthleteActivitiesRequest(token: String): String {
-        val url = StravaHelper.getAthleteActivitiesUrl(token)
+    fun makeAthleteActivitiesRequest(token: String, page: Int): String {
+        val url = StravaHelper.getAthleteActivitiesUrl(token, page)
 
         return get(url)
     }

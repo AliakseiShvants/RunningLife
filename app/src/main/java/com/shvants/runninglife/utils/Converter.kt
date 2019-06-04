@@ -61,7 +61,8 @@ object Converter {
                     .movingTime(movingTime)
                     .type(activityDb.TYPE)
                     .startDate(activityDb.START_DATE)
-                    .distance(distance).avgSpeed(avgSpeed)
+                    .distance(distance)
+                    .avgSpeed(avgSpeed)
                     .map(activityDb.MAP)
                     .build())
         }
@@ -99,7 +100,8 @@ object Converter {
         return if (distance == ZERO_DOUBLE) {
             "$HYPHEN $KM"
         } else {
-            val formatDistance = DISTANCE_FORMAT.format(distance)
+            val distanceKm = distance?.div(1000)
+            val formatDistance = DISTANCE_FORMAT.format(distanceKm)
 
             "$formatDistance $KM"
         }

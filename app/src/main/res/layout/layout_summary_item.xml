@@ -1,47 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/summaryActivityCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <com.shvants.runninglife.ui.view.ActivityAthleteView
+        android:id="@+id/activityAthlete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activityName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/two_intents"
+        android:textSize="@dimen/m_text_size"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
+
+    <com.shvants.runninglife.ui.view.SummaryDataView
+        android:id="@+id/summaryActivityData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/two_intents"
+        app:layout_constraintTop_toBottomOf="@id/activityName" />
+
+    <ImageView
+        android:id="@+id/summaryActivityMap"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/summaryActivityData" />
+
+    <TextView
+        android:id="@+id/likeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/two_intents"
+        android:paddingTop="@dimen/one_intent"
+        android:paddingBottom="@dimen/one_intent"
+        android:text="Be the first who Like!"
+        app:layout_constraintTop_toBottomOf="@id/summaryActivityMap" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/gray200"
+        android:padding="@dimen/one_intent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/likeView">
 
-        <com.shvants.runninglife.ui.view.ActivityAthleteView
-            android:id="@+id/activityAthlete"
-            android:layout_width="match_parent"
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_thumb_up" />
 
-        <TextView
-            android:id="@+id/activityName"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/two_intents"
-            android:textSize="@dimen/m_text_size"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/message"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/like"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/vert_line" />
 
-        <com.shvants.runninglife.ui.view.SummaryDataView
-            android:id="@+id/summaryActivityData"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/two_intents"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/activityName" />
-
-        <ImageView
-            android:id="@+id/summaryActivityMap"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintTop_toBottomOf="@id/summaryActivityData" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_message" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

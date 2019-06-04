@@ -1,27 +1,7 @@
 package com.shvants.runninglife.ui.feed;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.IntDef;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.shvants.runninglife.R;
-
-
-import org.jetbrains.annotations.NotNull;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.List;
-
-import static java.lang.Boolean.FALSE;
-
 //public class FeedPagerAdapter
-//        extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
+//        extends RecyclerView.Adapter<FeedAdapter.ActivityViewHolder> {
 //
 //    private final Context context;
 //    private final LayoutInflater inflater;
@@ -45,17 +25,17 @@ import static java.lang.Boolean.FALSE;
 //
 //    @NonNull
 //    @Override
-//    public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
+//    public ActivityViewHolder onCreateViewHolder(@NonNull final ViewGroup parent,
 //                                         final int viewType) {
 //        if (viewType == ViewType.MOVE) {
-//            return new ViewHolder(new RunMoveView(parent.getContext()));
+//            return new ActivityViewHolder(new RunMoveView(parent.getContext()));
 //        } else {
-//            return new ViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
+//            return new ActivityViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE));
 //        }
 //    }
 //
 //    @Override
-//    public void onBindViewHolder(@NonNull final ViewHolder holder,
+//    public void onBindViewHolder(@NonNull final ActivityViewHolder holder,
 //                                 final int position) {
 //
 //        if (getItemViewType(position) == ViewType.MOVE) {
@@ -97,9 +77,9 @@ import static java.lang.Boolean.FALSE;
 //        notifyDataSetChanged();
 //    }
 //
-//    class ViewHolder extends RecyclerView.ViewHolder {
+//    class ActivityViewHolder extends RecyclerView.ActivityViewHolder {
 //
-//        ViewHolder(final View view) {
+//        ActivityViewHolder(final View view) {
 //            super(view);
 //        }
 //    }

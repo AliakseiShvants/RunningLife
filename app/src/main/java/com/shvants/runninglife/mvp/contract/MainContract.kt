@@ -1,18 +1,28 @@
 package com.shvants.runninglife.mvp.contract
 
+import android.view.MenuItem
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.presenter.BasePresenter
-import com.shvants.runninglife.ui.view.base.BaseView
 
 interface MainContract {
 
-    interface View : BaseView {
+    interface View {
 
-        fun setAthlete(athlete: SummaryAthleteUi?)
+        fun replaceFragment(fragment: Fragment)
+
+        fun setCheckedItem(item: MenuItem)
+
+//        fun setActionBarTitle(title: String)
+
+        fun setAthlete(athlete: SummaryAthleteUi)
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter : BasePresenter<View> {
 
         fun loadAthlete()
+
+        fun navigationItemSelected(item: MenuItem, drawerLayout: DrawerLayout)
     }
 }

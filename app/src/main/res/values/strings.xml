@@ -31,4 +31,6 @@
     <string name="bpm">bpm</string>
     <string name="email">Email</string>
     <string name="login_error">Error with authentication. \nCheck Internet connection and try again</string>
+    <string name="navigation_drawer_open">open drawer</string>
+    <string name="navigation_drawer_close">close drawer</string>
 </resources>

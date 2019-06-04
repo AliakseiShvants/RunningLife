@@ -1,21 +1,31 @@
 package com.shvants.runninglife.mvp.contract
 
+import com.shvants.runninglife.model.ui.SummaryActivityUi
+import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.presenter.BasePresenter
-import com.shvants.runninglife.ui.fragment.BaseFragment
+import com.shvants.runninglife.ui.view.base.BaseView
+import com.shvants.runninglife.utils.ICallback
 
 interface FeedContract {
 
-    interface Fragment : BaseFragment
+    interface View : BaseView {
 
-    interface Presenter : BasePresenter {
+//        fun setAthlete(athlete: SummaryAthleteUi)
 
-        fun loadMoreItems(start: Int, end: Int)
+//        fun addActivities(activities: List<SummaryActivityUi>)
+    }
 
-        fun size(): Int
+    interface Presenter : BasePresenter<View> {
 
-        fun getLoggedAthlete(): Any
+        fun loadActivities(page: Int, callback: ICallback<List<SummaryActivityUi>>)
 
-        fun getActivity(position: Int): Any
+//        fun loadActivities()
+
+//        fun size(): Int
+
+        fun getAthlete(): SummaryAthleteUi
+
+//        fun getActivity(position: Int): SummaryActivityUi
 
     }
 }

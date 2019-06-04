@@ -5,24 +5,23 @@ import android.text.format.DateFormat
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DrawableRes
+import androidx.annotation.UiThread
 import androidx.appcompat.content.res.AppCompatResources
 import com.shvants.runninglife.R
-import com.shvants.runninglife.model.gson.ActivityType
-import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
-import com.shvants.runninglife.ui.view.base.BaseView
+import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.*
 import kotlinx.android.synthetic.main.activity_athlete_view.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ActivityAthleteView
-@JvmOverloads
-constructor(
+class ActivityAthleteView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : BaseConstraintView(context, attrs, defStyleAttr), BaseView {
+        defStyleAttr: Int = ZERO) : BaseCustomView<SummaryAthleteUi>,
+        BaseConstraintView(context, attrs, defStyleAttr) {
 
     private lateinit var profileView: ImageView
     private lateinit var fullNameView: TextView
@@ -38,10 +37,10 @@ constructor(
 
     override fun getLayoutResId() = R.layout.activity_athlete_view
 
-    override fun setView(vararg data: Any?): BaseConstraintView {
-        val athlete = data[0] as SummaryAthleteUi
+    @UiThread
+    override fun setView(athlete: SummaryAthleteUi) {
 
-        if (athlete.profile.equals(EMPTY)) {
+        if (athlete.profile == EMPTY) {
             val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_profile_medium)
             profileView.setImageDrawable(drawable)
         } else {
@@ -49,19 +48,14 @@ constructor(
         }
 
         fullNameView.text = athlete.fullName
+    }
 
-        if (data.size > 1) {
-            val activity = data[1] as SummaryActivityUi
+    fun setActivityTypeIcon(@DrawableRes resId: Int) {
+        activityTypeIconView.setImageResource(resId)
+    }
 
-            when (activity.type) {
-                ActivityType.RUN.title -> activityTypeIconView.setImageResource(R.drawable.ic_run)
-                ActivityType.RIDE.title -> activityTypeIconView.setImageResource(R.drawable.ic_ride)
-            }
-
-            startDateView.text = transformStartDate(activity.startDate)
-        }
-
-        return this
+    fun setStartDate(startDate: String) {
+        startDateView.text = transformStartDate(startDate)
     }
 
     private fun transformStartDate(startDate: String): String {

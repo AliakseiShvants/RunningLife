@@ -6,9 +6,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
+import com.shvants.runninglife.model.gson.ActivityType
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
+import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.layout_summary_item.view.*
@@ -16,7 +18,8 @@ import kotlinx.android.synthetic.main.layout_summary_item.view.*
 class SummaryActivityView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : BaseConstraintView(context, attrs, defStyleAttr) {
+        defStyleAttr: Int = ZERO) : BaseCustomView<SummaryActivityUi>,
+        BaseConstraintView(context, attrs, defStyleAttr) {
 
     private lateinit var athleteView: ActivityAthleteView
     private lateinit var nameView: TextView
@@ -31,17 +34,24 @@ class SummaryActivityView @JvmOverloads constructor(
     }
 
     @UiThread
-    override fun setView(vararg data: Any?): BaseConstraintView {
-        val athlete = data[0] as SummaryAthleteUi
-        val activity = data[1] as SummaryActivityUi
+    override fun setView(activity: SummaryActivityUi) {
+        when (activity.type) {
+            ActivityType.RUN.title -> athleteView.setActivityTypeIcon(R.drawable.ic_run)
+            ActivityType.RIDE.title -> athleteView.setActivityTypeIcon(R.drawable.ic_ride)
+        }
 
-        athleteView.setView(athlete, activity)
-        dataView.setView(activity.distance, activity.avgSpeed, activity.movingTime)
+        athleteView.setStartDate(activity.startDate)
+
+        dataView.setView(activity)
         nameView.text = activity.name
         //todo load map
         mapView.setImageResource(R.drawable.move0)
 
-        return this
+    }
+
+    @UiThread
+    fun setAthleteView(athlete: SummaryAthleteUi) {
+        athleteView.setView(athlete)
     }
 
     override fun getLayoutResId() = R.layout.layout_summary_item

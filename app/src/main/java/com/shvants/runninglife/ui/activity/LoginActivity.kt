@@ -10,18 +10,18 @@ import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.gson.OauthResponse
+import com.shvants.runninglife.mvp.contract.LoginContract
 import com.shvants.runninglife.mvp.presenter.LoginPresenter
 import com.shvants.runninglife.strava.StravaHelper
 import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.strava.StravaRequest
-import com.shvants.runninglife.ui.view.base.BaseActivityView
 import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
 
 
-class LoginActivity : AppCompatActivity(), BaseActivityView {
+class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     private val TAG = LoginActivity::class.simpleName
     private val executor = Executors.newCachedThreadPool()
@@ -32,15 +32,15 @@ class LoginActivity : AppCompatActivity(), BaseActivityView {
     private lateinit var preferences: StravaPreferences
     private lateinit var presenter: LoginPresenter
 
-    private val callback = object : ICallback<String> {
+    private val callback = object : ICallback<Long> {
 
-        override fun onResult(result: String?) {
+        override fun onResult(result: Long) {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             finish()
         }
 
         override fun onError(message: String) {
-            showError(message)
+            showMessage(message)
         }
     }
 
@@ -49,16 +49,14 @@ class LoginActivity : AppCompatActivity(), BaseActivityView {
         setContentView(getLayoutResId())
 
         preferences = StravaPreferences(applicationContext)
-
         presenter = LoginPresenter(this@LoginActivity)
-        presenter.onCreate()
 
         stravaConnect.setOnClickListener {
             //            val intent = Intent(this, AuthActivity::class.java)
 //            startActivityForResult(intent, 1)
 
             //test
-            handleTokenResponse("2d40f76f629f44fcf22141a0e5d48a254333d8b7")
+            handleTokenResponse("553a62a67d7e25d5d9e7ca12ca2b646245ffc23a")
         }
     }
 
@@ -73,7 +71,7 @@ class LoginActivity : AppCompatActivity(), BaseActivityView {
             handleTokenResponse(preferences.code)
         } else {
             hideLoading()
-            showError(resources.getString(R.string.login_error))
+            showMessage(resources.getString(R.string.login_error))
         }
     }
 
@@ -90,10 +88,10 @@ class LoginActivity : AppCompatActivity(), BaseActivityView {
                 }
             }
 
-            val result = presenter.setLoggedInAthlete(preferences)
+            val result = presenter.setLoggedInAthlete()
 
             handler.post {
-                if (result != -1L) callback.onResult(null) else callback.onError(ERR_MSG)
+                if (result != -1L) callback.onResult(result) else callback.onError(ERR_MSG)
             }
         }
     }
@@ -119,7 +117,7 @@ class LoginActivity : AppCompatActivity(), BaseActivityView {
         }
     }
 
-    private fun showError(message: String) {
+    override fun showMessage(message: String) {
         hideLoading()
         errorView.visibility = View.VISIBLE
         errorView.text = message

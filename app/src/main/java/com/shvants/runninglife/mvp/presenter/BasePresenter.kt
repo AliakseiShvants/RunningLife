@@ -1,8 +1,10 @@
 package com.shvants.runninglife.mvp.presenter
 
-interface BasePresenter {
+interface BasePresenter<V> {
 
-    fun onCreate()
+    fun attachedView(view: V)
 
-    fun onDestroy()
+    fun detachView()
+
+    fun onResume()
 }

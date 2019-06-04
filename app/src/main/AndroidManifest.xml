@@ -30,10 +30,7 @@
         <activity
             android:name=".ui.activity.AuthActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.MainActivity" />
     </application>
 
 </manifest>
