@@ -5,15 +5,19 @@ import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import com.example.imageloader.ImageLoader
+import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.repository.Repository
+import com.shvants.runninglife.ui.activity.MainActivity
 import com.shvants.runninglife.ui.fragment.FeedFragment
 
 class MainPresenter(context: Context) : MainContract.Presenter {
 
     private var repository: Repository = Repository(context)
     private lateinit var view: MainContract.View
+    private val imageLoader = ImageLoader.instance
 
     override fun attachedView(view: MainContract.View) {
         this.view = view
@@ -31,6 +35,9 @@ class MainPresenter(context: Context) : MainContract.Presenter {
 
     override fun loadAthlete() {
         val athlete = repository.getLoggedInAthlete()
+        val profileView = (view as MainActivity).getAthleteProfile()
+
+        imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
         view.setAthlete(athlete)
     }
 

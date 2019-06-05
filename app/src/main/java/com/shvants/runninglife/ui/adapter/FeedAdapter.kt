@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.IntDef
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.imageloader.ImageLoader
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.FeedContract
@@ -21,6 +22,7 @@ class FeedAdapter(context: Context,
 
     private var isShowLastAsLoading = FALSE
     private var inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+    private val imageLoader = ImageLoader.instance
     private var isLoading = FALSE
 
     private var athlete = presenter.getAthlete()
@@ -42,6 +44,7 @@ class FeedAdapter(context: Context,
             is ActivityViewHolder -> {
                 val view = holder.itemView as SummaryActivityView
 
+//                imageLoader.load(holder.itemView.athleteProfile, athlete.profile, ImageType.ROUNDED)
                 view.setAthleteView(athlete)
                 view.setView(activities[position])
             }

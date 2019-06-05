@@ -14,6 +14,7 @@ import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.mvp.presenter.MainPresenter
 import com.shvants.runninglife.ui.view.NavAthleteView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_athlete_view.view.*
 
 class MainActivity : AppCompatActivity(),
         MainContract.View,
@@ -90,5 +91,7 @@ class MainActivity : AppCompatActivity(),
     override fun setAthlete(athlete: SummaryAthleteUi) {
         navAthleteView.setView(athlete)
     }
+
+    fun getAthleteProfile() = navAthleteView.navAthleteProfile
 
 }

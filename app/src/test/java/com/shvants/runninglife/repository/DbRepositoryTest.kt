@@ -52,13 +52,16 @@ class DbRepositoryTest {
     fun getAthlete() {
         insertAthlete()
 
-        val athleteUi = SummaryAthleteUi("", "", "")
+        val athleteUi = SummaryAthleteUi(id = 0)
         dbHelper.query("SELECT * FROM ${Contract.AthleteEntry.TABLE_NAME} WHERE _ID = $id")
                 .use { cursor ->
                     if (cursor.moveToFirst()) {
+                        val id = cursor.getInt(cursor.getColumnIndex(Contract.ID))
                         val profile = cursor.getString(cursor.getColumnIndex(Contract.AthleteEntry.PROFILE))
                         val fullname = cursor.getString(cursor.getColumnIndex(Contract.AthleteEntry.FULLNAME))
                         val location = cursor.getString(cursor.getColumnIndex(Contract.AthleteEntry.LOCATION))
+
+                        athleteUi.id = id
                         athleteUi.profile = profile
                         athleteUi.fullName = fullname
                         athleteUi.location = location

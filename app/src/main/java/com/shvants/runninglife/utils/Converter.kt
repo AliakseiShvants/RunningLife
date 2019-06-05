@@ -24,24 +24,20 @@ object Converter {
     private const val ONE_K = 1000
 
     fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteModel?): SummaryAthleteUi {
-        return SummaryAthleteUi.Builder()
-                /*.id(athleteDb._ID.toInt())*/
-                .profile(athleteDb?.profile ?: "")
-                .fullName(athleteDb?.fullname ?: "")
-                .location(athleteDb?.location ?: "")
-                .build()
+        return SummaryAthleteUi(id = athleteDb?._id ?: 0L,
+                profile = athleteDb?.profile ?: "",
+                fullName = athleteDb?.fullname ?: "",
+                location = athleteDb?.location ?: "")
     }
 
     fun convertAthleteFromGsonToUi(athleteGson: SummaryAthleteGson): SummaryAthleteUi {
         val fullName = "${athleteGson.firstName} ${athleteGson.lastName}"
         val location = "${athleteGson.city}$COMMA ${athleteGson.state}$COMMA ${athleteGson.country}"
 
-        return SummaryAthleteUi.Builder()
-                /*.id(athleteGson.id)*/
-                .profile(athleteGson.profile ?: "")
-                .fullName(fullName)
-                .location(location)
-                .build()
+        return SummaryAthleteUi(id = athleteGson.id ?: 0L,
+                profile = athleteGson.profile ?: "",
+                fullName = fullName,
+                location = location)
     }
 
     fun convertActivitiesFromDbToUi(list: List<SummaryActivityDb>): List<SummaryActivityUi> {
@@ -66,7 +62,6 @@ object Converter {
                     .map(activityDb.MAP)
                     .build())
         }
-
 
         return result
     }
