@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -58,6 +59,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             //test
             handleTokenResponse("f874ab9181a663bedbb79062cc98ec64d832ffc2")
         }
+
+        slideImage()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -125,12 +128,30 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun showLoading() {
         progressBar.visibility = View.VISIBLE
-        stravaConnect.visibility = View.GONE
     }
 
     override fun hideLoading() {
-        progressBar.visibility = View.GONE
-        stravaConnect.visibility = View.VISIBLE
+        progressBar.visibility = View.INVISIBLE
+    }
+
+    private fun slideImage() {
+        val imgArr = arrayOf(
+                R.drawable.login_slider0,
+                R.drawable.login_slider1,
+                R.drawable.login_slider2)
+
+        var counter = 0
+
+        executor.execute {
+            while (true) {
+                val i = counter % 3
+
+                handler.post { loginImageView.setImageResource(imgArr[i]) }
+
+                counter += 1
+                SystemClock.sleep(5000)
+            }
+        }
     }
 
     override fun getLayoutResId() = R.layout.activity_login
