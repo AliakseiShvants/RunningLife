@@ -44,7 +44,6 @@ class MainPresenter(context: Context) : MainContract.Presenter {
     override fun navigationItemSelected(item: MenuItem, drawerLayout: DrawerLayout) {
         navigateTo(item, drawerLayout)
         view.setCheckedItem(item)
-//        view.setActionBarTitle(item.title.toString())
     }
 
     private fun navigateTo(item: MenuItem, drawerLayout: DrawerLayout) {
@@ -61,5 +60,4 @@ class MainPresenter(context: Context) : MainContract.Presenter {
     private fun replaceFragment(fragment: Fragment) {
         view.replaceFragment(fragment)
     }
-
 }

@@ -43,8 +43,6 @@ class ActivityAthleteView @JvmOverloads constructor(
         if (athlete.profile == EMPTY) {
             val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_profile_medium)
             profileView.setImageDrawable(drawable)
-        } else {
-            //todo load from cache
         }
 
         fullNameView.text = athlete.fullName

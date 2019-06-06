@@ -16,14 +16,6 @@ class FeedPresenter(context: Context,
     private val executor = Executors.newCachedThreadPool()
     private val handler = Handler()
 
-//    private var athlete: SummaryAthleteUi
-//    private var activities: List<SummaryActivityUi>
-//
-//    init {
-//        athlete = repository.getLoggedInAthlete()
-//        activities = repository.getAthleteActivities()
-//    }
-
     override fun attachedView(view: FeedContract.View) {
         this.view = view
     }
@@ -42,26 +34,6 @@ class FeedPresenter(context: Context,
 
         return repository.getLoggedInAthlete()
     }
-
-//    override fun getActivity(position: Int): SummaryActivityUi {
-//        val activities = repository.getAthleteActivities()
-//
-//        return activities[position]
-//    }
-
-//    override fun loadActivities() {
-//        executor.execute {
-//            try {
-//                val activities = repository.getAthleteActivities()
-//
-//                handler.post { view.addActivities(activities) }
-//            } catch (e: Exception) {
-//                handler.post { view.showMessage("Check Internet connection and try again") }
-//            }
-//
-//        }
-////        return repository.getAthleteActivities()
-//    }
 
     override fun loadActivities(page: Int, callback: ICallback<List<SummaryActivityUi>>) {
         executor.execute {

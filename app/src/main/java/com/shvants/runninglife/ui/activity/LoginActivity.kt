@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 //            startActivityForResult(intent, 1)
 
             //test
-            handleTokenResponse("92ca57b7c7b01d5866ce00e4f71e58f460c9b7d9")
+            handleTokenResponse("f874ab9181a663bedbb79062cc98ec64d832ffc2")
         }
     }
 

@@ -26,6 +26,7 @@ object Converter {
     fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteModel?): SummaryAthleteUi {
         return SummaryAthleteUi(id = athleteDb?._id ?: 0L,
                 profile = athleteDb?.profile ?: "",
+                profileMedium = athleteDb?.profile_medium ?: "",
                 fullName = athleteDb?.fullname ?: "",
                 location = athleteDb?.location ?: "")
     }
@@ -36,6 +37,7 @@ object Converter {
 
         return SummaryAthleteUi(id = athleteGson.id ?: 0L,
                 profile = athleteGson.profile ?: "",
+                profileMedium = athleteGson.profileMedium ?: "",
                 fullName = fullName,
                 location = location)
     }
