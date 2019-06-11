@@ -14,6 +14,7 @@ import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.FeedContract
 import com.shvants.runninglife.ui.view.SummaryActivityView
 import com.shvants.runninglife.utils.ActivitiesDiffUtil
+import kotlinx.android.synthetic.main.layout_summary_item.view.*
 import java.lang.Boolean.FALSE
 
 
@@ -44,12 +45,10 @@ class FeedAdapter(context: Context,
 
         val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
         presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
-
-        val mapView = view.findViewById<ImageView>(R.id.summaryActivityMap)
-        presenter.loadActivityMap(mapView, activity, ImageType.DEFAULT)
+        presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
 
         view.setAthleteView(athlete)
-        view.setView(activities[position])
+        view.setView(activity)
     }
 
     override fun getItemCount() = activities.size

@@ -1,7 +1,6 @@
 package com.shvants.runninglife.ui.view
 
 import android.content.Context
-import android.text.format.DateFormat
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,8 +13,8 @@ import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.*
 import kotlinx.android.synthetic.main.activity_athlete_view.view.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
 
 class ActivityAthleteView @JvmOverloads constructor(
         context: Context,
@@ -56,15 +55,28 @@ class ActivityAthleteView @JvmOverloads constructor(
         startDateView.text = transformStartDate(startDate)
     }
 
-    private fun transformStartDate(startDate: String): String {
-        val formatter = SimpleDateFormat(INPUT_PATTERN, Locale.ENGLISH)
-        val start = formatter.parse(startDate)
+    private fun transformStartDate(startDate: String?): String {
+        val locale = resources.configuration.locale
 
-        return DateFormat.format(OUTPUT_PATTERN, start).toString()
+//        val pattern =
+//                if (locale == Locale.ENGLISH)
+//                    START_DATE_OUTPUT_PATTERN_EN
+//                else
+//                    START_DATE_OUTPUT_PATTERN_RU
+
+        if (startDate != null && startDate.isNotEmpty()) {
+            val formatter = SimpleDateFormat(START_DATE_INPUT_PATTERN, locale)
+            val start = formatter.parse(startDate)
+
+            return DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(start)
+        }
+
+        return ""
     }
 
     companion object {
-        const val INPUT_PATTERN = "yyyy-MM-dd'T'hh:mm:ss'Z'"
-        const val OUTPUT_PATTERN = "dd MMM yy hh:mm"
+        private const val START_DATE_INPUT_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        private const val START_DATE_OUTPUT_PATTERN_EN = "dd MMM yy hh:mm aa"
+        private const val START_DATE_OUTPUT_PATTERN_RU = "dd MMM yy HH:mm"
     }
 }

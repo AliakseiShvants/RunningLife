@@ -60,7 +60,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             handleTokenResponse("c14bd0f28355a37f778c0987aa0a3e62e8bba980")
         }
 
-        slideImage()
+        slideImages()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -134,7 +134,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         progressBar.visibility = View.INVISIBLE
     }
 
-    private fun slideImage() {
+    private fun slideImages() {
         val imgArr = arrayOf(
                 R.drawable.login_slider0,
                 R.drawable.login_slider1,

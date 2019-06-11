@@ -3,7 +3,7 @@ package com.shvants.runninglife.mvp.presenter
 import android.content.Context
 import android.graphics.Point
 import android.os.Handler
-import android.text.TextUtils
+import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import com.example.imageloader.ImageLoader
@@ -58,9 +58,7 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
     }
 
     override fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType) {
-        if (!TextUtils.isEmpty(activity.map)
-                && activity.startLatlng.isNotEmpty()
-                && activity.endLatlng.isNotEmpty()) {
+        if (activity.map != "") {
 
             val size = Point()
             display.getSize(size)
@@ -72,6 +70,8 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
                     size.x)
 
             imageLoader.load(view, mapUrlString, imageType)
+        } else {
+            view.visibility = View.GONE
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
+import com.example.imageloader.ImageLoader
 import com.google.android.material.navigation.NavigationView
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
@@ -97,6 +98,7 @@ class MainActivity : AppCompatActivity(),
     fun getAthleteProfile() = navAthleteView.navAthleteProfile
 
     override fun logout() {
+        ImageLoader.instance.clearCache()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }

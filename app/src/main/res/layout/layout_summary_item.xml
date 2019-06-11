@@ -14,7 +14,7 @@
         android:id="@+id/activityName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/two_intents"
+        android:paddingStart="@dimen/four_intents"
         android:textSize="@dimen/m_text_size"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
@@ -23,13 +23,12 @@
         android:id="@+id/summaryActivityData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/two_intents"
         app:layout_constraintTop_toBottomOf="@id/activityName" />
 
     <ImageView
         android:id="@+id/summaryActivityMap"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toBottomOf="@id/summaryActivityData" />
 

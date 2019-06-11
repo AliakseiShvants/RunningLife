@@ -70,6 +70,7 @@ object Converter {
         val result: ArrayList<SummaryActivityUi> = ArrayList()
 
         for (activityGson in list) {
+            val startDate = activityGson.startDate ?: ""
             val distance = convertDistanceToString(activityGson.distance?.toDouble())
             val avgSpeed = when (activityGson.type) {
                 ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.avgSpeed?.toDouble())
@@ -82,7 +83,7 @@ object Converter {
                     name = activityGson.name ?: "",
                     movingTime = movingTime,
                     type = activityGson.type ?: "",
-                    startDate = activityGson.startDate ?: "",
+                    startDate = startDate,
                     distance = distance,
                     avgSpeed = avgSpeed,
                     startLatlng = activityGson.startLatlng ?: FloatArray(0),
@@ -98,7 +99,7 @@ object Converter {
         return if (distance == ZERO_DOUBLE) {
             "$HYPHEN $KM"
         } else {
-            val distanceKm = distance?.div(1000)
+            val distanceKm = distance?.div(ONE_K)
             val formatDistance = DISTANCE_FORMAT.format(distanceKm)
 
             "$formatDistance $KM"
@@ -153,7 +154,7 @@ object Converter {
     }
 
     private fun convertAvgSpeedToString(avgSpeed: Double?): String {
-        val value = if (avgSpeed != null) ONE_HOUR * avgSpeed / ONE_K else "-"
+        val value = if (avgSpeed != null) ONE_HOUR * avgSpeed / ONE_K else HYPHEN
 
         return "$value $KM$SLASH$H"
     }

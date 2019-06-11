@@ -6,4 +6,5 @@ interface ILoader {
 
     fun load(imageView: ImageView, uri: String, imageType: ImageType)
 
+    fun clearCache()
 }

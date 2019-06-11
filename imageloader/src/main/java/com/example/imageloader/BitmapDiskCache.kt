@@ -14,7 +14,7 @@ class BitmapDiskCache : DiskCache<String, Bitmap> {
 
     override fun save(key: String, value: Bitmap): Boolean {
         return try {
-            val file = File(diskCachePath, Uri.parse(key).lastPathSegment)
+            val file = File(diskCachePath, Uri.parse(key).path)
             val stream = FileOutputStream(file)
 
             value.compress(Bitmap.CompressFormat.JPEG, BITMAP_QUALITY, stream)
@@ -28,12 +28,13 @@ class BitmapDiskCache : DiskCache<String, Bitmap> {
     }
 
     override fun load(key: String): Bitmap? =
-            BitmapFactory.decodeFile(File(diskCachePath, Uri.parse(key).lastPathSegment).toString())
+            BitmapFactory.decodeFile(File(diskCachePath, Uri.parse(key).path).toString())
 
     override fun clear() {
     }
 
     companion object {
         private const val BITMAP_QUALITY = 50
+        private val IMG_POSTFIX = "_RL_IMG"
     }
 }

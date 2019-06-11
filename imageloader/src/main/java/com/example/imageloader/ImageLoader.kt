@@ -3,7 +3,6 @@ package com.example.imageloader
 import android.graphics.*
 import android.os.Handler
 import android.os.Looper
-import android.text.TextUtils
 import android.view.View
 import android.widget.ImageView
 import androidx.collection.LruCache
@@ -18,18 +17,21 @@ open class ImageLoader private constructor() : ILoader {
     private val handler = Handler(Looper.getMainLooper())
     private val diskCache: DiskCache<String, Bitmap> = BitmapDiskCache()
 
-    private val lruCache = object : LruCache<String, Bitmap>((Runtime.getRuntime().maxMemory() / ONE_KB).toInt()) {
+    private val maxMemory = (Runtime.getRuntime().maxMemory() / ONE_KB).toInt()
+    private val cacheSize = maxMemory / EIGHT
+
+    private val memoryCache = object : LruCache<String, Bitmap>(cacheSize) {
         override fun sizeOf(key: String, value: Bitmap): Int {
             return value.byteCount / ONE_KB
         }
     }
 
     override fun load(imageView: ImageView, uri: String, imageType: ImageType) {
-        if (TextUtils.isEmpty(uri)) {
-            goneEmptyImage(imageView, uri)
-
-            return
-        }
+//        if (TextUtils.isEmpty(uri)) {
+//            goneEmptyImage(imageView, uri)
+//
+//            return
+//        }
 
         imageView.tag = uri
 
@@ -66,23 +68,24 @@ open class ImageLoader private constructor() : ILoader {
     }
 
     private fun goneEmptyImage(imageView: ImageView, uri: String) {
-        if (isImageShouldBeSet(imageView, uri)) {
-            handler.post { imageView.visibility = View.GONE }
-        }
+        handler.post { imageView.visibility = View.GONE }
+//        if (isImageShouldBeSet(imageView, uri)) {
+//
+//        }
     }
 
     private fun isImageShouldBeSet(imageView: ImageView, uri: String): Boolean {
-        return imageView.tag == null || imageView.tag != null && uri == imageView.tag
+        return /*imageView.tag == null || imageView.tag != null &&*/ uri == imageView.tag
     }
 
     private fun loadFromMemoryCache(uri: String, callback: ImageCallback<Bitmap>) {
-        synchronized(lruCache) {
-            val bitmap: Bitmap? = lruCache.get(uri)
+        synchronized(memoryCache) {
+            val bitmap: Bitmap? = memoryCache.get(uri)
 
             if (bitmap == null) {
                 callback.onLoadingError()
             } else {
-                callback.onResult(lruCache.get(uri) ?: bitmap)
+                callback.onResult(bitmap)
             }
         }
     }
@@ -92,7 +95,7 @@ open class ImageLoader private constructor() : ILoader {
 
         if (isImageShouldBeSet(imageView, uri)) {
             handler.post {
-                imageView.background = null
+                //                imageView.background = null
                 imageView.setImageBitmap(result)
             }
         }
@@ -144,7 +147,7 @@ open class ImageLoader private constructor() : ILoader {
             if (bitmap == null) {
                 callback.onLoadingError()
             } else {
-                callback.onResult(diskCache.load(uri) ?: bitmap)
+                callback.onResult(bitmap)
             }
         }
     }
@@ -175,8 +178,8 @@ open class ImageLoader private constructor() : ILoader {
             BitmapFactory.decodeStream(response.body()?.byteStream())
 
     private fun putInMemoryCache(uri: String, image: Bitmap) {
-        synchronized(lruCache) {
-            lruCache.put(uri, image)
+        synchronized(memoryCache) {
+            memoryCache.put(uri, image)
         }
     }
 
@@ -186,8 +189,21 @@ open class ImageLoader private constructor() : ILoader {
         }
     }
 
+    override fun clearCache() {
+        executor.execute {
+            synchronized(memoryCache) {
+                memoryCache.evictAll()
+            }
+
+            synchronized(diskCache) {
+                diskCache.clear()
+            }
+        }
+    }
+
     companion object {
         val instance = ImageLoader()
         private const val ONE_KB = 1024
+        private const val EIGHT = 8
     }
 }

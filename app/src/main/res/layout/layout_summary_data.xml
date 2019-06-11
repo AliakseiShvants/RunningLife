@@ -8,6 +8,7 @@
         android:id="@+id/firstItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/three_intents"
         android:layout_margin="@dimen/two_intents" />
 
     <com.shvants.runninglife.ui.view.DataItemView
