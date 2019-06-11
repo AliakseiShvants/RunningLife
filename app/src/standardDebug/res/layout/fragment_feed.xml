@@ -9,6 +9,7 @@
         android:id="@+id/joinSummitView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,6 +24,18 @@
             android:textColor="@color/colorPrimary" />
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/errTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:gravity="center"
+        android:padding="@dimen/one_intent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/s_text_size"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/joinSummitView" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -30,15 +43,4 @@
         app:layout_constraintTop_toBottomOf="@id/joinSummitView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:theme="@style/AppTheme.ProgressBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

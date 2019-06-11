@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -30,6 +29,11 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
     private var isLoading = FALSE
     private var page = AtomicInteger(1)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retainInstance = true
+    }
+
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -40,8 +44,8 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        feedPresenter = FeedPresenter(requireContext().applicationContext, this)
-        feedPresenter.attachedView(this)
+        feedPresenter = FeedPresenter(requireContext().applicationContext)
+        feedPresenter.attachView(this)
 
         feedAdapter = FeedAdapter(requireContext().applicationContext, feedPresenter)
 
@@ -65,23 +69,19 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
     }
 
     override fun showLoading() {
-        if (isLoading) {
-            recyclerView.visibility = View.GONE
-            progressBar.visibility = View.VISIBLE
-        }
+
     }
 
     override fun hideLoading() {
-        if (!isLoading) {
-            recyclerView.visibility = View.VISIBLE
-            progressBar.visibility = View.GONE
-        }
+        errTextView.visibility = View.INVISIBLE
     }
 
     override fun getLayoutResId() = R.layout.fragment_feed
 
-    override fun showMessage(message: String) =
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    override fun showMessage(message: String) {
+        errTextView.visibility = View.VISIBLE
+        errTextView.text = message
+    }
 
     override fun onItemClickListener(position: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -91,6 +91,8 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
+
+            hideLoading()
 
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
             val totalItemCount = layoutManager.itemCount
@@ -105,11 +107,8 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
 
     private val feedItemAnimator = object : DefaultItemAnimator() {}
 
-
     fun loadActivities(page: Int) {
 //        isLoading = TRUE
-        showLoading()
-
         feedAdapter.setShowLastItemAsLoading(TRUE)
 
         feedPresenter.loadActivities(page, object : ICallback<List<SummaryActivityUi>> {
@@ -117,7 +116,6 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
             override fun onResult(result: List<SummaryActivityUi>) {
                 feedAdapter.addActivities(result)
                 isLoading = FALSE
-                hideLoading()
             }
 
             override fun onError(message: String) {
@@ -128,7 +126,6 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
 
     companion object {
         fun getInstance() = FeedFragment()
-        const val PAGE_SIZE = 30
         const val MAX_VISIBLE_ITEMS = 4
     }
 }

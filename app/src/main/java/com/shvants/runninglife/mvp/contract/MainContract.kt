@@ -17,6 +17,8 @@ interface MainContract {
 //        fun setActionBarTitle(title: String)
 
         fun setAthlete(athlete: SummaryAthleteUi)
+
+        fun logout()
     }
 
     interface Presenter : BasePresenter<View> {

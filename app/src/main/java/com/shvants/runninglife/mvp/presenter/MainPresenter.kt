@@ -10,26 +10,23 @@ import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.repository.Repository
+import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.ui.activity.MainActivity
 import com.shvants.runninglife.ui.fragment.FeedFragment
 
-class MainPresenter(context: Context) : MainContract.Presenter {
+class MainPresenter(private val context: Context) : MainContract.Presenter {
 
     private var repository: Repository = Repository(context)
-    private lateinit var view: MainContract.View
+    private var view: MainContract.View? = null
     private val imageLoader = ImageLoader.instance
 
-    override fun attachedView(view: MainContract.View) {
+    override fun attachView(view: MainContract.View) {
         this.view = view
     }
 
     override fun detachView() {
 //        repository = null
-//        view = null
-    }
-
-    override fun onResume() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        view = null
     }
 
 
@@ -38,12 +35,12 @@ class MainPresenter(context: Context) : MainContract.Presenter {
         val profileView = (view as MainActivity).getAthleteProfile()
 
         imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
-        view.setAthlete(athlete)
+        view?.setAthlete(athlete)
     }
 
     override fun navigationItemSelected(item: MenuItem, drawerLayout: DrawerLayout) {
         navigateTo(item, drawerLayout)
-        view.setCheckedItem(item)
+        view?.setCheckedItem(item)
     }
 
     private fun navigateTo(item: MenuItem, drawerLayout: DrawerLayout) {
@@ -51,13 +48,18 @@ class MainPresenter(context: Context) : MainContract.Presenter {
             R.id.navItemFeed -> replaceFragment(FeedFragment.getInstance())
             R.id.navItemClubs -> replaceFragment(FeedFragment.getInstance())
             R.id.navItemSettings -> replaceFragment(FeedFragment.getInstance())
-            R.id.navItemExit -> replaceFragment(FeedFragment.getInstance())
+            R.id.navItemExit -> logout()
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        view.replaceFragment(fragment)
+        view?.replaceFragment(fragment)
+    }
+
+    private fun logout() {
+        StravaPreferences(context).logout()
+        view?.logout()
     }
 }

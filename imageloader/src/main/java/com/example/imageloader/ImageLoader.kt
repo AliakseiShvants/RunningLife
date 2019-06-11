@@ -1,10 +1,10 @@
 package com.example.imageloader
 
 import android.graphics.*
-import android.graphics.drawable.ColorDrawable
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
+import android.view.View
 import android.widget.ImageView
 import androidx.collection.LruCache
 import okhttp3.*
@@ -17,7 +17,6 @@ open class ImageLoader private constructor() : ILoader {
     private val executor = Executors.newCachedThreadPool()
     private val handler = Handler(Looper.getMainLooper())
     private val diskCache: DiskCache<String, Bitmap> = BitmapDiskCache()
-    private val emptyDrawable = ColorDrawable(Color.TRANSPARENT)
 
     private val lruCache = object : LruCache<String, Bitmap>((Runtime.getRuntime().maxMemory() / ONE_KB).toInt()) {
         override fun sizeOf(key: String, value: Bitmap): Int {
@@ -27,13 +26,12 @@ open class ImageLoader private constructor() : ILoader {
 
     override fun load(imageView: ImageView, uri: String, imageType: ImageType) {
         if (TextUtils.isEmpty(uri)) {
-            setEmptyImage(imageView, uri)
+            goneEmptyImage(imageView, uri)
 
             return
         }
 
         imageView.tag = uri
-        imageView.setImageDrawable(emptyDrawable)
 
         loadFromMemoryCache(uri, object : ImageCallback<Bitmap> {
 
@@ -57,9 +55,8 @@ open class ImageLoader private constructor() : ILoader {
                                 }
 
                                 override fun onLoadingError() {
-                                    setEmptyImage(imageView, uri)
+                                    goneEmptyImage(imageView, uri)
                                 }
-
                             })
                         }
                     })
@@ -68,9 +65,9 @@ open class ImageLoader private constructor() : ILoader {
         })
     }
 
-    private fun setEmptyImage(imageView: ImageView, uri: String) {
+    private fun goneEmptyImage(imageView: ImageView, uri: String) {
         if (isImageShouldBeSet(imageView, uri)) {
-            handler.post { imageView.setImageDrawable(emptyDrawable) }
+            handler.post { imageView.visibility = View.GONE }
         }
     }
 
@@ -85,7 +82,7 @@ open class ImageLoader private constructor() : ILoader {
             if (bitmap == null) {
                 callback.onLoadingError()
             } else {
-                callback.onResult(bitmap)
+                callback.onResult(lruCache.get(uri) ?: bitmap)
             }
         }
     }
@@ -147,7 +144,7 @@ open class ImageLoader private constructor() : ILoader {
             if (bitmap == null) {
                 callback.onLoadingError()
             } else {
-                callback.onResult(bitmap)
+                callback.onResult(diskCache.load(uri) ?: bitmap)
             }
         }
     }
@@ -192,6 +189,5 @@ open class ImageLoader private constructor() : ILoader {
     companion object {
         val instance = ImageLoader()
         private const val ONE_KB = 1024
-        private val maxSize = Runtime.getRuntime().maxMemory() / ONE_KB
     }
 }

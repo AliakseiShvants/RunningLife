@@ -26,6 +26,6 @@
         <item
             android:id="@+id/navItemExit"
             android:icon="@drawable/ic_exit_to_app"
-            android:title="@string/exit" />
+            android:title="@string/logout" />
     </group>
 </menu>

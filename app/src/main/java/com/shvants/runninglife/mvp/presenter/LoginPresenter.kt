@@ -7,14 +7,10 @@ import com.shvants.runninglife.repository.Repository
 class LoginPresenter(context: Context) : BasePresenter<LoginContract.View> {
 
     private var repository: Repository = Repository(context)
-    private lateinit var view: LoginContract.View
+    private var view: LoginContract.View? = null
 
-    override fun attachedView(view: LoginContract.View) {
+    override fun attachView(view: LoginContract.View) {
         this.view = view
-    }
-
-    override fun onResume() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     fun setLoggedInAthlete(): Long {
@@ -22,6 +18,6 @@ class LoginPresenter(context: Context) : BasePresenter<LoginContract.View> {
     }
 
     override fun detachView() {
-//        view = null
+        view = null
     }
 }

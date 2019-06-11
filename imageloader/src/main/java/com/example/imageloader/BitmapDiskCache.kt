@@ -30,7 +30,8 @@ class BitmapDiskCache : DiskCache<String, Bitmap> {
     override fun load(key: String): Bitmap? =
             BitmapFactory.decodeFile(File(diskCachePath, Uri.parse(key).lastPathSegment).toString())
 
-    override fun clear() {}
+    override fun clear() {
+    }
 
     companion object {
         private const val BITMAP_QUALITY = 50

@@ -47,6 +47,33 @@ object StravaHelper {
                 .build()
     }
 
+    fun getActivityMapUrl(polyline: String, start: FloatArray, end: FloatArray, width: Int): String {
+        val markerStart = "color:green|label:S|${start[0]},${start[1]}"
+        val markerEnd = "color:red|label:F|${end[0]},${end[1]}"
+        val height = (width / 1.6).toInt()
+        val size = "${width}x$height"
+
+        return HttpUrl.parse(GOOGLE_STATIC_MAP)
+                ?.newBuilder()
+                ?.addQueryParameter(PATH, "enc:$polyline")
+                ?.addQueryParameter(KEY, GOOGLE_API_KEY)
+                ?.addQueryParameter(MAPTYPE, MAPTYPE_VALUE)
+                ?.addQueryParameter(MARKERS, markerStart)
+                ?.addQueryParameter(MARKERS, markerEnd)
+                ?.addQueryParameter(SIZE, size)
+                ?.build()
+                .toString()
+    }
+
+    private const val GOOGLE_STATIC_MAP = "https://maps.googleapis.com/maps/api/staticmap"
+    private const val PATH = "path"
+    private const val KEY = "key"
+    private const val GOOGLE_API_KEY = "AIzaSyDXvElA5LGkMVBeMGtn9NMKax3PvnelKXM"
+    private const val MAPTYPE = "maptype"
+    private const val MAPTYPE_VALUE = "roadmap"
+    private const val MARKERS = "markers"
+    private const val SIZE = "size"
+
     private const val ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
     const val EMAIL = "ashvants91@gmail.com"

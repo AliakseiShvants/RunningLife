@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 //            startActivityForResult(intent, 1)
 
             //test
-            handleTokenResponse("f874ab9181a663bedbb79062cc98ec64d832ffc2")
+            handleTokenResponse("c14bd0f28355a37f778c0987aa0a3e62e8bba980")
         }
 
         slideImage()

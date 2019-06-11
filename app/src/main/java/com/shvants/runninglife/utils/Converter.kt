@@ -1,6 +1,5 @@
 package com.shvants.runninglife.utils
 
-import com.shvants.runninglife.model.database.SummaryActivityDb
 import com.shvants.runninglife.model.database.SummaryAthleteModel
 import com.shvants.runninglife.model.gson.ActivityType
 import com.shvants.runninglife.model.gson.SummaryActivityGson
@@ -42,31 +41,30 @@ object Converter {
                 location = location)
     }
 
-    fun convertActivitiesFromDbToUi(list: List<SummaryActivityDb>): List<SummaryActivityUi> {
-        val result: ArrayList<SummaryActivityUi> = ArrayList()
-
-        for (activityDb in list) {
-            val distance = convertDistanceToString(activityDb.DISTANCE.toDouble())
-            val avgSpeed = when (activityDb.TYPE) {
-                ActivityType.RIDE.name -> convertAvgSpeedToString(activityDb.AVG_SPEED.toDouble())
-                else -> convertAvgTempoToString(activityDb.AVG_SPEED.toDouble())
-            }
-            val movingTime = convertMovingTimeToString(activityDb.MOVING_TIME.toInt())
-
-            result.add(SummaryActivityUi.Builder()
-                    .id(activityDb.ID.toLong())
-                    .name(activityDb.NAME)
-                    .movingTime(movingTime)
-                    .type(activityDb.TYPE)
-                    .startDate(activityDb.START_DATE)
-                    .distance(distance)
-                    .avgSpeed(avgSpeed)
-                    .map(activityDb.MAP)
-                    .build())
-        }
-
-        return result
-    }
+//    fun convertActivitiesFromDbToUi(list: List<SummaryActivityDb>): List<SummaryActivityUi> {
+//        val result: ArrayList<SummaryActivityUi> = ArrayList()
+//
+//        for (activityDb in list) {
+//            val distance = convertDistanceToString(activityDb.DISTANCE.toDouble())
+//            val avgSpeed = when (activityDb.TYPE) {
+//                ActivityType.RIDE.name -> convertAvgSpeedToString(activityDb.AVG_SPEED.toDouble())
+//                else -> convertAvgTempoToString(activityDb.AVG_SPEED.toDouble())
+//            }
+//            val movingTime = convertMovingTimeToString(activityDb.MOVING_TIME.toInt())
+//
+//            result.add(SummaryActivityUi(
+//                    id = activityDb.ID.toLong(),
+//                    name = activityDb.NAME,
+//                    movingTime = movingTime,
+//                    type = activityDb.TYPE,
+//                    startDate = activityDb.START_DATE,
+//                    distance = distance,
+//                    avgSpeed = avgSpeed
+//            )
+//        }
+//
+//        return result
+//    }
 
     fun convertActivitiesFromGsonToUi(list: List<SummaryActivityGson>): List<SummaryActivityUi> {
         val result: ArrayList<SummaryActivityUi> = ArrayList()
@@ -79,15 +77,18 @@ object Converter {
             }
             val movingTime = convertMovingTimeToString(activityGson.movingTime)
 
-            result.add(SummaryActivityUi.Builder()
-                    .id(activityGson.id ?: 0)
-                    .name(activityGson.name ?: "")
-                    .movingTime(movingTime)
-                    .type(activityGson.type ?: "")
-                    .startDate(activityGson.startDate ?: "")
-                    .distance(distance).avgSpeed(avgSpeed)
-                    .map(activityGson.map?.summaryPolyline ?: "")
-                    .build())
+            result.add(SummaryActivityUi(
+                    id = activityGson.id ?: 0L,
+                    name = activityGson.name ?: "",
+                    movingTime = movingTime,
+                    type = activityGson.type ?: "",
+                    startDate = activityGson.startDate ?: "",
+                    distance = distance,
+                    avgSpeed = avgSpeed,
+                    startLatlng = activityGson.startLatlng ?: FloatArray(0),
+                    endLatlng = activityGson.endLatlng ?: FloatArray(0),
+                    map = activityGson.map?.summaryPolyline ?: ""
+            ))
         }
 
         return result

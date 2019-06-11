@@ -44,10 +44,8 @@ class SummaryActivityView @JvmOverloads constructor(
 
         dataView.setView(activity)
         nameView.text = activity.name
-        //todo load map
-        mapView.setImageResource(R.drawable.login_slider1)
-
     }
+
 
     @UiThread
     fun setAthleteView(athlete: SummaryAthleteUi) {

@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity(),
     private lateinit var toolbar: Toolbar
     private lateinit var navigationView: NavigationView
     private lateinit var navAthleteView: NavAthleteView
-    private lateinit var presenter: MainContract.Presenter
+    private var presenter: MainContract.Presenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +42,9 @@ class MainActivity : AppCompatActivity(),
         navigationView.setNavigationItemSelectedListener(this)
 
         navAthleteView = navigationView.getHeaderView(0).findViewById(R.id.navAthleteView)
-        presenter.attachedView(this)
-        presenter.loadAthlete()
+
+        presenter?.attachView(this)
+        presenter?.loadAthlete()
 
         navigationView.menu.performIdentifierAction(R.id.navItemFeed, 0)
     }
@@ -62,12 +64,12 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onDestroy() {
-        presenter.detachView()
+        presenter?.detachView()
         super.onDestroy()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        presenter.navigationItemSelected(item, drawerLayout)
+        presenter?.navigationItemSelected(item, drawerLayout)
         setActionBarTitle(item.title.toString())
 
         return true
@@ -94,4 +96,8 @@ class MainActivity : AppCompatActivity(),
 
     fun getAthleteProfile() = navAthleteView.navAthleteProfile
 
+    override fun logout() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish()
+    }
 }

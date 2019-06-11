@@ -8,7 +8,6 @@ import android.widget.ImageView
 import androidx.annotation.IntDef
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imageloader.ImageLoader
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
@@ -24,8 +23,6 @@ class FeedAdapter(context: Context,
 
     private var isShowLastAsLoading = FALSE
     private var inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    private val imageLoader = ImageLoader.instance
-    private var isLoading = FALSE
 
     private var athlete = presenter.getAthlete()
     var activities = mutableListOf<SummaryActivityUi>()
@@ -42,16 +39,17 @@ class FeedAdapter(context: Context,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        when (holder) {
-            is ActivityViewHolder -> {
-                val view = holder.itemView as SummaryActivityView
-                val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
+        val view = holder.itemView as SummaryActivityView
+        val activity = activities[position]
 
-                imageLoader.load(profileView, athlete.profileMedium, ImageType.ROUNDED)
-                view.setAthleteView(athlete)
-                view.setView(activities[position])
-            }
-        }
+        val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
+        presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
+
+        val mapView = view.findViewById<ImageView>(R.id.summaryActivityMap)
+        presenter.loadActivityMap(mapView, activity, ImageType.DEFAULT)
+
+        view.setAthleteView(athlete)
+        view.setView(activities[position])
     }
 
     override fun getItemCount() = activities.size

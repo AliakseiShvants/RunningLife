@@ -8,7 +8,7 @@
     <string name="feed">Feed</string>
 
     <string name="move_record">Move record</string>
-    <string name="exit">Exit</string>
+    <string name="logout">Logout</string>
 
     <string name="login">Log in</string>
     <string name="password">Password</string>

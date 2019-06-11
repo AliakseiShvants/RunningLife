@@ -3,7 +3,8 @@ package com.example.imageloader
 import android.graphics.Bitmap
 import androidx.annotation.WorkerThread
 
-interface DiskCache<K, V> {
+interface
+DiskCache<K, V> {
 
     @WorkerThread
     fun save(key: K, value: V): Boolean
