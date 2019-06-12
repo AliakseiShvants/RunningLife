@@ -45,7 +45,7 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
 
     private fun navigateTo(item: MenuItem, drawerLayout: DrawerLayout) {
         when (item.itemId) {
-            R.id.navItemFeed -> replaceFragment(FeedFragment.getInstance())
+            R.id.navActivitiesFeed -> replaceFragment(FeedFragment.getInstance())
             R.id.navItemClubs -> replaceFragment(FeedFragment.getInstance())
             R.id.navItemSettings -> replaceFragment(FeedFragment.getInstance())
             R.id.navItemExit -> logout()

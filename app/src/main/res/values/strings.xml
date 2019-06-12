@@ -5,7 +5,7 @@
     <string name="clubs">Clubs</string>
     <string name="settings">Settings</string>
     <string name="notification">Notification</string>
-    <string name="feed">Feed</string>
+    <string name="activities_feed">Activities Feed</string>
 
     <string name="move_record">Move record</string>
     <string name="logout">Logout</string>
@@ -33,4 +33,5 @@
     <string name="login_error">Error with authentication. \nCheck Internet connection and try again</string>
     <string name="navigation_drawer_open">open drawer</string>
     <string name="navigation_drawer_close">close drawer</string>
+    <string name="my_activities">My Activities</string>
 </resources>

@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(),
         presenter?.attachView(this)
         presenter?.loadAthlete()
 
-        navigationView.menu.performIdentifierAction(R.id.navItemFeed, 0)
+        navigationView.menu.performIdentifierAction(R.id.navActivitiesFeed, 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
