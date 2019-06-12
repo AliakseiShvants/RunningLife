@@ -4,11 +4,6 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/navItemRecord"
-            android:icon="@drawable/ic_record"
-            android:title="@string/move_record" />
-
-        <item
             android:id="@+id/navItemFeed"
             android:icon="@drawable/ic_feed"
             android:title="@string/feed" />

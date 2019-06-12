@@ -16,13 +16,12 @@ import com.shvants.runninglife.mvp.contract.FeedContract
 import com.shvants.runninglife.mvp.presenter.FeedPresenter
 import com.shvants.runninglife.ui.adapter.FeedAdapter
 import com.shvants.runninglife.utils.ICallback
-import com.shvants.runninglife.utils.listener.RecyclerItemClickListener
-import kotlinx.android.synthetic.summitDebug.fragment_feed.*
+import kotlinx.android.synthetic.standardDebug.fragment_feed.*
 import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 import java.util.concurrent.atomic.AtomicInteger
 
-class FeedFragment private constructor() : Fragment(), FeedContract.View, RecyclerItemClickListener {
+class FeedFragment private constructor() : Fragment(), FeedContract.View/*, RecyclerItemClickListener*/ {
 
     private lateinit var feedPresenter: FeedContract.Presenter
     private lateinit var feedAdapter: FeedAdapter
@@ -83,9 +82,9 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
         errTextView.text = message
     }
 
-    override fun onItemClickListener(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+//    override fun onItemClickListener(position: Int) {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+//    }
 
     private val feedScrollListener = object : RecyclerView.OnScrollListener() {
 
