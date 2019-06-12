@@ -17,7 +17,7 @@ import com.shvants.runninglife.mvp.presenter.FeedPresenter
 import com.shvants.runninglife.ui.adapter.FeedAdapter
 import com.shvants.runninglife.utils.ICallback
 import com.shvants.runninglife.utils.listener.RecyclerItemClickListener
-import kotlinx.android.synthetic.standardDebug.fragment_feed.*
+import kotlinx.android.synthetic.summitDebug.fragment_feed.*
 import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 import java.util.concurrent.atomic.AtomicInteger
