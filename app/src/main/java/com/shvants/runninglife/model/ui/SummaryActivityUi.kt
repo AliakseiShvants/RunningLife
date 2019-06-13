@@ -10,6 +10,7 @@ open class SummaryActivityUi(
         open var startDate: String,
         open var distance: String,
         open var avgSpeed: String,
+        open var kudosCount: Int,
         open var startLatlng: FloatArray,
         open var endLatlng: FloatArray,
         open var map: String) : MetaActivity

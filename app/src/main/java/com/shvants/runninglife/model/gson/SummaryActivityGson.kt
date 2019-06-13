@@ -11,6 +11,7 @@ data class SummaryActivityGson(
         @SerializedName("start_date_local") val startDate: String?,
         @SerializedName("distance") val distance: Float?,
         @SerializedName("average_speed") val avgSpeed: Float?,
+        @SerializedName("kudos_count") val kudosCount: Int?,
         @SerializedName("start_latlng") val startLatlng: FloatArray?,
         @SerializedName("end_latlng") val endLatlng: FloatArray?,
         @SerializedName("map") val map: MapGson?) : MetaActivity

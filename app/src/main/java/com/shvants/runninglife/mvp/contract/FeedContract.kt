@@ -5,6 +5,7 @@ import com.example.imageloader.ImageType
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.presenter.BasePresenter
+import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.ui.view.base.BaseView
 import com.shvants.runninglife.utils.ICallback
 
@@ -23,13 +24,15 @@ interface FeedContract {
 
         fun loadAthleteProfile(view: ImageView, url: String, imageType: ImageType)
 
-        fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType)
+        fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,
+                               callback: ICallback<List<String>>)
 
-//        fun size(): Int
+        fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType)
 
         fun getAthlete(): SummaryAthleteUi
 
-//        fun getActivity(position: Int): SummaryActivityUi
+        fun showErr(message: String)
 
+        fun handleKudos(view: LikeView, list: List<String>)
     }
 }

@@ -1,5 +1,6 @@
 package com.shvants.runninglife.strava
 
+import com.shvants.runninglife.utils.Const.SLASH
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 
@@ -18,13 +19,13 @@ object StravaHelper {
     }
 
     fun getAthleteActivitiesUrl(token: String, page: Int): String {
-        return HttpUrl.parse(ACTIVITIES_BASE_URL)
+        return HttpUrl.parse("$ATHLETE_BASE_URL$ACTIVITIES")
                 ?.newBuilder()
                 ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(BEFORE, BEFORE_VALUE)
                 ?.addQueryParameter(AFTER, AFTER_VALUE)
                 ?.addQueryParameter(PAGE, "$page")
-                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
+//                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
     }
@@ -48,14 +49,14 @@ object StravaHelper {
     }
 
     fun getActivityMapUrl(polyline: String, start: FloatArray, end: FloatArray, width: Int): String {
-        val markerStart = "color:green|label:S|${start[0]},${start[1]}"
-        val markerEnd = "color:red|label:F|${end[0]},${end[1]}"
+        val markerStart = "$START_MARKER${start[0]},${start[1]}"
+        val markerEnd = "$FINISH_MARKER${end[0]},${end[1]}"
         val height = (width / 1.6).toInt()
-        val size = "${width}x$height"
+        val size = "$width$X$height"
 
         return HttpUrl.parse(GOOGLE_STATIC_MAP)
                 ?.newBuilder()
-                ?.addQueryParameter(PATH, "enc:$polyline")
+                ?.addQueryParameter(PATH, "$ENC$polyline")
                 ?.addQueryParameter(KEY, GOOGLE_API_KEY)
                 ?.addQueryParameter(MAPTYPE, MAPTYPE_VALUE)
                 ?.addQueryParameter(MARKERS, markerStart)
@@ -65,38 +66,35 @@ object StravaHelper {
                 .toString()
     }
 
-    private const val GOOGLE_STATIC_MAP = "https://maps.googleapis.com/maps/api/staticmap"
-    private const val PATH = "path"
-    private const val KEY = "key"
-    private const val GOOGLE_API_KEY = "AIzaSyDXvElA5LGkMVBeMGtn9NMKax3PvnelKXM"
-    private const val MAPTYPE = "maptype"
-    private const val MAPTYPE_VALUE = "roadmap"
-    private const val MARKERS = "markers"
-    private const val SIZE = "size"
+    fun getKudoersUrl(token: String, id: Long): String {
+        return HttpUrl.parse("$ACTIVITIES_BASE_URL$SLASH$id$SLASH$KUDOS")
+                ?.newBuilder()
+                ?.addQueryParameter(ACCESS_TOKEN, token)
+                ?.addQueryParameter(PAGE, "1")
+                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
+                ?.build()
+                .toString()
+    }
 
     private const val ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
-    const val EMAIL = "ashvants91@gmail.com"
-    const val PASSWORD = "strava11091991"
-
-    const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete"
-    const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/athlete/activities"
+    private const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete"
+    private const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/activities"
     private const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
     const val LOGIN_URL = "https://www.strava.com/login"
     const val TOKEN_BASE_URL = "https://www.strava.com/oauth/token"
 
     const val ACCESS_TOKEN = "access_token"
-    const val AFTER = "after"
-    val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_YEAR_IN_SECONDS).toInt().toString()
+    private const val ACTIVITIES = "/activities"
+    private const val AFTER = "after"
+    private val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_YEAR_IN_SECONDS).toInt().toString()
     private const val APPROVAL_PROMPT = "approval_prompt"
     private const val APPROVAL_PROMPT_VALUE = "auto"
     const val APP_PREFERENCES = "Running_Life"
     const val ATHLETE_ID = "ATHLETE_ID"
-    const val AUTHORIZATION = "Authorization"
 
-    const val BEFORE = "before"
-    val BEFORE_VALUE = (System.currentTimeMillis() / 1000).toInt().toString()
-    val BEARER = "Bearer"
+    private const val BEFORE = "before"
+    private val BEFORE_VALUE = (System.currentTimeMillis() / 1000).toInt().toString()
 
     private const val CLIENT_ID = "client_id"
     private const val CLIENT_ID_VALUE = "34943"
@@ -104,27 +102,44 @@ object StravaHelper {
     private const val CLIENT_SECRET_VALUE = "16ed0e9f2a6c65ecb6c1b5d4d59f18dc266ba0cb"
     const val CODE = "code"
 
+    private const val ENC = "enc:"
     const val EXPIRES_AT = "expires_at"
     const val EXPIRES_IN = "expires_in"
 
+    private const val FINISH_MARKER = "color:red|label:F|"
+
+    private const val GOOGLE_API_KEY = "AIzaSyDXvElA5LGkMVBeMGtn9NMKax3PvnelKXM"
+    private const val GOOGLE_STATIC_MAP = "https://maps.googleapis.com/maps/api/staticmap"
     private const val GRANT_TYPE = "grant_type"
     private const val GRANT_TYPE_VALUE = "authorization_code"
 
-    const val PAGE = "page"
-    const val PAGE_VALUE = "1"
-    const val PER_PAGE = "per_page"
-    const val PER_PAGE_VALUE = "20"
+    private const val KEY = "key"
+    private const val KUDOS = "kudos"
 
-    const val REDIRECT_URI = "redirect_uri"
+    private const val MAPTYPE = "maptype"
+    private const val MAPTYPE_VALUE = "roadmap"
+    private const val MARKERS = "markers"
+
+    private const val PAGE = "page"
+    private const val PAGE_VALUE = "1"
+    private const val PATH = "path"
+    private const val PER_PAGE = "per_page"
+    private const val PER_PAGE_VALUE = "20"
+
+    private const val REDIRECT_URI = "redirect_uri"
     const val REDIRECT_URI_VALUE = "https://localhost/callback"
     const val REFRESH_TOKEN = "REFRESH_TOKEN"
     private const val RESPONSE_TYPE = "response_type"
     private const val RESPONSE_TYPE_VALUE = "code"
 
+    private const val SIZE = "size"
     private const val SCOPE = "scope"
     private const val SCOPE_VALUE = "activity:read"
+    private const val START_MARKER = "color:green|label:S|"
 
     const val TOKEN_TYPE = "TOKEN_TYPE"
+
+    private const val X = "x"
 
 //    var ACCESS_TOKEN = "Bearer 4144d0cb5ea57c2f8487fe2e9f674cf78fd0e6f5"
 

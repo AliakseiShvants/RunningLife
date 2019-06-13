@@ -12,8 +12,10 @@ import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.FeedContract
+import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.ui.view.SummaryActivityView
 import com.shvants.runninglife.utils.ActivitiesDiffUtil
+import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.layout_summary_item.view.*
 import java.lang.Boolean.FALSE
 
@@ -44,12 +46,26 @@ class FeedAdapter(context: Context,
         val activity = activities[position]
 
         val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
+        val likeView = view.findViewById<LikeView>(R.id.likePanel)
+
         presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
         presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
+        presenter.loadKudoersProfile(likeView, activity.id, ImageType.ROUNDED,
+                object : ICallback<List<String>> {
+                    override fun onResult(result: List<String>) {
+                        presenter.handleKudos(likeView, result)
+                    }
+
+                    override fun onError(message: String) {
+                        presenter.showErr(message)
+                    }
+
+                })
 
         view.setAthleteView(athlete)
         view.setView(activity)
     }
+
 
     override fun getItemCount() = activities.size
 

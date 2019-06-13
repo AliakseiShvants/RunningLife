@@ -4,7 +4,12 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/navItemFeed"
+            android:id="@+id/navMyActivities"
+            android:icon="@drawable/ic_person"
+            android:title="@string/my_activities" />
+
+        <item
+            android:id="@+id/navActivitiesFeed"
             android:icon="@drawable/ic_feed"
             android:title="@string/activities_feed" />
 

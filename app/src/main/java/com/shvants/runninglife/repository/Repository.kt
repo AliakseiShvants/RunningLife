@@ -59,5 +59,11 @@ class Repository(context: Context) {
         return dbRepo.setLoggedInAthlete(contentValues)
     }
 
+    fun getKudoers(id: Long): List<SummaryAthleteUi> {
+        val webKudoers = webRepo.getKudoers(preferences.accessToken, id)
+
+        return Converter.convertAthleteListFromGsonToUi(webKudoers)
+    }
+
 
 }

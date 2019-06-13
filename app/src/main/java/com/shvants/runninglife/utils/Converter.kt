@@ -41,6 +41,10 @@ object Converter {
                 location = location)
     }
 
+    fun convertAthleteListFromGsonToUi(list: List<SummaryAthleteGson>): List<SummaryAthleteUi> {
+        return list.map { convertAthleteFromGsonToUi(it) }
+    }
+
 //    fun convertActivitiesFromDbToUi(list: List<SummaryActivityDb>): List<SummaryActivityUi> {
 //        val result: ArrayList<SummaryActivityUi> = ArrayList()
 //
@@ -86,6 +90,7 @@ object Converter {
                     startDate = startDate,
                     distance = distance,
                     avgSpeed = avgSpeed,
+                    kudosCount = activityGson.kudosCount ?: 0,
                     startLatlng = activityGson.startLatlng ?: FloatArray(0),
                     endLatlng = activityGson.endLatlng ?: FloatArray(0),
                     map = activityGson.map?.summaryPolyline ?: ""

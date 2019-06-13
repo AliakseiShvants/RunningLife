@@ -13,7 +13,9 @@ import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.FeedContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaHelper
+import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.utils.ICallback
+import kotlinx.android.synthetic.main.like_view.view.*
 import java.util.concurrent.Executors
 
 class FeedPresenter(context: Context) : FeedContract.Presenter {
@@ -53,6 +55,43 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
         }
     }
 
+    override fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,
+                                    callback: ICallback<List<String>>) {
+        executor.execute {
+            try {
+                val kudoers = repository.getKudoers(id)
+                val profileUris = kudoers.map { it.profileMedium }
+
+                handler.post { callback.onResult(profileUris) }
+            } catch (e: Exception) {
+                handler.post { callback.onError("Check Internet connection and try again") }
+            }
+        }
+    }
+
+    override fun handleKudos(view: LikeView, list: List<String>) {
+        when (list.size) {
+            1 -> setKudosProfile(hashMapOf(view.firstImage to list[0]))
+
+            2 -> setKudosProfile(hashMapOf(view.firstImage to list[0],
+                    view.middleImage to list[1]))
+
+            3 -> setKudosProfile(hashMapOf(view.firstImage to list[0],
+                    view.middleImage to list[1],
+                    view.lastImage to list[2]))
+        }
+    }
+
+    private fun setKudosProfile(map: HashMap<ImageView, String>) {
+        map.forEach { (key, value) -> setKudoProfile(key, value) }
+    }
+
+    private fun setKudoProfile(key: ImageView, value: String) {
+        key.visibility = View.VISIBLE
+        loadAthleteProfile(key, value, ImageType.ROUNDED)
+    }
+
+
     override fun loadAthleteProfile(view: ImageView, url: String, imageType: ImageType) {
         imageLoader.load(view, url, imageType)
     }
@@ -73,5 +112,9 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
         } else {
             view.visibility = View.GONE
         }
+    }
+
+    override fun showErr(message: String) {
+        view?.showMessage(message)
     }
 }

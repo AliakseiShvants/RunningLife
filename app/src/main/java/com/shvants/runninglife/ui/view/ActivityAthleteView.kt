@@ -51,7 +51,7 @@ class ActivityAthleteView @JvmOverloads constructor(
         activityTypeIconView.setImageResource(resId)
     }
 
-    fun setStartDate(startDate: String) {
+    fun setStartDate(startDate: String?) {
         startDateView.text = transformStartDate(startDate)
     }
 

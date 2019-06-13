@@ -24,12 +24,14 @@ class SummaryActivityView @JvmOverloads constructor(
     private lateinit var athleteView: ActivityAthleteView
     private lateinit var nameView: TextView
     private lateinit var dataView: SummaryDataView
+    private lateinit var likeView: LikeView
     private lateinit var mapView: ImageView
 
     override fun onViewInflated(context: Context) {
         athleteView = activityAthlete
         nameView = activityName
         dataView = summaryActivityData
+        likeView = likePanel
         mapView = summaryActivityMap
     }
 
@@ -44,6 +46,7 @@ class SummaryActivityView @JvmOverloads constructor(
 
         dataView.setView(activity)
         nameView.text = activity.name
+        likeView.setView(activity)
     }
 
 

@@ -32,7 +32,7 @@ class StravaRequest {
         val request = Request
                 .Builder()
                 .url(url)
-                .header(StravaHelper.AUTHORIZATION, "${StravaHelper.BEARER} $token")
+                .header(AUTHORIZATION, "$BEARER $token")
                 .build()
         val response = httpClient
                 .newCall(request)
@@ -59,7 +59,7 @@ class StravaRequest {
         val httpClient = OkHttpClient()
         val request = Request
                 .Builder()
-                .header(StravaHelper.AUTHORIZATION, "${StravaHelper.BEARER} $token")
+                .header(AUTHORIZATION, "$BEARER $token")
                 .url(url)
                 .post(body)
                 .build()
@@ -68,5 +68,17 @@ class StravaRequest {
                 .execute()
 
         return response.body()?.string() ?: Const.EMPTY
+    }
+
+    fun makeKudoersRequest(token: String, id: Long): String {
+        val url = StravaHelper.getKudoersUrl(token, id)
+
+        return get(url)
+
+    }
+
+    companion object {
+        private const val AUTHORIZATION = "Authorization"
+        private const val BEARER = "Bearer"
     }
 }
