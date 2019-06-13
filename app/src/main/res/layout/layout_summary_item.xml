@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/four_intents"
+        android:paddingBottom="@dimen/one_intent"
         android:textSize="@dimen/m_text_size"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
@@ -25,19 +26,26 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/activityName" />
 
-    <ImageView
-        android:id="@+id/summaryActivityMap"
+    <LinearLayout
+        android:id="@+id/summaryActivityMapContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toBottomOf="@id/summaryActivityData" />
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/one_intent"
+        android:paddingBottom="@dimen/one_intent"
+        app:layout_constraintTop_toBottomOf="@id/summaryActivityData">
+
+        <ImageView
+            android:id="@+id/summaryActivityMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryActivityMap">
+        app:layout_constraintTop_toBottomOf="@id/summaryActivityMapContainer">
 
         <com.shvants.runninglife.ui.view.LikeView
             android:id="@+id/likePanel"
@@ -48,6 +56,4 @@
             android:id="@+id/mediaButtons"
             layout="@layout/layout_like_comment_panel" />
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

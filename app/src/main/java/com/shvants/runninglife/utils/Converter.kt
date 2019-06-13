@@ -2,8 +2,10 @@ package com.shvants.runninglife.utils
 
 import com.shvants.runninglife.model.database.SummaryAthleteModel
 import com.shvants.runninglife.model.gson.ActivityType
+import com.shvants.runninglife.model.gson.DetailedActivityGson
 import com.shvants.runninglife.model.gson.SummaryActivityGson
 import com.shvants.runninglife.model.gson.SummaryAthleteGson
+import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.utils.Const.*
@@ -69,6 +71,33 @@ object Converter {
 //
 //        return result
 //    }
+
+    fun convertDetailedActivityFromGsonToUi(activityGson: DetailedActivityGson): DetailedActivityUi {
+        val startDate = activityGson.startDate ?: ""
+        val distance = convertDistanceToString(activityGson.distance?.toDouble())
+        val avgSpeed = when (activityGson.type) {
+            ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.avgSpeed?.toDouble())
+            else -> convertAvgTempoToString(activityGson.avgSpeed?.toDouble())
+        }
+        val movingTime = convertMovingTimeToString(activityGson.movingTime)
+
+        return DetailedActivityUi(
+                id = activityGson.id ?: 0L,
+                name = activityGson.name ?: "",
+                movingTime = movingTime,
+                type = activityGson.type ?: "",
+                startDate = startDate,
+                distance = distance,
+                avgSpeed = avgSpeed,
+                kudosCount = activityGson.kudosCount ?: 0,
+                startLatlng = activityGson.startLatlng ?: FloatArray(0),
+                endLatlng = activityGson.endLatlng ?: FloatArray(0),
+                map = activityGson.map?.polyline ?: "",
+                elevation = activityGson.elevation?.toInt() ?: 0,
+                calories = activityGson.calories?.toInt() ?: 0,
+                avgHR = activityGson.avgHR?.toInt() ?: 0
+        )
+    }
 
     fun convertActivitiesFromGsonToUi(list: List<SummaryActivityGson>): List<SummaryActivityUi> {
         val result: ArrayList<SummaryActivityUi> = ArrayList()

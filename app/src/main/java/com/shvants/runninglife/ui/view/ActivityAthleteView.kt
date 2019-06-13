@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
-import androidx.annotation.UiThread
 import androidx.appcompat.content.res.AppCompatResources
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
@@ -36,16 +35,13 @@ class ActivityAthleteView @JvmOverloads constructor(
 
     override fun getLayoutResId() = R.layout.activity_athlete_view
 
-    @UiThread
-    override fun setView(athlete: SummaryAthleteUi?) {
-        if (athlete != null) {
-            if (athlete.profile == EMPTY) {
-                val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_profile_medium)
-                profileView.setImageDrawable(drawable)
-            }
-
-            fullNameView.text = athlete.fullName
+    override fun setView(athlete: SummaryAthleteUi) {
+        if (athlete.profile == EMPTY) {
+            val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_profile_medium)
+            profileView.setImageDrawable(drawable)
         }
+
+        fullNameView.text = athlete.fullName
     }
 
     fun setActivityTypeIcon(@DrawableRes resId: Int) {
@@ -55,6 +51,8 @@ class ActivityAthleteView @JvmOverloads constructor(
     fun setStartDate(startDate: String?) {
         startDateView.text = transformStartDate(startDate)
     }
+
+    fun getProfileView() = profileView
 
     private fun transformStartDate(startDate: String?): String {
         val locale = resources.configuration.locale

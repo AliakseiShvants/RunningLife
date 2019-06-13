@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        toolbar = findViewById(R.id.main_toolbar)
+        toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(),
         presenter?.attachView(this)
         presenter?.loadAthlete()
 
-        navigationView.menu.performIdentifierAction(R.id.navActivitiesFeed, 0)
+        navigationView.menu.performIdentifierAction(R.id.navMyActivities, 0)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

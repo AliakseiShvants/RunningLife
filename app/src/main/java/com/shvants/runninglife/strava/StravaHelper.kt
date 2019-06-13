@@ -1,6 +1,5 @@
 package com.shvants.runninglife.strava
 
-import com.shvants.runninglife.utils.Const.SLASH
 import okhttp3.FormBody
 import okhttp3.HttpUrl
 
@@ -25,7 +24,7 @@ object StravaHelper {
                 ?.addQueryParameter(BEFORE, BEFORE_VALUE)
                 ?.addQueryParameter(AFTER, AFTER_VALUE)
                 ?.addQueryParameter(PAGE, "$page")
-//                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
+                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
     }
@@ -67,7 +66,7 @@ object StravaHelper {
     }
 
     fun getKudoersUrl(token: String, id: Long): String {
-        return HttpUrl.parse("$ACTIVITIES_BASE_URL$SLASH$id$SLASH$KUDOS")
+        return HttpUrl.parse("$ACTIVITIES_BASE_URL$id$KUDOS")
                 ?.newBuilder()
                 ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(PAGE, "1")
@@ -76,16 +75,25 @@ object StravaHelper {
                 .toString()
     }
 
+    fun getActivityUrl(token: String, id: Long): String {
+        return HttpUrl.parse("$ACTIVITIES_BASE_URL$id")
+                ?.newBuilder()
+                ?.addQueryParameter(ACCESS_TOKEN, token)
+                ?.addQueryParameter(INCLUDE_ALL_EFFORTS, TRUE)
+                ?.build()
+                .toString()
+    }
+
     private const val ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
-    private const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete"
-    private const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/activities"
+    private const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete/"
+    private const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/activities/"
     private const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
     const val LOGIN_URL = "https://www.strava.com/login"
     const val TOKEN_BASE_URL = "https://www.strava.com/oauth/token"
 
     const val ACCESS_TOKEN = "access_token"
-    private const val ACTIVITIES = "/activities"
+    private const val ACTIVITIES = "activities"
     private const val AFTER = "after"
     private val AFTER_VALUE = (System.currentTimeMillis() / 1000 - ONE_YEAR_IN_SECONDS).toInt().toString()
     private const val APPROVAL_PROMPT = "approval_prompt"
@@ -106,6 +114,7 @@ object StravaHelper {
     const val EXPIRES_AT = "expires_at"
     const val EXPIRES_IN = "expires_in"
 
+    private const val FALSE = "false"
     private const val FINISH_MARKER = "color:red|label:F|"
 
     private const val GOOGLE_API_KEY = "AIzaSyDXvElA5LGkMVBeMGtn9NMKax3PvnelKXM"
@@ -113,8 +122,10 @@ object StravaHelper {
     private const val GRANT_TYPE = "grant_type"
     private const val GRANT_TYPE_VALUE = "authorization_code"
 
+    private const val INCLUDE_ALL_EFFORTS = "include_all_efforts"
+
     private const val KEY = "key"
-    private const val KUDOS = "kudos"
+    private const val KUDOS = "/kudos"
 
     private const val MAPTYPE = "maptype"
     private const val MAPTYPE_VALUE = "roadmap"
@@ -138,6 +149,7 @@ object StravaHelper {
     private const val START_MARKER = "color:green|label:S|"
 
     const val TOKEN_TYPE = "TOKEN_TYPE"
+    private const val TRUE = "true"
 
     private const val X = "x"
 

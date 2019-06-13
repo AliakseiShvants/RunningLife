@@ -71,12 +71,14 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
 
     override fun handleKudos(view: LikeView, list: List<String>) {
         when (list.size) {
+            0 -> {
+            }
             1 -> setKudosProfile(hashMapOf(view.firstImage to list[0]))
 
             2 -> setKudosProfile(hashMapOf(view.firstImage to list[0],
                     view.middleImage to list[1]))
 
-            3 -> setKudosProfile(hashMapOf(view.firstImage to list[0],
+            else -> setKudosProfile(hashMapOf(view.firstImage to list[0],
                     view.middleImage to list[1],
                     view.lastImage to list[2]))
         }

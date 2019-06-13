@@ -27,11 +27,11 @@ open class ImageLoader private constructor() : ILoader {
     }
 
     override fun load(imageView: ImageView, uri: String, imageType: ImageType) {
-//        if (TextUtils.isEmpty(uri)) {
-//            goneEmptyImage(imageView, uri)
-//
-//            return
-//        }
+        if (uri == "") {
+            goneEmptyImage(imageView, uri)
+
+            return
+        }
 
         imageView.tag = uri
 

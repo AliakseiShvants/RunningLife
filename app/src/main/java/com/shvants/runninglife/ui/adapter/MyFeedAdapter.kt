@@ -23,8 +23,8 @@ import kotlinx.android.synthetic.main.layout_summary_item.view.*
 import java.lang.Boolean.FALSE
 
 
-class FeedAdapter(private val context: Context,
-                  private val presenter: FeedContract.Presenter) :
+class MyFeedAdapter(private val context: Context,
+                    private val presenter: FeedContract.Presenter) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isShowLastAsLoading = FALSE
@@ -33,6 +33,8 @@ class FeedAdapter(private val context: Context,
     private var athlete = presenter.getAthlete()
     var activities = mutableListOf<SummaryActivityUi>()
         private set
+
+    var kudoersProfileUrls = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -51,18 +53,20 @@ class FeedAdapter(private val context: Context,
         val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
         val likeView = view.findViewById<LikeView>(R.id.likePanel)
 
-        presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
-        presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
         presenter.loadKudoersProfile(likeView, activity.id, ImageType.ROUNDED,
                 object : ICallback<List<String>> {
                     override fun onResult(result: List<String>) {
+                        kudoersProfileUrls.addAll(result)
                         presenter.handleKudos(likeView, result)
                     }
 
                     override fun onError(message: String) {
                         presenter.showErr(message)
                     }
-                })
+                }
+        )
+        presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
+        presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
 
         view.setAthleteView(athlete)
         view.setView(activity)
@@ -76,6 +80,7 @@ class FeedAdapter(private val context: Context,
 
         val intent = Intent(context, DetailedActivity::class.java)
         intent.putExtra("ACTIVITY_ID", id)
+        intent.putExtra("kudos", kudoersProfileUrls.toTypedArray())
 
         startActivity(context, intent, null)
     }

@@ -77,6 +77,12 @@ class StravaRequest {
 
     }
 
+    fun makeAthleteActivityRequest(token: String, id: Long): String {
+        val url = StravaHelper.getActivityUrl(token, id)
+
+        return get(url)
+    }
+
     companion object {
         private const val AUTHORIZATION = "Authorization"
         private const val BEARER = "Bearer"

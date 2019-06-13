@@ -2,7 +2,7 @@ package com.shvants.runninglife.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
+import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
@@ -22,11 +22,6 @@ class DetailedDataView @JvmOverloads constructor(
     private lateinit var fifthView: DataItemView
     private lateinit var sixthView: DataItemView
 
-    init {
-        View.inflate(context, getLayoutResId(), this)
-        onViewInflated(context)
-    }
-
     override fun getLayoutResId() = R.layout.layout_detailed_data
 
     override fun onViewInflated(context: Context) {
@@ -38,14 +33,13 @@ class DetailedDataView @JvmOverloads constructor(
         sixthView = sixth
     }
 
-    override fun setView(item: DetailedActivityUi?) {
-        if (item != null) {
-            firstView.setView(arrayOf("Distance", item.distance))
-            secondView.setView(arrayOf("Tempo", item.avgSpeed))
-            thirdView.setView(arrayOf("Time", item.movingTime))
-            forthView.setView(arrayOf("Elevation", item.elevation.toString()))
-            fifthView.setView(arrayOf("Calories", item.calories.toString()))
-            sixthView.setView(arrayOf("arg HR", item.avgHR.toString()))
-        }
+    @UiThread
+    override fun setView(item: DetailedActivityUi) {
+        firstView.setView(arrayOf("Distance", item.distance))
+        secondView.setView(arrayOf("Tempo", item.avgSpeed))
+        thirdView.setView(arrayOf("Time", item.movingTime))
+        forthView.setView(arrayOf("Elevation", item.elevation.toString()))
+        fifthView.setView(arrayOf("Calories", item.calories.toString()))
+        sixthView.setView(arrayOf("arg HR", item.avgHR.toString()))
     }
 }

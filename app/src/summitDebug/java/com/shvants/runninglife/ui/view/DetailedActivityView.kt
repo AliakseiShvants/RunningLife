@@ -7,36 +7,38 @@ import android.widget.TextView
 import androidx.annotation.UiThread
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.gson.ActivityType
-import com.shvants.runninglife.model.ui.SummaryActivityUi
+import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
-import kotlinx.android.synthetic.main.layout_summary_item.view.*
+import kotlinx.android.synthetic.summitDebug.layout_detailed_item.view.*
 
-class SummaryActivityView @JvmOverloads constructor(
+class DetailedActivityView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = NULL,
-        defStyleAttr: Int = ZERO) : BaseCustomView<SummaryActivityUi>,
+        defStyleAttr: Int = ZERO) : BaseCustomView<DetailedActivityUi>,
         BaseConstraintView(context, attrs, defStyleAttr) {
 
     private lateinit var athleteView: ActivityAthleteView
     private lateinit var nameView: TextView
-    private lateinit var dataView: SummaryDataView
+    private lateinit var dataView: DetailedDataView
     private lateinit var likeView: LikeView
     private lateinit var mapView: ImageView
 
     override fun onViewInflated(context: Context) {
-        athleteView = activityAthlete
-        nameView = activityName
-        dataView = summaryActivityData
-        likeView = likePanel
-        mapView = summaryActivityMap
+        athleteView = detailedActivityAthlete
+        nameView = detailedActivityName
+        dataView = detailedData
+        likeView = detailedLikePanel
+        mapView = detailedActivityMap
     }
 
+    override fun getLayoutResId() = R.layout.layout_detailed_item
+
     @UiThread
-    override fun setView(activity: SummaryActivityUi) {
+    override fun setView(activity: DetailedActivityUi) {
         when (activity.type) {
             ActivityType.RUN.title -> athleteView.setActivityTypeIcon(R.drawable.ic_run)
             ActivityType.RIDE.title -> athleteView.setActivityTypeIcon(R.drawable.ic_ride)
@@ -49,10 +51,11 @@ class SummaryActivityView @JvmOverloads constructor(
         likeView.setView(activity)
     }
 
+
     @UiThread
     fun setAthleteView(athlete: SummaryAthleteUi) {
         athleteView.setView(athlete)
     }
 
-    override fun getLayoutResId() = R.layout.layout_summary_item
+    fun getDetailedAthleteProfile() = athleteView.getProfileView()
 }

@@ -1,10 +1,7 @@
 package com.shvants.runninglife.repository
 
 import com.google.gson.Gson
-import com.shvants.runninglife.model.gson.ActivityListGson
-import com.shvants.runninglife.model.gson.AthleteListGson
-import com.shvants.runninglife.model.gson.SummaryActivityGson
-import com.shvants.runninglife.model.gson.SummaryAthleteGson
+import com.shvants.runninglife.model.gson.*
 import com.shvants.runninglife.strava.StravaRequest
 
 class WebRepository {
@@ -26,6 +23,13 @@ class WebRepository {
         val kudoersArr = Gson().fromJson(json, Array<SummaryAthleteGson>::class.java)
 
         return AthleteListGson(kudoersArr.toList()).getList()
+    }
+
+    fun getActivity(token: String, id: Long): DetailedActivityGson {
+        val json = StravaRequest().makeAthleteActivityRequest(token, id)
+        val activityGson = Gson().fromJson(json, DetailedActivityGson::class.java)
+
+        return activityGson
     }
 
 }

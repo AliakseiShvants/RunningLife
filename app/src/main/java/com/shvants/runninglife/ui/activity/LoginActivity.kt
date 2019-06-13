@@ -24,7 +24,6 @@ import java.util.concurrent.Executors
 
 class LoginActivity : AppCompatActivity(), LoginContract.View {
 
-    private val TAG = LoginActivity::class.simpleName
     private val executor = Executors.newCachedThreadPool()
     private val ERR_MSG = "Some error with login"
     private val ERR_JSON = "Invalid format of server response"
@@ -67,13 +66,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            showLoading()
 
             preferences.code = data?.getStringExtra(StravaHelper.CODE) ?: ""
 
             handleTokenResponse(preferences.code)
         } else {
-            hideLoading()
             showMessage(resources.getString(R.string.login_error))
         }
     }
@@ -121,17 +118,8 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun showMessage(message: String) {
-        hideLoading()
         errorView.visibility = View.VISIBLE
         errorView.text = message
-    }
-
-    override fun showLoading() {
-        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun hideLoading() {
-        progressBar.visibility = View.INVISIBLE
     }
 
     private fun slideImages() {

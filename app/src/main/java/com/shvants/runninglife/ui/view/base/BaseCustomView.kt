@@ -5,7 +5,7 @@ import androidx.annotation.LayoutRes
 
 interface BaseCustomView<T> {
 
-    fun setView(item: T?)
+    fun setView(item: T)
 
     fun onViewInflated(context: Context)
 

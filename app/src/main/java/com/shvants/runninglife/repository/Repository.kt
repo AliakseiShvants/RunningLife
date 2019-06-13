@@ -3,6 +3,7 @@ package com.shvants.runninglife.repository
 import android.content.ContentValues
 import android.content.Context
 import com.shvants.runninglife.database.Contract
+import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.strava.StravaPreferences
@@ -65,5 +66,9 @@ class Repository(context: Context) {
         return Converter.convertAthleteListFromGsonToUi(webKudoers)
     }
 
+    fun getActivity(id: Long): DetailedActivityUi {
+        val activityGson = webRepo.getActivity(preferences.accessToken, id)
 
+        return Converter.convertDetailedActivityFromGsonToUi(activityGson)
+    }
 }

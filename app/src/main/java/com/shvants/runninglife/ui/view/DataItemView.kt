@@ -28,11 +28,9 @@ class DataItemView @JvmOverloads constructor(
         dataItemValueView = dataItemValue
     }
 
-    override fun setView(item: Array<String>?) {
-        if (item != null) {
-            dataItemNameView.text = item[0]
-            dataItemValueView.text = item[1]
-        }
+    override fun setView(item: Array<String>) {
+        dataItemNameView.text = item[0]
+        dataItemValueView.text = if (item[1] != "0") item[1] else "-"
     }
 
     override fun getLayoutResId() = R.layout.layout_data_item

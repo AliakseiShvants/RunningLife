@@ -51,12 +51,12 @@ class AuthActivity : AppCompatActivity(), BaseView {
         authView.loadUrl(authUrl)
     }
 
-    override fun showLoading() {
+    fun showLoading() {
         progressBar.visibility = View.VISIBLE
         authView.visibility = View.GONE
     }
 
-    override fun hideLoading() {
+    fun hideLoading() {
         progressBar.visibility = View.GONE
         authView.visibility = View.VISIBLE
     }
