@@ -1,17 +1,20 @@
 package com.shvants.runninglife.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.IntDef
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.FeedContract
+import com.shvants.runninglife.ui.activity.DetailedActivity
 import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.ui.view.SummaryActivityView
 import com.shvants.runninglife.utils.ActivitiesDiffUtil
@@ -20,7 +23,7 @@ import kotlinx.android.synthetic.main.layout_summary_item.view.*
 import java.lang.Boolean.FALSE
 
 
-class FeedAdapter(context: Context,
+class FeedAdapter(private val context: Context,
                   private val presenter: FeedContract.Presenter) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -59,13 +62,23 @@ class FeedAdapter(context: Context,
                     override fun onError(message: String) {
                         presenter.showErr(message)
                     }
-
                 })
 
         view.setAthleteView(athlete)
         view.setView(activity)
+
+        view.setOnClickListener { showDetails(position) }
     }
 
+    private fun showDetails(position: Int) {
+        val activity = activities[position]
+        val id = activity.id
+
+        val intent = Intent(context, DetailedActivity::class.java)
+        intent.putExtra("ACTIVITY_ID", id)
+
+        startActivity(context, intent, null)
+    }
 
     override fun getItemCount() = activities.size
 

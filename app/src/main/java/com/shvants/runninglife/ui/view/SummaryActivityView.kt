@@ -36,17 +36,19 @@ class SummaryActivityView @JvmOverloads constructor(
     }
 
     @UiThread
-    override fun setView(activity: SummaryActivityUi) {
-        when (activity.type) {
-            ActivityType.RUN.title -> athleteView.setActivityTypeIcon(R.drawable.ic_run)
-            ActivityType.RIDE.title -> athleteView.setActivityTypeIcon(R.drawable.ic_ride)
+    override fun setView(activity: SummaryActivityUi?) {
+        if (activity != null) {
+            when (activity.type) {
+                ActivityType.RUN.title -> athleteView.setActivityTypeIcon(R.drawable.ic_run)
+                ActivityType.RIDE.title -> athleteView.setActivityTypeIcon(R.drawable.ic_ride)
+            }
+
+            athleteView.setStartDate(activity.startDate)
+
+            dataView.setView(activity)
+            nameView.text = activity.name
+            likeView.setView(activity)
         }
-
-        athleteView.setStartDate(activity.startDate)
-
-        dataView.setView(activity)
-        nameView.text = activity.name
-        likeView.setView(activity)
     }
 
 

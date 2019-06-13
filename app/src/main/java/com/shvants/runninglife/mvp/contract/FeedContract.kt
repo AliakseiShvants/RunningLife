@@ -31,6 +31,8 @@ interface FeedContract {
 
         fun getAthlete(): SummaryAthleteUi
 
+//        fun getActivity(position: Int): DetailedActivityUi
+
         fun showErr(message: String)
 
         fun handleKudos(view: LikeView, list: List<String>)

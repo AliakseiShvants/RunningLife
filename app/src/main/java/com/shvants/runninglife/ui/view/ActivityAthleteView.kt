@@ -37,14 +37,15 @@ class ActivityAthleteView @JvmOverloads constructor(
     override fun getLayoutResId() = R.layout.activity_athlete_view
 
     @UiThread
-    override fun setView(athlete: SummaryAthleteUi) {
+    override fun setView(athlete: SummaryAthleteUi?) {
+        if (athlete != null) {
+            if (athlete.profile == EMPTY) {
+                val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_profile_medium)
+                profileView.setImageDrawable(drawable)
+            }
 
-        if (athlete.profile == EMPTY) {
-            val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_profile_medium)
-            profileView.setImageDrawable(drawable)
+            fullNameView.text = athlete.fullName
         }
-
-        fullNameView.text = athlete.fullName
     }
 
     fun setActivityTypeIcon(@DrawableRes resId: Int) {

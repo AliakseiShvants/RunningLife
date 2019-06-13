@@ -20,10 +20,12 @@ class SummaryDataView @JvmOverloads constructor(
         onViewInflated(context)
     }
 
-    override fun setView(item: SummaryActivityUi) {
-        firstView.setView(arrayOf("Distance", item.distance))
-        secondView.setView(arrayOf("Tempo", item.avgSpeed))
-        thirdView.setView(arrayOf("Time", item.movingTime))
+    override fun setView(item: SummaryActivityUi?) {
+        if (item != null) {
+            firstView.setView(arrayOf("Distance", item.distance))
+            secondView.setView(arrayOf("Tempo", item.avgSpeed))
+            thirdView.setView(arrayOf("Time", item.movingTime))
+        }
     }
 
     private lateinit var firstView: DataItemView

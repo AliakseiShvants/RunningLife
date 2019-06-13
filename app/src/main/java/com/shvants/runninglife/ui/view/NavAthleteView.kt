@@ -30,8 +30,10 @@ class NavAthleteView @JvmOverloads constructor(
 
     override fun getLayoutResId() = R.layout.nav_athlete_view
 
-    override fun setView(athleteUi: SummaryAthleteUi) {
-        fullNameView.text = athleteUi.fullName
-        locationView.text = athleteUi.location
+    override fun setView(athleteUi: SummaryAthleteUi?) {
+        if (athleteUi != null) {
+            fullNameView.text = athleteUi.fullName
+            locationView.text = athleteUi.location
+        }
     }
 }

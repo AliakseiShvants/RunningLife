@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.FeedContract
 import com.shvants.runninglife.mvp.presenter.FeedPresenter
+import com.shvants.runninglife.ui.activity.DetailedActivity
 import com.shvants.runninglife.ui.adapter.FeedAdapter
 import com.shvants.runninglife.utils.ICallback
 import com.shvants.runninglife.utils.listener.RecyclerItemClickListener
@@ -24,7 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class FeedFragment private constructor() : Fragment(), FeedContract.View, RecyclerItemClickListener {
 
-    private lateinit var feedPresenter: FeedContract.Presenter
+    private lateinit var presenter: FeedContract.Presenter
     private lateinit var feedAdapter: FeedAdapter
     private var isLoading = FALSE
     private var page = AtomicInteger(1)
@@ -44,10 +46,10 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        feedPresenter = FeedPresenter(requireContext().applicationContext)
-        feedPresenter.attachView(this)
+        presenter = FeedPresenter(requireContext().applicationContext)
+        presenter.attachView(this)
 
-        feedAdapter = FeedAdapter(requireContext().applicationContext, feedPresenter)
+        feedAdapter = FeedAdapter(requireContext().applicationContext, presenter)
 
         val divider = DividerItemDecoration(context, LinearLayout.VERTICAL)
         divider.setDrawable(resources.getDrawable(R.drawable.divider))
@@ -64,7 +66,7 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
     }
 
     override fun onDestroyView() {
-        feedPresenter.detachView()
+        presenter.detachView()
         super.onDestroyView()
     }
 
@@ -84,7 +86,13 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
     }
 
     override fun onItemClickListener(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val activity = feedAdapter.activities[position]
+        val id = activity.id
+
+        val intent = Intent(requireContext(), DetailedActivity::class.java)
+        intent.putExtra("ACTIVITY_ID", id)
+
+        startActivity(intent)
     }
 
     private val feedScrollListener = object : RecyclerView.OnScrollListener() {
@@ -111,7 +119,7 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View, Recycl
 //        isLoading = TRUE
         feedAdapter.setShowLastItemAsLoading(TRUE)
 
-        feedPresenter.loadActivities(page, object : ICallback<List<SummaryActivityUi>> {
+        presenter.loadActivities(page, object : ICallback<List<SummaryActivityUi>> {
 
             override fun onResult(result: List<SummaryActivityUi>) {
                 feedAdapter.addActivities(result)

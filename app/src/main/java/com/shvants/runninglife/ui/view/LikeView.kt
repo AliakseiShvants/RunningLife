@@ -22,12 +22,14 @@ class LikeView @JvmOverloads constructor(
     private lateinit var lastImageView: ImageView
     private lateinit var countView: TextView
 
-    override fun setView(item: SummaryActivityUi) {
-        val count = item.kudosCount
+    override fun setView(item: SummaryActivityUi?) {
+        if (item != null) {
+            val count = item.kudosCount
 
-        countView.text = when (count) {
-            0 -> FIRST
-            else -> "$count $KUDOS"
+            countView.text = when (count) {
+                0 -> FIRST
+                else -> "$count $KUDOS"
+            }
         }
     }
 
