@@ -11,6 +11,9 @@ import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.mvp.contract.DetailedActivityContract
 import com.shvants.runninglife.mvp.presenter.DetailedActivityPresenter
 import com.shvants.runninglife.ui.view.DetailedActivityView
+import com.shvants.runninglife.utils.Const.ACTIVITY_ID
+import com.shvants.runninglife.utils.Const.KUDOS
+import com.shvants.runninglife.utils.Const.ZERO_LONG
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.activity_detailed_activity.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_item.*
@@ -37,7 +40,7 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
         presenter = DetailedActivityPresenter(this)
         presenter.attachView(this)
 
-        val id = intent.getLongExtra("ACTIVITY_ID", 0L)
+        val id = intent.getLongExtra(ACTIVITY_ID, ZERO_LONG)
 
         presenter.loadActivity(id, object : ICallback<DetailedActivityUi> {
 
@@ -77,7 +80,7 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
 //            )
         }
 
-        val kudosProfile = intent.getStringArrayExtra("kudos")
+        val kudosProfile = intent.getStringArrayExtra(KUDOS)
         presenter.handleKudos(detailedLikePanel, kudosProfile)
     }
 

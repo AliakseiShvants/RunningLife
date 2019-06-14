@@ -1,7 +1,7 @@
 package com.shvants.runninglife.model.ui
 
 open class SummaryActivityUi(
-        open var id: Long,
+        override var id: Long,
         open var name: String,
         open var movingTime: String,
         open var type: String,
@@ -11,4 +11,4 @@ open class SummaryActivityUi(
         open var kudosCount: Int,
         open var startLatlng: FloatArray,
         open var endLatlng: FloatArray,
-        open var map: String)
+        open var map: String) : EntityLongUi(id)

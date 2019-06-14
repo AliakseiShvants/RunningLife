@@ -1,19 +1,18 @@
 package com.shvants.runninglife.utils
 
 import com.shvants.runninglife.model.database.SummaryAthleteModel
-import com.shvants.runninglife.model.gson.ActivityType
-import com.shvants.runninglife.model.gson.DetailedActivityGson
-import com.shvants.runninglife.model.gson.SummaryActivityGson
-import com.shvants.runninglife.model.gson.SummaryAthleteGson
+import com.shvants.runninglife.model.gson.*
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
+import com.shvants.runninglife.model.ui.SummaryClubUi
 import com.shvants.runninglife.utils.Const.COLON
 import com.shvants.runninglife.utils.Const.COMMA
 import com.shvants.runninglife.utils.Const.DOT
 import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.Const.SLASH
 import com.shvants.runninglife.utils.Const.ZERO
+import com.shvants.runninglife.utils.Const.ZERO_LONG
 
 object Converter {
 
@@ -30,20 +29,20 @@ object Converter {
     private const val ONE_K = 1000
 
     fun convertAthleteFromDbToUi(athleteDb: SummaryAthleteModel?): SummaryAthleteUi {
-        return SummaryAthleteUi(id = athleteDb?._id ?: 0L,
-                profile = athleteDb?.profile ?: "",
-                profileMedium = athleteDb?.profile_medium ?: "",
-                fullName = athleteDb?.fullname ?: "",
-                location = athleteDb?.location ?: "")
+        return SummaryAthleteUi(id = athleteDb?._id ?: ZERO_LONG,
+                profile = athleteDb?.profile ?: EMPTY,
+                profileMedium = athleteDb?.profile_medium ?: EMPTY,
+                fullName = athleteDb?.fullname ?: EMPTY,
+                location = athleteDb?.location ?: EMPTY)
     }
 
     fun convertAthleteFromGsonToUi(athleteGson: SummaryAthleteGson): SummaryAthleteUi {
         val fullName = "${athleteGson.firstname} ${athleteGson.lastname}"
         val location = "${athleteGson.city}$COMMA ${athleteGson.state}$COMMA ${athleteGson.country}"
 
-        return SummaryAthleteUi(id = athleteGson.id ?: 0L,
-                profile = athleteGson.profile ?: "",
-                profileMedium = athleteGson.profileMedium ?: "",
+        return SummaryAthleteUi(id = athleteGson.id ?: ZERO_LONG,
+                profile = athleteGson.profile ?: EMPTY,
+                profileMedium = athleteGson.profileMedium ?: EMPTY,
                 fullName = fullName,
                 location = location)
     }
@@ -78,7 +77,7 @@ object Converter {
 //    }
 
     fun convertDetailedActivityFromGsonToUi(activityGson: DetailedActivityGson): DetailedActivityUi {
-        val startDate = activityGson.startDateLocal ?: ""
+        val startDate = activityGson.startDateLocal ?: EMPTY
         val distance = convertDistanceToString(activityGson.distance?.toDouble())
         val avgSpeed = when (activityGson.type) {
             ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.averageSpeed?.toDouble())
@@ -87,51 +86,61 @@ object Converter {
         val movingTime = convertMovingTimeToString(activityGson.movingTime)
 
         return DetailedActivityUi(
-                id = activityGson.id ?: 0L,
-                name = activityGson.name ?: "",
+                id = activityGson.id ?: ZERO_LONG,
+                name = activityGson.name ?: EMPTY,
                 movingTime = movingTime,
-                type = activityGson.type ?: "",
+                type = activityGson.type ?: EMPTY,
                 startDate = startDate,
                 distance = distance,
                 avgSpeed = avgSpeed,
-                kudosCount = activityGson.kudosCount ?: 0,
-                startLatlng = activityGson.startLatlng ?: FloatArray(0),
-                endLatlng = activityGson.endLatlng ?: FloatArray(0),
-                map = activityGson.map?.polyline ?: "",
-                elevation = activityGson.totalElevationGain?.toInt() ?: 0,
-                calories = activityGson.calories?.toInt() ?: 0,
-                avgHR = activityGson.averageHeartrate?.toInt() ?: 0
+                kudosCount = activityGson.kudosCount ?: ZERO,
+                startLatlng = activityGson.startLatlng ?: FloatArray(ZERO),
+                endLatlng = activityGson.endLatlng ?: FloatArray(ZERO),
+                map = activityGson.map?.polyline ?: EMPTY,
+                elevation = activityGson.totalElevationGain?.toInt() ?: ZERO,
+                calories = activityGson.calories?.toInt() ?: ZERO,
+                avgHR = activityGson.averageHeartrate?.toInt() ?: ZERO
         )
     }
 
-    fun convertActivitiesFromGsonToUi(list: List<SummaryActivityGson>): List<SummaryActivityUi> {
-        val result: ArrayList<SummaryActivityUi> = ArrayList()
-
-        for (activityGson in list) {
-            val startDate = activityGson.startDateLocal ?: ""
-            val distance = convertDistanceToString(activityGson.distance?.toDouble())
-            val avgSpeed = when (activityGson.type) {
-                ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.averageSpeed?.toDouble())
-                else -> convertAvgTempoToString(activityGson.averageSpeed?.toDouble())
-            }
-            val movingTime = convertMovingTimeToString(activityGson.movingTime)
-
-            result.add(SummaryActivityUi(
-                    id = activityGson.id ?: 0L,
-                    name = activityGson.name ?: "",
-                    movingTime = movingTime,
-                    type = activityGson.type ?: "",
-                    startDate = startDate,
-                    distance = distance,
-                    avgSpeed = avgSpeed,
-                    kudosCount = activityGson.kudosCount ?: 0,
-                    startLatlng = activityGson.startLatlng ?: FloatArray(0),
-                    endLatlng = activityGson.endLatlng ?: FloatArray(0),
-                    map = activityGson.map?.summaryPolyline ?: ""
-            ))
+    fun convertActivityFromGsonToUi(activityGson: SummaryActivityGson): SummaryActivityUi {
+        val startDate = activityGson.startDateLocal ?: EMPTY
+        val distance = convertDistanceToString(activityGson.distance?.toDouble())
+        val avgSpeed = when (activityGson.type) {
+            ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.averageSpeed?.toDouble())
+            else -> convertAvgTempoToString(activityGson.averageSpeed?.toDouble())
         }
+        val movingTime = convertMovingTimeToString(activityGson.movingTime)
 
-        return result
+        return SummaryActivityUi(
+                id = activityGson.id ?: ZERO_LONG,
+                name = activityGson.name ?: EMPTY,
+                movingTime = movingTime,
+                type = activityGson.type ?: EMPTY,
+                startDate = startDate,
+                distance = distance,
+                avgSpeed = avgSpeed,
+                kudosCount = activityGson.kudosCount ?: ZERO,
+                startLatlng = activityGson.startLatlng ?: FloatArray(ZERO),
+                endLatlng = activityGson.endLatlng ?: FloatArray(ZERO),
+                map = activityGson.map?.summaryPolyline ?: EMPTY)
+    }
+
+    fun convertActivitiesFromGsonToUi(activitiesGson: List<SummaryActivityGson>): List<SummaryActivityUi> {
+        return activitiesGson.map { convertActivityFromGsonToUi(it) }
+    }
+
+
+    fun convertClubFromGsonToUi(clubGson: SummaryClubGson): SummaryClubUi {
+        return SummaryClubUi(
+                id = clubGson.id ?: ZERO,
+                name = clubGson.name ?: EMPTY,
+                profileMedium = clubGson.profileMedium ?: EMPTY
+        )
+    }
+
+    fun convertClubsFromGsonToUi(clubsGson: List<SummaryClubGson>): List<SummaryClubUi> {
+        return clubsGson.map { convertClubFromGsonToUi(it) }
     }
 
     private fun convertDistanceToString(distance: Double?): String {

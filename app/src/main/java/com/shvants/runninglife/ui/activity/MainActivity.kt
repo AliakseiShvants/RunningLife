@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(),
     fun getAthleteProfile() = navAthleteView.navAthleteProfile
 
     override fun logout() {
-        ImageLoader.instance.clearCache()
+        ImageLoader.getInstance().clearCache()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }

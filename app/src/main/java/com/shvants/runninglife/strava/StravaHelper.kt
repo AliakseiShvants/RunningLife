@@ -69,7 +69,7 @@ object StravaHelper {
         return HttpUrl.parse("$ACTIVITIES_BASE_URL$id$KUDOS")
                 ?.newBuilder()
                 ?.addQueryParameter(ACCESS_TOKEN, token)
-                ?.addQueryParameter(PAGE, "1")
+                ?.addQueryParameter(PAGE, DEFAULT_PAGE)
                 ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
@@ -80,6 +80,16 @@ object StravaHelper {
                 ?.newBuilder()
                 ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(INCLUDE_ALL_EFFORTS, TRUE)
+                ?.build()
+                .toString()
+    }
+
+    fun getClubsUrl(token: String): String {
+        return HttpUrl.parse("$ATHLETE_BASE_URL$CLUBS")
+                ?.newBuilder()
+                ?.addQueryParameter(ACCESS_TOKEN, token)
+                ?.addQueryParameter(PAGE, DEFAULT_PAGE)
+                ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
     }
@@ -108,7 +118,10 @@ object StravaHelper {
     private const val CLIENT_ID_VALUE = "34943"
     private const val CLIENT_SECRET = "client_secret"
     private const val CLIENT_SECRET_VALUE = "16ed0e9f2a6c65ecb6c1b5d4d59f18dc266ba0cb"
+    private const val CLUBS = "/clubs"
     const val CODE = "code"
+
+    private const val DEFAULT_PAGE = "1"
 
     private const val ENC = "enc:"
     const val EXPIRES_AT = "expires_at"

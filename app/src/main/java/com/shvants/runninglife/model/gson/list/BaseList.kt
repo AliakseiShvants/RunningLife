@@ -1,4 +1,4 @@
-package com.shvants.runninglife.model.gson
+package com.shvants.runninglife.model.gson.list
 
 interface BaseList<T> {
 

@@ -27,7 +27,7 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
     private val executor = Executors.newCachedThreadPool()
     private val handler = Handler()
 
-    private val imageLoader = ImageLoader.instance
+    private val imageLoader = ImageLoader.getInstance()
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
 
     override fun attachView(view: MyFeedContract.View) {
@@ -49,7 +49,9 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
 
                 handler.post { callback.onResult(activities) }
             } catch (e: Exception) {
-                handler.post { callback.onError(Const.ERR.INTERNET_CONNECTION) }
+                handler.post {
+                    callback.onError("${Const.ERR.ACTIVITIES_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
+                }
             }
         }
     }
@@ -63,7 +65,9 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
 
                 handler.post { callback.onResult(profileUris) }
             } catch (e: Exception) {
-                handler.post { callback.onError(Const.ERR.INTERNET_CONNECTION) }
+                handler.post {
+                    callback.onError("${Const.ERR.KUDOS_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
+                }
             }
         }
     }

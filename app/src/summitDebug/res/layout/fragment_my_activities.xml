@@ -5,16 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <include
         android:id="@+id/errTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_red_dark"
-        android:gravity="center"
-        android:padding="@dimen/one_intent"
-        android:textColor="@color/white"
-        android:textSize="@dimen/s_text_size"
-        android:visibility="invisible"
+        layout="@layout/layout_err_message"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

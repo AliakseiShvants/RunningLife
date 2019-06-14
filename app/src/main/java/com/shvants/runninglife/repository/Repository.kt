@@ -6,6 +6,7 @@ import com.shvants.runninglife.database.Contract
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
+import com.shvants.runninglife.model.ui.SummaryClubUi
 import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.utils.Const.ONE
 import com.shvants.runninglife.utils.Const.ZERO
@@ -68,5 +69,12 @@ class Repository(context: Context) {
         val activityGson = webRepo.getActivity(preferences.accessToken, id)
 
         return Converter.convertDetailedActivityFromGsonToUi(activityGson)
+    }
+
+    fun getClubs(): List<SummaryClubUi> {
+        val clubsWeb = webRepo.getClubs(preferences.accessToken)
+        val clubs = Converter.convertClubsFromGsonToUi(clubsWeb)
+
+        return clubs
     }
 }

@@ -19,7 +19,7 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
 
     private var repository = Repository(context)
     private var view: MainContract.View? = null
-    private val imageLoader = ImageLoader.instance
+    private val imageLoader = ImageLoader.getInstance()
 
     override fun attachView(view: MainContract.View) {
         this.view = view

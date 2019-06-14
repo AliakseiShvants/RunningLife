@@ -1,6 +1,8 @@
 package com.shvants.runninglife.mvp.presenter
 
-interface BasePresenter<V> {
+import com.shvants.runninglife.mvp.contract.BaseContract
+
+interface BasePresenter<V> : BaseContract.Presenter {
 
     fun attachView(view: V)
 

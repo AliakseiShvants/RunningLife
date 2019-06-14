@@ -4,21 +4,23 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_margin="@dimen/two_intents"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/clubImage"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/clubTitle"
+            android:id="@+id/clubName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="@dimen/m_text_size" />
+            android:textSize="@dimen/xs_text_size" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

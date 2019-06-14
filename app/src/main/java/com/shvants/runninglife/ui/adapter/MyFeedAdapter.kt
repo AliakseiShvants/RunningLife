@@ -17,8 +17,10 @@ import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.ui.activity.DetailedActivity
 import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.ui.view.SummaryActivityView
-import com.shvants.runninglife.utils.ActivitiesDiffUtil
+import com.shvants.runninglife.utils.Const.ACTIVITY_ID
+import com.shvants.runninglife.utils.Const.KUDOS
 import com.shvants.runninglife.utils.ICallback
+import com.shvants.runninglife.utils.LongDiffUtil
 import kotlinx.android.synthetic.main.layout_summary_item.view.*
 import java.lang.Boolean.FALSE
 
@@ -81,8 +83,8 @@ class MyFeedAdapter(private val context: Context,
         val id = activity.id
 
         val intent = Intent(context, DetailedActivity::class.java)
-        intent.putExtra("ACTIVITY_ID", id)
-        intent.putExtra("kudos", kudoersProfileUrls.toTypedArray())
+        intent.putExtra(ACTIVITY_ID, id)
+        intent.putExtra(KUDOS, kudoersProfileUrls.toTypedArray())
 
         startActivity(context, intent, null)
     }
@@ -103,7 +105,7 @@ class MyFeedAdapter(private val context: Context,
     }
 
     private fun updateActivities(list: List<SummaryActivityUi>) {
-        val diffUtil = ActivitiesDiffUtil(activities, list)
+        val diffUtil = LongDiffUtil(activities, list)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
 
         activities.clear()

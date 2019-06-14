@@ -10,4 +10,39 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/errTextView"
+        layout="@layout/layout_err_message"
+        app:layout_constraintTop_toBottomOf="@id/clubsImage" />
+
+    <LinearLayout
+        android:id="@+id/yourClubsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray200"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/clubsImage">
+
+        <TextView
+            android:id="@+id/yourClubs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/one_intent"
+            android:text="@string/your_clubs" />
+
+        <TextView
+            android:id="@+id/clubsCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:padding="@dimen/one_intent" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/yourClubsContainer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

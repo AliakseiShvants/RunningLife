@@ -17,6 +17,7 @@ import com.shvants.runninglife.strava.StravaHelper
 import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.strava.StravaRequest
 import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.Const.MINUS_LONG
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.activity_login.*
@@ -57,7 +58,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 //            startActivityForResult(intent, 1)
 
             //test
-            handleTokenResponse("890e21fdf30d181f50f3a0e204ca6d09a3a5f43a")
+            handleTokenResponse("1dbfcb5a5a7e67b86551360f3f5a4ee72f7f9d7b")
         }
 
         slideImages()
@@ -68,7 +69,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
 
-            preferences.code = data?.getStringExtra(StravaHelper.CODE) ?: ""
+            preferences.code = data?.getStringExtra(StravaHelper.CODE) ?: EMPTY
 
             handleTokenResponse(preferences.code)
         } else {
@@ -81,7 +82,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             val tokenBody = StravaHelper.getTokenBody(code)
             val responseString = StravaRequest().post(StravaHelper.TOKEN_BASE_URL, tokenBody)
 
-            if (responseString != Const.EMPTY) {
+            if (responseString != EMPTY) {
                 try {
                     fillPreferences(responseString)
                 } catch (e: JsonSyntaxException) {
@@ -103,18 +104,18 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         if (oauthResponse != null) {
             preferences.athleteId = oauthResponse.athlete?.id ?: Const.ZERO_LONG
             preferences.fullName = "${oauthResponse.athlete?.firstname} ${oauthResponse.athlete?.lastname}"
-            preferences.profile = oauthResponse.athlete?.profile ?: Const.EMPTY
-            preferences.profileMedium = oauthResponse.athlete?.profileMedium ?: Const.EMPTY
+            preferences.profile = oauthResponse.athlete?.profile ?: EMPTY
+            preferences.profileMedium = oauthResponse.athlete?.profileMedium ?: EMPTY
             preferences.location = "${oauthResponse.athlete?.city}${Const.COMMA} " +
                     "${oauthResponse.athlete?.state}"
-            preferences.sex = oauthResponse.athlete?.sex ?: Const.EMPTY
+            preferences.sex = oauthResponse.athlete?.sex ?: EMPTY
             preferences.summit = oauthResponse.athlete?.summit ?: false
 
-            preferences.accessToken = oauthResponse.accessToken ?: Const.EMPTY
+            preferences.accessToken = oauthResponse.accessToken ?: EMPTY
             preferences.expiresAt = oauthResponse.expiresAt ?: Const.ZERO
             preferences.expiresIn = oauthResponse.expiresIn ?: Const.ZERO
-            preferences.refreshToken = oauthResponse.refreshToken ?: Const.EMPTY
-            preferences.tokenType = oauthResponse.tokenType ?: Const.EMPTY
+            preferences.refreshToken = oauthResponse.refreshToken ?: EMPTY
+            preferences.tokenType = oauthResponse.tokenType ?: EMPTY
         }
     }
 

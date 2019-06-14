@@ -3,6 +3,7 @@ package com.shvants.runninglife.ui.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     private lateinit var myFeedAdapter: MyFeedAdapter
     private var isLoading = FALSE
     private var page = AtomicInteger(1)
+    private val feedItemAnimator = object : DefaultItemAnimator() {}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -56,7 +58,7 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
 
     override fun showMessage(message: String) {
         errTextView.visibility = View.VISIBLE
-        errTextView.text = message
+        (errTextView as TextView).text = message
     }
 
     private val feedScrollListener = object : RecyclerView.OnScrollListener() {
@@ -74,8 +76,6 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
             }
         }
     }
-
-    private val feedItemAnimator = object : DefaultItemAnimator() {}
 
     fun loadActivities(page: Int) {
         myFeedAdapter.setShowLastItemAsLoading(TRUE)

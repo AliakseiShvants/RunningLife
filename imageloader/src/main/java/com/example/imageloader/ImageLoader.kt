@@ -198,7 +198,7 @@ open class ImageLoader private constructor() : ILoader {
     }
 
     companion object {
-        val instance = ImageLoader()
+        fun getInstance() = ImageLoader()
         private const val ONE_KB = 1024
         private const val EIGHT = 8
     }

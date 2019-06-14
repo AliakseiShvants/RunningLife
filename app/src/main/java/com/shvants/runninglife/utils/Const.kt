@@ -18,8 +18,10 @@ object Const {
     const val LONG = "LONG"
     const val STRING = "STRING"
 
+    const val ACTIVITY_ID = "ACTIVITY_ID"
     const val ATHLETE_ID = "ATHLETE_ID"
     const val FULLNAME = "FULLNAME"
+    const val KUDOS = "KUDOS"
     const val LOCATION = "LOCATION"
     const val PROFILE_MEDIUM = "PROFILE_MEDIUM"
     const val PROFILE = "PROFILE"
@@ -53,5 +55,8 @@ object Const {
 
     object ERR {
         const val INTERNET_CONNECTION = "Check Internet connection and try again"
+        const val ACTIVITIES_LOAD_ERR = "Can't load your activities."
+        const val ACTIVITY_LOAD_ERR = "Can't load your activity."
+        const val KUDOS_LOAD_ERR = "Can't load your kudos."
     }
 }

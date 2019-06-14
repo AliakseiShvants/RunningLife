@@ -13,6 +13,8 @@ import com.shvants.runninglife.mvp.contract.DetailedActivityContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaHelper
 import com.shvants.runninglife.ui.view.LikeView
+import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.like_view.view.*
 import java.lang.ref.WeakReference
@@ -23,7 +25,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
     private var view: DetailedActivityContract.View? = null
     private var repository: WeakReference<Repository> = WeakReference(Repository(context))
 
-    private val imageLoader = ImageLoader.instance
+    private val imageLoader = ImageLoader.getInstance()
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
 
     private val executor = Executors.newCachedThreadPool()
@@ -50,6 +52,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
 
                 handler.post { if (activity != null) callback.onResult(activity) }
             } catch (e: Exception) {
+                view?.showMessage("${Const.ERR.ACTIVITY_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
             }
         }
     }
@@ -59,7 +62,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
     }
 
     private fun prepareMapUrl(activity: DetailedActivityUi): String =
-            if (activity.map != "") {
+            if (activity.map != EMPTY) {
                 val size = Point()
                 display.getSize(size)
 
@@ -69,7 +72,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
                         activity.endLatlng,
                         size.x)
             } else {
-                ""
+                EMPTY
             }
 
     override fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,

@@ -34,7 +34,7 @@ class BitmapDiskCache : DiskCache<String, Bitmap> {
     }
 
     companion object {
-        private const val BITMAP_QUALITY = 50
+        private const val BITMAP_QUALITY = 100
         private val IMG_POSTFIX = "_RL_IMG"
     }
 }
