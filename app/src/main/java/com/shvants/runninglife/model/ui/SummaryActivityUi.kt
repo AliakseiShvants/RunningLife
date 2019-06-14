@@ -1,7 +1,5 @@
 package com.shvants.runninglife.model.ui
 
-import com.shvants.runninglife.model.base.MetaActivity
-
 open class SummaryActivityUi(
         open var id: Long,
         open var name: String,
@@ -13,4 +11,4 @@ open class SummaryActivityUi(
         open var kudosCount: Int,
         open var startLatlng: FloatArray,
         open var endLatlng: FloatArray,
-        open var map: String) : MetaActivity
+        open var map: String)

@@ -47,9 +47,8 @@ class DetailedActivityView @JvmOverloads constructor(
 
         dataView.setView(activity)
         nameView.text = activity.name
-        likeView.setView(activity)
+        likeView.seView(activity)
     }
-
 
     @UiThread
     fun setAthleteView(athlete: SummaryAthleteUi) {

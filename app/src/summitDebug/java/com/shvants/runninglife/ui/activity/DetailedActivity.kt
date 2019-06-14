@@ -20,7 +20,7 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
 
     private lateinit var presenter: DetailedActivityContract.Presenter
     private lateinit var detailedActivityView: DetailedActivityView
-    private var activity = DetailedActivityUi()
+//    private var activity = DetailedActivityUi
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +42,12 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
         presenter.loadActivity(id, object : ICallback<DetailedActivityUi> {
 
             override fun onResult(result: DetailedActivityUi) {
-                activity = result
+//                activity = result
                 supportActionBar?.title = result.type
                 detailedActivityView.setView(result)
 
                 presenter.loadMap(detailedActivity.detailedActivityMap,
-                        activity,
+                        result,
                         ImageType.DEFAULT)
             }
 

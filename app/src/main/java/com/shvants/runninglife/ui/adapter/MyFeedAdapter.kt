@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
-import com.shvants.runninglife.mvp.contract.FeedContract
+import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.ui.activity.DetailedActivity
 import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.ui.view.SummaryActivityView
@@ -24,13 +24,13 @@ import java.lang.Boolean.FALSE
 
 
 class MyFeedAdapter(private val context: Context,
-                    private val presenter: FeedContract.Presenter) :
+                    private val presenter: MyFeedContract.Presenter) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var isShowLastAsLoading = FALSE
     private var inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    private var athlete = presenter.getAthlete()
+    private val athlete = presenter.getAthlete()
     var activities = mutableListOf<SummaryActivityUi>()
         private set
 
@@ -65,12 +65,14 @@ class MyFeedAdapter(private val context: Context,
                     }
                 }
         )
-        presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
+
+        if (athlete != null) {
+            presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
+            view.setAthleteView(athlete)
+        }
+
         presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
-
-        view.setAthleteView(athlete)
         view.setView(activity)
-
         view.setOnClickListener { showDetails(position) }
     }
 

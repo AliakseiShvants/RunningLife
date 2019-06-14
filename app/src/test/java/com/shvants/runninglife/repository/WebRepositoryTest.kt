@@ -8,7 +8,7 @@ class WebRepositoryTest {
     @Test
     fun athlete_activities_is_correct() {
         val token = "1430afb96be60bf79bf9ce4a1031399b932a5e76"
-        val list = WebRepository().getAthleteActivities(token)
+        val list = WebRepository().getAthleteActivities(token, 1)
 
         Assert.assertNotNull(list)
     }

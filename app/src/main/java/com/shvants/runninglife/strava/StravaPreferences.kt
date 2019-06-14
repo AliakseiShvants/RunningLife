@@ -57,7 +57,7 @@ class StravaPreferences(context: Context) {
                 .putInt(EXPIRES_AT, value)
                 .apply()
 
-    var expires_in: Int
+    var expiresIn: Int
         get() = preferences.getInt(EXPIRES_IN, ZERO)
         set(value) = preferences.edit()
                 .putInt(EXPIRES_IN, value)

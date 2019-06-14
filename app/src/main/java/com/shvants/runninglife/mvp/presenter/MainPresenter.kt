@@ -16,7 +16,7 @@ import com.shvants.runninglife.ui.fragment.MyFeedFragment
 
 class MainPresenter(private val context: Context) : MainContract.Presenter {
 
-    private var repository: Repository = Repository(context)
+    private var repository = Repository(context)
     private var view: MainContract.View? = null
     private val imageLoader = ImageLoader.instance
 
@@ -25,10 +25,8 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
     }
 
     override fun detachView() {
-//        repository = null
         view = null
     }
-
 
     override fun loadAthlete() {
         val athlete = repository.getLoggedInAthlete()

@@ -2,8 +2,10 @@ package com.shvants.runninglife.utils
 
 object Const {
 
+    const val ONE = 1
     const val ZERO = 0
     const val ZERO_LONG = 0L
+    const val MINUS_LONG = -1L
     const val ZERO_DOUBLE = 0.0
     const val DOT = "."
     const val COLON = ":"
@@ -48,4 +50,7 @@ object Const {
         val AVG_WATTS = "AVG_WATTS"
     }
 
+    object ERR {
+        const val INTERNET_CONNECTION = "Check Internet connection and try again"
+    }
 }

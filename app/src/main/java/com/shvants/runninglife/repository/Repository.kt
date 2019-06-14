@@ -7,6 +7,8 @@ import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.strava.StravaPreferences
+import com.shvants.runninglife.utils.Const.ONE
+import com.shvants.runninglife.utils.Const.ZERO
 import com.shvants.runninglife.utils.Converter
 
 class Repository(context: Context) {
@@ -15,11 +17,6 @@ class Repository(context: Context) {
     private val webRepo = WebRepository()
     private val preferences = StravaPreferences(context)
 
-
-    //detailedAthlete
-//    fun getAthlete(): MetaAthlete {
-//        return dbRepo.getAthlete(id) ?: webRepo.getAthlete(id)
-//    }
     fun getLoggedInAthlete(): SummaryAthleteUi {
         val athleteDb = dbRepo.getLoggedInAthlete(preferences.athleteId)
 
@@ -55,7 +52,7 @@ class Repository(context: Context) {
             put(Contract.PROFILE_MEDIUM, preferences.profileMedium)
             put(Contract.AthleteEntry.LOCATION, preferences.location)
             put(Contract.SEX, preferences.sex)
-            put(Contract.SUMMIT, if (preferences.summit) 1 else 0)
+            put(Contract.SUMMIT, if (preferences.summit) ONE else ZERO)
         }
 
         return dbRepo.setLoggedInAthlete(contentValues)

@@ -10,17 +10,19 @@ import com.example.imageloader.ImageLoader
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
-import com.shvants.runninglife.mvp.contract.FeedContract
+import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaHelper
 import com.shvants.runninglife.ui.view.LikeView
+import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.like_view.view.*
 import java.util.concurrent.Executors
 
-class FeedPresenter(context: Context) : FeedContract.Presenter {
+class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
 
-    private var view: FeedContract.View? = null
+    private var view: MyFeedContract.View? = null
     private val repository = Repository(context)
     private val executor = Executors.newCachedThreadPool()
     private val handler = Handler()
@@ -28,7 +30,7 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
     private val imageLoader = ImageLoader.instance
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
 
-    override fun attachView(view: FeedContract.View) {
+    override fun attachView(view: MyFeedContract.View) {
         this.view = view
     }
 
@@ -36,10 +38,7 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
         this.view = null
     }
 
-//    override fun size() = activities.size
-
     override fun getAthlete(): SummaryAthleteUi {
-
         return repository.getLoggedInAthlete()
     }
 
@@ -50,7 +49,7 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
 
                 handler.post { callback.onResult(activities) }
             } catch (e: Exception) {
-                handler.post { callback.onError("Check Internet connection and try again") }
+                handler.post { callback.onError(Const.ERR.INTERNET_CONNECTION) }
             }
         }
     }
@@ -64,7 +63,7 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
 
                 handler.post { callback.onResult(profileUris) }
             } catch (e: Exception) {
-                handler.post { callback.onError("Check Internet connection and try again") }
+                handler.post { callback.onError(Const.ERR.INTERNET_CONNECTION) }
             }
         }
     }
@@ -99,7 +98,7 @@ class FeedPresenter(context: Context) : FeedContract.Presenter {
     }
 
     override fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType) {
-        if (activity.map != "") {
+        if (activity.map != EMPTY) {
 
             val size = Point()
             display.getSize(size)

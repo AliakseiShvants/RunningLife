@@ -17,6 +17,7 @@ import com.shvants.runninglife.strava.StravaHelper
 import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.strava.StravaRequest
 import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.MINUS_LONG
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
@@ -91,7 +92,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
             val result = presenter.setLoggedInAthlete()
 
             handler.post {
-                if (result != -1L) callback.onResult(result) else callback.onError(ERR_MSG)
+                if (result != MINUS_LONG) callback.onResult(result) else callback.onError(ERR_MSG)
             }
         }
     }
@@ -111,7 +112,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
             preferences.accessToken = oauthResponse.accessToken ?: Const.EMPTY
             preferences.expiresAt = oauthResponse.expiresAt ?: Const.ZERO
-            preferences.expires_in = oauthResponse.expiresIn ?: Const.ZERO
+            preferences.expiresIn = oauthResponse.expiresIn ?: Const.ZERO
             preferences.refreshToken = oauthResponse.refreshToken ?: Const.EMPTY
             preferences.tokenType = oauthResponse.tokenType ?: Const.EMPTY
         }

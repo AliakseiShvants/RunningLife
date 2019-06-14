@@ -14,8 +14,6 @@ interface MainContract {
 
         fun setCheckedItem(item: MenuItem)
 
-//        fun setActionBarTitle(title: String)
-
         fun setAthlete(athlete: SummaryAthleteUi)
 
         fun logout()

@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
-import com.shvants.runninglife.mvp.contract.FeedContract
-import com.shvants.runninglife.mvp.presenter.FeedPresenter
+import com.shvants.runninglife.mvp.contract.MyFeedContract
+import com.shvants.runninglife.mvp.presenter.MyFeedPresenter
 import com.shvants.runninglife.ui.adapter.MyFeedAdapter
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
@@ -18,9 +18,9 @@ import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 import java.util.concurrent.atomic.AtomicInteger
 
-class MyFeedFragment private constructor() : BaseFragment(), FeedContract.View {
+class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View {
 
-    private lateinit var presenter: FeedContract.Presenter
+    private lateinit var presenter: MyFeedContract.Presenter
     private lateinit var myFeedAdapter: MyFeedAdapter
     private var isLoading = FALSE
     private var page = AtomicInteger(1)
@@ -40,7 +40,7 @@ class MyFeedFragment private constructor() : BaseFragment(), FeedContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter = FeedPresenter(requireContext().applicationContext)
+        presenter = MyFeedPresenter(requireContext().applicationContext)
         presenter.attachView(this)
 
         myFeedAdapter = MyFeedAdapter(requireContext().applicationContext, presenter)

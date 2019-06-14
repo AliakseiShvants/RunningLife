@@ -6,10 +6,6 @@ interface BaseView {
 
     fun showMessage(message: String)
 
-//    fun showLoading()
-
-//    fun hideLoading()
-
     @LayoutRes
     fun getLayoutResId(): Int
 }

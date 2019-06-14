@@ -5,16 +5,16 @@ import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.TextView
 import com.shvants.runninglife.R
+import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
-import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.like_view.view.*
 
 class LikeView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = ZERO) : BaseCustomView<SummaryActivityUi>,
+        defStyleAttr: Int = ZERO) : /*BaseCustomView<DetailedActivityUi>,*/
         BaseConstraintView(context, attrs, defStyleAttr) {
 
     private lateinit var firstImageView: ImageView
@@ -31,8 +31,17 @@ class LikeView @JvmOverloads constructor(
 
     override fun getLayoutResId() = R.layout.like_view
 
-    override fun setView(item: SummaryActivityUi) {
+    fun setView(item: SummaryActivityUi) {
         val count = item.kudosCount
+
+        countView.text = when (count) {
+            0 -> FIRST
+            else -> "$count $KUDOS"
+        }
+    }
+
+    fun seView(activity: DetailedActivityUi) {
+        val count = activity.kudosCount
 
         countView.text = when (count) {
             0 -> FIRST

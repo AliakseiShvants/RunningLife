@@ -9,14 +9,9 @@ import com.shvants.runninglife.ui.view.LikeView
 import com.shvants.runninglife.ui.view.base.BaseView
 import com.shvants.runninglife.utils.ICallback
 
-interface FeedContract {
+interface MyFeedContract {
 
-    interface View : BaseView {
-
-//        fun setAthlete(athlete: SummaryAthleteUi)
-
-//        fun addActivities(activities: List<SummaryActivityUi>)
-    }
+    interface View : BaseView
 
     interface Presenter : BasePresenter<View> {
 
@@ -29,9 +24,7 @@ interface FeedContract {
 
         fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType)
 
-        fun getAthlete(): SummaryAthleteUi
-
-//        fun getActivity(position: Int): DetailedActivityUi
+        fun getAthlete(): SummaryAthleteUi?
 
         fun showErr(message: String)
 

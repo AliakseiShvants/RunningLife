@@ -6,7 +6,7 @@ import com.shvants.runninglife.repository.Repository
 
 class LoginPresenter(context: Context) : BasePresenter<LoginContract.View> {
 
-    private var repository: Repository = Repository(context)
+    private var repository = Repository(context)
     private var view: LoginContract.View? = null
 
     override fun attachView(view: LoginContract.View) {

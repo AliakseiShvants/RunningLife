@@ -12,7 +12,7 @@ class DbRepository(context: Context?) {
     private val dbHelper = DbHelper(context)
 
     fun getLoggedInAthlete(id: Long): SummaryAthleteModel? {
-        dbHelper.query("SELECT * FROM ${Contract.AthleteEntry.TABLE_NAME} WHERE _ID = $id")
+        dbHelper.query("$SELECT_FROM ${Contract.AthleteEntry.TABLE_NAME} $WHERE_ID $id")
                 .use { cursor ->
                     if (cursor.moveToFirst()) {
                         return SummaryAthleteModel(
@@ -33,4 +33,8 @@ class DbRepository(context: Context?) {
         return dbHelper.insert(Contract.AthleteEntry.TABLE_NAME, contentValues)
     }
 
+    companion object {
+        const val SELECT_FROM = "SELECT * FROM"
+        const val WHERE_ID = "WHERE _ID ="
+    }
 }
