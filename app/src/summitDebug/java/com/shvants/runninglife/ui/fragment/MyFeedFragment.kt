@@ -25,18 +25,6 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     private var isLoading = FALSE
     private var page = AtomicInteger(1)
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        retainInstance = true
-//    }
-
-//    override fun onCreateView(inflater: LayoutInflater,
-//                              container: ViewGroup?,
-//                              savedInstanceState: Bundle?): View? {
-//
-//        return inflater.inflate(getLayoutResId(), container, FALSE)
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

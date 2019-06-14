@@ -12,6 +12,7 @@ import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.ui.activity.MainActivity
+import com.shvants.runninglife.ui.fragment.ClubsFragment
 import com.shvants.runninglife.ui.fragment.MyFeedFragment
 
 class MainPresenter(private val context: Context) : MainContract.Presenter {
@@ -44,9 +45,11 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
     private fun navigateTo(item: MenuItem, drawerLayout: DrawerLayout) {
         when (item.itemId) {
             R.id.navMyActivities -> replaceFragment(MyFeedFragment.getInstance())
-            R.id.navActivitiesFeed -> replaceFragment(MyFeedFragment.getInstance())
-            R.id.navItemClubs -> replaceFragment(MyFeedFragment.getInstance())
-            R.id.navItemSettings -> replaceFragment(MyFeedFragment.getInstance())
+            R.id.navActivitiesFeed -> {
+            }
+            R.id.navItemClubs -> replaceFragment(ClubsFragment.getInstance())
+            R.id.navItemSettings -> {
+            }
             R.id.navItemExit -> logout()
         }
 

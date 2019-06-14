@@ -27,7 +27,7 @@ open class ImageLoader private constructor() : ILoader {
     }
 
     override fun load(imageView: ImageView, uri: String, imageType: ImageType) {
-        if (uri == "") {
+        if (uri == Const.EMPTY) {
             goneEmptyImage(imageView, uri)
 
             return
@@ -69,13 +69,10 @@ open class ImageLoader private constructor() : ILoader {
 
     private fun goneEmptyImage(imageView: ImageView, uri: String) {
         handler.post { imageView.visibility = View.GONE }
-//        if (isImageShouldBeSet(imageView, uri)) {
-//
-//        }
     }
 
     private fun isImageShouldBeSet(imageView: ImageView, uri: String): Boolean {
-        return /*imageView.tag == null || imageView.tag != null &&*/ uri == imageView.tag
+        return uri == imageView.tag
     }
 
     private fun loadFromMemoryCache(uri: String, callback: ImageCallback<Bitmap>) {
@@ -95,7 +92,6 @@ open class ImageLoader private constructor() : ILoader {
 
         if (isImageShouldBeSet(imageView, uri)) {
             handler.post {
-                //                imageView.background = null
                 imageView.setImageBitmap(result)
             }
         }

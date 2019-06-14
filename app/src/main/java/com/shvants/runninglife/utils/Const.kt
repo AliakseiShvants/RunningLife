@@ -3,6 +3,7 @@ package com.shvants.runninglife.utils
 object Const {
 
     const val ONE = 1
+    const val FI = 1.6
     const val ZERO = 0
     const val ZERO_LONG = 0L
     const val MINUS_LONG = -1L
