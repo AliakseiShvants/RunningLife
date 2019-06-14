@@ -23,11 +23,12 @@ class Repository(context: Context) {
     fun getLoggedInAthlete(): SummaryAthleteUi {
         val athleteDb = dbRepo.getLoggedInAthlete(preferences.athleteId)
 
-        return if (athleteDb != null) {
-            Converter.convertAthleteFromDbToUi(athleteDb)
-        } else {
-            Converter.convertAthleteFromGsonToUi(webRepo.getLoggedInAthlete())
-        }
+        return Converter.convertAthleteFromDbToUi(athleteDb)
+//        return if (athleteDb != null) {
+//            Converter.convertAthleteFromDbToUi(athleteDb)
+//        } else {
+//            Converter.convertAthleteFromGsonToUi(webRepo.getLoggedInAthlete())
+//        }
     }
 
     fun getAthleteActivities(page: Int): List<SummaryActivityUi> {

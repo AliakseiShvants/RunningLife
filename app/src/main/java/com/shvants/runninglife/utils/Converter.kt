@@ -8,7 +8,12 @@ import com.shvants.runninglife.model.gson.SummaryAthleteGson
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
-import com.shvants.runninglife.utils.Const.*
+import com.shvants.runninglife.utils.Const.COLON
+import com.shvants.runninglife.utils.Const.COMMA
+import com.shvants.runninglife.utils.Const.DOT
+import com.shvants.runninglife.utils.Const.EMPTY
+import com.shvants.runninglife.utils.Const.SLASH
+import com.shvants.runninglife.utils.Const.ZERO
 
 object Converter {
 
@@ -33,7 +38,7 @@ object Converter {
     }
 
     fun convertAthleteFromGsonToUi(athleteGson: SummaryAthleteGson): SummaryAthleteUi {
-        val fullName = "${athleteGson.firstName} ${athleteGson.lastName}"
+        val fullName = "${athleteGson.firstname} ${athleteGson.lastname}"
         val location = "${athleteGson.city}$COMMA ${athleteGson.state}$COMMA ${athleteGson.country}"
 
         return SummaryAthleteUi(id = athleteGson.id ?: 0L,
@@ -52,7 +57,7 @@ object Converter {
 //
 //        for (activityDb in list) {
 //            val distance = convertDistanceToString(activityDb.DISTANCE.toDouble())
-//            val avgSpeed = when (activityDb.TYPE) {
+//            val averageSpeed = when (activityDb.TYPE) {
 //                ActivityType.RIDE.name -> convertAvgSpeedToString(activityDb.AVG_SPEED.toDouble())
 //                else -> convertAvgTempoToString(activityDb.AVG_SPEED.toDouble())
 //            }
@@ -63,9 +68,9 @@ object Converter {
 //                    name = activityDb.NAME,
 //                    movingTime = movingTime,
 //                    type = activityDb.TYPE,
-//                    startDate = activityDb.START_DATE,
+//                    startDateLocal = activityDb.START_DATE,
 //                    distance = distance,
-//                    avgSpeed = avgSpeed
+//                    averageSpeed = averageSpeed
 //            )
 //        }
 //
@@ -73,11 +78,11 @@ object Converter {
 //    }
 
     fun convertDetailedActivityFromGsonToUi(activityGson: DetailedActivityGson): DetailedActivityUi {
-        val startDate = activityGson.startDate ?: ""
+        val startDate = activityGson.startDateLocal ?: ""
         val distance = convertDistanceToString(activityGson.distance?.toDouble())
         val avgSpeed = when (activityGson.type) {
-            ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.avgSpeed?.toDouble())
-            else -> convertAvgTempoToString(activityGson.avgSpeed?.toDouble())
+            ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.averageSpeed?.toDouble())
+            else -> convertAvgTempoToString(activityGson.averageSpeed?.toDouble())
         }
         val movingTime = convertMovingTimeToString(activityGson.movingTime)
 
@@ -93,9 +98,9 @@ object Converter {
                 startLatlng = activityGson.startLatlng ?: FloatArray(0),
                 endLatlng = activityGson.endLatlng ?: FloatArray(0),
                 map = activityGson.map?.polyline ?: "",
-                elevation = activityGson.elevation?.toInt() ?: 0,
+                elevation = activityGson.totalElevationGain?.toInt() ?: 0,
                 calories = activityGson.calories?.toInt() ?: 0,
-                avgHR = activityGson.avgHR?.toInt() ?: 0
+                avgHR = activityGson.averageHeartrate?.toInt() ?: 0
         )
     }
 
@@ -103,11 +108,11 @@ object Converter {
         val result: ArrayList<SummaryActivityUi> = ArrayList()
 
         for (activityGson in list) {
-            val startDate = activityGson.startDate ?: ""
+            val startDate = activityGson.startDateLocal ?: ""
             val distance = convertDistanceToString(activityGson.distance?.toDouble())
             val avgSpeed = when (activityGson.type) {
-                ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.avgSpeed?.toDouble())
-                else -> convertAvgTempoToString(activityGson.avgSpeed?.toDouble())
+                ActivityType.RIDE.name -> convertAvgSpeedToString(activityGson.averageSpeed?.toDouble())
+                else -> convertAvgTempoToString(activityGson.averageSpeed?.toDouble())
             }
             val movingTime = convertMovingTimeToString(activityGson.movingTime)
 

@@ -50,7 +50,7 @@ object StravaHelper {
     fun getActivityMapUrl(polyline: String, start: FloatArray, end: FloatArray, width: Int): String {
         val markerStart = "$START_MARKER${start[0]},${start[1]}"
         val markerEnd = "$FINISH_MARKER${end[0]},${end[1]}"
-        val height = (width / 1.6).toInt()
+        val height = (width / FI).toInt()
         val size = "$width$X$height"
 
         return HttpUrl.parse(GOOGLE_STATIC_MAP)
@@ -115,6 +115,7 @@ object StravaHelper {
     const val EXPIRES_IN = "expires_in"
 
     private const val FALSE = "false"
+    private const val FI = 1.6
     private const val FINISH_MARKER = "color:red|label:F|"
 
     private const val GOOGLE_API_KEY = "AIzaSyDXvElA5LGkMVBeMGtn9NMKax3PvnelKXM"

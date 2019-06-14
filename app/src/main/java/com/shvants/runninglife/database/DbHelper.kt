@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log.d
 import com.shvants.runninglife.database.Contract.PRIMARY_KEY
 import com.shvants.runninglife.database.Contract.SQL_TABLE_CREATE_TEMPLATE
 import com.shvants.runninglife.database.fields.*
@@ -13,25 +12,18 @@ import com.shvants.runninglife.utils.Const.COMMA
 import com.shvants.runninglife.utils.Const.EMPTY
 
 class DbHelper(context: Context?) :
-        SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION, null),
+        SQLiteOpenHelper(context, Contract.DATABASE_NAME, null, Contract.DATABASE_VERSION, null),
         IDbOperation {
 
-    private val TAG = DbHelper::class.simpleName
-
     override fun onCreate(db: SQLiteDatabase?) {
-        d(TAG, "inside onCreate")
-
         for (table in Contract.getTables()) {
             val createTableString = createTableString(table)
-
-            d(TAG, createTableString)
-
             db?.execSQL(createTableString)
         }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        throw UnsupportedOperationException("Upgrade not supported")
+        throw UnsupportedOperationException(Contract.UPGRADE_NOT_SUPPORTED)
     }
 
     override fun query(sql: String, vararg params: String): Cursor {
@@ -104,7 +96,7 @@ class DbHelper(context: Context?) :
                             is DbBoolean -> type = annotationType.name
                             is DbPrimaryKey -> {
                             }
-                            else -> throw IllegalStateException("Field don't have type annotation")
+                            else -> throw IllegalStateException(Contract.ANNOTATION_NO_TYPE)
                         }
                     }
 
@@ -126,15 +118,5 @@ class DbHelper(context: Context?) :
 
     private fun getTableName(jClass: Class<*>): String {
         return jClass.getAnnotation(Table::class.java)?.name ?: EMPTY
-    }
-
-
-    private fun dropDb() {
-
-    }
-
-    companion object {
-        const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = "RunningLife.db"
     }
 }

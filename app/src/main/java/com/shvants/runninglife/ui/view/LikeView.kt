@@ -8,13 +8,13 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
-import com.shvants.runninglife.utils.Const
+import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.like_view.view.*
 
 class LikeView @JvmOverloads constructor(
         context: Context,
-        attrs: AttributeSet? = Const.NULL,
-        defStyleAttr: Int = Const.ZERO) : BaseCustomView<SummaryActivityUi>,
+        attrs: AttributeSet? = null,
+        defStyleAttr: Int = ZERO) : BaseCustomView<SummaryActivityUi>,
         BaseConstraintView(context, attrs, defStyleAttr) {
 
     private lateinit var firstImageView: ImageView

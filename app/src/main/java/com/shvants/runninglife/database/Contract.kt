@@ -1,14 +1,10 @@
 package com.shvants.runninglife.database
 
-import android.util.Log
 import com.shvants.runninglife.model.database.SummaryAthleteModel
 
 object Contract {
 
-    private val TAG = Contract::class.simpleName
-
     fun getTables(): List<Class<*>> {
-        Log.d(TAG, "inside getTables method")
         return listOf(SummaryAthleteModel::class.java)
     }
 
@@ -24,7 +20,7 @@ object Contract {
     }
 
     const val DATABASE_VERSION = 1
-    const val DATABASE_NAME = "RUNNING_LIFE"
+    const val DATABASE_NAME = "RunningLife.db"
     const val ID = "_id"
     const val PRIMARY_KEY = " PRIMARY KEY"
     const val SQL_TABLE_CREATE_TEMPLATE = "CREATE TABLE IF NOT EXISTS %s(%s);"
@@ -40,4 +36,7 @@ object Contract {
     const val LOCATION = "location"
     const val SEX = "sex"
     const val SUMMIT = "summit"
+
+    const val UPGRADE_NOT_SUPPORTED = "Upgrade not supported"
+    const val ANNOTATION_NO_TYPE = "Field don't have type annotation"
 }

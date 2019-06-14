@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.Context
 import com.shvants.runninglife.database.Contract
 import com.shvants.runninglife.database.DbHelper
-import com.shvants.runninglife.model.database.SummaryActivityDb
 import com.shvants.runninglife.model.database.SummaryAthleteModel
 
 
@@ -28,15 +27,6 @@ class DbRepository(context: Context?) {
                 }
 
         return null
-    }
-
-    fun getAthleteActivities(id: Long): List<SummaryActivityDb>? {
-        val list = ArrayList<SummaryActivityDb>()
-        list.add(SummaryActivityDb("1", "1", "Morning Run", "3663",
-                "Run", "2019-05-07T12:12:12Z", "12.32", "3.36",
-                "google_disk"))
-
-        return list
     }
 
     fun setLoggedInAthlete(contentValues: ContentValues): Long {

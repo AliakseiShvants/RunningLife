@@ -56,7 +56,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 //            startActivityForResult(intent, 1)
 
             //test
-            handleTokenResponse("c14bd0f28355a37f778c0987aa0a3e62e8bba980")
+            handleTokenResponse("890e21fdf30d181f50f3a0e204ca6d09a3a5f43a")
         }
 
         slideImages()
@@ -101,7 +101,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
         if (oauthResponse != null) {
             preferences.athleteId = oauthResponse.athlete?.id ?: Const.ZERO_LONG
-            preferences.fullName = "${oauthResponse.athlete?.firstName} ${oauthResponse.athlete?.lastName}"
+            preferences.fullName = "${oauthResponse.athlete?.firstname} ${oauthResponse.athlete?.lastname}"
             preferences.profile = oauthResponse.athlete?.profile ?: Const.EMPTY
             preferences.profileMedium = oauthResponse.athlete?.profileMedium ?: Const.EMPTY
             preferences.location = "${oauthResponse.athlete?.city}${Const.COMMA} " +

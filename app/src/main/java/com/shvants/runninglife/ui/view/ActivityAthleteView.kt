@@ -10,14 +10,15 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
-import com.shvants.runninglife.utils.Const.*
+import com.shvants.runninglife.utils.Const.EMPTY
+import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.activity_athlete_view.view.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 class ActivityAthleteView @JvmOverloads constructor(
         context: Context,
-        attrs: AttributeSet? = NULL,
+        attrs: AttributeSet? = null,
         defStyleAttr: Int = ZERO) : BaseCustomView<SummaryAthleteUi>,
         BaseConstraintView(context, attrs, defStyleAttr) {
 

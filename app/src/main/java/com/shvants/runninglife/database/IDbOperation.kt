@@ -10,6 +10,4 @@ interface IDbOperation {
     fun insert(tableName: String, contentValues: ContentValues): Long
 
     fun delete(tableName: String, sql: String, vararg params: String): Int
-
-//    fun update()
 }

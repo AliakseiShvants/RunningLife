@@ -11,13 +11,12 @@ import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
-import com.shvants.runninglife.utils.Const.NULL
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.layout_summary_item.view.*
 
 class SummaryActivityView @JvmOverloads constructor(
         context: Context,
-        attrs: AttributeSet? = NULL,
+        attrs: AttributeSet? = null,
         defStyleAttr: Int = ZERO) : BaseCustomView<SummaryActivityUi>,
         BaseConstraintView(context, attrs, defStyleAttr) {
 

@@ -12,7 +12,13 @@ import com.shvants.runninglife.strava.StravaHelper.EXPIRES_IN
 import com.shvants.runninglife.strava.StravaHelper.REFRESH_TOKEN
 import com.shvants.runninglife.strava.StravaHelper.TOKEN_TYPE
 import com.shvants.runninglife.utils.Const
-import com.shvants.runninglife.utils.Const.*
+import com.shvants.runninglife.utils.Const.FULLNAME
+import com.shvants.runninglife.utils.Const.LOCATION
+import com.shvants.runninglife.utils.Const.PROFILE
+import com.shvants.runninglife.utils.Const.PROFILE_MEDIUM
+import com.shvants.runninglife.utils.Const.SUMMIT
+import com.shvants.runninglife.utils.Const.ZERO
+import com.shvants.runninglife.utils.Const.ZERO_LONG
 
 class StravaPreferences(context: Context) {
 

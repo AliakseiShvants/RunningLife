@@ -13,10 +13,9 @@ class WebRepository {
         return ActivityListGson(activitiesArr.toList()).getList()
     }
 
-    fun getLoggedInAthlete(): SummaryAthleteGson {
-        //todo
-        return SummaryAthleteGson(id = 12345, firstName = "Stub", lastName = "Stubych")
-    }
+//    fun getLoggedInAthlete(): SummaryAthleteGson {
+//        //todo
+//    }
 
     fun getKudoers(token: String, id: Long): List<SummaryAthleteGson> {
         val json = StravaRequest().makeKudoersRequest(token, id)
