@@ -79,7 +79,6 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
 
     fun loadActivities(page: Int) {
         myFeedAdapter.setShowLastItemAsLoading(TRUE)
-
         presenter.loadActivities(page, object : ICallback<List<SummaryActivityUi>> {
 
             override fun onResult(result: List<SummaryActivityUi>) {

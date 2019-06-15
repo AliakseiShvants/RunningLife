@@ -20,6 +20,7 @@ object Const {
 
     const val ACTIVITY_ID = "ACTIVITY_ID"
     const val ATHLETE_ID = "ATHLETE_ID"
+    const val CLUB_ID = "CLUB_ID"
     const val FULLNAME = "FULLNAME"
     const val KUDOS = "KUDOS"
     const val LOCATION = "LOCATION"

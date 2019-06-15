@@ -139,6 +139,14 @@ object Converter {
         )
     }
 
+    fun convertClubFromUiToGson(clubUi: SummaryClubUi): SummaryClubGson {
+        return SummaryClubGson(
+                id = clubUi.id,
+                name = clubUi.name,
+                profileMedium = clubUi.profileMedium
+        )
+    }
+
     fun convertClubsFromGsonToUi(clubsGson: List<SummaryClubGson>): List<SummaryClubUi> {
         return clubsGson.map { convertClubFromGsonToUi(it) }
     }

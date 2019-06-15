@@ -1,13 +1,15 @@
 package com.shvants.runninglife.model.gson
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-data class SummaryClubGson(
-        @SerializedName("id") val id: Int?,
-        @SerializedName("name") val name: String?,
-        @SerializedName("profile_medium") val profileMedium: String?
-//       @SerializedName("cover_photo") val coverPhoto: String?,
-//       @SerializedName("sport_type") val sportType: ActivityType?,
-//       @SerializedName("sport_type") val sportType: ActivityType?,
-
-)
+@Parcelize
+open class SummaryClubGson(
+        @SerializedName("id") open var id: Int?,
+        @SerializedName("name") open var name: String?,
+        @SerializedName("profile_medium") open var profileMedium: String?
+//       @SerializedName("cover_photo") open var coverPhoto: String?,
+//       @SerializedName("sport_type") open var sportType: ActivityType?,
+//       @SerializedName("sport_type") open var sportType: ActivityType?,
+) : Parcelable

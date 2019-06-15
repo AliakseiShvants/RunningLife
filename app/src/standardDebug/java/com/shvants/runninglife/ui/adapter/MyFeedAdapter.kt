@@ -27,7 +27,7 @@ import java.lang.Boolean.FALSE
 
 class MyFeedAdapter(private val context: Context,
                     private val presenter: MyFeedContract.Presenter) :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        BaseRecyclerViewAdapter(context) {
 
     private var isShowLastAsLoading = FALSE
     private var inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -37,15 +37,6 @@ class MyFeedAdapter(private val context: Context,
         private set
 
     var kudoersProfileUrls = mutableListOf<String>()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
-        return if (viewType == ViewType.ITEM) {
-            ActivityViewHolder(inflater.inflate(R.layout.adapter_summary_item, parent, FALSE))
-        } else {
-            ActivityViewHolder(inflater.inflate(R.layout.layout_progress, parent, FALSE))
-        }
-    }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -75,18 +66,6 @@ class MyFeedAdapter(private val context: Context,
 
         presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
         view.setView(activity)
-        view.setOnClickListener { showDetails(position) }
-    }
-
-    private fun showDetails(position: Int) {
-        val activity = activities[position]
-        val id = activity.id
-
-        val intent = Intent(context, DetailedActivity::class.java)
-        intent.putExtra(ACTIVITY_ID, id)
-        intent.putExtra(KUDOS, kudoersProfileUrls.toTypedArray())
-
-        startActivity(context, intent, null)
     }
 
     override fun getItemCount() = activities.size
@@ -121,22 +100,5 @@ class MyFeedAdapter(private val context: Context,
         }
     }
 
-//    fun loadMoreItems(start: Int, end: Int) {
-//        isLoading = TRUE
-//        isShowLastAsLoading = TRUE
-//
-//        presenter.loadActivities(start, end, )
-//    }
-
-
-    private inner class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    @IntDef(ViewType.ITEM, ViewType.LOADING)
-    @Retention(AnnotationRetention.SOURCE)
-    internal annotation class ViewType {
-        companion object {
-            const val ITEM = 0
-            const val LOADING = 1
-        }
-    }
+    override fun getLayoutResId() = R.layout.adapter_summary_item
 }

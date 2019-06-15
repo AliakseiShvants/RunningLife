@@ -21,24 +21,12 @@ import java.lang.Boolean.FALSE
 import java.lang.Boolean.TRUE
 import java.util.concurrent.atomic.AtomicInteger
 
-class FeedFragment private constructor() : Fragment(), FeedContract.View/*, RecyclerItemClickListener*/ {
+class MyFeedFragment private constructor() : BaseFragment(), FeedContract.View/*, RecyclerItemClickListener*/ {
 
     private lateinit var feedPresenter: FeedContract.Presenter
     private lateinit var feedAdapter: FeedAdapter
     private var isLoading = FALSE
     private var page = AtomicInteger(1)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        retainInstance = true
-    }
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-
-        return inflater.inflate(getLayoutResId(), container, FALSE)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -124,7 +112,7 @@ class FeedFragment private constructor() : Fragment(), FeedContract.View/*, Recy
     }
 
     companion object {
-        fun getInstance() = FeedFragment()
+        fun getInstance() = MyFeedFragment()
         const val MAX_VISIBLE_ITEMS = 4
     }
 }
