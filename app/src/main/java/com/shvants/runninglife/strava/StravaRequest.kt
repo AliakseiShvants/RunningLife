@@ -89,6 +89,12 @@ class StravaRequest {
         return get(url)
     }
 
+    fun makeClubRequest(token: String, id: Int): String {
+        val url = StravaHelper.getClubUrl(token, id)
+
+        return get(url)
+    }
+
 
     companion object {
         private const val AUTHORIZATION = "Authorization"

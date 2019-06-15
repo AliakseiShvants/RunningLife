@@ -94,10 +94,19 @@ object StravaHelper {
                 .toString()
     }
 
+    fun getClubUrl(token: String, id: Int): String {
+        return HttpUrl.parse("$CLUBS_BASE_URL$id")
+                ?.newBuilder()
+                ?.addQueryParameter(ACCESS_TOKEN, token)
+                ?.build()
+                .toString()
+    }
+
     private const val ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
     private const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete/"
     private const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/activities/"
+    private const val CLUBS_BASE_URL = "https://www.strava.com/api/v3/clubs/"
     private const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
     const val LOGIN_URL = "https://www.strava.com/login"
     const val TOKEN_BASE_URL = "https://www.strava.com/oauth/token"

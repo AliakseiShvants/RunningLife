@@ -12,7 +12,7 @@ import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.ZERO
-import kotlinx.android.synthetic.summitDebug.layout_detailed_item.view.*
+import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.view.*
 
 class DetailedActivityView @JvmOverloads constructor(
         context: Context,
@@ -34,7 +34,7 @@ class DetailedActivityView @JvmOverloads constructor(
         mapView = detailedActivityMap
     }
 
-    override fun getLayoutResId() = R.layout.layout_detailed_item
+    override fun getLayoutResId() = R.layout.layout_detailed_activity
 
     @UiThread
     override fun setView(activity: DetailedActivityUi) {

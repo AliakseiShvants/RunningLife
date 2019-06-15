@@ -58,6 +58,7 @@ object Const {
         const val INTERNET_CONNECTION = "Check Internet connection and try again"
         const val ACTIVITIES_LOAD_ERR = "Can't load your activities."
         const val ACTIVITY_LOAD_ERR = "Can't load your activity."
+        const val CLUB_LOAD_ERR = "Can't load club info."
         const val KUDOS_LOAD_ERR = "Can't load your kudos."
     }
 }

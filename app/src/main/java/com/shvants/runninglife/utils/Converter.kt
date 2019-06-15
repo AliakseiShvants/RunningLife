@@ -2,10 +2,7 @@ package com.shvants.runninglife.utils
 
 import com.shvants.runninglife.model.database.SummaryAthleteModel
 import com.shvants.runninglife.model.gson.*
-import com.shvants.runninglife.model.ui.DetailedActivityUi
-import com.shvants.runninglife.model.ui.SummaryActivityUi
-import com.shvants.runninglife.model.ui.SummaryAthleteUi
-import com.shvants.runninglife.model.ui.SummaryClubUi
+import com.shvants.runninglife.model.ui.*
 import com.shvants.runninglife.utils.Const.COLON
 import com.shvants.runninglife.utils.Const.COMMA
 import com.shvants.runninglife.utils.Const.DOT
@@ -136,6 +133,22 @@ object Converter {
                 id = clubGson.id ?: ZERO,
                 name = clubGson.name ?: EMPTY,
                 profileMedium = clubGson.profileMedium ?: EMPTY
+        )
+    }
+
+    fun convertDetailedClubFromGsonToUi(clubGson: DetailedClubGson): DetailedClubUi {
+        return DetailedClubUi(
+                id = clubGson.id ?: ZERO,
+                name = clubGson.name ?: EMPTY,
+                coverPhoto = clubGson.coverPhoto ?: EMPTY,
+                profileMedium = clubGson.profileMedium ?: EMPTY,
+                sportType = clubGson.sportType ?: EMPTY,
+                description = clubGson.description ?: EMPTY,
+                city = clubGson.city ?: EMPTY,
+                country = clubGson.country ?: EMPTY,
+                state = clubGson.state ?: EMPTY,
+                isPrivate = clubGson.isPrivate == false,
+                memberCount = clubGson.memberCount ?: ZERO
         )
     }
 

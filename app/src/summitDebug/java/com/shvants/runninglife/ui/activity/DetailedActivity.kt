@@ -3,6 +3,9 @@ package com.shvants.runninglife.ui.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.imageloader.ImageType
@@ -10,21 +13,29 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.mvp.contract.DetailedActivityContract
 import com.shvants.runninglife.mvp.presenter.DetailedActivityPresenter
-import com.shvants.runninglife.ui.view.DetailedActivityView
 import com.shvants.runninglife.utils.Const.ACTIVITY_ID
 import com.shvants.runninglife.utils.Const.KUDOS
 import com.shvants.runninglife.utils.Const.ZERO_LONG
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.activity_detailed_activity.*
-import kotlinx.android.synthetic.summitDebug.layout_detailed_item.*
-import kotlinx.android.synthetic.summitDebug.layout_detailed_item.view.*
+import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.*
+import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.view.*
 
 class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
 
     private lateinit var presenter: DetailedActivityContract.Presenter
-    private lateinit var detailedActivityView: DetailedActivityView
-//    private var activity = DetailedActivityUi
+    private val activityCallback = object : ICallback<DetailedActivityUi> {
 
+        override fun onResult(result: DetailedActivityUi) {
+            supportActionBar?.title = result.type
+            detailedActivity.setView(result)
+            loadMap(detailedActivity.detailedActivityMap, result, ImageType.DEFAULT)
+        }
+
+        override fun onError(message: String) {
+            showMessage(message)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,57 +46,37 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
 
-        detailedActivityView = detailedActivity
-
         presenter = DetailedActivityPresenter(this)
         presenter.attachView(this)
 
-        val id = intent.getLongExtra(ACTIVITY_ID, ZERO_LONG)
-
-        presenter.loadActivity(id, object : ICallback<DetailedActivityUi> {
-
-            override fun onResult(result: DetailedActivityUi) {
-//                activity = result
-                supportActionBar?.title = result.type
-                detailedActivityView.setView(result)
-
-                presenter.loadMap(detailedActivity.detailedActivityMap,
-                        result,
-                        ImageType.DEFAULT)
-            }
-
-            override fun onError(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
+        val activityId = intent.getLongExtra(ACTIVITY_ID, ZERO_LONG)
+        loadActivity(activityId, activityCallback)
 
         val athlete = presenter.getAthlete()
         if (athlete != null) {
             detailedActivity.setAthleteView(athlete)
-            presenter.loadImage(detailedActivity.getDetailedAthleteProfile(),
-                    athlete.profileMedium,
-                    ImageType.ROUNDED)
-
-//            presenter.loadKudoersProfile(detailedLikePanel, athlete.id, ImageType.ROUNDED,
-//                    object : ICallback<List<String>> {
-//                        override fun onResult(result: List<String>) {
-//                            presenter.handleKudos(detailedLikePanel, result)
-//                        }
-//
-//                        override fun onError(message: String) {
-////                                presenter.showErr(message)
-//                        }
-//                    }
-//            )
+            loadImage(detailedActivity.getDetailedAthleteProfile(), athlete.profileMedium, ImageType.ROUNDED)
         }
 
         val kudosProfile = intent.getStringArrayExtra(KUDOS)
         presenter.handleKudos(detailedLikePanel, kudosProfile)
     }
 
+    private fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>) {
+        presenter.loadActivity(id, callback)
+    }
+
+    private fun loadMap(view: ImageView, activityUi: DetailedActivityUi, imageType: ImageType) {
+        presenter.loadMap(view, activityUi, imageType)
+    }
+
+    private fun loadImage(view: ImageView, url: String, imageType: ImageType) {
+        presenter.loadImage(view, url, imageType)
+    }
+
     override fun showMessage(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        errorView.visibility = View.VISIBLE
+        (errorView as TextView).text = message
     }
 
     override fun getLayoutResId() = R.layout.activity_detailed_activity

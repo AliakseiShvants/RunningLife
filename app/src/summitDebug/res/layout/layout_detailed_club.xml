@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/clubCoverFoto"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <include
+            android:id="@+id/errorView"
+            layout="@layout/layout_err_message"
+            app:layout_constraintTop_toTopOf="@id/clubCoverFoto" />
+
+        <ImageView
+            android:id="@+id/clubProfile"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@id/clubCoverFoto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clubCoverFoto" />
+
+        <TextView
+            android:id="@+id/clubName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/one_intent"
+            android:textSize="@dimen/m_text_size"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/clubProfile" />
+
+        <LinearLayout
+            android:id="@+id/clubInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/four_intents"
+            android:paddingTop="@dimen/one_intent"
+            android:paddingBottom="@dimen/one_intent"
+            android:textSize="@dimen/xs_text_size"
+            app:layout_constraintTop_toBottomOf="@id/clubName">
+
+            <ImageView
+                android:id="@+id/clubSportType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/four_intents" />
+
+            <TextView
+                android:id="@+id/firstDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/one_intent"
+                android:layout_marginEnd="@dimen/one_intent"
+                android:text="@string/dot" />
+
+            <TextView
+                android:id="@+id/clubLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/s_text_size" />
+
+            <TextView
+                android:id="@+id/secondDot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/one_intent"
+                android:layout_marginEnd="@dimen/one_intent"
+                android:text="@string/dot" />
+
+            <TextView
+                android:id="@+id/clubStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/clubDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="@dimen/four_intents"
+            android:paddingTop="@dimen/one_intent"
+            android:paddingEnd="@dimen/four_intents"
+            android:paddingBottom="@dimen/one_intent"
+            app:layout_constraintTop_toBottomOf="@id/clubInfo" />
+
+        <com.shvants.runninglife.ui.view.ClubDataItemView
+            android:id="@+id/clubMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/two_intents"
+            app:layout_constraintEnd_toStartOf="@+id/clubActivities"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/clubDescription" />
+
+        <com.shvants.runninglife.ui.view.ClubDataItemView
+            android:id="@+id/clubActivities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/two_intents"
+            app:layout_constraintEnd_toStartOf="@+id/clubRecords"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/clubMembers"
+            app:layout_constraintTop_toBottomOf="@id/clubInfo" />
+
+        <com.shvants.runninglife.ui.view.ClubDataItemView
+            android:id="@+id/clubRecords"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/two_intents"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/clubActivities"
+            app:layout_constraintTop_toBottomOf="@id/clubInfo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

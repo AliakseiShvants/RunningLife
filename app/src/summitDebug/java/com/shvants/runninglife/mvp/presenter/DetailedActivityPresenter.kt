@@ -52,7 +52,9 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
 
                 handler.post { if (activity != null) callback.onResult(activity) }
             } catch (e: Exception) {
-                view?.showMessage("${Const.ERR.ACTIVITY_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
+                handler.post {
+                    callback.onError("${Const.ERR.ACTIVITY_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
+                }
             }
         }
     }

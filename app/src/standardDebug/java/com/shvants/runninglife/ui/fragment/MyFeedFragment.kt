@@ -70,10 +70,6 @@ class MyFeedFragment private constructor() : BaseFragment(), FeedContract.View/*
         errTextView.text = message
     }
 
-//    override fun onItemClickListener(position: Int) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-
     private val feedScrollListener = object : RecyclerView.OnScrollListener() {
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

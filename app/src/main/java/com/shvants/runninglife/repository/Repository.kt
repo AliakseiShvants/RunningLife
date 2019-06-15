@@ -3,10 +3,7 @@ package com.shvants.runninglife.repository
 import android.content.ContentValues
 import android.content.Context
 import com.shvants.runninglife.database.Contract
-import com.shvants.runninglife.model.ui.DetailedActivityUi
-import com.shvants.runninglife.model.ui.SummaryActivityUi
-import com.shvants.runninglife.model.ui.SummaryAthleteUi
-import com.shvants.runninglife.model.ui.SummaryClubUi
+import com.shvants.runninglife.model.ui.*
 import com.shvants.runninglife.strava.StravaPreferences
 import com.shvants.runninglife.utils.Const.ONE
 import com.shvants.runninglife.utils.Const.ZERO
@@ -73,8 +70,14 @@ class Repository(context: Context) {
 
     fun getClubs(): List<SummaryClubUi> {
         val clubsWeb = webRepo.getClubs(preferences.accessToken)
-        val clubs = Converter.convertClubsFromGsonToUi(clubsWeb)
 
-        return clubs
+        return Converter.convertClubsFromGsonToUi(clubsWeb)
+    }
+
+    fun getClub(id: Int): DetailedClubUi {
+        val clubWeb = webRepo.getClub(preferences.accessToken, id)
+        val clubUi = Converter.convertDetailedClubFromGsonToUi(clubWeb)
+
+        return clubUi
     }
 }
