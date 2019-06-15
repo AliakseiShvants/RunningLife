@@ -18,14 +18,12 @@ import com.shvants.runninglife.utils.Const.KUDOS
 import com.shvants.runninglife.utils.ICallback
 import com.shvants.runninglife.utils.LongDiffUtil
 import kotlinx.android.synthetic.main.layout_summary_item.view.*
-import java.lang.Boolean.FALSE
 
 
 class MyFeedAdapter(private val context: Context,
                     private val presenter: MyFeedContract.Presenter) :
         BaseRecyclerViewAdapter(context) {
 
-    private var isShowLastAsLoading = FALSE
     private val athlete = presenter.getAthlete()
     private var activities = mutableListOf<SummaryActivityUi>()
     private var kudoersProfileUrls = mutableListOf<String>()
@@ -99,13 +97,6 @@ class MyFeedAdapter(private val context: Context,
         activities.addAll(list)
 
         diffResult.dispatchUpdatesTo(this)
-    }
-
-    fun setShowLastItemAsLoading(flag: Boolean) {
-        if (flag != isShowLastAsLoading) {
-            isShowLastAsLoading = flag
-            notifyDataSetChanged()
-        }
     }
 
     override fun getLayoutResId() = R.layout.adapter_summary_item

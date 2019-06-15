@@ -68,7 +68,7 @@ class MyFeedAdapter(private val context: Context,
         view.setView(activity)
     }
 
-    override fun getItemCount() = activities.size
+    override fun getItemCount() = if (isShowLastAsLoading) activities.size + 1 else activities.size
 
     override fun getItemViewType(position: Int): Int {
         return if (position < activities.size) ViewType.ITEM else ViewType.LOADING

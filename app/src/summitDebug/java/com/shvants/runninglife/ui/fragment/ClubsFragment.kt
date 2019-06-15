@@ -40,6 +40,12 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
             addItemDecoration(DividerItemDecoration(context, LinearLayout.HORIZONTAL))
         }
 
+        loadClubs()
+    }
+
+    private fun loadClubs() {
+        clubsAdapter.setShowLastItemAsLoading(true)
+
         presenter.loadClubs(object : ICallback<List<SummaryClubUi>> {
 
             override fun onResult(result: List<SummaryClubUi>) {
@@ -58,14 +64,6 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
     override fun showMessage(message: String) {
         errTextView.visibility = View.VISIBLE
         (errTextView as TextView).text = message
-    }
-
-    override fun showLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun hideLoading() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

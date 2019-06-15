@@ -37,6 +37,10 @@ class ClubsAdapter(private val context: Context,
         startActivity(context, intent, null)
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return if (clubs.isEmpty() || position > clubs.size - 1) ViewType.LOADING else ViewType.ITEM
+    }
+
     override fun getLayoutResId() = R.layout.layout_club_item
 
     fun addClubs(newClubs: List<SummaryClubUi>) {

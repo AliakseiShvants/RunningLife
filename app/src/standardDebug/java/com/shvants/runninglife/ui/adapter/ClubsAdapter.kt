@@ -9,7 +9,7 @@ import com.shvants.runninglife.model.ui.SummaryClubUi
 import com.shvants.runninglife.mvp.contract.ClubsContract
 import com.shvants.runninglife.utils.IntDiffUtil
 
-class ClubsAdapter(context: Context,
+class ClubsAdapter(private val context: Context,
                    private val presenter: ClubsContract.Presenter) : BaseRecyclerViewAdapter(context) {
 
     private var clubs = mutableListOf<SummaryClubUi>()

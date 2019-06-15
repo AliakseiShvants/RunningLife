@@ -16,14 +16,13 @@ import com.shvants.runninglife.ui.adapter.MyFeedAdapter
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
 import java.lang.Boolean.FALSE
-import java.lang.Boolean.TRUE
 import java.util.concurrent.atomic.AtomicInteger
 
 class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View {
 
     private lateinit var presenter: MyFeedContract.Presenter
     private lateinit var myFeedAdapter: MyFeedAdapter
-    private var isLoading = FALSE
+    private var isLoading = false
     private var page = AtomicInteger(1)
     private val feedItemAnimator = object : DefaultItemAnimator() {}
 
@@ -78,7 +77,8 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     }
 
     fun loadActivities(page: Int) {
-        myFeedAdapter.setShowLastItemAsLoading(TRUE)
+        myFeedAdapter.setShowLastItemAsLoading(true)
+
         presenter.loadActivities(page, object : ICallback<List<SummaryActivityUi>> {
 
             override fun onResult(result: List<SummaryActivityUi>) {
