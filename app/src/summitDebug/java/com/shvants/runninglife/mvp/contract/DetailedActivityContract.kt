@@ -28,6 +28,8 @@ interface DetailedActivityContract {
 
         fun handleKudos(view: LikeView, arr: Array<String>)
 
+        fun deleteActivity(id: Long, callback: ICallback<Boolean>)
+
 //        fun setActivity(activity: DetailedActivityUi)
     }
 }

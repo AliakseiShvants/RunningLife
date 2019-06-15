@@ -69,16 +69,24 @@ class DetailedClubView @JvmOverloads constructor(
             }
         }
 
-        val city = if (club.city != EMPTY) "${club.city}$COMMA" else EMPTY
-        val state = if (club.state != EMPTY) "${club.state}$COMMA" else EMPTY
-        val country = club.country
+        val city = if (club.city != EMPTY) club.city else EMPTY
+        val state = if (club.state != EMPTY) "$COMMA ${club.state}" else EMPTY
+        val country = if (club.country != EMPTY) "$COMMA ${club.country}" else EMPTY
+        val location: String
 
-        if (city == EMPTY && state == EMPTY && country == EMPTY) {
-            locationView.visibility = View.GONE
-            secondDot.visibility = View.GONE
-        } else {
-            val location = "$city $state $country"
-            locationView.text = location
+        when {
+            city == EMPTY && state == EMPTY && country == EMPTY -> {
+                locationView.visibility = View.GONE
+                secondDot.visibility = View.GONE
+            }
+            city == EMPTY -> {
+                location = "$state$country"
+                locationView.text = location
+            }
+            else -> {
+                location = "$city$state"
+                locationView.text = location
+            }
         }
 
         statusView.text = if (club.isPrivate) "Opened" else "Closed"

@@ -114,4 +114,18 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
         key.visibility = View.VISIBLE
         imageLoader.load(key, value, ImageType.ROUNDED)
     }
+
+    override fun deleteActivity(id: Long, callback: ICallback<Boolean>) {
+        executor.execute {
+            try {
+                val result = repository.get()?.deleteActivity(id)
+
+                handler.post {
+                    if (result == true) callback.onResult(result)
+                }
+            } catch (e: Exception) {
+                handler.post { callback.onError("Error with activity delete") }
+            }
+        }
+    }
 }

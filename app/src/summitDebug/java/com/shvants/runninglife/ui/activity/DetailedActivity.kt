@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +15,7 @@ import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.mvp.contract.DetailedActivityContract
 import com.shvants.runninglife.mvp.presenter.DetailedActivityPresenter
 import com.shvants.runninglife.utils.Const.ACTIVITY_ID
+import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.Const.KUDOS
 import com.shvants.runninglife.utils.Const.ZERO_LONG
 import com.shvants.runninglife.utils.ICallback
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.view.*
 class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
 
     private lateinit var presenter: DetailedActivityContract.Presenter
+    private var activityId = ZERO_LONG
     private val activityCallback = object : ICallback<DetailedActivityUi> {
 
         override fun onResult(result: DetailedActivityUi) {
@@ -37,6 +40,18 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
         }
     }
 
+    private val deleteActivityCallback = object : ICallback<Boolean> {
+
+        override fun onResult(result: Boolean) {
+            back(result)
+        }
+
+        override fun onError(message: String) {
+            back(message = message)
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResId())
@@ -49,7 +64,7 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
         presenter = DetailedActivityPresenter(this)
         presenter.attachView(this)
 
-        val activityId = intent.getLongExtra(ACTIVITY_ID, ZERO_LONG)
+        activityId = intent.getLongExtra(ACTIVITY_ID, ZERO_LONG)
         loadActivity(activityId, activityCallback)
 
         val athlete = presenter.getAthlete()
@@ -82,14 +97,27 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
     override fun getLayoutResId() = R.layout.activity_detailed_activity
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.active_bar, menu)
+        menuInflater.inflate(R.menu.detail_bar, menu)
 
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
-            android.R.id.home -> onBackPressed()
+            android.R.id.home -> {
+                onBackPressed()
+
+                return true
+            }
+            R.id.share -> {
+                share()
+
+                return true
+            }
+            R.id.delete -> {
+                deleteActivity(activityId, deleteActivityCallback)
+                return true
+            }
         }
 
         return super.onOptionsItemSelected(item)
@@ -98,5 +126,22 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
     override fun onDestroy() {
         presenter.detachView()
         super.onDestroy()
+    }
+
+    private fun share() {
+
+    }
+
+    private fun deleteActivity(id: Long, callback: ICallback<Boolean>) {
+        presenter.deleteActivity(id, callback)
+    }
+
+    private fun back(result: Boolean = false, message: String = EMPTY) {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("isDeleted", result)
+        intent.putExtra("delete_err", message)
+
+        startActivity(intent)
+        finish()
     }
 }

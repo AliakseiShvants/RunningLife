@@ -26,9 +26,9 @@ open class ImageLoader private constructor() : ILoader {
         }
     }
 
-    override fun load(imageView: ImageView, uri: String, imageType: ImageType) {
+    override fun load(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
         if (uri == Const.EMPTY) {
-            goneEmptyImage(imageView, uri)
+            if (isGone) goneEmptyImage(imageView, uri)
 
             return
         }
@@ -57,7 +57,7 @@ open class ImageLoader private constructor() : ILoader {
                                 }
 
                                 override fun onLoadingError() {
-                                    goneEmptyImage(imageView, uri)
+                                    if (isGone) goneEmptyImage(imageView, uri)
                                 }
                             })
                         }

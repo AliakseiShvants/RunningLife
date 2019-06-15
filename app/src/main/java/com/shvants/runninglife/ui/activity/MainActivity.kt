@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -15,6 +16,7 @@ import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.mvp.presenter.MainPresenter
 import com.shvants.runninglife.ui.view.NavAthleteView
+import com.shvants.runninglife.utils.Const.EMPTY
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_athlete_view.view.*
 
@@ -48,6 +50,8 @@ class MainActivity : AppCompatActivity(),
         presenter?.loadAthlete()
 
         navigationView.menu.performIdentifierAction(R.id.navMyActivities, 0)
+
+        onActivityDelete()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -96,6 +100,19 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun getAthleteProfile() = navAthleteView.navAthleteProfile
+
+    private fun onActivityDelete() {
+        val isDeleted = intent.getBooleanExtra("isDeleted", false)
+        val message = intent.getStringExtra("delete_msg")
+
+        when {
+            isDeleted ->
+                Toast.makeText(applicationContext, "Activity was deleted", Toast.LENGTH_LONG).show()
+
+            message != null && message != EMPTY ->
+                Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun logout() {
         ImageLoader.getInstance().clearCache()

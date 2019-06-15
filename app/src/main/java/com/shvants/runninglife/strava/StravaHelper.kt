@@ -102,6 +102,13 @@ object StravaHelper {
                 .toString()
     }
 
+    fun deleteActivityUrl(id: Long): String {
+        return HttpUrl.parse("$ACTIVITIES_BASE_URL$id")
+                ?.newBuilder()
+                ?.build()
+                .toString()
+    }
+
     private const val ONE_YEAR_IN_SECONDS = 365 * 24 * 60 * 60
 
     private const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete/"

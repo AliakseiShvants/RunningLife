@@ -33,8 +33,8 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
         view = null
     }
 
-    override fun loadImage(view: ImageView, url: String, imageType: ImageType) {
-        imageLoader.load(view, url, imageType)
+    override fun loadImage(view: ImageView, url: String, imageType: ImageType, isGone: Boolean) {
+        imageLoader.load(view, url, imageType, isGone)
     }
 
     override fun loadClub(id: Int, callback: ICallback<DetailedClubUi>) {

@@ -14,6 +14,21 @@ class StravaRequest {
         return get(url)
     }
 
+    private fun delete(url: String, token: String): Boolean {
+        val httpClient = OkHttpClient()
+        val request = Request
+                .Builder()
+                .url(url)
+                .header(AUTHORIZATION, "$BEARER $token")
+                .delete()
+                .build()
+        val response = httpClient
+                .newCall(request)
+                .execute()
+
+        return response.isSuccessful
+    }
+
     fun get(url: String): String {
         val httpClient = OkHttpClient()
         val request = Request
@@ -93,6 +108,12 @@ class StravaRequest {
         val url = StravaHelper.getClubUrl(token, id)
 
         return get(url)
+    }
+
+    fun makeDeleteActivityRequest(token: String, id: Long): Boolean {
+        val url = StravaHelper.deleteActivityUrl(id)
+
+        return delete(token, url)
     }
 
 

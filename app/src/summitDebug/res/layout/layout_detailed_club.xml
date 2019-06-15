@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="256dp"
             android:scaleType="centerCrop"
+            android:background="@color/gray200"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <include
@@ -45,15 +46,11 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/clubProfile" />
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clubInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/four_intents"
-            android:paddingTop="@dimen/one_intent"
-            android:paddingBottom="@dimen/one_intent"
-            android:textSize="@dimen/xs_text_size"
             app:layout_constraintTop_toBottomOf="@id/clubName">
 
             <ImageView
@@ -61,35 +58,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/four_intents" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/firstDot"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/firstDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/one_intent"
-                android:layout_marginEnd="@dimen/one_intent"
-                android:text="@string/dot" />
+                android:text="@string/dot"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clubLocation"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/clubSportType"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/clubLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/s_text_size" />
+                android:textSize="@dimen/xs_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/secondDot"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/firstDot"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/secondDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/one_intent"
-                android:layout_marginEnd="@dimen/one_intent"
-                android:text="@string/dot" />
+                android:text="@string/dot"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/clubStatus"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/clubLocation"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/clubStatus"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/xs_text_size"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/secondDot"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/clubDescription"

@@ -46,4 +46,8 @@ class WebRepository {
 
         return club
     }
+
+    fun deleteActivity(token: String, id: Long): Boolean {
+        return StravaRequest().makeDeleteActivityRequest(token, id)
+    }
 }

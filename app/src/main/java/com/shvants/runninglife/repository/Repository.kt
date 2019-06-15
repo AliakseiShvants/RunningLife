@@ -80,4 +80,8 @@ class Repository(context: Context) {
 
         return clubUi
     }
+
+    fun deleteActivity(id: Long): Boolean {
+        return webRepo.deleteActivity(preferences.accessToken, id)
+    }
 }

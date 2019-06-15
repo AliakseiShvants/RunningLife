@@ -27,7 +27,7 @@ class DetailedClubActivity : AppCompatActivity(), DetailedClubContract.View {
         override fun onResult(result: DetailedClubUi) {
             supportActionBar?.title = resources.getString(R.string.club)
             detailedClub.setView(result)
-            loadImages(result, ImageType.DEFAULT)
+            loadImages(result, ImageType.DEFAULT, false)
         }
 
         override fun onError(message: String) {
@@ -51,9 +51,9 @@ class DetailedClubActivity : AppCompatActivity(), DetailedClubContract.View {
         loadClub(clubId, clubCallback)
     }
 
-    private fun loadImages(club: DetailedClubUi, imageType: ImageType) {
-        presenter.loadImage(detailedClub.clubCoverFoto, club.coverPhoto, imageType)
-        presenter.loadImage(detailedClub.clubProfile, club.profileMedium, imageType)
+    private fun loadImages(club: DetailedClubUi, imageType: ImageType, isGone: Boolean) {
+        presenter.loadImage(detailedClub.clubCoverFoto, club.coverPhoto, imageType, isGone)
+        presenter.loadImage(detailedClub.clubProfile, club.profileMedium, imageType, isGone)
     }
 
     private fun loadClub(id: Int, callback: ICallback<DetailedClubUi>) {

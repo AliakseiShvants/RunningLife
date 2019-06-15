@@ -13,7 +13,7 @@ interface DetailedClubContract {
 
     interface Presenter : BasePresenter<View> {
 
-        fun loadImage(view: ImageView, url: String, imageType: ImageType)
+        fun loadImage(view: ImageView, url: String, imageType: ImageType, isGone: Boolean)
 
         fun loadClub(id: Int, callback: ICallback<DetailedClubUi>)
     }
