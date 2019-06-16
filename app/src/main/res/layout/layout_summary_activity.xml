@@ -30,8 +30,6 @@
         android:id="@+id/summaryActivityMapContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingStart="@dimen/one_intent"
-        android:paddingBottom="@dimen/one_intent"
         app:layout_constraintTop_toBottomOf="@id/summaryActivityData">
 
         <ImageView
@@ -42,18 +40,28 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/mediaPanel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/summaryActivityMapContainer">
 
-        <com.shvants.runninglife.ui.view.LikeView
-            android:id="@+id/likePanel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <com.shvants.runninglife.ui.view.KudoersView
+            android:id="@+id/kudoers"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
-        <include
-            android:id="@+id/mediaButtons"
-            layout="@layout/layout_like_comment_panel" />
+        <TextView
+            android:id="@+id/commentCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="@dimen/two_intents"
+            android:text="1 comment" />
     </LinearLayout>
+
+    <include
+        android:id="@+id/mediaButtons"
+        layout="@layout/layout_buons_panel"
+        app:layout_constraintTop_toBottomOf="@id/mediaPanel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

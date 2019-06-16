@@ -26,6 +26,13 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     private var page = AtomicInteger(1)
     private val feedItemAnimator = object : DefaultItemAnimator() {}
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        retainInstance = true
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

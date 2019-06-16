@@ -23,7 +23,7 @@ class DetailedActivityView @JvmOverloads constructor(
     private lateinit var athleteView: ActivityAthleteView
     private lateinit var nameView: TextView
     private lateinit var dataView: DetailedDataView
-    private lateinit var likeView: LikeView
+    private lateinit var likeView: KudoersView
     private lateinit var mapView: ImageView
 
     override fun onViewInflated(context: Context) {

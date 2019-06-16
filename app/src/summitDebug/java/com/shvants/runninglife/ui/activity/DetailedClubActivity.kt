@@ -5,8 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.DetailedClubUi
@@ -19,7 +17,7 @@ import kotlinx.android.synthetic.summitDebug.activity_detailed_club.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_club.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_club.view.*
 
-class DetailedClubActivity : AppCompatActivity(), DetailedClubContract.View {
+class DetailedClubActivity : BaseActivity(), DetailedClubContract.View {
 
     private lateinit var presenter: DetailedClubContract.Presenter
     private val clubCallback = object : ICallback<DetailedClubUi> {
@@ -39,10 +37,7 @@ class DetailedClubActivity : AppCompatActivity(), DetailedClubContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_club)
 
-        val toolbarView = toolbar as Toolbar
-        setSupportActionBar(toolbarView)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        setSupportActionBar()
 
         presenter = DetailedClubPresenter(this)
         presenter.attachView(this)
@@ -68,7 +63,7 @@ class DetailedClubActivity : AppCompatActivity(), DetailedClubContract.View {
     override fun getLayoutResId() = R.layout.activity_detailed_club
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.active_bar, menu)
+        menuInflater.inflate(R.menu.club_bar, menu)
 
         return true
     }

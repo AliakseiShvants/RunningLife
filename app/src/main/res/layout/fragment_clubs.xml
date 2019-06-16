@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/clubsImage"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content">
 
-    <include
-        android:id="@+id/errTextView"
-        layout="@layout/layout_err_message"
-        app:layout_constraintTop_toBottomOf="@id/clubsImage" />
-
-    <LinearLayout
-        android:id="@+id/yourClubsContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/gray200"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/clubsImage">
-
-        <TextView
-            android:id="@+id/yourClubs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/one_intent"
-            android:text="@string/your_clubs" />
-
-        <TextView
-            android:id="@+id/clubsCount"
+        <ImageView
+            android:id="@+id/clubsImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
-            android:padding="@dimen/one_intent" />
-    </LinearLayout>
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/yourClubsContainer" />
+        <include
+            android:id="@+id/errTextView"
+            layout="@layout/layout_err_message"
+            app:layout_constraintTop_toBottomOf="@id/clubsImage" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/yourClubsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray200"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/clubsImage">
+
+            <TextView
+                android:id="@+id/yourClubs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/one_intent"
+                android:text="@string/your_clubs" />
+
+            <TextView
+                android:id="@+id/clubsCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:padding="@dimen/one_intent" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/yourClubsContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

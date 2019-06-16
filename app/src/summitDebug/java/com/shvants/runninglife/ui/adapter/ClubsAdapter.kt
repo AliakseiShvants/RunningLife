@@ -24,6 +24,7 @@ class ClubsAdapter(private val context: Context,
         val clubView = holder.itemView
         val club = clubs[position]
 
+        presenter.setClubsCount(itemCount)
         presenter.loadClubImage(clubView.findViewById(R.id.clubImage), club.profileMedium)
         clubView.findViewById<TextView>(R.id.clubName).text = club.name
         clubView.setOnClickListener { showItemDetails(position) }

@@ -7,8 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.DetailedActivityUi
@@ -23,7 +21,7 @@ import kotlinx.android.synthetic.summitDebug.activity_detailed_activity.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.view.*
 
-class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
+class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
 
     private lateinit var presenter: DetailedActivityContract.Presenter
     private var activityId = ZERO_LONG
@@ -51,15 +49,11 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayoutResId())
 
-        val toolbarView = toolbar as Toolbar
-        setSupportActionBar(toolbarView)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        setSupportActionBar()
 
         presenter = DetailedActivityPresenter(this)
         presenter.attachView(this)
@@ -97,7 +91,7 @@ class DetailedActivity : AppCompatActivity(), DetailedActivityContract.View {
     override fun getLayoutResId() = R.layout.activity_detailed_activity
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.detail_bar, menu)
+        menuInflater.inflate(R.menu.activity_bar, menu)
 
         return true
     }

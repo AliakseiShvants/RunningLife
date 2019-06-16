@@ -12,11 +12,11 @@ import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.mvp.contract.DetailedActivityContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaHelper
-import com.shvants.runninglife.ui.view.LikeView
+import com.shvants.runninglife.ui.view.KudoersView
 import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.ICallback
-import kotlinx.android.synthetic.main.like_view.view.*
+import kotlinx.android.synthetic.main.kudoers_view.view.*
 import java.lang.ref.WeakReference
 import java.util.concurrent.Executors
 
@@ -77,7 +77,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
                 EMPTY
             }
 
-    override fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,
+    override fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
                                     callback: ICallback<List<String>>) {
         executor.execute {
             try {
@@ -91,7 +91,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
         }
     }
 
-    override fun handleKudos(view: LikeView, arr: Array<String>) {
+    override fun handleKudos(view: KudoersView, arr: Array<String>) {
         when (arr.size) {
             0 -> {
             }

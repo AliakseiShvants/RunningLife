@@ -8,7 +8,10 @@ import com.shvants.runninglife.utils.ICallback
 
 interface ClubsContract {
 
-    interface View : BaseView
+    interface View : BaseView {
+
+        fun setClubsCount(count: Int)
+    }
 
     interface Presenter : BasePresenter<View> {
 
@@ -17,5 +20,7 @@ interface ClubsContract {
         fun loadClubs(callback: ICallback<List<SummaryClubUi>>)
 
         fun loadClubImage(view: ImageView, profileMedium: String)
+
+        fun setClubsCount(count: Int)
     }
 }

@@ -91,6 +91,7 @@ object Converter {
                 distance = distance,
                 avgSpeed = avgSpeed,
                 kudosCount = activityGson.kudosCount ?: ZERO,
+                commentCount = activityGson.commentCount ?: ZERO,
                 startLatlng = activityGson.startLatlng ?: FloatArray(ZERO),
                 endLatlng = activityGson.endLatlng ?: FloatArray(ZERO),
                 map = activityGson.map?.polyline ?: EMPTY,
@@ -118,6 +119,7 @@ object Converter {
                 distance = distance,
                 avgSpeed = avgSpeed,
                 kudosCount = activityGson.kudosCount ?: ZERO,
+                commentCount = activityGson.commentCount ?: ZERO,
                 startLatlng = activityGson.startLatlng ?: FloatArray(ZERO),
                 endLatlng = activityGson.endLatlng ?: FloatArray(ZERO),
                 map = activityGson.map?.summaryPolyline ?: EMPTY)

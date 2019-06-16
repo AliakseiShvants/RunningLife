@@ -12,7 +12,7 @@ import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
 import com.shvants.runninglife.utils.Const.ZERO
-import kotlinx.android.synthetic.main.layout_summary_item.view.*
+import kotlinx.android.synthetic.main.layout_summary_activity.view.*
 
 class SummaryActivityView @JvmOverloads constructor(
         context: Context,
@@ -23,14 +23,16 @@ class SummaryActivityView @JvmOverloads constructor(
     private lateinit var athleteView: ActivityAthleteView
     private lateinit var nameView: TextView
     private lateinit var dataView: SummaryDataView
-    private lateinit var likeView: LikeView
+    private lateinit var kudoersView: KudoersView
+    private lateinit var commentCountView: TextView
     private lateinit var mapView: ImageView
 
     override fun onViewInflated(context: Context) {
         athleteView = activityAthlete
         nameView = activityName
         dataView = summaryActivityData
-        likeView = likePanel
+        kudoersView = kudoers
+        commentCountView = commentCount
         mapView = summaryActivityMap
     }
 
@@ -45,7 +47,18 @@ class SummaryActivityView @JvmOverloads constructor(
 
         dataView.setView(activity)
         nameView.text = activity.name
-        likeView.setView(activity)
+        kudoersView.setView(activity)
+
+        when (activity.commentCount) {
+            0 -> return
+            1 -> {
+                commentCountView.text = ONE_COMMENT
+            }
+            else -> {
+                val commentCount = "${activity.commentCount} $COMMENTS"
+                commentCountView.text = commentCount
+            }
+        }
     }
 
     @UiThread
@@ -53,5 +66,10 @@ class SummaryActivityView @JvmOverloads constructor(
         athleteView.setView(athlete)
     }
 
-    override fun getLayoutResId() = R.layout.layout_summary_item
+    override fun getLayoutResId() = R.layout.layout_summary_activity
+
+    companion object {
+        private const val ONE_COMMENT = "1 comment"
+        private const val COMMENTS = "comments"
+    }
 }

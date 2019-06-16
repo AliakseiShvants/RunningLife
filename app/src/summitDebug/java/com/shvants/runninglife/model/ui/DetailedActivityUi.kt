@@ -8,6 +8,7 @@ class DetailedActivityUi(override var id: Long,
                          override var distance: String,
                          override var avgSpeed: String,
                          override var kudosCount: Int,
+                         override var commentCount: Int,
                          override var startLatlng: FloatArray,
                          override var endLatlng: FloatArray,
                          override var map: String,
@@ -15,4 +16,4 @@ class DetailedActivityUi(override var id: Long,
                          var calories: Int,
                          var avgHR: Int)
     : SummaryActivityUi(id, name, movingTime, type, startDate, distance, avgSpeed, kudosCount,
-        startLatlng, endLatlng, map)
+        commentCount, startLatlng, endLatlng, map)

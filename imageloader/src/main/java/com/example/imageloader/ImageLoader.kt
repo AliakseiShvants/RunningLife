@@ -26,6 +26,7 @@ open class ImageLoader private constructor() : ILoader {
         }
     }
 
+    // directly from network
     override fun load(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
         if (uri == Const.EMPTY) {
             if (isGone) goneEmptyImage(imageView, uri)
@@ -35,37 +36,57 @@ open class ImageLoader private constructor() : ILoader {
 
         imageView.tag = uri
 
-        loadFromMemoryCache(uri, object : ImageCallback<Bitmap> {
+        loadFromNetwork(uri, object : ImageCallback<Bitmap> {
 
             override fun onResult(result: Bitmap) {
                 setImage(imageView, uri, result, imageType)
             }
 
             override fun onLoadingError() {
-                executor.execute {
-                    loadFromDiskCache(uri, object : ImageCallback<Bitmap> {
-
-                        override fun onResult(result: Bitmap) {
-                            setImage(imageView, uri, result, imageType)
-                        }
-
-                        override fun onLoadingError() {
-                            loadFromNetwork(uri, object : ImageCallback<Bitmap> {
-
-                                override fun onResult(result: Bitmap) {
-                                    setImage(imageView, uri, result, imageType)
-                                }
-
-                                override fun onLoadingError() {
-                                    if (isGone) goneEmptyImage(imageView, uri)
-                                }
-                            })
-                        }
-                    })
-                }
+                if (isGone) goneEmptyImage(imageView, uri)
             }
         })
     }
+//    override fun load(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
+//        if (uri == Const.EMPTY) {
+//            if (isGone) goneEmptyImage(imageView, uri)
+//
+//            return
+//        }
+//
+//        imageView.tag = uri
+//
+//        loadFromMemoryCache(uri, object : ImageCallback<Bitmap> {
+//
+//            override fun onResult(result: Bitmap) {
+//                setImage(imageView, uri, result, imageType)
+//            }
+//
+//            override fun onLoadingError() {
+//                executor.execute {
+//                    loadFromDiskCache(uri, object : ImageCallback<Bitmap> {
+//
+//                        override fun onResult(result: Bitmap) {
+//                            setImage(imageView, uri, result, imageType)
+//                        }
+//
+//                        override fun onLoadingError() {
+//                            loadFromNetwork(uri, object : ImageCallback<Bitmap> {
+//
+//                                override fun onResult(result: Bitmap) {
+//                                    setImage(imageView, uri, result, imageType)
+//                                }
+//
+//                                override fun onLoadingError() {
+//                                    if (isGone) goneEmptyImage(imageView, uri)
+//                                }
+//                            })
+//                        }
+//                    })
+//                }
+//            }
+//        })
+//    }
 
     private fun goneEmptyImage(imageView: ImageView, uri: String) {
         handler.post { imageView.visibility = View.GONE }

@@ -57,14 +57,14 @@
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/detailedData">
 
-            <com.shvants.runninglife.ui.view.LikeView
+            <com.shvants.runninglife.ui.view.KudoersView
                 android:id="@+id/detailedLikePanel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <include
                 android:id="@+id/detailedMediaButtons"
-                layout="@layout/layout_like_comment_panel" />
+                layout="@layout/layout_buons_panel" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

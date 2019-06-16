@@ -9,9 +9,9 @@ import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.utils.Const.ZERO
-import kotlinx.android.synthetic.main.like_view.view.*
+import kotlinx.android.synthetic.main.kudoers_view.view.*
 
-class LikeView @JvmOverloads constructor(
+class KudoersView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = ZERO) : /*BaseCustomView<DetailedActivityUi>,*/
@@ -29,7 +29,7 @@ class LikeView @JvmOverloads constructor(
         countView = countText
     }
 
-    override fun getLayoutResId() = R.layout.like_view
+    override fun getLayoutResId() = R.layout.kudoers_view
 
     fun setView(item: SummaryActivityUi) {
         val count = item.kudosCount

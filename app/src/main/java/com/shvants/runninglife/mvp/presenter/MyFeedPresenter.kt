@@ -13,11 +13,11 @@ import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaHelper
-import com.shvants.runninglife.ui.view.LikeView
+import com.shvants.runninglife.ui.view.KudoersView
 import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.ICallback
-import kotlinx.android.synthetic.main.like_view.view.*
+import kotlinx.android.synthetic.main.kudoers_view.view.*
 import java.util.concurrent.Executors
 
 class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
@@ -56,7 +56,7 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
         }
     }
 
-    override fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,
+    override fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
                                     callback: ICallback<List<String>>) {
         executor.execute {
             try {
@@ -72,7 +72,7 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
         }
     }
 
-    override fun handleKudos(view: LikeView, list: List<String>) {
+    override fun handleKudos(view: KudoersView, list: List<String>) {
         when (list.size) {
             0 -> {
             }

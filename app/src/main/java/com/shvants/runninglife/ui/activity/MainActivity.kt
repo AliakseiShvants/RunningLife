@@ -84,10 +84,19 @@ class MainActivity : AppCompatActivity(),
         navigationView.setCheckedItem(item)
     }
 
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStack()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
     override fun replaceFragment(fragment: Fragment) {
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)
+                .addToBackStack(null)
                 .commit()
     }
 

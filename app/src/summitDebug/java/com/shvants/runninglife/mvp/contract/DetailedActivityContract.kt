@@ -5,7 +5,7 @@ import com.example.imageloader.ImageType
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.presenter.BasePresenter
-import com.shvants.runninglife.ui.view.LikeView
+import com.shvants.runninglife.ui.view.KudoersView
 import com.shvants.runninglife.ui.view.base.BaseView
 import com.shvants.runninglife.utils.ICallback
 
@@ -23,10 +23,10 @@ interface DetailedActivityContract {
 
         fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>)
 
-        fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,
+        fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
                                callback: ICallback<List<String>>)
 
-        fun handleKudos(view: LikeView, arr: Array<String>)
+        fun handleKudos(view: KudoersView, arr: Array<String>)
 
         fun deleteActivity(id: Long, callback: ICallback<Boolean>)
 

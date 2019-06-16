@@ -28,15 +28,13 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.activity.LoginActivity"
-            android:exported="true"
-            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.LoginActivity" />
+
+        <activity android:name=".ui.activity.AuthActivity" />
 
         <activity
-            android:name=".ui.activity.AuthActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.MainActivity" />
+            android:name=".ui.activity.MainActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

@@ -15,6 +15,7 @@ data class DetailedActivityGson(
         @SerializedName("distance") val distance: Float?,
         @SerializedName("average_speed") val averageSpeed: Float?,
         @SerializedName("kudos_count") val kudosCount: Int?,
+        @SerializedName("comment_count") val commentCount: Int?,
         @SerializedName("start_latlng") val startLatlng: FloatArray?,
         @SerializedName("end_latlng") val endLatlng: FloatArray?,
         @SerializedName("map") val map: MapGson?,

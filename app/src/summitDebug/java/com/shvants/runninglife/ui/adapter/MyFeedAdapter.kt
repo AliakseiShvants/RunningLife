@@ -11,13 +11,13 @@ import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.ui.activity.DetailedActivity
-import com.shvants.runninglife.ui.view.LikeView
+import com.shvants.runninglife.ui.view.KudoersView
 import com.shvants.runninglife.ui.view.SummaryActivityView
 import com.shvants.runninglife.utils.Const.ACTIVITY_ID
 import com.shvants.runninglife.utils.Const.KUDOS
 import com.shvants.runninglife.utils.ICallback
 import com.shvants.runninglife.utils.LongDiffUtil
-import kotlinx.android.synthetic.main.layout_summary_item.view.*
+import kotlinx.android.synthetic.main.layout_summary_activity.view.*
 
 
 class MyFeedAdapter(private val context: Context,
@@ -36,7 +36,7 @@ class MyFeedAdapter(private val context: Context,
             val activity = activities[position]
 
             val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
-            val likeView = view.findViewById<LikeView>(R.id.likePanel)
+            val likeView = view.findViewById<KudoersView>(R.id.kudoers)
 
             presenter.loadKudoersProfile(likeView, activity.id, ImageType.ROUNDED,
                     object : ICallback<List<String>> {

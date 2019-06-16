@@ -87,7 +87,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
 //                EMPTY
 //            }
 //
-//    override fun loadKudoersProfile(view: LikeView, id: Long, imageType: ImageType,
+//    override fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
 //                                    callback: ICallback<List<String>>) {
 //        executor.execute {
 //            try {
@@ -101,7 +101,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
 //        }
 //    }
 //
-//    override fun handleKudos(view: LikeView, arr: Array<String>) {
+//    override fun handleKudos(view: KudoersView, arr: Array<String>) {
 //        when (arr.size) {
 //            0 -> {
 //            }

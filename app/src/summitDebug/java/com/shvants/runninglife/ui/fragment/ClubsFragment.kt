@@ -1,6 +1,8 @@
 package com.shvants.runninglife.ui.fragment
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -21,8 +23,14 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
     private lateinit var presenter: ClubsContract.Presenter
     private lateinit var clubsAdapter: ClubsAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        retainInstance = true
+        setHasOptionsMenu(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         presenter = ClubsPresenter(requireContext().applicationContext)
         presenter.attachView(this)
@@ -41,6 +49,8 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
         }
 
         loadClubs()
+
+//        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun loadClubs() {
@@ -50,7 +60,6 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
 
             override fun onResult(result: List<SummaryClubUi>) {
                 clubsAdapter.addClubs(result)
-                clubsCount.text = result.size.toString()
             }
 
             override fun onError(message: String) {
@@ -61,9 +70,18 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
 
     override fun getLayoutResId() = R.layout.fragment_clubs
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.clubs_bar, menu)
+    }
+
     override fun showMessage(message: String) {
         errTextView.visibility = View.VISIBLE
         (errTextView as TextView).text = message
+    }
+
+    override fun setClubsCount(count: Int) {
+        clubsCount.text = count.toString()
     }
 
     companion object {
