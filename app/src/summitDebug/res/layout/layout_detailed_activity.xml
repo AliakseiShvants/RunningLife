@@ -51,20 +51,34 @@
             app:layout_constraintTop_toBottomOf="@id/detailedActivityMap" />
 
         <LinearLayout
-            android:id="@+id/detailMediaContainer"
+            android:id="@+id/mediaPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/detailedData">
 
             <com.shvants.runninglife.ui.view.KudoersView
-                android:id="@+id/detailedLikePanel"
+                android:id="@+id/kudoers"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/commentCount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:gravity="end|center_vertical"
+                android:paddingEnd="@dimen/two_intents"
+                android:text="1 comment" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/mediaPanel">
 
             <include
-                android:id="@+id/detailedMediaButtons"
-                layout="@layout/layout_buons_panel" />
+                android:id="@+id/mediaButtons"
+                layout="@layout/layout_buttons_panel" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

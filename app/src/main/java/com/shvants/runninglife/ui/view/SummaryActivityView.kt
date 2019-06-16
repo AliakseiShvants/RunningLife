@@ -11,6 +11,8 @@ import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
+import com.shvants.runninglife.utils.Const.COMMENTS
+import com.shvants.runninglife.utils.Const.ONE_COMMENT
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.layout_summary_activity.view.*
 
@@ -67,9 +69,4 @@ class SummaryActivityView @JvmOverloads constructor(
     }
 
     override fun getLayoutResId() = R.layout.layout_summary_activity
-
-    companion object {
-        private const val ONE_COMMENT = "1 comment"
-        private const val COMMENTS = "comments"
-    }
 }

@@ -34,7 +34,7 @@
 
         <activity
             android:name=".ui.activity.MainActivity"
-            android:launchMode="singleInstance" />
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

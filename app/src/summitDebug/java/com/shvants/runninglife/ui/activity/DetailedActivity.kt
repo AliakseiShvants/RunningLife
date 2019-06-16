@@ -68,7 +68,7 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
         }
 
         val kudosProfile = intent.getStringArrayExtra(KUDOS)
-        presenter.handleKudos(detailedLikePanel, kudosProfile)
+        presenter.handleKudos(kudoers, kudosProfile)
     }
 
     private fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>) {

@@ -28,6 +28,9 @@ object Const {
     const val PROFILE = "PROFILE"
     const val SUMMIT = "SUMMIT"
 
+    const val ONE_COMMENT = "1 comment"
+    const val COMMENTS = "comments"
+
     object FeedFragment {
         val TITLE = "Feed"
     }

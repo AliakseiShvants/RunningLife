@@ -11,6 +11,8 @@ import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
+import com.shvants.runninglife.utils.Const.COMMENTS
+import com.shvants.runninglife.utils.Const.ONE_COMMENT
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.view.*
 
@@ -23,14 +25,16 @@ class DetailedActivityView @JvmOverloads constructor(
     private lateinit var athleteView: ActivityAthleteView
     private lateinit var nameView: TextView
     private lateinit var dataView: DetailedDataView
-    private lateinit var likeView: KudoersView
+    private lateinit var kudoersView: KudoersView
+    private lateinit var commentCountView: TextView
     private lateinit var mapView: ImageView
 
     override fun onViewInflated(context: Context) {
         athleteView = detailedActivityAthlete
         nameView = detailedActivityName
         dataView = detailedData
-        likeView = detailedLikePanel
+        kudoersView = kudoers
+        commentCountView = commentCount
         mapView = detailedActivityMap
     }
 
@@ -47,7 +51,18 @@ class DetailedActivityView @JvmOverloads constructor(
 
         dataView.setView(activity)
         nameView.text = activity.name
-        likeView.seView(activity)
+        kudoersView.seView(activity)
+
+        when (activity.commentCount) {
+            0 -> return
+            1 -> {
+                commentCountView.text = ONE_COMMENT
+            }
+            else -> {
+                val commentCount = "${activity.commentCount} $COMMENTS"
+                commentCountView.text = commentCount
+            }
+        }
     }
 
     @UiThread
