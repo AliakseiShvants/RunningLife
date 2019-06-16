@@ -8,13 +8,7 @@ import okhttp3.Request
 
 class StravaRequest {
 
-    fun makeAthleteActivitiesRequest(token: String, page: Int): String {
-        val url = StravaHelper.getAthleteActivitiesUrl(token, page)
-
-        return get(url)
-    }
-
-    private fun delete(url: String, token: String): Boolean {
+    private fun delete(token: String, url: String): Boolean {
         val httpClient = OkHttpClient()
         val request = Request
                 .Builder()
@@ -29,39 +23,13 @@ class StravaRequest {
         return response.isSuccessful
     }
 
-    fun get(url: String): String {
+    private fun get(token: String, url: String): String {
         val httpClient = OkHttpClient()
         val request = Request
                 .Builder()
-                .url(url)
-                .build()
-        val response = httpClient
-                .newCall(request)
-                .execute()
-
-        return response.body()?.string() ?: Const.EMPTY
-    }
-
-    fun get(url: String, token: String): String {
-        val httpClient = OkHttpClient()
-        val request = Request
-                .Builder()
-                .url(url)
                 .header(AUTHORIZATION, "$BEARER $token")
-                .build()
-        val response = httpClient
-                .newCall(request)
-                .execute()
-
-        return response.body()?.string() ?: Const.EMPTY
-    }
-
-    fun post(url: String, body: FormBody): String {
-        val httpClient = OkHttpClient()
-        val request = Request
-                .Builder()
                 .url(url)
-                .post(body)
+                .get()
                 .build()
         val response = httpClient
                 .newCall(request)
@@ -85,32 +53,37 @@ class StravaRequest {
         return response.body()?.string() ?: Const.EMPTY
     }
 
-    fun makeKudoersRequest(token: String, id: Long): String {
-        val url = StravaHelper.getKudoersUrl(token, id)
+    fun getAthleteActivities(token: String, page: Int): String {
+        val url = StravaHelper.getAthleteActivitiesUrl(page)
 
-        return get(url)
-
+        return get(token, url)
     }
 
-    fun makeAthleteActivityRequest(token: String, id: Long): String {
-        val url = StravaHelper.getActivityUrl(token, id)
+    fun getAthleteKudoers(token: String, id: Long): String {
+        val url = StravaHelper.getKudoersUrl(id)
 
-        return get(url)
+        return get(token, url)
     }
 
-    fun makeAthleteClubsRequest(token: String): String {
-        val url = StravaHelper.getClubsUrl(token)
+    fun getAthleteActivity(token: String, id: Long): String {
+        val url = StravaHelper.getActivityUrl(id)
 
-        return get(url)
+        return get(token, url)
     }
 
-    fun makeClubRequest(token: String, id: Int): String {
-        val url = StravaHelper.getClubUrl(token, id)
+    fun getAthleteClubs(token: String): String {
+        val url = StravaHelper.getClubsUrl()
 
-        return get(url)
+        return get(token, url)
     }
 
-    fun makeDeleteActivityRequest(token: String, id: Long): Boolean {
+    fun getClubRequest(token: String, id: Int): String {
+        val url = StravaHelper.getClubUrl(id)
+
+        return get(token, url)
+    }
+
+    fun deleteActivityRequest(token: String, id: Long): Boolean {
         val url = StravaHelper.deleteActivityUrl(id)
 
         return delete(token, url)

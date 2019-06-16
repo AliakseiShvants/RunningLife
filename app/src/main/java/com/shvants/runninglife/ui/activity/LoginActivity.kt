@@ -8,7 +8,6 @@ import android.os.SystemClock
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.gson.OauthResponse
 import com.shvants.runninglife.mvp.contract.LoginContract
@@ -58,7 +57,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 //            startActivityForResult(intent, 1)
 
             //test
-            handleTokenResponse("1dbfcb5a5a7e67b86551360f3f5a4ee72f7f9d7b")
+            handleTokenResponse("877b390046ce7751815aaf6a8e8d32b3f69e5aea")
         }
 
         slideImages()
@@ -80,12 +79,13 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     private fun handleTokenResponse(code: String) {
         executor.execute {
             val tokenBody = StravaHelper.getTokenBody(code)
-            val responseString = StravaRequest().post(StravaHelper.TOKEN_BASE_URL, tokenBody)
+            val responseString = StravaRequest().post(StravaHelper.TOKEN_BASE_URL,
+                    preferences.accessToken, tokenBody)
 
             if (responseString != EMPTY) {
                 try {
                     fillPreferences(responseString)
-                } catch (e: JsonSyntaxException) {
+                } catch (e: Exception) {
                     callback.onError(ERR_JSON)
                 }
             }

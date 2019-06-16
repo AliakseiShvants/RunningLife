@@ -10,7 +10,7 @@ import com.shvants.runninglife.strava.StravaRequest
 class WebRepository {
 
     fun getAthleteActivities(token: String, page: Int): List<SummaryActivityGson> {
-        val json = StravaRequest().makeAthleteActivitiesRequest(token, page)
+        val json = StravaRequest().getAthleteActivities(token, page)
         val activitiesArr = Gson().fromJson(json, Array<SummaryActivityGson>::class.java)
 
         return ActivityListGson(activitiesArr.toList()).getList()
@@ -20,20 +20,20 @@ class WebRepository {
 //    }
 
     fun getKudoers(token: String, id: Long): List<SummaryAthleteGson> {
-        val json = StravaRequest().makeKudoersRequest(token, id)
+        val json = StravaRequest().getAthleteKudoers(token, id)
         val kudoersArr = Gson().fromJson(json, Array<SummaryAthleteGson>::class.java)
 
         return AthleteListGson(kudoersArr.toList()).getList()
     }
 
     fun getActivity(token: String, id: Long): DetailedActivityGson {
-        val json = StravaRequest().makeAthleteActivityRequest(token, id)
+        val json = StravaRequest().getAthleteActivity(token, id)
 
         return Gson().fromJson(json, DetailedActivityGson::class.java)
     }
 
     fun getClubs(token: String): List<SummaryClubGson> {
-        val json = StravaRequest().makeAthleteClubsRequest(token)
+        val json = StravaRequest().getAthleteClubs(token)
 
         val clubsArr = Gson().fromJson(json, Array<SummaryClubGson>::class.java)
 
@@ -41,13 +41,13 @@ class WebRepository {
     }
 
     fun getClub(token: String, id: Int): DetailedClubGson {
-        val json = StravaRequest().makeClubRequest(token, id)
+        val json = StravaRequest().getClubRequest(token, id)
         val club = Gson().fromJson(json, DetailedClubGson::class.java)
 
         return club
     }
 
     fun deleteActivity(token: String, id: Long): Boolean {
-        return StravaRequest().makeDeleteActivityRequest(token, id)
+        return StravaRequest().deleteActivityRequest(token, id)
     }
 }

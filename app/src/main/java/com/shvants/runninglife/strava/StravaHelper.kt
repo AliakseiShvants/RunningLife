@@ -17,10 +17,9 @@ object StravaHelper {
         return urlBuilder?.build().toString()
     }
 
-    fun getAthleteActivitiesUrl(token: String, page: Int): String {
+    fun getAthleteActivitiesUrl(page: Int): String {
         return HttpUrl.parse("$ATHLETE_BASE_URL$ACTIVITIES")
                 ?.newBuilder()
-                ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(BEFORE, BEFORE_VALUE)
                 ?.addQueryParameter(AFTER, AFTER_VALUE)
                 ?.addQueryParameter(PAGE, "$page")
@@ -35,15 +34,6 @@ object StravaHelper {
                 .add(CLIENT_SECRET, CLIENT_SECRET_VALUE)
                 .add(CODE, code)
                 .add(GRANT_TYPE, GRANT_TYPE_VALUE)
-                .build()
-    }
-
-    fun getActivitiesBody(): FormBody {
-        return FormBody.Builder()
-                .add(BEFORE, BEFORE_VALUE)
-                .add(AFTER, AFTER_VALUE)
-                .add(PAGE, PAGE_VALUE)
-                .add(PER_PAGE, PER_PAGE_VALUE)
                 .build()
     }
 
@@ -65,39 +55,35 @@ object StravaHelper {
                 .toString()
     }
 
-    fun getKudoersUrl(token: String, id: Long): String {
+    fun getKudoersUrl(id: Long): String {
         return HttpUrl.parse("$ACTIVITIES_BASE_URL$id$KUDOS")
                 ?.newBuilder()
-                ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(PAGE, DEFAULT_PAGE)
                 ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
     }
 
-    fun getActivityUrl(token: String, id: Long): String {
+    fun getActivityUrl(id: Long): String {
         return HttpUrl.parse("$ACTIVITIES_BASE_URL$id")
                 ?.newBuilder()
-                ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(INCLUDE_ALL_EFFORTS, TRUE)
                 ?.build()
                 .toString()
     }
 
-    fun getClubsUrl(token: String): String {
+    fun getClubsUrl(): String {
         return HttpUrl.parse("$ATHLETE_BASE_URL$CLUBS")
                 ?.newBuilder()
-                ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.addQueryParameter(PAGE, DEFAULT_PAGE)
                 ?.addQueryParameter(PER_PAGE, PER_PAGE_VALUE)
                 ?.build()
                 .toString()
     }
 
-    fun getClubUrl(token: String, id: Int): String {
+    fun getClubUrl(id: Int): String {
         return HttpUrl.parse("$CLUBS_BASE_URL$id")
                 ?.newBuilder()
-                ?.addQueryParameter(ACCESS_TOKEN, token)
                 ?.build()
                 .toString()
     }
