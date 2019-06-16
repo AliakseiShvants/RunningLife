@@ -23,12 +23,11 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
     private lateinit var presenter: ClubsContract.Presenter
     private lateinit var clubsAdapter: ClubsAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        retainInstance = true
-        setHasOptionsMenu(true)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        setHasOptionsMenu(true)
+//
+//        super.onCreate(savedInstanceState)
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -43,7 +42,6 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             adapter = clubsAdapter
-//            addOnScrollListener(feedScrollListener)
             itemAnimator = object : DefaultItemAnimator() {}
             addItemDecoration(DividerItemDecoration(context, LinearLayout.HORIZONTAL))
         }

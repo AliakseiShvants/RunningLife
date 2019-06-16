@@ -15,10 +15,9 @@ import com.shvants.runninglife.mvp.presenter.MyFeedPresenter
 import com.shvants.runninglife.ui.adapter.MyFeedAdapter
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
-import java.lang.Boolean.FALSE
 import java.util.concurrent.atomic.AtomicInteger
 
-class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View {
+class MyFeedFragment : BaseFragment(), MyFeedContract.View {
 
     private lateinit var presenter: MyFeedContract.Presenter
     private lateinit var myFeedAdapter: MyFeedAdapter
@@ -29,8 +28,21 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        retainInstance = true
-        setHasOptionsMenu(true)
+//        retainInstance = true
+
+        if (savedInstanceState != null) {
+//            myFeedAdapter.setAthlete(savedInstanceState.getParcelable("athlete"))
+
+//            myFeedAdapter.setKudoersProfileUrls(savedInstanceState.getStringArrayList("kudoersUrl"))
+//            page = AtomicInteger(savedInstanceState.getInt("page"))
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+//        outState.putParcelable("athlete", myFeedAdapter.athlete)
+        outState.putParcelableArrayList("activities", ArrayList(myFeedAdapter.activities))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,8 +64,14 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
             addItemDecoration(divider)
         }
 
-        loadActivities(page.get())
+        if (savedInstanceState == null) {
+            loadActivities(page.get())
+        } else {
+            val savedActivities = savedInstanceState.getParcelableArrayList<SummaryActivityUi>("activities")
+            myFeedAdapter.setActivities(savedActivities)
+        }
     }
+
 
     override fun onDestroyView() {
         presenter.detachView()
@@ -73,24 +91,28 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
             super.onScrolled(recyclerView, dx, dy)
 
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val lastVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
 
-            if (!isLoading && totalItemCount <= (lastVisibleItemPosition + MAX_VISIBLE_ITEMS)) {
+            if (!isLoading
+                    && firstVisibleItemPosition > 0
+                    && (firstVisibleItemPosition + visibleItemCount) >= totalItemCount) {
                 loadActivities(page.incrementAndGet())
-                isLoading = true
             }
         }
     }
 
     fun loadActivities(page: Int) {
+        isLoading = true
         myFeedAdapter.setShowLastItemAsLoading(true)
 
         presenter.loadActivities(page, object : ICallback<List<SummaryActivityUi>> {
 
             override fun onResult(result: List<SummaryActivityUi>) {
                 myFeedAdapter.addActivities(result)
-                isLoading = FALSE
+                isLoading = false
             }
 
             override fun onError(message: String) {
@@ -100,7 +122,15 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     }
 
     companion object {
-        fun getInstance() = MyFeedFragment()
-        const val MAX_VISIBLE_ITEMS = 4
+        fun newInstance() = MyFeedFragment()
+        fun getInstance(tag: String): MyFeedFragment {
+            val args = Bundle()
+            args.putString("tag", tag)
+
+            val newInstance = MyFeedFragment()
+            newInstance.arguments = args
+
+            return newInstance
+        }
     }
 }

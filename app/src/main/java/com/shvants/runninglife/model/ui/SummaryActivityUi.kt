@@ -1,5 +1,9 @@
 package com.shvants.runninglife.model.ui
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 open class SummaryActivityUi(
         override var id: Long,
         open var name: String,
@@ -12,4 +16,4 @@ open class SummaryActivityUi(
         open var commentCount: Int,
         open var startLatlng: FloatArray,
         open var endLatlng: FloatArray,
-        open var map: String) : EntityLongUi(id)
+        open var map: String) : EntityLongUi(id), Parcelable

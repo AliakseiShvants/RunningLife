@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(),
         MainContract.View,
         NavigationView.OnNavigationItemSelectedListener {
 
+    private lateinit var fragmentTag: String
     private lateinit var toolbar: Toolbar
     private lateinit var navigationView: NavigationView
     private lateinit var navAthleteView: NavAthleteView
@@ -47,11 +48,35 @@ class MainActivity : AppCompatActivity(),
         navAthleteView = navigationView.getHeaderView(0).findViewById(R.id.navAthleteView)
 
         presenter?.attachView(this)
-        presenter?.loadAthlete()
 
-        navigationView.menu.performIdentifierAction(R.id.navMyActivities, 0)
+
+        if (savedInstanceState == null) {
+            navigationView.menu.performIdentifierAction(R.id.navMyActivities, 0)
+            presenter?.loadAthlete()
+        } else {
+
+        }
 
         onActivityDelete()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putString("actionBar", supportActionBar?.title.toString())
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+//        val index = supportFragmentManager.backStackEntryCount - 1
+//        val tag = supportFragmentManager.getBackStackEntryAt(index).name
+
+        val title = savedInstanceState?.getString("actionBar") ?: "qwe"
+        setActionBarTitle(title)
+//        val fragment = supportFragmentManager.findFragmentByTag(tag)
+//
+//        if(fragment != null) replaceFragment(fragment)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -93,6 +118,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun replaceFragment(fragment: Fragment) {
+        fragmentTag = fragment.javaClass.simpleName
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)

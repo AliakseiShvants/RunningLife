@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
+import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.ui.activity.DetailedActivity
 import com.shvants.runninglife.ui.view.KudoersView
@@ -24,9 +25,12 @@ class MyFeedAdapter(private val context: Context,
                     private val presenter: MyFeedContract.Presenter) :
         BaseRecyclerViewAdapter(context) {
 
-    private val athlete = presenter.getAthlete()
-    private var activities = mutableListOf<SummaryActivityUi>()
-    private var kudoersProfileUrls = mutableListOf<String>()
+    var athlete = presenter.getAthlete() as SummaryAthleteUi
+        private set
+    var activities = mutableListOf<SummaryActivityUi>()
+        private set
+    var kudoersProfileUrls = mutableListOf<String>()
+        private set
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -51,10 +55,8 @@ class MyFeedAdapter(private val context: Context,
                     }
             )
 
-            if (athlete != null) {
-                presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
-                view.setAthleteView(athlete)
-            }
+            presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
+            view.setAthleteView(athlete)
 
             presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
             view.setView(activity)
@@ -89,7 +91,7 @@ class MyFeedAdapter(private val context: Context,
         notifyDataSetChanged()
     }
 
-    private fun updateActivities(list: List<SummaryActivityUi>) {
+    private fun updateActivities(list: ArrayList<SummaryActivityUi>) {
         val diffUtil = LongDiffUtil(activities, list)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
 
@@ -97,6 +99,18 @@ class MyFeedAdapter(private val context: Context,
         activities.addAll(list)
 
         diffResult.dispatchUpdatesTo(this)
+    }
+
+    fun setAthlete(athlete: SummaryAthleteUi?) {
+        if (athlete != null) this.athlete = athlete
+    }
+
+    fun setActivities(list: ArrayList<SummaryActivityUi>) {
+        this.activities = list
+    }
+
+    fun setKudoersProfileUrls(list: ArrayList<String>) {
+        this.kudoersProfileUrls = list
     }
 
     override fun getLayoutResId() = R.layout.adapter_summary_item
