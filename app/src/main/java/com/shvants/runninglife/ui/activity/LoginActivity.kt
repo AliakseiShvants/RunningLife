@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.gson.OauthResponse
@@ -18,20 +17,18 @@ import com.shvants.runninglife.strava.StravaRequest
 import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.Const.MINUS_LONG
+import com.shvants.runninglife.utils.Const.ONE
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.concurrent.Executors
 
 
-class LoginActivity : AppCompatActivity(), LoginContract.View {
+class LoginActivity : BaseActivity(), LoginContract.View {
 
-    private val executor = Executors.newCachedThreadPool()
-    private val ERR_MSG = "Some error with login"
-    private val ERR_JSON = "Invalid format of server response"
-
-    private val handler = Handler()
     private lateinit var preferences: StravaPreferences
     private lateinit var presenter: LoginPresenter
+    private val executor = Executors.newCachedThreadPool()
+    private val handler = Handler()
 
     private val callback = object : ICallback<Long> {
 
@@ -53,11 +50,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         presenter = LoginPresenter(this@LoginActivity)
 
         stravaConnect.setOnClickListener {
-            //            val intent = Intent(this, AuthActivity::class.java)
-//            startActivityForResult(intent, 1)
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivityForResult(intent, ONE)
 
             //test
-            handleTokenResponse("877b390046ce7751815aaf6a8e8d32b3f69e5aea")
+//            handleTokenResponse("877b390046ce7751815aaf6a8e8d32b3f69e5aea")
         }
 
         slideImages()
@@ -66,7 +63,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == ONE && resultCode == Activity.RESULT_OK) {
 
             preferences.code = data?.getStringExtra(StravaHelper.CODE) ?: EMPTY
 
@@ -86,14 +83,18 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
                 try {
                     fillPreferences(responseString)
                 } catch (e: Exception) {
-                    callback.onError(ERR_JSON)
+                    callback.onError(Const.ERR.JSON)
                 }
             }
 
             val result = presenter.setLoggedInAthlete()
 
             handler.post {
-                if (result != MINUS_LONG) callback.onResult(result) else callback.onError(ERR_MSG)
+                if (result != MINUS_LONG) {
+                    callback.onResult(result)
+                } else {
+                    callback.onError(Const.ERR.LOGIN)
+                }
             }
         }
     }

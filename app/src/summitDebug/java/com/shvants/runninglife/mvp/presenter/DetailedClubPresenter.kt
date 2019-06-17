@@ -45,7 +45,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
                 handler.post { if (club != null) callback.onResult(club) }
             } catch (e: Exception) {
                 handler.post {
-                    callback.onError("${Const.ERR.CLUB_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
+                    callback.onError("${Const.ERR.CLUB_LOAD}\n${Const.ERR.INTERNET_CONNECTION}")
                 }
             }
         }
@@ -64,7 +64,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
 //
 //                handler.post { if (activity != null) callback.onResult(activity) }
 //            } catch (e: Exception) {
-//                view?.showMessage("${Const.ERR.ACTIVITY_LOAD_ERR}\n${Const.ERR.INTERNET_CONNECTION}")
+//                view?.showMessage("${Const.ERR.ACTIVITY_LOAD}\n${Const.ERR.INTERNET_CONNECTION}")
 //            }
 //        }
 //    }

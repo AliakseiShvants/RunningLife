@@ -14,26 +14,21 @@ import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.app.AppCompatActivity
 import com.shvants.runninglife.R
 import com.shvants.runninglife.strava.StravaHelper
-import com.shvants.runninglife.ui.view.base.BaseView
 import com.shvants.runninglife.utils.Const
 import kotlinx.android.synthetic.main.activity_auth.*
 import java.util.concurrent.Executors
 
-class AuthActivity : AppCompatActivity(), BaseView {
-    override fun showMessage(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class AuthActivity : BaseActivity() {
 
     private val TAG = AuthActivity::class.simpleName
 
     private val handler = Handler()
     private val executor = Executors.newCachedThreadPool()
     private var code: String = Const.EMPTY
-    private var jsonString = Const.EMPTY
-    private var loginRedirected = false
+    private var isRedirected = false
+    private var isAuthorized = false
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,14 +96,21 @@ class AuthActivity : AppCompatActivity(), BaseView {
                 url == "https://www.strava.com/session" -> {
 //                    return false
                 }
-                url == StravaHelper.LOGIN_URL && loginRedirected -> {
+                url == StravaHelper.LOGIN_URL && isRedirected -> {
 //                    return false
+                }
+                url?.startsWith(StravaHelper.AUTHORIZE_BASE_URL) ?: false && isAuthorized -> {
+
                 }
                 url == StravaHelper.LOGIN_URL -> {
                     view?.loadUrl(url)
-                    loginRedirected = true
+                    isRedirected = true
 
 //                    return false
+                }
+                url?.startsWith(StravaHelper.AUTHORIZE_BASE_URL) ?: false -> {
+                    view?.loadUrl(url)
+                    isAuthorized = true
                 }
 
                 url?.startsWith(StravaHelper.REDIRECT_URI_VALUE) ?: false -> {

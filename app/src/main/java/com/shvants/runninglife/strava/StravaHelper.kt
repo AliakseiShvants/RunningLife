@@ -100,7 +100,8 @@ object StravaHelper {
     private const val ATHLETE_BASE_URL = "https://www.strava.com/api/v3/athlete/"
     private const val ACTIVITIES_BASE_URL = "https://www.strava.com/api/v3/activities/"
     private const val CLUBS_BASE_URL = "https://www.strava.com/api/v3/clubs/"
-    private const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
+    const val AUTHORIZE_BASE_URL = "https://www.strava.com/oauth/mobile/authorize"
+    const val SESSION_URL = "https://www.strava.com/session"
     const val LOGIN_URL = "https://www.strava.com/login"
     const val TOKEN_BASE_URL = "https://www.strava.com/oauth/token"
 

@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.shvants.runninglife.strava.StravaPreferences
+import com.shvants.runninglife.utils.Const
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //todo check token is valid, refresh and redirect to main
         if (ContextCompat.checkSelfPermission(
                         applicationContext,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
@@ -47,7 +47,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun startActivity() {
-        if (StravaPreferences(this).accessToken != "") {
+        if (StravaPreferences(this).accessToken != Const.EMPTY) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         } else {

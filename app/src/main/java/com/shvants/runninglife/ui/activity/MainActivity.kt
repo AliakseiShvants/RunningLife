@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
@@ -26,9 +25,7 @@ import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_athlete_view.view.*
 
-class MainActivity : AppCompatActivity(),
-        MainContract.View,
-        NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var toolbar: Toolbar
     private lateinit var navigationView: NavigationView
@@ -37,7 +34,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(getLayoutResId())
 
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -144,6 +141,8 @@ class MainActivity : AppCompatActivity(),
                 Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
         }
     }
+
+    override fun getLayoutResId() = R.layout.activity_main
 
     override fun logout() {
         ImageLoader.getInstance().clearCache()
