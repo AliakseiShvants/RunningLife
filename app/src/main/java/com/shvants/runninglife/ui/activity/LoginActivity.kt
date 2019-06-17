@@ -50,11 +50,13 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         presenter = LoginPresenter(this@LoginActivity)
 
         stravaConnect.setOnClickListener {
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivityForResult(intent, ONE)
-
-            //test
-//            handleTokenResponse("877b390046ce7751815aaf6a8e8d32b3f69e5aea")
+            if (preferences.accessToken == EMPTY) {
+                val intent = Intent(this, AuthActivity::class.java)
+                startActivityForResult(intent, ONE)
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         slideImages()

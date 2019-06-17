@@ -92,27 +92,18 @@ class AuthActivity : BaseActivity() {
             showLoading()
 
             when {
-//                code != Const.EMPTY -> {}
-                url == "https://www.strava.com/session" -> {
-//                    return false
-                }
-                url == StravaHelper.LOGIN_URL && isRedirected -> {
-//                    return false
-                }
-                url?.startsWith(StravaHelper.AUTHORIZE_BASE_URL) ?: false && isAuthorized -> {
-
+                (url == StravaHelper.LOGIN_URL && isRedirected)
+                        || (url?.startsWith(StravaHelper.AUTHORIZE_BASE_URL) ?: false && isAuthorized)
+                        || url == StravaHelper.SESSION_URL -> {
                 }
                 url == StravaHelper.LOGIN_URL -> {
                     view?.loadUrl(url)
                     isRedirected = true
-
-//                    return false
                 }
                 url?.startsWith(StravaHelper.AUTHORIZE_BASE_URL) ?: false -> {
                     view?.loadUrl(url)
                     isAuthorized = true
                 }
-
                 url?.startsWith(StravaHelper.REDIRECT_URI_VALUE) ?: false -> {
                     code = extractCode(url)
                     d(TAG, code)
