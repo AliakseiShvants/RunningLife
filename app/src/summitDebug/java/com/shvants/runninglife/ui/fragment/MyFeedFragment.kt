@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.mvp.presenter.MyFeedPresenter
 import com.shvants.runninglife.ui.adapter.MyFeedAdapter
+import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.Const.ENTITY_LIST
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
@@ -26,19 +28,6 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
     private var isLoading = false
     private var page = AtomicInteger(1)
     private val feedItemAnimator = object : DefaultItemAnimator() {}
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-//        retainInstance = true
-
-        if (savedInstanceState != null) {
-//            myFeedAdapter.setAthlete(savedInstanceState.getParcelable("athlete"))
-
-//            myFeedAdapter.setKudoersProfileUrls(savedInstanceState.getStringArrayList("kudoersUrl"))
-//            page = AtomicInteger(savedInstanceState.getInt("page"))
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,6 +59,12 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
     override fun onDestroyView() {
         presenter.detachView()
         super.onDestroyView()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        (activity as AppCompatActivity).supportActionBar?.title = Const.MyFeedFragment.TITLE
     }
 
     override fun getLayoutResId() = R.layout.fragment_my_activities
@@ -119,15 +114,6 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
     }
 
     companion object {
-        fun newInstance() = MyFeedFragment()
-        fun getInstance(tag: String): MyFeedFragment {
-            val args = Bundle()
-            args.putString("tag", tag)
-
-            val newInstance = MyFeedFragment()
-            newInstance.arguments = args
-
-            return newInstance
-        }
+        fun getInstance() = MyFeedFragment()
     }
 }

@@ -21,6 +21,7 @@ object Const {
     const val ACTIVITY_ID = "ACTIVITY_ID"
     const val ENTITY_LIST = "ENTITY_LIST"
     const val ATHLETE_ID = "ATHLETE_ID"
+    const val ATHLETE = "ATHLETE"
     const val CLUB_ID = "CLUB_ID"
     const val FULLNAME = "FULLNAME"
     const val KUDOS = "KUDOS"
@@ -33,6 +34,18 @@ object Const {
     const val COMMENTS = "comments"
 
     const val ACTION_BAR = "ACTION_BAR"
+
+    const val DELETE_ACTIVITY = "Activity was deleted"
+    const val MESSAGE = "message"
+    const val IS_DELETED = "isDeleted"
+
+    object MyFeedFragment {
+        const val TITLE = "My Activities"
+    }
+
+    object ClubsFragment {
+        const val TITLE = "Clubs"
+    }
 
     object ERR {
         const val INTERNET_CONNECTION = "Check Internet connection and try again"

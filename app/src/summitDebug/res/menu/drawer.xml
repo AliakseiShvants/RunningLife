@@ -8,20 +8,20 @@
             android:icon="@drawable/ic_person"
             android:title="@string/my_activities" />
 
-        <item
-            android:id="@+id/navActivitiesFeed"
-            android:icon="@drawable/ic_feed"
-            android:title="@string/activities_feed" />
+        <!--<item-->
+        <!--android:id="@+id/navActivitiesFeed"-->
+        <!--android:icon="@drawable/ic_feed"-->
+        <!--android:title="@string/activities_feed" />-->
 
         <item
             android:id="@+id/navItemClubs"
             android:icon="@drawable/ic_flag"
             android:title="@string/clubs" />
 
-        <item
-            android:id="@+id/navItemSettings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/settings" />
+        <!--<item-->
+        <!--android:id="@+id/navItemSettings"-->
+        <!--android:icon="@drawable/ic_settings"-->
+        <!--android:title="@string/settings" />-->
 
         <item
             android:id="@+id/navItemExit"

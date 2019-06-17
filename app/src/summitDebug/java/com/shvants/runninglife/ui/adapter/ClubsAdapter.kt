@@ -64,4 +64,8 @@ class ClubsAdapter(private val context: Context,
     }
 
     fun getClubs() = ArrayList<SummaryClubUi>(clubs)
+
+    fun setClubs(savedClubs: ArrayList<SummaryClubUi>) {
+        clubs = savedClubs
+    }
 }

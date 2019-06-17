@@ -1,6 +1,7 @@
 package com.shvants.runninglife
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import com.shvants.runninglife.database.DbHelper
 
 class RunningLifeApp : Application() {
@@ -9,5 +10,6 @@ class RunningLifeApp : Application() {
         super.onCreate()
 
         DbHelper(applicationContext)
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 }

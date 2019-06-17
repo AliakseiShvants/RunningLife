@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.imageloader.ImageLoader
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
+import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.repository.Repository
 import com.shvants.runninglife.strava.StravaPreferences
@@ -37,6 +38,15 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
         view?.setAthlete(athlete)
     }
 
+    override fun setAthleteProfile(athlete: SummaryAthleteUi?) {
+        if (athlete != null) {
+            val profileView = (view as MainActivity).getAthleteProfile()
+            imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
+        }
+    }
+
+    override fun getAthlete() = repository.getLoggedInAthlete()
+
     override fun navigationItemSelected(item: MenuItem, drawerLayout: DrawerLayout) {
         navigateTo(item, drawerLayout)
         view?.setCheckedItem(item)
@@ -45,11 +55,7 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
     private fun navigateTo(item: MenuItem, drawerLayout: DrawerLayout) {
         when (item.itemId) {
             R.id.navMyActivities -> replaceFragment(MyFeedFragment())
-            R.id.navActivitiesFeed -> {
-            }
-            R.id.navItemClubs -> replaceFragment(ClubsFragment.getInstance())
-            R.id.navItemSettings -> {
-            }
+            R.id.navItemClubs -> replaceFragment(ClubsFragment())
             R.id.navItemExit -> logout()
         }
 

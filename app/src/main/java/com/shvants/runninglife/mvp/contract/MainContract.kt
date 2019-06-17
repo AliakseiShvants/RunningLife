@@ -14,7 +14,7 @@ interface MainContract {
 
         fun setCheckedItem(item: MenuItem)
 
-        fun setAthlete(athlete: SummaryAthleteUi)
+        fun setAthlete(athlete: SummaryAthleteUi?)
 
         fun logout()
     }
@@ -24,5 +24,9 @@ interface MainContract {
         fun loadAthlete()
 
         fun navigationItemSelected(item: MenuItem, drawerLayout: DrawerLayout)
+
+        fun getAthlete(): SummaryAthleteUi
+
+        fun setAthleteProfile(athlete: SummaryAthleteUi?)
     }
 }

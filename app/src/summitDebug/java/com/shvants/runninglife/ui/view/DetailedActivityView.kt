@@ -28,6 +28,7 @@ class DetailedActivityView @JvmOverloads constructor(
     private lateinit var kudoersView: KudoersView
     private lateinit var commentCountView: TextView
     private lateinit var mapView: ImageView
+    private lateinit var buttonsView: ButtonsView
 
     override fun onViewInflated(context: Context) {
         athleteView = detailedActivityAthlete
@@ -36,6 +37,7 @@ class DetailedActivityView @JvmOverloads constructor(
         kudoersView = kudoers
         commentCountView = commentCount
         mapView = detailedActivityMap
+        buttonsView = mediaButtons
     }
 
     override fun getLayoutResId() = R.layout.layout_detailed_activity

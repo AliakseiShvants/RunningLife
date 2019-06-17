@@ -17,7 +17,11 @@ import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.mvp.presenter.MainPresenter
 import com.shvants.runninglife.ui.view.NavAthleteView
 import com.shvants.runninglife.utils.Const.ACTION_BAR
+import com.shvants.runninglife.utils.Const.ATHLETE
+import com.shvants.runninglife.utils.Const.DELETE_ACTIVITY
 import com.shvants.runninglife.utils.Const.EMPTY
+import com.shvants.runninglife.utils.Const.IS_DELETED
+import com.shvants.runninglife.utils.Const.MESSAGE
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_athlete_view.view.*
@@ -26,7 +30,6 @@ class MainActivity : AppCompatActivity(),
         MainContract.View,
         NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var fragmentTag: String
     private lateinit var toolbar: Toolbar
     private lateinit var navigationView: NavigationView
     private lateinit var navAthleteView: NavAthleteView
@@ -50,7 +53,6 @@ class MainActivity : AppCompatActivity(),
         navAthleteView = navigationView.getHeaderView(0).findViewById(R.id.navAthleteView)
 
         if (savedInstanceState == null) {
-            //
             navigationView.menu.performIdentifierAction(R.id.navMyActivities, ZERO)
             presenter?.loadAthlete()
         }
@@ -62,19 +64,18 @@ class MainActivity : AppCompatActivity(),
         super.onSaveInstanceState(outState)
 
         outState.putString(ACTION_BAR, supportActionBar?.title.toString())
+        outState.putParcelable(ATHLETE, presenter?.getAthlete())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
 
-//        val index = supportFragmentManager.backStackEntryCount - 1
-//        val tag = supportFragmentManager.getBackStackEntryAt(index).name
-
         val title = savedInstanceState?.getString(ACTION_BAR)
         setActionBarTitle(title)
-//        val fragment = supportFragmentManager.findFragmentByTag(tag)
-//
-//        if(fragment != null) replaceFragment(fragment)
+
+        val athlete = savedInstanceState?.getParcelable<SummaryAthleteUi>(ATHLETE)
+        presenter?.setAthleteProfile(athlete)
+        setAthlete(athlete)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -110,13 +111,10 @@ class MainActivity : AppCompatActivity(),
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStack()
-        } else {
-            super.onBackPressed()
         }
     }
 
     override fun replaceFragment(fragment: Fragment) {
-//        fragmentTag = fragment.javaClass.simpleName
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)
@@ -128,19 +126,19 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.title = title
     }
 
-    override fun setAthlete(athlete: SummaryAthleteUi) {
-        navAthleteView.setView(athlete)
+    override fun setAthlete(athlete: SummaryAthleteUi?) {
+        if (athlete != null) navAthleteView.setView(athlete)
     }
 
     fun getAthleteProfile() = navAthleteView.navAthleteProfile
 
     private fun onActivityDelete() {
-        val isDeleted = intent.getBooleanExtra("isDeleted", false)
-        val message = intent.getStringExtra("delete_msg")
+        val isDeleted = intent.getBooleanExtra(IS_DELETED, false)
+        val message = intent.getStringExtra(MESSAGE)
 
         when {
             isDeleted ->
-                Toast.makeText(applicationContext, "Activity was deleted", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, DELETE_ACTIVITY, Toast.LENGTH_LONG).show()
 
             message != null && message != EMPTY ->
                 Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()

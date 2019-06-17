@@ -76,9 +76,10 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/mediaPanel">
 
-            <include
+            <com.shvants.runninglife.ui.view.ButtonsView
                 android:id="@+id/mediaButtons"
-                layout="@layout/layout_buttons_panel" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

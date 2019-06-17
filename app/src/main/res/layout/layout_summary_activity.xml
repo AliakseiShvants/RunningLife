@@ -64,8 +64,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/mediaPanel">
 
-        <include
-            android:id="@+id/mediaButtons"
-            layout="@layout/layout_buttons_panel" />
+        <com.shvants.runninglife.ui.view.ButtonsView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mediaButtons" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

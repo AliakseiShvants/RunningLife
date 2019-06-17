@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,19 +16,14 @@ import com.shvants.runninglife.model.ui.SummaryClubUi
 import com.shvants.runninglife.mvp.contract.ClubsContract
 import com.shvants.runninglife.mvp.presenter.ClubsPresenter
 import com.shvants.runninglife.ui.adapter.ClubsAdapter
+import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.fragment_clubs.*
 
-class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
+class ClubsFragment : BaseFragment(), ClubsContract.View {
 
     private lateinit var presenter: ClubsContract.Presenter
     private lateinit var clubsAdapter: ClubsAdapter
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        setHasOptionsMenu(true)
-//
-//        super.onCreate(savedInstanceState)
-//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,13 +44,17 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
         }
 
         if (savedInstanceState == null) {
-
             loadClubs()
         } else {
-
+            val savedClubs = savedInstanceState.getParcelableArrayList<SummaryClubUi>(Const.ENTITY_LIST)
+            clubsAdapter.setClubs(savedClubs)
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
 
+        (activity as AppCompatActivity).supportActionBar?.title = Const.ClubsFragment.TITLE
     }
 
     private fun loadClubs() {

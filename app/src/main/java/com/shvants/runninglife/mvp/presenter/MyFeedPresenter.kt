@@ -88,14 +88,13 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
     }
 
     private fun setKudosProfile(map: HashMap<ImageView, String>) {
-        map.forEach { (key, value) -> setKudoProfile(key, value) }
+        map.forEach { (key, value) -> setKudosProfile(key, value) }
     }
 
-    private fun setKudoProfile(key: ImageView, value: String) {
+    private fun setKudosProfile(key: ImageView, value: String) {
         key.visibility = View.VISIBLE
         loadAthleteProfile(key, value, ImageType.ROUNDED)
     }
-
 
     override fun loadAthleteProfile(view: ImageView, url: String, imageType: ImageType) {
         imageLoader.load(view, url, imageType)
