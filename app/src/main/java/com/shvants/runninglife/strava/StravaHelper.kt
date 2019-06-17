@@ -134,7 +134,7 @@ object StravaHelper {
     private const val FI = 1.6
     private const val FINISH_MARKER = "color:red|label:F|"
 
-    private const val GOOGLE_API_KEY = "AIzaSyDXvElA5LGkMVBeMGtn9NMKax3PvnelKXM"
+    private const val GOOGLE_API_KEY = ""
     private const val GOOGLE_STATIC_MAP = "https://maps.googleapis.com/maps/api/staticmap"
     private const val GRANT_TYPE = "grant_type"
     private const val GRANT_TYPE_VALUE = "authorization_code"
