@@ -16,7 +16,9 @@ import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MainContract
 import com.shvants.runninglife.mvp.presenter.MainPresenter
 import com.shvants.runninglife.ui.view.NavAthleteView
+import com.shvants.runninglife.utils.Const.ACTION_BAR
 import com.shvants.runninglife.utils.Const.EMPTY
+import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_athlete_view.view.*
 
@@ -41,20 +43,16 @@ class MainActivity : AppCompatActivity(),
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
 
         presenter = MainPresenter(this)
+        presenter?.attachView(this)
 
         navigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)
-
         navAthleteView = navigationView.getHeaderView(0).findViewById(R.id.navAthleteView)
 
-        presenter?.attachView(this)
-
-
         if (savedInstanceState == null) {
-            navigationView.menu.performIdentifierAction(R.id.navMyActivities, 0)
+            //
+            navigationView.menu.performIdentifierAction(R.id.navMyActivities, ZERO)
             presenter?.loadAthlete()
-        } else {
-
         }
 
         onActivityDelete()
@@ -63,7 +61,7 @@ class MainActivity : AppCompatActivity(),
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putString("actionBar", supportActionBar?.title.toString())
+        outState.putString(ACTION_BAR, supportActionBar?.title.toString())
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -72,7 +70,7 @@ class MainActivity : AppCompatActivity(),
 //        val index = supportFragmentManager.backStackEntryCount - 1
 //        val tag = supportFragmentManager.getBackStackEntryAt(index).name
 
-        val title = savedInstanceState?.getString("actionBar") ?: "qwe"
+        val title = savedInstanceState?.getString(ACTION_BAR)
         setActionBarTitle(title)
 //        val fragment = supportFragmentManager.findFragmentByTag(tag)
 //
@@ -118,7 +116,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun replaceFragment(fragment: Fragment) {
-        fragmentTag = fragment.javaClass.simpleName
+//        fragmentTag = fragment.javaClass.simpleName
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)
@@ -126,7 +124,7 @@ class MainActivity : AppCompatActivity(),
                 .commit()
     }
 
-    private fun setActionBarTitle(title: String) {
+    private fun setActionBarTitle(title: String?) {
         supportActionBar?.title = title
     }
 

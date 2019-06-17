@@ -1,6 +1,7 @@
 package com.shvants.runninglife.ui.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -13,6 +14,7 @@ import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.mvp.presenter.MyFeedPresenter
 import com.shvants.runninglife.ui.adapter.MyFeedAdapter
+import com.shvants.runninglife.utils.Const.ENTITY_LIST
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
 import java.util.concurrent.atomic.AtomicInteger
@@ -38,13 +40,6 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-//        outState.putParcelable("athlete", myFeedAdapter.athlete)
-        outState.putParcelableArrayList("activities", ArrayList(myFeedAdapter.activities))
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -67,11 +62,10 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
         if (savedInstanceState == null) {
             loadActivities(page.get())
         } else {
-            val savedActivities = savedInstanceState.getParcelableArrayList<SummaryActivityUi>("activities")
+            val savedActivities = savedInstanceState.getParcelableArrayList<SummaryActivityUi>(ENTITY_LIST)
             myFeedAdapter.setActivities(savedActivities)
         }
     }
-
 
     override fun onDestroyView() {
         presenter.detachView()
@@ -79,6 +73,10 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
     }
 
     override fun getLayoutResId() = R.layout.fragment_my_activities
+
+    override fun getEntityList(): ArrayList<out Parcelable> {
+        return myFeedAdapter.getActivities()
+    }
 
     override fun showMessage(message: String) {
         errTextView.visibility = View.VISIBLE
@@ -94,7 +92,6 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
-            val lastVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
 
             if (!isLoading
                     && firstVisibleItemPosition > 0

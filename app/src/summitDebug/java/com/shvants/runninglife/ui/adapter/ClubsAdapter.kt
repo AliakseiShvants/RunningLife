@@ -62,4 +62,6 @@ class ClubsAdapter(private val context: Context,
 
         diffResult.dispatchUpdatesTo(this)
     }
+
+    fun getClubs() = ArrayList<SummaryClubUi>(clubs)
 }

@@ -13,6 +13,7 @@ open class SummaryActivityUi(
         open var distance: String,
         open var avgSpeed: String,
         open var kudosCount: Int,
+        open var kudos: ArrayList<String> = ArrayList(),
         open var commentCount: Int,
         open var startLatlng: FloatArray,
         open var endLatlng: FloatArray,

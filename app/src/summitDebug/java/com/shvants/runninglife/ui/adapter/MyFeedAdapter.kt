@@ -29,8 +29,6 @@ class MyFeedAdapter(private val context: Context,
         private set
     var activities = mutableListOf<SummaryActivityUi>()
         private set
-    var kudoersProfileUrls = mutableListOf<String>()
-        private set
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -40,20 +38,23 @@ class MyFeedAdapter(private val context: Context,
             val activity = activities[position]
 
             val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
-            val likeView = view.findViewById<KudoersView>(R.id.kudoers)
+            val kudoersView = view.findViewById<KudoersView>(R.id.kudoers)
 
-            presenter.loadKudoersProfile(likeView, activity.id, ImageType.ROUNDED,
-                    object : ICallback<List<String>> {
-                        override fun onResult(result: List<String>) {
-                            kudoersProfileUrls.addAll(result)
-                            presenter.handleKudos(likeView, result)
-                        }
+            if (activity.kudos.isEmpty()) {
+                presenter.loadKudoersProfile(kudoersView, activity.id, ImageType.ROUNDED,
+                        object : ICallback<List<String>> {
+                            override fun onResult(result: List<String>) {
+                                activity.kudos.addAll(result)
+                            }
 
-                        override fun onError(message: String) {
-                            presenter.showErr(message)
+                            override fun onError(message: String) {
+                                presenter.showErr(message)
+                            }
                         }
-                    }
-            )
+                )
+            }
+
+            presenter.handleKudos(kudoersView, activity.kudos)
 
             presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
             view.setAthleteView(athlete)
@@ -70,7 +71,7 @@ class MyFeedAdapter(private val context: Context,
 
         val intent = Intent(context, DetailedActivity::class.java)
         intent.putExtra(ACTIVITY_ID, id)
-        intent.putExtra(KUDOS, kudoersProfileUrls.toTypedArray())
+        intent.putExtra(KUDOS, activity.kudos.toTypedArray())
 
         startActivity(context, intent, null)
     }
@@ -101,16 +102,10 @@ class MyFeedAdapter(private val context: Context,
         diffResult.dispatchUpdatesTo(this)
     }
 
-    fun setAthlete(athlete: SummaryAthleteUi?) {
-        if (athlete != null) this.athlete = athlete
-    }
+    fun getActivities() = ArrayList<SummaryActivityUi>(activities)
 
     fun setActivities(list: ArrayList<SummaryActivityUi>) {
         this.activities = list
-    }
-
-    fun setKudoersProfileUrls(list: ArrayList<String>) {
-        this.kudoersProfileUrls = list
     }
 
     override fun getLayoutResId() = R.layout.adapter_summary_item

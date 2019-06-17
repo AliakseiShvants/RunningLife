@@ -30,6 +30,7 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
 //    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         presenter = ClubsPresenter(requireContext().applicationContext)
         presenter.attachView(this)
@@ -46,9 +47,14 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
             addItemDecoration(DividerItemDecoration(context, LinearLayout.HORIZONTAL))
         }
 
-        loadClubs()
+        if (savedInstanceState == null) {
 
-//        super.onViewCreated(view, savedInstanceState)
+            loadClubs()
+        } else {
+
+        }
+
+
     }
 
     private fun loadClubs() {
@@ -67,6 +73,8 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
     }
 
     override fun getLayoutResId() = R.layout.fragment_clubs
+
+    override fun getEntityList() = ArrayList<SummaryClubUi>(clubsAdapter.getClubs())
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
