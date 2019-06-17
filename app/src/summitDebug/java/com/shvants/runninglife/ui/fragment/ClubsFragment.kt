@@ -20,7 +20,7 @@ import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.fragment_clubs.*
 
-class ClubsFragment : BaseFragment(), ClubsContract.View {
+class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
 
     private lateinit var presenter: ClubsContract.Presenter
     private lateinit var clubsAdapter: ClubsAdapter
@@ -43,12 +43,13 @@ class ClubsFragment : BaseFragment(), ClubsContract.View {
             addItemDecoration(DividerItemDecoration(context, LinearLayout.HORIZONTAL))
         }
 
-        if (savedInstanceState == null) {
-            loadClubs()
-        } else {
-            val savedClubs = savedInstanceState.getParcelableArrayList<SummaryClubUi>(Const.ENTITY_LIST)
-            clubsAdapter.setClubs(savedClubs)
-        }
+        loadClubs()
+//        if (savedInstanceState == null) {
+//            loadClubs()
+//        } else {
+//            val savedClubs = savedInstanceState.getParcelableArrayList<SummaryClubUi>(Const.ENTITY_LIST)
+//            clubsAdapter.setClubs(savedClubs)
+//        }
     }
 
     override fun onResume() {
@@ -74,7 +75,7 @@ class ClubsFragment : BaseFragment(), ClubsContract.View {
 
     override fun getLayoutResId() = R.layout.fragment_clubs
 
-    override fun getEntityList() = ArrayList<SummaryClubUi>(clubsAdapter.getClubs())
+//    override fun getEntityList() = ArrayList<SummaryClubUi>(clubsAdapter.getClubs())
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()

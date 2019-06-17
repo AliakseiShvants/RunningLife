@@ -1,7 +1,6 @@
 package com.shvants.runninglife.ui.fragment
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -16,12 +15,11 @@ import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.mvp.presenter.MyFeedPresenter
 import com.shvants.runninglife.ui.adapter.MyFeedAdapter
 import com.shvants.runninglife.utils.Const
-import com.shvants.runninglife.utils.Const.ENTITY_LIST
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
 import java.util.concurrent.atomic.AtomicInteger
 
-class MyFeedFragment : BaseFragment(), MyFeedContract.View {
+class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View {
 
     private lateinit var presenter: MyFeedContract.Presenter
     private lateinit var myFeedAdapter: MyFeedAdapter
@@ -48,12 +46,13 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
             addItemDecoration(divider)
         }
 
-        if (savedInstanceState == null) {
-            loadActivities(page.get())
-        } else {
-            val savedActivities = savedInstanceState.getParcelableArrayList<SummaryActivityUi>(ENTITY_LIST)
-            myFeedAdapter.setActivities(savedActivities)
-        }
+        loadActivities(page.get())
+//        if (savedInstanceState == null) {
+//            loadActivities(page.get())
+//        } else {
+//            val savedActivities = savedInstanceState.getParcelableArrayList<SummaryActivityUi>(ENTITY_LIST)
+//            myFeedAdapter.setActivities(savedActivities)
+//        }
     }
 
     override fun onDestroyView() {
@@ -69,9 +68,9 @@ class MyFeedFragment : BaseFragment(), MyFeedContract.View {
 
     override fun getLayoutResId() = R.layout.fragment_my_activities
 
-    override fun getEntityList(): ArrayList<out Parcelable> {
-        return myFeedAdapter.getActivities()
-    }
+//    override fun getEntityList(): ArrayList<out Parcelable> {
+//        return myFeedAdapter.getActivities()
+//    }
 
     override fun showMessage(message: String) {
         errTextView.visibility = View.VISIBLE
