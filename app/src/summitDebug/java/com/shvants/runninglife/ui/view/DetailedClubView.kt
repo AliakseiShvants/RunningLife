@@ -69,49 +69,48 @@ class DetailedClubView @JvmOverloads constructor(
             }
         }
 
-        val city = if (club.city != EMPTY) club.city else EMPTY
-        val state = if (club.state != EMPTY) "$COMMA ${club.state}" else EMPTY
-        val country = if (club.country != EMPTY) "$COMMA ${club.country}" else EMPTY
-        val location: String
+        val locationArr = arrayOf(club.city, club.state, club.country)
+        var location = EMPTY
 
-        when {
-            city == EMPTY && state == EMPTY && country == EMPTY -> {
-                locationView.visibility = View.GONE
-                secondDot.visibility = View.GONE
-            }
-            city == EMPTY -> {
-                location = "$state$country"
-                locationView.text = location
-            }
-            else -> {
-                location = "$city$state"
-                locationView.text = location
+        for (i in locationArr.indices) {
+            val item = locationArr[i]
+
+            if (item != EMPTY) {
+                location += "$item$COMMA "
             }
         }
 
-        statusView.text = if (club.isPrivate) "Opened" else "Closed"
+        locationView.text = location.trimEnd().removeSuffix(COMMA)
+//        when {
+//            city == EMPTY && state == EMPTY && country == EMPTY -> {
+//                locationView.visibility = View.GONE
+//                secondDot.visibility = View.GONE
+//            }
+//            city == EMPTY -> {
+//                location = "$state$country"
+//                locationView.text = location
+//            }
+//            else -> {
+//                location = "$city$state"
+//                locationView.text = location
+//            }
+//        }
+
+        statusView.text = if (club.isPrivate) PRIVATE else PUBLIC
 
         descriptionView.text =
                 if (club.description == EMPTY) {
-                    "There is no description yet!"
+                    NO_DESCRIPTION
                 } else {
                     club.description
                 }
 
-//        memberView.
         memberView.setView(arrayOf(club.memberCount.toString(), memberTitle))
-//
-//        athleteView.setStartDate(activity.startDate)
-//
-//        dataView.setView(activity)
-//        nameView.text = activity.name
-//        likeView.seView(activity)
     }
 
-//    @UiThread
-//    fun setAthleteView(athlete: SummaryAthleteUi) {
-//        athleteView.setView(athlete)
-//    }
-//
-//    fun getDetailedAthleteProfile() = athleteView.getProfileView()
+    companion object {
+        private const val PUBLIC = "Public"
+        private const val PRIVATE = "Private"
+        private const val NO_DESCRIPTION = "There is no description yet!"
+    }
 }

@@ -67,8 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="end|center_vertical"
-                android:paddingEnd="@dimen/two_intents"
-                android:text="1 comment" />
+                android:paddingEnd="@dimen/two_intents" />
         </LinearLayout>
 
         <LinearLayout

@@ -21,13 +21,18 @@ class ClubsAdapter(private val context: Context,
     override fun getItemCount() = clubs.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val clubView = holder.itemView
-        val club = clubs[position]
 
-        presenter.setClubsCount(itemCount)
-        presenter.loadClubImage(clubView.findViewById(R.id.clubImage), club.profileMedium)
-        clubView.findViewById<TextView>(R.id.clubName).text = club.name
-        clubView.setOnClickListener { showItemDetails(position) }
+        if (getItemViewType(position) == ViewType.ITEM) {
+
+            val clubView = holder.itemView
+            val club = clubs[position]
+
+            presenter.setClubsCount(itemCount)
+            presenter.loadClubImage(clubView.findViewById(R.id.clubImage), club.profileMedium)
+            clubView.findViewById<TextView>(R.id.clubName).text = club.name
+
+            clubView.setOnClickListener { showItemDetails(position) }
+        }
     }
 
     private fun showItemDetails(position: Int) {
@@ -67,5 +72,6 @@ class ClubsAdapter(private val context: Context,
 
     fun setClubs(savedClubs: ArrayList<SummaryClubUi>) {
         clubs = savedClubs
+        notifyDataSetChanged()
     }
 }

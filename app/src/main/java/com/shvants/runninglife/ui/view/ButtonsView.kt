@@ -22,6 +22,4 @@ class ButtonsView @JvmOverloads constructor(
         likeButtonView = like
         commentButtonView = comments
     }
-
-
 }

@@ -45,6 +45,8 @@ class MyFeedAdapter(private val context: Context,
                         object : ICallback<List<String>> {
                             override fun onResult(result: List<String>) {
                                 activity.kudos.addAll(result)
+
+                                notifyItemChanged(position)
                             }
 
                             override fun onError(message: String) {
@@ -61,6 +63,7 @@ class MyFeedAdapter(private val context: Context,
 
             presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
             view.setView(activity)
+
             view.setOnClickListener { showDetails(position) }
         }
     }
