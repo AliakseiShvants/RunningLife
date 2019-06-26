@@ -15,31 +15,15 @@ class DetailedDataView @JvmOverloads constructor(
         defStyleAttr: Int = 0) : BaseConstraintView(context, attrs, defStyleAttr),
         BaseCustomView<DetailedActivityUi> {
 
-    private lateinit var firstView: DataItemView
-    private lateinit var secondView: DataItemView
-    private lateinit var thirdView: DataItemView
-    private lateinit var forthView: DataItemView
-    private lateinit var fifthView: DataItemView
-    private lateinit var sixthView: DataItemView
-
     override fun getLayoutResId() = R.layout.layout_detailed_data
-
-    override fun onViewInflated(context: Context) {
-        firstView = first
-        secondView = second
-        thirdView = third
-        forthView = forth
-        fifthView = fifth
-        sixthView = sixth
-    }
 
     @UiThread
     override fun setView(item: DetailedActivityUi) {
-        firstView.setView(arrayOf("Distance", item.distance))
-        secondView.setView(arrayOf("Tempo", item.avgSpeed))
-        thirdView.setView(arrayOf("Time", item.movingTime))
-        forthView.setView(arrayOf("Elevation", item.elevation.toString()))
-        fifthView.setView(arrayOf("Calories", item.calories.toString()))
-        sixthView.setView(arrayOf("arg HR", item.avgHR.toString()))
+        firstDataItemView.setView(arrayOf(resources.getString(R.string.distance), item.distance))
+        secondDataItemView.setView(arrayOf(resources.getString(R.string.tempo), item.avgSpeed))
+        thirdDataItemView.setView(arrayOf(resources.getString(R.string.time), item.movingTime))
+        forthDataItemView.setView(arrayOf(resources.getString(R.string.elevation), item.elevation.toString()))
+        fifthDataItemView.setView(arrayOf(resources.getString(R.string.calories), item.calories.toString()))
+        sixthDataItemView.setView(arrayOf(resources.getString(R.string.hr), item.avgHR.toString()))
     }
 }

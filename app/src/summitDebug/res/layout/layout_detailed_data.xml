@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.shvants.runninglife.ui.view.DataItemView
-        android:id="@+id/first"
+        android:id="@+id/firstDataItemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -13,7 +13,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.shvants.runninglife.ui.view.DataItemView
-        android:id="@+id/second"
+        android:id="@+id/secondDataItemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -21,38 +21,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.shvants.runninglife.ui.view.DataItemView
-        android:id="@+id/third"
+        android:id="@+id/thirdDataItemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/one_intent"
-        app:layout_constraintEnd_toEndOf="@+id/first"
-        app:layout_constraintStart_toStartOf="@+id/first"
-        app:layout_constraintTop_toBottomOf="@id/first" />
+        app:layout_constraintEnd_toEndOf="@+id/firstDataItemView"
+        app:layout_constraintStart_toStartOf="@+id/firstDataItemView"
+        app:layout_constraintTop_toBottomOf="@id/firstDataItemView" />
 
     <com.shvants.runninglife.ui.view.DataItemView
-        android:id="@+id/forth"
+        android:id="@+id/forthDataItemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/one_intent"
-        app:layout_constraintEnd_toEndOf="@+id/second"
-        app:layout_constraintStart_toStartOf="@+id/second"
-        app:layout_constraintTop_toBottomOf="@id/second" />
+        app:layout_constraintEnd_toEndOf="@+id/secondDataItemView"
+        app:layout_constraintStart_toStartOf="@+id/secondDataItemView"
+        app:layout_constraintTop_toBottomOf="@id/secondDataItemView" />
 
     <com.shvants.runninglife.ui.view.DataItemView
-        android:id="@+id/fifth"
+        android:id="@+id/fifthDataItemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/one_intent"
-        app:layout_constraintEnd_toEndOf="@+id/third"
-        app:layout_constraintStart_toStartOf="@+id/third"
-        app:layout_constraintTop_toBottomOf="@id/third" />
+        app:layout_constraintEnd_toEndOf="@+id/thirdDataItemView"
+        app:layout_constraintStart_toStartOf="@+id/thirdDataItemView"
+        app:layout_constraintTop_toBottomOf="@id/thirdDataItemView" />
 
     <com.shvants.runninglife.ui.view.DataItemView
-        android:id="@+id/sixth"
+        android:id="@+id/sixthDataItemView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/one_intent"
-        app:layout_constraintEnd_toEndOf="@+id/forth"
-        app:layout_constraintStart_toStartOf="@+id/forth"
-        app:layout_constraintTop_toBottomOf="@id/forth" />
+        app:layout_constraintEnd_toEndOf="@+id/forthDataItemView"
+        app:layout_constraintStart_toStartOf="@+id/forthDataItemView"
+        app:layout_constraintTop_toBottomOf="@id/forthDataItemView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

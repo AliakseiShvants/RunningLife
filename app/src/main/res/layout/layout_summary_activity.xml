@@ -5,35 +5,35 @@
     android:layout_height="wrap_content">
 
     <com.shvants.runninglife.ui.view.ActivityAthleteView
-        android:id="@+id/activityAthlete"
+        android:id="@+id/activityAthleteView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/activityName"
+        android:id="@+id/clubNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/four_intents"
         android:paddingBottom="@dimen/one_intent"
         android:textSize="@dimen/m_text_size"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/activityAthlete" />
+        app:layout_constraintTop_toBottomOf="@id/activityAthleteView" />
 
     <com.shvants.runninglife.ui.view.SummaryDataView
-        android:id="@+id/summaryActivityData"
+        android:id="@+id/summaryDataView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/activityName" />
+        app:layout_constraintTop_toBottomOf="@id/clubNameTextView" />
 
     <LinearLayout
-        android:id="@+id/summaryActivityMapContainer"
+        android:id="@+id/mapContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/summaryActivityData">
+        app:layout_constraintTop_toBottomOf="@id/summaryDataView">
 
         <ImageView
-            android:id="@+id/summaryActivityMap"
+            android:id="@+id/summaryActivityMapImageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop" />
@@ -44,15 +44,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/summaryActivityMapContainer">
+        app:layout_constraintTop_toBottomOf="@id/mapContainer">
 
         <com.shvants.runninglife.ui.view.KudoersView
-            android:id="@+id/kudoers"
+            android:id="@+id/kudoersView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
         <TextView
-            android:id="@+id/commentCount"
+            android:id="@+id/commentsCountTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="end|center_vertical"
@@ -67,6 +67,6 @@
         <com.shvants.runninglife.ui.view.ButtonsView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/mediaButtons" />
+            android:id="@+id/buttonsView" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

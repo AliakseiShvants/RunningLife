@@ -16,7 +16,6 @@ import com.shvants.runninglife.model.ui.SummaryClubUi
 import com.shvants.runninglife.mvp.contract.ClubsContract
 import com.shvants.runninglife.mvp.presenter.ClubsPresenter
 import com.shvants.runninglife.ui.adapter.ClubsAdapter
-import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.main.fragment_clubs.*
 
@@ -55,7 +54,7 @@ class ClubsFragment private constructor() : BaseFragment(), ClubsContract.View {
     override fun onResume() {
         super.onResume()
 
-        (activity as AppCompatActivity).supportActionBar?.title = Const.ClubsFragment.TITLE
+        (activity as AppCompatActivity).supportActionBar?.title = resources.getString(R.string.clubs)
     }
 
     private fun loadClubs() {

@@ -13,6 +13,7 @@ object Const {
     const val EMPTY = ""
     const val COMMA = ","
     const val SLASH = "/"
+    const val HYPHEN = "-"
     const val INTEGER = "INTEGER"
     const val REAL = "REAL"
     const val LONG = "LONG"
@@ -29,9 +30,6 @@ object Const {
     const val PROFILE_MEDIUM = "PROFILE_MEDIUM"
     const val PROFILE = "PROFILE"
     const val SUMMIT = "SUMMIT"
-
-    const val ONE_COMMENT = "1 comment"
-    const val COMMENTS = "comments"
 
     const val ACTION_BAR = "ACTION_BAR"
 

@@ -76,14 +76,14 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
         when (list.size) {
             0 -> {
             }
-            1 -> setKudosProfile(hashMapOf(view.firstImage to list[0]))
+            1 -> setKudosProfile(hashMapOf(view.firstImageView to list[0]))
 
-            2 -> setKudosProfile(hashMapOf(view.firstImage to list[0],
-                    view.middleImage to list[1]))
+            2 -> setKudosProfile(hashMapOf(view.firstImageView to list[0],
+                    view.middleImageView to list[1]))
 
-            else -> setKudosProfile(hashMapOf(view.firstImage to list[0],
-                    view.middleImage to list[1],
-                    view.lastImage to list[2]))
+            else -> setKudosProfile(hashMapOf(view.firstImageView to list[0],
+                    view.middleImageView to list[1],
+                    view.lastImageView to list[2]))
         }
     }
 

@@ -1,44 +1,54 @@
 <resources>
-    <string name="standard_free_version">Standard free version</string>
+    <string name="standard_free_version" translatable="false">Standard free version</string>
 
-    <string name="back">Back</string>
-    <string name="clubs">Clubs</string>
-    <string name="settings">Settings</string>
-    <string name="notification">Notification</string>
-    <string name="activities_feed">Activities Feed</string>
-
-    <string name="move_record">Move record</string>
-    <string name="logout">Logout</string>
-
-    <string name="login">Log in</string>
-    <string name="password">Password</string>
-    <string name="login_image">Login image</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="clubs" translatable="false">Clubs</string>
+    <string name="settings" translatable="false">Settings</string>
+    <string name="notification" translatable="false">Notification</string>
+    <string name="activities_feed" translatable="false">Activities Feed</string>
+    <string name="move_record" translatable="false">Move record</string>
+    <string name="logout" translatable="false">Logout</string>
+    <string name="login" translatable="false">Log in</string>
+    <string name="password" translatable="false">Password</string>
+    <string name="login_image" translatable="false">Login image</string>
     <string name="running_life">Running Life</string>
-    <string name="you_are_just_join_to_running_life">You are just join to Running Life!</string>
-    <string name="welcome">Welcome!</string>
-    <string name="time">Time</string>
-    <string name="tempo">Tempo</string>
-    <string name="distance">Distance</string>
-    <string name="km">km</string>
-    <string name="minutes">min</string>
-    <string name="hours">h</string>
-    <string name="seconds">sec</string>
-    <string name="elevation">Elevation</string>
-    <string name="calories">Calories</string>
-    <string name="hr">Avg. HR</string>
-    <string name="meter">m</string>
-    <string name="cal">cal.</string>
-    <string name="bpm">bpm</string>
-    <string name="email">Email</string>
-    <string name="login_error">Error with authentication. \nCheck Internet connection and try again</string>
-    <string name="navigation_drawer_open">open drawer</string>
-    <string name="navigation_drawer_close">close drawer</string>
-    <string name="my_activities">My Activities</string>
-    <string name="be_the_first_who_like">Be the first who Like!</string>
-    <string name="your_clubs">Your clubs</string>
+    <string name="you_are_just_join_to_running_life" translatable="false">You are just join to Running Life!</string>
+    <string name="welcome" translatable="false">Welcome!</string>
+    <string name="time" translatable="false">Time</string>
+    <string name="tempo" translatable="false">Tempo</string>
+    <string name="distance" translatable="false">Distance</string>
+    <string name="km" translatable="false">km</string>
+    <string name="minutes" translatable="false">min</string>
+    <string name="hours" translatable="false">h</string>
+    <string name="seconds" translatable="false">sec</string>
+    <string name="elevation" translatable="false">Elevation</string>
+    <string name="calories" translatable="false">Calories</string>
+    <string name="hr" translatable="false">Avg. HR</string>
+    <string name="meter" translatable="false">m</string>
+    <string name="cal" translatable="false">cal.</string>
+    <string name="bpm" translatable="false">bpm</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="login_error" translatable="false">Error with authentication. \nCheck Internet connection and try again</string>
+    <string name="my_activities" translatable="false">My Activities</string>
+    <string name="be_the_first_to_give_kudos" translatable="false">Be the first to give kudos!</string>
+    <string name="your_clubs" translatable="false">Your clubs</string>
     <string name="dot">•</string>
-    <string name="more">More</string>
-    <string name="share">Share</string>
-    <string name="change">Change</string>
-    <string name="delete">Delete</string>
+    <string name="more" translatable="false">More</string>
+    <string name="share" translatable="false">Share</string>
+    <string name="change" translatable="false">Change</string>
+    <string name="delete" translatable="false">Delete</string>
+    <string name="kudo" translatable="false">kudos</string>
+    <string name="comment" translatable="false">comment</string>
+    <string name="two_four_comments" translatable="false">comments</string>
+    <string name="comments" translatable="false">comments</string>
+    <string name="kudos" translatable="false">kudos</string>
+    <string name="run" translatable="false">Run</string>
+    <string name="ride" translatable="false">Bike</string>
+    <string name="activity" translatable="false">Activity</string>
+    <string name="runners" translatable="false">runners</string>
+    <string name="cyclers" translatable="false">cyclers</string>
+    <string name="sportsmens" translatable="false">sportsmens</string>
+    <string name="privateStatus" translatable="false">Private</string>
+    <string name="publicStatus" translatable="false">Public</string>
+    <string name="no_desc" translatable="false">There is no description yet!</string>
 </resources>

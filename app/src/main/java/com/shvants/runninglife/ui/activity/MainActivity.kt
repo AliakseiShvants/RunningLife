@@ -127,7 +127,7 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         if (athlete != null) navAthleteView.setView(athlete)
     }
 
-    fun getAthleteProfile() = navAthleteView.navAthleteProfile
+    fun getAthleteProfile() = navAthleteView.navAthleteProfileImageView
 
     private fun onActivityDelete() {
         val isDeleted = intent.getBooleanExtra(IS_DELETED, false)

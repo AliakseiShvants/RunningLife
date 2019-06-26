@@ -7,7 +7,7 @@
     android:padding="@dimen/one_intent">
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/like"
+        android:id="@+id/likeImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,14 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/comments"
+        app:layout_constraintEnd_toStartOf="@+id/commentsImageButton"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/like"
+        app:layout_constraintStart_toEndOf="@+id/likeImageButton"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/vert_line" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/comments"
+        android:id="@+id/commentsImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

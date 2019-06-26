@@ -8,7 +8,7 @@
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <ImageView
-        android:id="@+id/navAthleteProfile"
+        android:id="@+id/navAthleteProfileImageView"
         android:layout_width="@dimen/nav_profile_size"
         android:layout_height="@dimen/nav_profile_size"
         android:layout_marginStart="@dimen/two_intents"
@@ -20,22 +20,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/navAthleteFullName"
+        android:id="@+id/navAthleteFullNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/s_text_size"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/navAthleteLocation"
-        app:layout_constraintTop_toTopOf="@id/navAthleteProfile" />
+        app:layout_constraintStart_toStartOf="@id/navAthleteLocationTextView"
+        app:layout_constraintTop_toTopOf="@id/navAthleteProfileImageView" />
 
     <TextView
-        android:id="@+id/navAthleteLocation"
+        android:id="@+id/navAthleteLocationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/one_intent"
         android:layout_marginBottom="@dimen/one_intent"
         android:textSize="@dimen/xs_text_size"
-        app:layout_constraintBottom_toBottomOf="@id/navAthleteProfile"
-        app:layout_constraintStart_toEndOf="@id/navAthleteProfile" />
+        app:layout_constraintBottom_toBottomOf="@id/navAthleteProfileImageView"
+        app:layout_constraintStart_toEndOf="@id/navAthleteProfileImageView" />
 </merge>

@@ -38,7 +38,7 @@ class MyFeedAdapter(private val context: Context,
             val activity = activities[position]
 
             val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
-            val kudoersView = view.findViewById<KudoersView>(R.id.kudoers)
+            val kudoersView = view.findViewById<KudoersView>(R.id.kudoersView)
 
             if (activity.kudos.isEmpty()) {
                 presenter.loadKudoersProfile(kudoersView, activity.id, ImageType.ROUNDED,
@@ -61,7 +61,7 @@ class MyFeedAdapter(private val context: Context,
             presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
             view.setAthleteView(athlete)
 
-            presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
+            presenter.loadActivityMap(view.summaryActivityMapImageView, activity, ImageType.DEFAULT)
             view.setView(activity)
 
             view.setOnClickListener { showDetails(position) }

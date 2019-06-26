@@ -19,26 +19,26 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/firstImage"
+            android:id="@+id/firstImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/middleImage"
+            android:id="@+id/middleImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:visibility="gone" />
 
         <ImageView
-            android:id="@+id/lastImage"
+            android:id="@+id/lastImageView"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:visibility="gone" />
     </LinearLayout>
 
     <TextView
-        android:id="@+id/countText"
+        android:id="@+id/countTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/one_intent"

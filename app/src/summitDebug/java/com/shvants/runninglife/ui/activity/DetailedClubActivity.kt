@@ -47,8 +47,8 @@ class DetailedClubActivity : BaseActivity(), DetailedClubContract.View {
     }
 
     private fun loadImages(club: DetailedClubUi, imageType: ImageType, isGone: Boolean) {
-        presenter.loadImage(detailedClub.clubCoverFoto, club.coverPhoto, imageType, isGone)
-        presenter.loadImage(detailedClub.clubProfile, club.profileMedium, imageType, isGone)
+        presenter.loadImage(detailedClub.clubCoverFotoImageView, club.coverPhoto, imageType, isGone)
+        presenter.loadImage(detailedClub.clubProfileImageView, club.profileMedium, imageType, isGone)
     }
 
     private fun loadClub(id: Int, callback: ICallback<DetailedClubUi>) {

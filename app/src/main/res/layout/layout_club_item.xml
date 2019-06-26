@@ -17,7 +17,7 @@
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/clubName"
+            android:id="@+id/clubNameTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"

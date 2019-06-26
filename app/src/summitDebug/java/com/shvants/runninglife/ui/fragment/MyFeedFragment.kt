@@ -14,7 +14,6 @@ import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
 import com.shvants.runninglife.mvp.presenter.MyFeedPresenter
 import com.shvants.runninglife.ui.adapter.MyFeedAdapter
-import com.shvants.runninglife.utils.Const
 import com.shvants.runninglife.utils.ICallback
 import kotlinx.android.synthetic.summitDebug.fragment_my_activities.*
 import java.util.concurrent.atomic.AtomicInteger
@@ -63,7 +62,7 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
     override fun onResume() {
         super.onResume()
 
-        (activity as AppCompatActivity).supportActionBar?.title = Const.MyFeedFragment.TITLE
+        (activity as AppCompatActivity).supportActionBar?.title = resources.getString(R.string.my_activities)
     }
 
     override fun getLayoutResId() = R.layout.fragment_my_activities

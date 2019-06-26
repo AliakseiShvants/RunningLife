@@ -26,31 +26,9 @@ open class ImageLoader private constructor() : ILoader {
         }
     }
 
-    // directly from network
-//    override fun load(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
-//        if (uri == Const.EMPTY) {
-//            if (isGone) goneEmptyImage(imageView, uri)
-//
-//            return
-//        }
-//
-//        imageView.tag = uri
-//
-//        loadFromNetwork(uri, object : ImageCallback<Bitmap> {
-//
-//            override fun onResult(result: Bitmap) {
-//                setImage(imageView, uri, result, imageType)
-//            }
-//
-//            override fun onLoadingError() {
-//                if (isGone) goneEmptyImage(imageView, uri)
-//            }
-//        })
-//    }
-
     override fun load(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
         if (uri == Const.EMPTY) {
-            if (isGone) goneEmptyImage(imageView, uri)
+            if (isGone) goneEmptyImage(imageView)
 
             return
         }
@@ -79,7 +57,7 @@ open class ImageLoader private constructor() : ILoader {
                                 }
 
                                 override fun onLoadingError() {
-                                    if (isGone) goneEmptyImage(imageView, uri)
+                                    if (isGone) goneEmptyImage(imageView)
                                 }
                             })
                         }
@@ -89,7 +67,7 @@ open class ImageLoader private constructor() : ILoader {
         })
     }
 
-    private fun goneEmptyImage(imageView: ImageView, uri: String) {
+    private fun goneEmptyImage(imageView: ImageView) {
         handler.post { imageView.visibility = View.GONE }
     }
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cal">кал.</string>
+    <string name="activities_feed" translatable="false">Лента Активностей</string>
+    <string name="back" translatable="false">Назад</string>
+    <string name="be_the_first_to_give_kudos" translatable="false">Поставьте зачёт первым!</string>
+    <string name="bpm" translatable="false">уд/мин</string>
+    <string name="calories" translatable="false">Каллорий</string>
+    <string name="change" translatable="false">Изменить</string>
+    <string name="clubs" translatable="false">Клубы</string>
+    <string name="delete" translatable="false">Удалить</string>
+    <string name="distance" translatable="false">Дистанция</string>
+    <string name="elevation" translatable="false">Набор высоты</string>
+    <string name="hours" translatable="false">м</string>
+    <string name="email" translatable="false">эл. почта</string>
+    <string name="hr" translatable="false">Средн. пульс</string>
+    <string name="km" translatable="false">км</string>
+    <string name="login" translatable="false">Войти</string>
+    <string name="login_error" translatable="false">"Ошибка аутентификации. Проверьте интернет соединение и попробуйте еще раз "</string>
+    <string name="logout" translatable="false">Выйти</string>
+    <string name="meter" translatable="false">м</string>
+    <string name="minutes" translatable="false">мин</string>
+    <string name="more" translatable="false">Ещё</string>
+    <string name="my_activities" translatable="false">Мои активности</string>
+    <string name="seconds" translatable="false">сек</string>
+    <string name="settings" translatable="false">Настройки</string>
+    <string name="share" translatable="false">Поделиться</string>
+    <string name="standard_free_version" translatable="false">Бесплатная версия</string>
+    <string name="tempo" translatable="false">Темп</string>
+    <string name="time" translatable="false">Время</string>
+    <string name="welcome" translatable="false">Добро пожаловать!</string>
+    <string name="you_are_just_join_to_running_life" translatable="false">Вы почти присоединились к Running Life!</string>
+    <string name="your_clubs" translatable="false">Ваши клубы</string>
+    <string name="password" translatable="false">Пароль</string>
+    <string name="notification" translatable="false">Уведомления</string>
+    <string name="move_record" translatable="false">Запись тренировки</string>
+    <string name="login_image" translatable="false">"картинка "</string>
+    <string name="kudo" translatable="false">чел. поставил зачёт!</string>
+    <string name="comment" translatable="false">комментарий</string>
+    <string name="comments" translatable="false">комментариев</string>
+    <string name="two_four_comments" translatable="false">комментария</string>
+    <string name="kudos" translatable="false">чел. поставили зачёт!</string>
+    <string name="run">Бег</string>
+    <string name="ride">Велосипед</string>
+    <string name="activity">Активность</string>
+    <string name="runners">бегунов</string>
+    <string name="cyclers">велосипедистов</string>
+    <string name="sportsmens">спортсменов</string>
+    <string name="no_desc">Ёще нет описания!</string>
+    <string name="privateStatus" translatable="false">Закрытый</string>
+    <string name="publicStatus" translatable="false">Открытый</string>
+</resources>

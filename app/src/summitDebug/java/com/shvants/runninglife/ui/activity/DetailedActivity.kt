@@ -17,6 +17,7 @@ import com.shvants.runninglife.utils.Const.EMPTY
 import com.shvants.runninglife.utils.Const.KUDOS
 import com.shvants.runninglife.utils.Const.ZERO_LONG
 import com.shvants.runninglife.utils.ICallback
+import kotlinx.android.synthetic.main.activity_athlete_view.view.*
 import kotlinx.android.synthetic.summitDebug.activity_detailed_activity.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.*
 import kotlinx.android.synthetic.summitDebug.layout_detailed_activity.view.*
@@ -28,9 +29,9 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
     private val activityCallback = object : ICallback<DetailedActivityUi> {
 
         override fun onResult(result: DetailedActivityUi) {
-            supportActionBar?.title = result.type
+            supportActionBar?.title = getActivityTypeAsString(result.type)
             detailedActivity.setView(result)
-            loadMap(detailedActivity.detailedActivityMap, result, ImageType.DEFAULT)
+            loadMap(detailedActivity.mapImageView, result, ImageType.DEFAULT)
         }
 
         override fun onError(message: String) {
@@ -64,11 +65,13 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
         val athlete = presenter.getAthlete()
         if (athlete != null) {
             detailedActivity.setAthleteView(athlete)
-            loadImage(detailedActivity.getDetailedAthleteProfile(), athlete.profileMedium, ImageType.ROUNDED)
+            loadImage(detailedActivity.activityAthleteView.athleteProfile,
+                    athlete.profileMedium,
+                    ImageType.ROUNDED)
         }
 
         val kudosProfile = intent.getStringArrayExtra(KUDOS)
-        presenter.handleKudos(kudoers, kudosProfile)
+        presenter.handleKudos(kudoersView, kudosProfile)
     }
 
     private fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>) {

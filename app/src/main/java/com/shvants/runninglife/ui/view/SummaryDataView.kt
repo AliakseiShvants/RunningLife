@@ -15,25 +15,14 @@ class SummaryDataView @JvmOverloads constructor(
         defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr),
         BaseCustomView<SummaryActivityUi> {
 
-    private lateinit var firstView: DataItemView
-    private lateinit var secondView: DataItemView
-    private lateinit var thirdView: DataItemView
-
     init {
         View.inflate(context, getLayoutResId(), this)
-        onViewInflated(context)
-    }
-
-    override fun onViewInflated(context: Context) {
-        firstView = firstItem
-        secondView = secondItem
-        thirdView = thirdItem
     }
 
     override fun setView(item: SummaryActivityUi) {
-        firstView.setView(arrayOf("Distance", item.distance))
-        secondView.setView(arrayOf("Tempo", item.avgSpeed))
-        thirdView.setView(arrayOf("Time", item.movingTime))
+        firstDataItem.setView(arrayOf(resources.getString(R.string.distance), item.distance))
+        secondDataItem.setView(arrayOf(resources.getString(R.string.tempo), item.avgSpeed))
+        thirdDataItem.setView(arrayOf(resources.getString(R.string.time), item.movingTime))
     }
 
     override fun getLayoutResId() = R.layout.layout_summary_data

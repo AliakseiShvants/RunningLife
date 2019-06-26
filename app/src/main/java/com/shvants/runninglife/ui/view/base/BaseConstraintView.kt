@@ -14,11 +14,9 @@ abstract class BaseConstraintView @JvmOverloads constructor(
 
     init {
         View.inflate(context, getLayoutResId(), this)
-        onViewInflated(context)
     }
 
     @LayoutRes
     abstract fun getLayoutResId(): Int
 
-    abstract fun onViewInflated(context: Context)
 }
