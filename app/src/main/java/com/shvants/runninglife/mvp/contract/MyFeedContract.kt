@@ -1,5 +1,6 @@
 package com.shvants.runninglife.mvp.contract
 
+import android.graphics.Bitmap
 import android.widget.ImageView
 import com.example.imageloader.ImageType
 import com.shvants.runninglife.model.ui.SummaryActivityUi
@@ -22,7 +23,8 @@ interface MyFeedContract {
         fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
                                callback: ICallback<List<String>>)
 
-        fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType)
+        //        fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType)
+        fun loadActivityMap(images: ArrayList<Bitmap>, activity: SummaryActivityUi, imageType: ImageType)
 
         fun getAthlete(): SummaryAthleteUi?
 

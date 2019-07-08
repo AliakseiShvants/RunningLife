@@ -42,7 +42,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
     override fun getAthlete() = repository.get()?.getLoggedInAthlete()
 
     override fun loadImage(view: ImageView, url: String, imageType: ImageType) {
-        imageLoader.load(view, url, imageType)
+        imageLoader.loadAndSet(view, url, imageType)
     }
 
     override fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>) {
@@ -60,7 +60,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
     }
 
     override fun loadMap(view: ImageView, activity: DetailedActivityUi, imageType: ImageType) {
-        imageLoader.load(view, prepareMapUrl(activity), imageType)
+        imageLoader.loadAndSet(view, prepareMapUrl(activity), imageType)
     }
 
     private fun prepareMapUrl(activity: DetailedActivityUi): String =
@@ -112,7 +112,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
 
     private fun setKudoProfile(key: ImageView, value: String) {
         key.visibility = View.VISIBLE
-        imageLoader.load(key, value, ImageType.ROUNDED)
+        imageLoader.loadAndSet(key, value, ImageType.ROUNDED)
     }
 
     override fun deleteActivity(id: Long, callback: ICallback<Boolean>) {

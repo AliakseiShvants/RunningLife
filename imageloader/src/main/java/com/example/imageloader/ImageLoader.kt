@@ -26,7 +26,50 @@ open class ImageLoader private constructor() : ILoader {
         }
     }
 
-    override fun load(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
+    override fun load(images: ArrayList<Bitmap>, uri: String, imageType: ImageType) {
+        if (uri != Const.EMPTY) {
+
+            loadFromMemoryCache(uri, object : ImageCallback<Bitmap> {
+
+                override fun onResult(result: Bitmap) {
+                    setBitmap(images, result, imageType)
+                }
+
+                override fun onLoadingError() {
+                    executor.execute {
+                        loadFromDiskCache(uri, object : ImageCallback<Bitmap> {
+
+                            override fun onResult(result: Bitmap) {
+                                setBitmap(images, result, imageType)
+                            }
+
+                            override fun onLoadingError() {
+                                loadFromNetwork(uri, object : ImageCallback<Bitmap> {
+
+                                    override fun onResult(result: Bitmap) {
+                                        setBitmap(images, result, imageType)
+                                    }
+
+                                    override fun onLoadingError() {
+                                    }
+                                })
+                            }
+                        })
+                    }
+                }
+            })
+        }
+    }
+
+    private fun setBitmap(images: ArrayList<Bitmap>, result: Bitmap, imageType: ImageType) {
+        val image = cropImage(result, imageType)
+
+        handler.post {
+            images.add(image)
+        }
+    }
+
+    override fun loadAndSet(imageView: ImageView, uri: String, imageType: ImageType, isGone: Boolean) {
         if (uri == Const.EMPTY) {
             if (isGone) goneEmptyImage(imageView)
 

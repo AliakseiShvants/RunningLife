@@ -2,6 +2,7 @@ package com.shvants.runninglife.ui.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -29,6 +30,8 @@ class MyFeedAdapter(private val context: Context,
         private set
     var activities = mutableListOf<SummaryActivityUi>()
         private set
+
+    var activityImages = mutableMapOf<Long, ArrayList<Bitmap>>()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
@@ -61,7 +64,11 @@ class MyFeedAdapter(private val context: Context,
             presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
             view.setAthleteView(athlete)
 
-            presenter.loadActivityMap(view.summaryActivityMapImageView, activity, ImageType.DEFAULT)
+//            presenter.loadActivityMap(view.summaryActivityMapImageView, activity, ImageType.DEFAULT)
+            if (activityImages[activity.id] != null) {
+                val images = activityImages[activity.id] as ArrayList<Bitmap>
+                view.summaryActivityMapImageView.setImageBitmap(images.first())
+            }
             view.setView(activity)
 
             view.setOnClickListener { showDetails(position) }

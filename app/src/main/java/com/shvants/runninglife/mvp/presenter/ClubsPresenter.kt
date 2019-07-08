@@ -52,7 +52,7 @@ class ClubsPresenter(context: Context) : ClubsContract.Presenter {
     }
 
     override fun loadClubImage(view: ImageView, profileMedium: String) {
-        imageLoader.load(view, profileMedium, ImageType.DEFAULT)
+        imageLoader.loadAndSet(view, profileMedium, ImageType.DEFAULT)
     }
 
     override fun setClubsCount(size: Int) {

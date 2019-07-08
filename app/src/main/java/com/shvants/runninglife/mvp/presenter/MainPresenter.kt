@@ -34,14 +34,14 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
         val athlete = repository.getLoggedInAthlete()
         val profileView = (view as MainActivity).getAthleteProfile()
 
-        imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
+        imageLoader.loadAndSet(profileView, athlete.profile, ImageType.ROUNDED)
         view?.setAthlete(athlete)
     }
 
     override fun setAthleteProfile(athlete: SummaryAthleteUi?) {
         if (athlete != null) {
             val profileView = (view as MainActivity).getAthleteProfile()
-            imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
+            imageLoader.loadAndSet(profileView, athlete.profile, ImageType.ROUNDED)
         }
     }
 

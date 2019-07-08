@@ -34,7 +34,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
     }
 
     override fun loadImage(view: ImageView, url: String, imageType: ImageType, isGone: Boolean) {
-        imageLoader.load(view, url, imageType, isGone)
+        imageLoader.loadAndSet(view, url, imageType, isGone)
     }
 
     override fun loadClub(id: Int, callback: ICallback<DetailedClubUi>) {
@@ -54,7 +54,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
     //    override fun getAthlete() = repository.get()?.getLoggedInAthlete()
 //
 //    override fun loadImage(view: ImageView, url: String, imageType: ImageType) {
-//        imageLoader.load(view, url, imageType)
+//        imageLoader.loadAndSet(view, url, imageType)
 //    }
 //
 //    override fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>) {
@@ -70,7 +70,7 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
 //    }
 //
 //    override fun loadMap(view: ImageView, activity: DetailedActivityUi, imageType: ImageType) {
-//        imageLoader.load(view, prepareMapUrl(activity), imageType)
+//        imageLoader.loadAndSet(view, prepareMapUrl(activity), imageType)
 //    }
 //
 //    private fun prepareMapUrl(activity: DetailedActivityUi): String =
@@ -122,6 +122,6 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
 //
 //    private fun setKudoProfile(key: ImageView, value: String) {
 //        key.visibility = View.VISIBLE
-//        imageLoader.load(key, value, ImageType.ROUNDED)
+//        imageLoader.loadAndSet(key, value, ImageType.ROUNDED)
 //    }
 }

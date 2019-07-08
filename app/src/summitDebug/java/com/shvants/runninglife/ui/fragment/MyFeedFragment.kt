@@ -1,5 +1,6 @@
 package com.shvants.runninglife.ui.fragment
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
@@ -102,6 +104,14 @@ class MyFeedFragment private constructor() : BaseFragment(), MyFeedContract.View
 
             override fun onResult(result: List<SummaryActivityUi>) {
                 myFeedAdapter.addActivities(result)
+
+                myFeedAdapter.activities.forEach {
+                    var images = arrayListOf<Bitmap>()
+                    presenter.loadActivityMap(images, it, ImageType.DEFAULT)
+
+                    myFeedAdapter.activityImages[it.id] = images
+                }
+
                 isLoading = false
             }
 

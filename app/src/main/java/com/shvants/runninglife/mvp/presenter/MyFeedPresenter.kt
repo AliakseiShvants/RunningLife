@@ -1,6 +1,7 @@
 package com.shvants.runninglife.mvp.presenter
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Point
 import android.os.Handler
 import android.view.View
@@ -97,10 +98,10 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
     }
 
     override fun loadAthleteProfile(view: ImageView, url: String, imageType: ImageType) {
-        imageLoader.load(view, url, imageType)
+        imageLoader.loadAndSet(view, url, imageType)
     }
 
-    override fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType) {
+    override fun loadActivityMap(images: ArrayList<Bitmap>, activity: SummaryActivityUi, imageType: ImageType) {
         if (activity.map != EMPTY) {
 
             val size = Point()
@@ -112,9 +113,7 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
                     activity.endLatlng,
                     size.x)
 
-            imageLoader.load(view, mapUrlString, imageType)
-        } else {
-            view.visibility = View.GONE
+            imageLoader.load(images, mapUrlString, imageType)
         }
     }
 
