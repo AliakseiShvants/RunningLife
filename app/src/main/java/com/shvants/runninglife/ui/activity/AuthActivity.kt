@@ -26,7 +26,7 @@ class AuthActivity : BaseActivity() {
 
     private val handler = Handler()
     private val executor = Executors.newCachedThreadPool()
-    private var code: String = Const.EMPTY
+    private var code: String? = Const.EMPTY
     private var isRedirected = false
     private var isAuthorized = false
 

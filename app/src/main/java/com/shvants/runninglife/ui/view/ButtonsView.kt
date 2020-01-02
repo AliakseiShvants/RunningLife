@@ -8,18 +8,11 @@ import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.utils.Const
 import kotlinx.android.synthetic.main.layout_buttons_panel.view.*
 
-class ButtonsView @JvmOverloads constructor(
+class ButtonsView(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = Const.ZERO) : BaseConstraintView(context, attrs, defStyleAttr) {
-
-    private lateinit var likeButtonView: AppCompatImageButton
-    private lateinit var commentButtonView: AppCompatImageButton
+        defStyleAttr: Int = Const.ZERO
+) : BaseConstraintView(context, attrs, defStyleAttr) {
 
     override fun getLayoutResId() = R.layout.layout_buttons_panel
-
-    override fun onViewInflated(context: Context) {
-        likeButtonView = like
-        commentButtonView = comments
-    }
 }

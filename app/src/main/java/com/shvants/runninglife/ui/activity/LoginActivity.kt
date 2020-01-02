@@ -75,7 +75,7 @@ class LoginActivity : BaseActivity(), LoginContract.View {
         }
     }
 
-    private fun handleTokenResponse(code: String) {
+    private fun handleTokenResponse(code: String?) {
         executor.execute {
             val tokenBody = StravaHelper.getTokenBody(code)
             val responseString = StravaRequest().post(StravaHelper.TOKEN_BASE_URL,

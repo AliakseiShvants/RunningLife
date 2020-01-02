@@ -28,7 +28,7 @@ object StravaHelper {
                 .toString()
     }
 
-    fun getTokenBody(code: String): FormBody {
+    fun getTokenBody(code: String?): FormBody {
         return FormBody.Builder()
                 .add(CLIENT_ID, CLIENT_ID_VALUE)
                 .add(CLIENT_SECRET, CLIENT_SECRET_VALUE)

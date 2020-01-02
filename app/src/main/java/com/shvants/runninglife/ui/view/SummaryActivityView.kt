@@ -16,58 +16,30 @@ import com.shvants.runninglife.utils.Const.ONE_COMMENT
 import com.shvants.runninglife.utils.Const.ZERO
 import kotlinx.android.synthetic.main.layout_summary_activity.view.*
 
-class SummaryActivityView @JvmOverloads constructor(
+class SummaryActivityView(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = ZERO) : BaseCustomView<SummaryActivityUi>,
-        BaseConstraintView(context, attrs, defStyleAttr) {
-
-    private lateinit var athleteView: ActivityAthleteView
-    private lateinit var nameView: TextView
-    private lateinit var dataView: SummaryDataView
-    private lateinit var kudoersView: KudoersView
-    private lateinit var commentCountView: TextView
-    private lateinit var mapView: ImageView
-    private lateinit var buttonsView: ButtonsView
-
-    override fun onViewInflated(context: Context) {
-        athleteView = activityAthlete
-        nameView = activityName
-        dataView = summaryActivityData
-        kudoersView = kudoers
-        commentCountView = commentCount
-        mapView = summaryActivityMap
-        buttonsView = mediaButtons
-    }
+        defStyleAttr: Int = ZERO
+) : BaseCustomView<SummaryActivityUi>, BaseConstraintView(context, attrs, defStyleAttr) {
 
     @UiThread
     override fun setView(activity: SummaryActivityUi) {
         when (activity.type) {
-            ActivityType.RUN.title -> athleteView.setActivityTypeIcon(R.drawable.ic_run)
-            ActivityType.RIDE.title -> athleteView.setActivityTypeIcon(R.drawable.ic_ride)
+            ActivityType.RUN.title -> activityAthlete.setActivityTypeIcon(R.drawable.ic_run)
+            ActivityType.RIDE.title -> activityAthlete.setActivityTypeIcon(R.drawable.ic_ride)
         }
 
-        athleteView.setStartDate(activity.startDate)
+        activityAthlete.setStartDate(activity.startDate)
 
-        dataView.setView(activity)
-        nameView.text = activity.name
-        kudoersView.setView(activity)
+        summaryActivityData.setView(activity)
+        activityName.text = activity.name
+        kudoers.setView(activity)
 
         when (activity.commentCount) {
             0 -> return
-            1 -> {
-                commentCountView.text = ONE_COMMENT
-            }
-            else -> {
-                val commentCount = "${activity.commentCount} $COMMENTS"
-                commentCountView.text = commentCount
-            }
+            1 -> commentCount.text = ONE_COMMENT
+            else -> commentCount.text = "${activity.commentCount} $COMMENTS"
         }
-    }
-
-    @UiThread
-    fun setAthleteView(athlete: SummaryAthleteUi) {
-        athleteView.setView(athlete)
     }
 
     override fun getLayoutResId() = R.layout.layout_summary_activity

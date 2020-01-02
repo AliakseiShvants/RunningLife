@@ -7,18 +7,16 @@ import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.shvants.runninglife.utils.Const.ZERO
 
-abstract class BaseConstraintView @JvmOverloads constructor(
+abstract class BaseConstraintView(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = ZERO) : ConstraintLayout(context, attrs, defStyleAttr) {
+        defStyleAttr: Int = ZERO
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     init {
         View.inflate(context, getLayoutResId(), this)
-        onViewInflated(context)
     }
 
     @LayoutRes
     abstract fun getLayoutResId(): Int
-
-    abstract fun onViewInflated(context: Context)
 }

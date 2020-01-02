@@ -93,16 +93,16 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
 
     override fun handleKudos(view: KudoersView, arr: Array<String>) {
         when (arr.size) {
-            0 -> {
-            }
+            0 -> { }
             1 -> setKudosProfile(hashMapOf(view.firstImage to arr[0]))
 
-            2 -> setKudosProfile(hashMapOf(view.firstImage to arr[0],
-                    view.middleImage to arr[1]))
+            2 -> setKudosProfile(
+                    hashMapOf(view.firstImage to arr[0], view.middleImage to arr[1])
+            )
 
-            else -> setKudosProfile(hashMapOf(view.firstImage to arr[0],
-                    view.middleImage to arr[1],
-                    view.lastImage to arr[2]))
+            else -> setKudosProfile(
+                    hashMapOf(view.firstImage to arr[0], view.middleImage to arr[1], view.lastImage to arr[2])
+            )
         }
     }
 

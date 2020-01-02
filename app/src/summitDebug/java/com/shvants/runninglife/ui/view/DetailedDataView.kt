@@ -9,37 +9,21 @@ import com.shvants.runninglife.ui.view.base.BaseConstraintView
 import com.shvants.runninglife.ui.view.base.BaseCustomView
 import kotlinx.android.synthetic.summitDebug.layout_detailed_data.view.*
 
-class DetailedDataView @JvmOverloads constructor(
+class DetailedDataView(
         context: Context,
         attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0) : BaseConstraintView(context, attrs, defStyleAttr),
-        BaseCustomView<DetailedActivityUi> {
-
-    private lateinit var firstView: DataItemView
-    private lateinit var secondView: DataItemView
-    private lateinit var thirdView: DataItemView
-    private lateinit var forthView: DataItemView
-    private lateinit var fifthView: DataItemView
-    private lateinit var sixthView: DataItemView
+        defStyleAttr: Int = 0
+) : BaseConstraintView(context, attrs, defStyleAttr), BaseCustomView<DetailedActivityUi> {
 
     override fun getLayoutResId() = R.layout.layout_detailed_data
 
-    override fun onViewInflated(context: Context) {
-        firstView = first
-        secondView = second
-        thirdView = third
-        forthView = forth
-        fifthView = fifth
-        sixthView = sixth
-    }
-
     @UiThread
     override fun setView(item: DetailedActivityUi) {
-        firstView.setView(arrayOf("Distance", item.distance))
-        secondView.setView(arrayOf("Tempo", item.avgSpeed))
-        thirdView.setView(arrayOf("Time", item.movingTime))
-        forthView.setView(arrayOf("Elevation", item.elevation.toString()))
-        fifthView.setView(arrayOf("Calories", item.calories.toString()))
-        sixthView.setView(arrayOf("arg HR", item.avgHR.toString()))
+        first.setView(arrayOf("Distance", item.distance))
+        second.setView(arrayOf("Tempo", item.avgSpeed))
+        third.setView(arrayOf("Time", item.movingTime))
+        forth.setView(arrayOf("Elevation", item.elevation.toString()))
+        fifth.setView(arrayOf("Calories", item.calories.toString()))
+        sixth.setView(arrayOf("arg HR", item.avgHR.toString()))
     }
 }

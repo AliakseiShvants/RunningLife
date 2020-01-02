@@ -21,9 +21,10 @@ import com.shvants.runninglife.utils.LongDiffUtil
 import kotlinx.android.synthetic.main.layout_summary_activity.view.*
 
 
-class MyFeedAdapter(private val context: Context,
-                    private val presenter: MyFeedContract.Presenter) :
-        BaseRecyclerViewAdapter(context) {
+class MyFeedAdapter(
+        private val context: Context,
+        private val presenter: MyFeedContract.Presenter
+) : BaseRecyclerViewAdapter(context) {
 
     var athlete = presenter.getAthlete() as SummaryAthleteUi
         private set
@@ -40,26 +41,26 @@ class MyFeedAdapter(private val context: Context,
             val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
             val kudoersView = view.findViewById<KudoersView>(R.id.kudoers)
 
-            if (activity.kudos.isEmpty()) {
-                presenter.loadKudoersProfile(kudoersView, activity.id, ImageType.ROUNDED,
-                        object : ICallback<List<String>> {
-                            override fun onResult(result: List<String>) {
-                                activity.kudos.addAll(result)
-
-                                notifyItemChanged(position)
-                            }
-
-                            override fun onError(message: String) {
-                                presenter.showErr(message)
-                            }
-                        }
-                )
-            }
+//            if (activity.kudos.isEmpty()) {
+//                presenter.loadKudoersProfile(kudoersView, activity.id, ImageType.ROUNDED,
+//                        object : ICallback<List<String>> {
+//                            override fun onResult(result: List<String>) {
+//                                activity.kudos.addAll(result)
+//
+//                                notifyItemChanged(position)
+//                            }
+//
+//                            override fun onError(message: String) {
+//                                presenter.showErr(message)
+//                            }
+//                        }
+//                )
+//            }
 
             presenter.handleKudos(kudoersView, activity.kudos)
 
             presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
-            view.setAthleteView(athlete)
+            view.activityAthlete.setView(athlete)
 
             presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
             view.setView(activity)

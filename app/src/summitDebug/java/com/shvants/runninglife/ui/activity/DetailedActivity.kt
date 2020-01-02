@@ -62,9 +62,14 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
         loadActivity(activityId, activityCallback)
 
         val athlete = presenter.getAthlete()
+
         if (athlete != null) {
-            detailedActivity.setAthleteView(athlete)
-            loadImage(detailedActivity.getDetailedAthleteProfile(), athlete.profileMedium, ImageType.ROUNDED)
+            detailedActivity.detailedActivityAthlete.setView(athlete)
+            loadImage(
+                    view = detailedActivity.getDetailedAthleteProfile(),
+                    url = athlete.profileMedium,
+                    imageType = ImageType.ROUNDED
+            )
         }
 
         val kudosProfile = intent.getStringArrayExtra(KUDOS)
@@ -97,24 +102,24 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+        return when (item?.itemId) {
             android.R.id.home -> {
                 onBackPressed()
 
-                return true
+                true
             }
             R.id.share -> {
                 share()
 
-                return true
+                true
             }
             R.id.delete -> {
                 deleteActivity(activityId, deleteActivityCallback)
-                return true
-            }
-        }
 
-        return super.onOptionsItemSelected(item)
+                true
+            }
+            else -> true
+        }
     }
 
     override fun onDestroy() {
@@ -131,9 +136,10 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
     }
 
     private fun back(result: Boolean = false, message: String = EMPTY) {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("isDeleted", result)
-        intent.putExtra("delete_err", message)
+        val intent = Intent(this, MainActivity::class.java).apply {
+            putExtra("isDeleted", result)
+            putExtra("delete_err", message)
+        }
 
         startActivity(intent)
         finish()

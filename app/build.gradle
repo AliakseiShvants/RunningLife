@@ -8,7 +8,7 @@ androidExtensions {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     testOptions.unitTests.includeAndroidResources = true
 
     defaultConfig {

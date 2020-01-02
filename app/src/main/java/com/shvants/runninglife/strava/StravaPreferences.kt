@@ -33,19 +33,19 @@ class StravaPreferences(context: Context) {
                 .putLong(ATHLETE_ID, value)
                 .apply()
 
-    var accessToken: String
+    var accessToken: String?
         get() = preferences.getString(ACCESS_TOKEN, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(ACCESS_TOKEN, value)
                 .apply()
 
-    var code: String
+    var code: String?
         get() = preferences.getString(CODE, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(CODE, value)
                 .apply()
 
-    var fullName: String
+    var fullName: String?
         get() = preferences.getString(FULLNAME, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(FULLNAME, value)
@@ -63,31 +63,31 @@ class StravaPreferences(context: Context) {
                 .putInt(EXPIRES_IN, value)
                 .apply()
 
-    var refreshToken: String
+    var refreshToken: String?
         get() = preferences.getString(REFRESH_TOKEN, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(REFRESH_TOKEN, value)
                 .apply()
 
-    var location: String
+    var location: String?
         get() = preferences.getString(LOCATION, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(LOCATION, value)
                 .apply()
 
-    var profile: String
+    var profile: String?
         get() = preferences.getString(PROFILE, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(PROFILE, value)
                 .apply()
 
-    var profileMedium: String
+    var profileMedium: String?
         get() = preferences.getString(PROFILE_MEDIUM, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(PROFILE_MEDIUM, value)
                 .apply()
 
-    var sex: String
+    var sex: String?
         get() = preferences.getString(SEX, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(SEX, value)
@@ -99,7 +99,7 @@ class StravaPreferences(context: Context) {
                 .putBoolean(SUMMIT, value)
                 .apply()
 
-    var tokenType: String
+    var tokenType: String?
         get() = preferences.getString(TOKEN_TYPE, Const.EMPTY)
         set(value) = preferences.edit()
                 .putString(TOKEN_TYPE, value)
