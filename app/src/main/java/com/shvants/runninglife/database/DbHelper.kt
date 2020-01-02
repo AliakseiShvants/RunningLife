@@ -94,8 +94,7 @@ class DbHelper(context: Context?) :
                             is DbInt -> type = annotationType.name
                             is DbDouble -> type = annotationType.name
                             is DbBoolean -> type = annotationType.name
-                            is DbPrimaryKey -> {
-                            }
+                            is DbPrimaryKey -> { }
                             else -> throw IllegalStateException(Contract.ANNOTATION_NO_TYPE)
                         }
                     }
