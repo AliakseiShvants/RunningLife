@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
-import com.example.imageloader.ImageLoader
 import com.google.android.material.navigation.NavigationView
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
@@ -145,7 +144,6 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
     override fun getLayoutResId() = R.layout.activity_main
 
     override fun logout() {
-        ImageLoader.getInstance().clearCache()
         startActivity(Intent(this, LoginActivity::class.java))
         finish()
     }
