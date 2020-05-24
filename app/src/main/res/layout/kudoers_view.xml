@@ -14,27 +14,33 @@
         android:layout_marginTop="@dimen/one_intent"
         android:layout_marginBottom="@dimen/one_intent"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/firstImage"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:visibility="gone" />
+            android:layout_width="@dimen/kudoers_size"
+            android:layout_height="@dimen/kudoers_size"
+            android:visibility="gone"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp" />
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/middleImage"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:visibility="gone" />
+            android:layout_width="@dimen/kudoers_size"
+            android:layout_height="@dimen/kudoers_size"
+            android:visibility="gone"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp" />
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/lastImage"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:visibility="gone" />
+            android:layout_width="@dimen/kudoers_size"
+            android:layout_height="@dimen/kudoers_size"
+            android:visibility="gone"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="1dp" />
     </LinearLayout>
 
     <TextView

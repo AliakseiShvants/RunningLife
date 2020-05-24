@@ -1,7 +1,6 @@
 package com.shvants.runninglife.mvp.contract
 
 import android.widget.ImageView
-import com.example.imageloader.ImageType
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.presenter.BasePresenter
@@ -17,12 +16,11 @@ interface MyFeedContract {
 
         fun loadActivities(page: Int, callback: ICallback<List<SummaryActivityUi>>)
 
-        fun loadAthleteProfile(view: ImageView, url: String, imageType: ImageType)
+        fun loadAthleteProfile(view: ImageView, url: String)
 
-        fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
-                               callback: ICallback<List<String>>)
+        fun loadKudoersProfile(view: KudoersView, id: Long, callback: ICallback<List<String>>)
 
-        fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType)
+        fun loadActivityMap(view: ImageView, activity: SummaryActivityUi)
 
         fun getAthlete(): SummaryAthleteUi?
 

@@ -6,7 +6,6 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
@@ -16,13 +15,12 @@ import com.shvants.runninglife.ui.view.KudoersView
 import com.shvants.runninglife.ui.view.SummaryActivityView
 import com.shvants.runninglife.utils.Const.ACTIVITY_ID
 import com.shvants.runninglife.utils.Const.KUDOS
-import com.shvants.runninglife.utils.ICallback
 import com.shvants.runninglife.utils.LongDiffUtil
-import kotlinx.android.synthetic.main.layout_summary_activity.view.*
 
-
-class MyFeedAdapter(private val context: Context,
-                    private val presenter: MyFeedContract.Presenter) :
+class MyFeedAdapter(
+        private val context: Context,
+        private val presenter: MyFeedContract.Presenter
+) :
         BaseRecyclerViewAdapter(context) {
 
     var athlete = presenter.getAthlete() as SummaryAthleteUi
@@ -40,28 +38,28 @@ class MyFeedAdapter(private val context: Context,
             val profileView = view.findViewById<ImageView>(R.id.athleteProfile)
             val kudoersView = view.findViewById<KudoersView>(R.id.kudoers)
 
-            if (activity.kudos.isEmpty()) {
-                presenter.loadKudoersProfile(kudoersView, activity.id, ImageType.ROUNDED,
-                        object : ICallback<List<String>> {
-                            override fun onResult(result: List<String>) {
-                                activity.kudos.addAll(result)
-
-                                notifyItemChanged(position)
-                            }
-
-                            override fun onError(message: String) {
-                                presenter.showErr(message)
-                            }
-                        }
-                )
-            }
+//            if (activity.kudos.isEmpty()) {
+//                presenter.loadKudoersProfile(kudoersView, activity.id, ImageType.ROUNDED,
+//                        object : ICallback<List<String>> {
+//                            override fun onResult(result: List<String>) {
+//                                activity.kudos.addAll(result)
+//
+//                                notifyItemChanged(position)
+//                            }
+//
+//                            override fun onError(message: String) {
+//                                presenter.showErr(message)
+//                            }
+//                        }
+//                )
+//            }
 
             presenter.handleKudos(kudoersView, activity.kudos)
 
-            presenter.loadAthleteProfile(profileView, athlete.profileMedium, ImageType.ROUNDED)
+            presenter.loadAthleteProfile(profileView, athlete.profileMedium)
             view.setAthleteView(athlete)
 
-            presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
+//            presenter.loadActivityMap(view.summaryActivityMap, activity, ImageType.DEFAULT)
             view.setView(activity)
 
             view.setOnClickListener { showDetails(position) }

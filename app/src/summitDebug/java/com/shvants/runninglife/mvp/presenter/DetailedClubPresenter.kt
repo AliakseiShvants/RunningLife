@@ -4,8 +4,7 @@ import android.content.Context
 import android.os.Handler
 import android.view.WindowManager
 import android.widget.ImageView
-import com.example.imageloader.ImageLoader
-import com.example.imageloader.ImageType
+import com.bumptech.glide.Glide
 import com.shvants.runninglife.model.ui.DetailedClubUi
 import com.shvants.runninglife.mvp.contract.DetailedClubContract
 import com.shvants.runninglife.repository.Repository
@@ -19,7 +18,6 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
     private var view: DetailedClubContract.View? = null
     private var repository: WeakReference<Repository> = WeakReference(Repository(context))
 
-    private val imageLoader = ImageLoader.getInstance()
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
 
     private val executor = Executors.newCachedThreadPool()
@@ -33,8 +31,10 @@ class DetailedClubPresenter(context: Context) : DetailedClubContract.Presenter {
         view = null
     }
 
-    override fun loadImage(view: ImageView, url: String, imageType: ImageType, isGone: Boolean) {
-        imageLoader.load(view, url, imageType, isGone)
+    override fun loadImage(view: ImageView, url: String, isGone: Boolean) {
+        Glide.with(view)
+                .load(url)
+                .into(view)
     }
 
     override fun loadClub(id: Int, callback: ICallback<DetailedClubUi>) {

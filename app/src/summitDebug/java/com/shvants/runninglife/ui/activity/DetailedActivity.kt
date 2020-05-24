@@ -7,7 +7,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.mvp.contract.DetailedActivityContract
@@ -30,7 +29,7 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
         override fun onResult(result: DetailedActivityUi) {
             supportActionBar?.title = result.type
             detailedActivity.setView(result)
-            loadMap(detailedActivity.detailedActivityMap, result, ImageType.DEFAULT)
+            loadMap(detailedActivity.detailedActivityMap, result)
         }
 
         override fun onError(message: String) {
@@ -64,7 +63,7 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
         val athlete = presenter.getAthlete()
         if (athlete != null) {
             detailedActivity.setAthleteView(athlete)
-            loadImage(detailedActivity.getDetailedAthleteProfile(), athlete.profileMedium, ImageType.ROUNDED)
+            loadImage(detailedActivity.getDetailedAthleteProfile(), athlete.profileMedium)
         }
 
         val kudosProfile = intent.getStringArrayExtra(KUDOS)
@@ -75,12 +74,12 @@ class DetailedActivity : BaseActivity(), DetailedActivityContract.View {
         presenter.loadActivity(id, callback)
     }
 
-    private fun loadMap(view: ImageView, activityUi: DetailedActivityUi, imageType: ImageType) {
-        presenter.loadMap(view, activityUi, imageType)
+    private fun loadMap(view: ImageView, activityUi: DetailedActivityUi) {
+        presenter.loadMap(view, activityUi)
     }
 
-    private fun loadImage(view: ImageView, url: String, imageType: ImageType) {
-        presenter.loadImage(view, url, imageType)
+    private fun loadImage(view: ImageView, url: String) {
+        presenter.loadImage(view, url)
     }
 
     override fun showMessage(message: String) {

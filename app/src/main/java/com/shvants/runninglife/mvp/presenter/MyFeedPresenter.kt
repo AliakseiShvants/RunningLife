@@ -6,8 +6,7 @@ import android.os.Handler
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-import com.example.imageloader.ImageLoader
-import com.example.imageloader.ImageType
+import com.bumptech.glide.Glide
 import com.shvants.runninglife.model.ui.SummaryActivityUi
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MyFeedContract
@@ -27,7 +26,6 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
     private val executor = Executors.newCachedThreadPool()
     private val handler = Handler()
 
-    private val imageLoader = ImageLoader.getInstance()
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
 
     override fun attachView(view: MyFeedContract.View) {
@@ -56,8 +54,7 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
         }
     }
 
-    override fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
-                                    callback: ICallback<List<String>>) {
+    override fun loadKudoersProfile(view: KudoersView, id: Long, callback: ICallback<List<String>>) {
         executor.execute {
             try {
                 val kudoers = repository.getKudoers(id)
@@ -93,14 +90,16 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
 
     private fun setKudosProfile(key: ImageView, value: String) {
         key.visibility = View.VISIBLE
-        loadAthleteProfile(key, value, ImageType.ROUNDED)
+        loadAthleteProfile(key, value)
     }
 
-    override fun loadAthleteProfile(view: ImageView, url: String, imageType: ImageType) {
-        imageLoader.load(view, url, imageType)
+    override fun loadAthleteProfile(view: ImageView, url: String) {
+        Glide.with(view)
+                .load(url)
+                .into(view)
     }
 
-    override fun loadActivityMap(view: ImageView, activity: SummaryActivityUi, imageType: ImageType) {
+    override fun loadActivityMap(view: ImageView, activity: SummaryActivityUi) {
         if (activity.map != EMPTY) {
 
             val size = Point()
@@ -112,7 +111,9 @@ class MyFeedPresenter(context: Context) : MyFeedContract.Presenter {
                     activity.endLatlng,
                     size.x)
 
-            imageLoader.load(view, mapUrlString, imageType)
+            Glide.with(view)
+                    .load(mapUrlString)
+                    .into(view)
         } else {
             view.visibility = View.GONE
         }

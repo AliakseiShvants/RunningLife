@@ -5,8 +5,7 @@ import android.graphics.Point
 import android.os.Handler
 import android.view.WindowManager
 import android.widget.ImageView
-import com.example.imageloader.ImageLoader
-import com.example.imageloader.ImageType
+import com.bumptech.glide.Glide
 import com.shvants.runninglife.model.ui.SummaryClubUi
 import com.shvants.runninglife.mvp.contract.ClubsContract
 import com.shvants.runninglife.repository.Repository
@@ -20,7 +19,6 @@ class ClubsPresenter(context: Context) : ClubsContract.Presenter {
     private val repository = Repository(context)
 
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
-    private val imageLoader = ImageLoader.getInstance()
     private val executor = Executors.newCachedThreadPool()
     private val handler = Handler()
 
@@ -52,7 +50,9 @@ class ClubsPresenter(context: Context) : ClubsContract.Presenter {
     }
 
     override fun loadClubImage(view: ImageView, profileMedium: String) {
-        imageLoader.load(view, profileMedium, ImageType.DEFAULT)
+        Glide.with(view)
+                .load(profileMedium)
+                .into(view)
     }
 
     override fun setClubsCount(size: Int) {

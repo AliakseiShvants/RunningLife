@@ -5,8 +5,8 @@ import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import com.example.imageloader.ImageLoader
-import com.example.imageloader.ImageType
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.SummaryAthleteUi
 import com.shvants.runninglife.mvp.contract.MainContract
@@ -20,7 +20,6 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
 
     private var repository = Repository(context)
     private var view: MainContract.View? = null
-    private val imageLoader = ImageLoader.getInstance()
 
     override fun attachView(view: MainContract.View) {
         this.view = view
@@ -34,14 +33,21 @@ class MainPresenter(private val context: Context) : MainContract.Presenter {
         val athlete = repository.getLoggedInAthlete()
         val profileView = (view as MainActivity).getAthleteProfile()
 
-        imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
+        Glide.with(profileView)
+                .load(athlete.profile)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(profileView)
         view?.setAthlete(athlete)
     }
 
     override fun setAthleteProfile(athlete: SummaryAthleteUi?) {
         if (athlete != null) {
             val profileView = (view as MainActivity).getAthleteProfile()
-            imageLoader.load(profileView, athlete.profile, ImageType.ROUNDED)
+
+            Glide.with(context)
+                    .load(athlete.profile)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(profileView)
         }
     }
 

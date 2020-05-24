@@ -6,8 +6,7 @@ import android.os.Handler
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-import com.example.imageloader.ImageLoader
-import com.example.imageloader.ImageType
+import com.bumptech.glide.Glide
 import com.shvants.runninglife.model.ui.DetailedActivityUi
 import com.shvants.runninglife.mvp.contract.DetailedActivityContract
 import com.shvants.runninglife.repository.Repository
@@ -25,7 +24,6 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
     private var view: DetailedActivityContract.View? = null
     private var repository: WeakReference<Repository> = WeakReference(Repository(context))
 
-    private val imageLoader = ImageLoader.getInstance()
     private val display = (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay
 
     private val executor = Executors.newCachedThreadPool()
@@ -41,8 +39,10 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
 
     override fun getAthlete() = repository.get()?.getLoggedInAthlete()
 
-    override fun loadImage(view: ImageView, url: String, imageType: ImageType) {
-        imageLoader.load(view, url, imageType)
+    override fun loadImage(view: ImageView, url: String) {
+        Glide.with(view)
+                .load(url)
+                .into(view)
     }
 
     override fun loadActivity(id: Long, callback: ICallback<DetailedActivityUi>) {
@@ -59,8 +59,10 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
         }
     }
 
-    override fun loadMap(view: ImageView, activity: DetailedActivityUi, imageType: ImageType) {
-        imageLoader.load(view, prepareMapUrl(activity), imageType)
+    override fun loadMap(view: ImageView, activity: DetailedActivityUi) {
+        Glide.with(view)
+                .load(prepareMapUrl(activity))
+                .into(view)
     }
 
     private fun prepareMapUrl(activity: DetailedActivityUi): String =
@@ -77,8 +79,7 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
                 EMPTY
             }
 
-    override fun loadKudoersProfile(view: KudoersView, id: Long, imageType: ImageType,
-                                    callback: ICallback<List<String>>) {
+    override fun loadKudoersProfile(view: KudoersView, id: Long, callback: ICallback<List<String>>) {
         executor.execute {
             try {
                 val kudoers = repository.get()?.getKudoers(id)
@@ -112,7 +113,10 @@ class DetailedActivityPresenter(context: Context) : DetailedActivityContract.Pre
 
     private fun setKudoProfile(key: ImageView, value: String) {
         key.visibility = View.VISIBLE
-        imageLoader.load(key, value, ImageType.ROUNDED)
+
+        Glide.with(key)
+                .load(value)
+                .into(key)
     }
 
     override fun deleteActivity(id: Long, callback: ICallback<Boolean>) {

@@ -5,7 +5,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import com.example.imageloader.ImageType
 import com.shvants.runninglife.R
 import com.shvants.runninglife.model.ui.DetailedClubUi
 import com.shvants.runninglife.mvp.contract.DetailedClubContract
@@ -25,7 +24,7 @@ class DetailedClubActivity : BaseActivity(), DetailedClubContract.View {
         override fun onResult(result: DetailedClubUi) {
             supportActionBar?.title = resources.getString(R.string.club)
             detailedClub.setView(result)
-            loadImages(result, ImageType.DEFAULT, false)
+            loadImages(result, false)
         }
 
         override fun onError(message: String) {
@@ -46,9 +45,9 @@ class DetailedClubActivity : BaseActivity(), DetailedClubContract.View {
         loadClub(clubId, clubCallback)
     }
 
-    private fun loadImages(club: DetailedClubUi, imageType: ImageType, isGone: Boolean) {
-        presenter.loadImage(detailedClub.clubCoverFoto, club.coverPhoto, imageType, isGone)
-        presenter.loadImage(detailedClub.clubProfile, club.profileMedium, imageType, isGone)
+    private fun loadImages(club: DetailedClubUi, isGone: Boolean) {
+        presenter.loadImage(detailedClub.clubCoverFoto, club.coverPhoto, isGone)
+        presenter.loadImage(detailedClub.clubProfile, club.profileMedium, isGone)
     }
 
     private fun loadClub(id: Int, callback: ICallback<DetailedClubUi>) {
